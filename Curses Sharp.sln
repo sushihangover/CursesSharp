@@ -6,9 +6,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursesSharp", "CursesSharp\CursesSharp.csproj", "{9130123E-DF5F-42BA-9B4F-1F76CD57591B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{269C7200-2B63-4B96-AF20-44C8DC07A815} = {269C7200-2B63-4B96-AF20-44C8DC07A815}
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609} = {0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireworkDemo", "FireworkDemo\FireworkDemo.csproj", "{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AttributeGen", "AttributeGen\AttributeGen.vcproj", "{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -54,6 +57,16 @@ Global
 		{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}.Release|Win32.ActiveCfg = Release|Any CPU
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Debug|Win32.Build.0 = Debug|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Release|Any CPU.ActiveCfg = Release|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Release|Win32.ActiveCfg = Release|Win32
+		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

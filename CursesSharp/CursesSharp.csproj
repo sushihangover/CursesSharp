@@ -33,6 +33,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Curses.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Errors.cs" />
     <Compile Include="IWindow.cs" />
@@ -48,4 +49,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>$(SolutionDir)\debug\AttributeGen.exe $(ProjectDir)\Curses.cs</PreBuildEvent>
+  </PropertyGroup>
 </Project>
