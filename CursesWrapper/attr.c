@@ -71,7 +71,7 @@
 */
 
 int
-wrap_attrset(unsigned long attrs)
+wrap_attrset(unsigned int attrs)
 {
 	return attrset(attrs);
 }

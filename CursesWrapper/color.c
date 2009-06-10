@@ -34,14 +34,14 @@
 	PDC_set_line_color			-	-       -
 */
 
-unsigned long
+unsigned int
 wrap_COLOR_PAIR(short n)
 {
 	return COLOR_PAIR(n);
 }
 
 short
-wrap_PAIR_NUMBER(unsigned long n)
+wrap_PAIR_NUMBER(unsigned int n)
 {
 	return (short)(PAIR_NUMBER(n));
 }
