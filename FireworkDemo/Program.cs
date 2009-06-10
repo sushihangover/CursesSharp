@@ -74,50 +74,56 @@ namespace FireworkDemo
         private static void Explode(Random rng, IWindow stdscr, int row, int col)
         {
             stdscr.Erase();
-            stdscr.MvAddStr(row, col, "-");
+            AddStr(stdscr, row, col, "-");
             MyRefresh(stdscr);
 
             col--;
 
             GetColor(rng, stdscr);
-            stdscr.MvAddStr(row - 1, col, " - ");
-            stdscr.MvAddStr(row,     col, "-+-");
-            stdscr.MvAddStr(row + 1, col, " - ");
+            AddStr(stdscr, row - 1, col, " - ");
+            AddStr(stdscr, row,     col, "-+-");
+            AddStr(stdscr, row + 1, col, " - ");
             MyRefresh(stdscr);
 
             col--;
 
             GetColor(rng, stdscr);
-            stdscr.MvAddStr(row - 2, col, " --- ");
-            stdscr.MvAddStr(row - 1, col, "-+++-");
-            stdscr.MvAddStr(row,     col, "-+#+-");
-            stdscr.MvAddStr(row + 1, col, "-+++-");
-            stdscr.MvAddStr(row + 2, col, " --- ");
+            AddStr(stdscr, row - 2, col, " --- ");
+            AddStr(stdscr, row - 1, col, "-+++-");
+            AddStr(stdscr, row,     col, "-+#+-");
+            AddStr(stdscr, row + 1, col, "-+++-");
+            AddStr(stdscr, row + 2, col, " --- ");
             MyRefresh(stdscr);
 
             GetColor(rng, stdscr);
-            stdscr.MvAddStr(row - 2, col, " +++ ");
-            stdscr.MvAddStr(row - 1, col, "++#++");
-            stdscr.MvAddStr(row,     col, "+# #+");
-            stdscr.MvAddStr(row + 1, col, "++#++");
-            stdscr.MvAddStr(row + 2, col, " +++ ");
+            AddStr(stdscr, row - 2, col, " +++ ");
+            AddStr(stdscr, row - 1, col, "++#++");
+            AddStr(stdscr, row,     col, "+# #+");
+            AddStr(stdscr, row + 1, col, "++#++");
+            AddStr(stdscr, row + 2, col, " +++ ");
             MyRefresh(stdscr);
 
             GetColor(rng, stdscr);
-            stdscr.MvAddStr(row - 2, col, "  #  ");
-            stdscr.MvAddStr(row - 1, col, "## ##");
-            stdscr.MvAddStr(row,     col, "#   #");
-            stdscr.MvAddStr(row + 1, col, "## ##");
-            stdscr.MvAddStr(row + 2, col, "  #  ");
+            AddStr(stdscr, row - 2, col, "  #  ");
+            AddStr(stdscr, row - 1, col, "## ##");
+            AddStr(stdscr, row,     col, "#   #");
+            AddStr(stdscr, row + 1, col, "## ##");
+            AddStr(stdscr, row + 2, col, "  #  ");
             MyRefresh(stdscr);
 
             GetColor(rng, stdscr);
-            stdscr.MvAddStr(row - 2, col, " # # ");
-            stdscr.MvAddStr(row - 1, col, "#   #");
-            stdscr.MvAddStr(row,     col, "     ");
-            stdscr.MvAddStr(row + 1, col, "#   #");
-            stdscr.MvAddStr(row + 2, col, " # # ");
+            AddStr(stdscr, row - 2, col, " # # ");
+            AddStr(stdscr, row - 1, col, "#   #");
+            AddStr(stdscr, row,     col, "     ");
+            AddStr(stdscr, row + 1, col, "#   #");
+            AddStr(stdscr, row + 2, col, " # # ");
             MyRefresh(stdscr);
+        }
+
+        private static void AddStr(IWindow stdscr, int y, int x, string str)
+        {
+            if (x >= 0 && x < Screen.Cols && y >= 0 && y < Screen.Lines)
+                stdscr.MvAddStr(y, x, str);
         }
 
         private static void MyRefresh(IWindow stdscr)

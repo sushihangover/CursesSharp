@@ -3,10 +3,10 @@ EXPORTS
 	wrap_addch
 	wrap_mvaddch
 	
-	wrap_addstr
 	wrap_addnstr
-	wrap_mvaddstr
 	wrap_mvaddnstr
+	wrap_addnwstr
+	wrap_mvaddnwstr
 
 	wrap_attrset
 
@@ -39,6 +39,7 @@ EXPORTS
 	
 	wrap_refresh
 
+	wrap_has_widechar
 	wrap_LINES
 	wrap_COLS
 	wrap_COLORS

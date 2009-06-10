@@ -12,13 +12,13 @@ namespace Curses
         internal static extern int wrap_mvaddch(int y, int x, uint ch);
         /* addstr.c */
         [DllImport("CursesWrapper.dll", CharSet=CharSet.Ansi)]
-        internal static extern int wrap_addstr(String str);
-        [DllImport("CursesWrapper.dll", CharSet=CharSet.Ansi)]
         internal static extern int wrap_addnstr(String str, int n);
         [DllImport("CursesWrapper.dll", CharSet=CharSet.Ansi)]
-        internal static extern int wrap_mvaddstr(int y, int x, String str);
-        [DllImport("CursesWrapper.dll", CharSet=CharSet.Ansi)]
         internal static extern int wrap_mvaddnstr(int y, int x, String str, int n);
+        [DllImport("CursesWrapper.dll", CharSet = CharSet.Unicode)]
+        internal static extern int wrap_addnwstr(String str, int n);
+        [DllImport("CursesWrapper.dll", CharSet = CharSet.Unicode)]
+        internal static extern int wrap_mvaddnwstr(int y, int x, String str, int n);
         /* attr.c */
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_attrset(uint attrs);
@@ -72,6 +72,8 @@ namespace Curses
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_refresh();
         /* wrapper.c */
+        [DllImport("CursesWrapper.dll")]
+        internal static extern Boolean wrap_has_widechar();
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_LINES();
         [DllImport("CursesWrapper.dll")]

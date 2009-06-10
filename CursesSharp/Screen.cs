@@ -4,7 +4,13 @@ namespace Curses
 {
     public static class Screen
     {
-        private static StdWindow stdscr;
+        private static bool hasWideChar = false;
+        private static StdWindow stdscr = null;
+
+        public static bool HasWideChar
+        {
+            get { return hasWideChar; }
+        }
 
         public static IWindow StdScr
         {
@@ -35,6 +41,8 @@ namespace Curses
         {
             if (stdscr != null)
                 throw new InvalidOperationException("Curses is already initialized.");
+
+            hasWideChar = NativeMethods.wrap_has_widechar();
 
             IntPtr winptr = NativeMethods.wrap_initscr();
             if (winptr == IntPtr.Zero)

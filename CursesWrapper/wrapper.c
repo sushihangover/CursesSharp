@@ -1,6 +1,12 @@
 #include <curses.h>
 
 int
+wrap_has_widechar(void)
+{
+	return 1;
+}
+
+int
 wrap_LINES(void)
 {
 	return LINES;

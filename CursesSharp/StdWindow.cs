@@ -15,7 +15,7 @@ namespace Curses
 
         public void AddCh(char ch)
         {
-            if (NativeMethods.wrap_addch((ushort)ch) != 0)
+            if (NativeMethods.wrap_addch((byte)ch) != 0)
                 throw new CursesException("addch() failed.");
         }
 
@@ -27,7 +27,7 @@ namespace Curses
 
         public void MvAddCh(int y, int x, char ch)
         {
-            if (NativeMethods.wrap_mvaddch(y, x, (ushort)ch) != 0)
+            if (NativeMethods.wrap_mvaddch(y, x, (byte)ch) != 0)
                 throw new CursesException("mvaddch() failed.");
         }
 
@@ -39,14 +39,30 @@ namespace Curses
 
         public void AddStr(string str)
         {
-            if (NativeMethods.wrap_addnstr(str, str.Length) != 0)
-                throw new CursesException("addstr() failed.");
+            if (Screen.HasWideChar)
+            {
+                if (NativeMethods.wrap_addnwstr(str, str.Length) != 0)
+                    throw new CursesException("addnwstr() failed.");
+            }
+            else
+            {
+                if (NativeMethods.wrap_addnstr(str, str.Length) != 0)
+                    throw new CursesException("addnstr() failed.");
+            }
         }
 
         public void MvAddStr(int y, int x, string str)
         {
-            if (NativeMethods.wrap_mvaddnstr(y, x, str, str.Length) != 0)
-                throw new CursesException("mvaddstr() failed.");
+            if (Screen.HasWideChar)
+            {
+                if (NativeMethods.wrap_mvaddnwstr(y, x, str, str.Length) != 0)
+                    throw new CursesException("mvaddnwstr() failed.");
+            }
+            else
+            {
+                if (NativeMethods.wrap_mvaddnstr(y, x, str, str.Length) != 0)
+                    throw new CursesException("mvaddnstr() failed.");
+            }
         }
 
         public void AttrSet(uint attr)

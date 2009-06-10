@@ -45,26 +45,26 @@
 */
 
 int
-wrap_addstr(const char *str)
-{
-	return addstr(str);
-}
-
-int
 wrap_addnstr(const char *str, int n)
 {
 	return addnstr(str, n);
 }
 
 int
-wrap_mvaddstr(int y, int x, const char *str)
-{
-	return mvaddstr(y, x, str);
-}
-
-int
 wrap_mvaddnstr(int y, int x, const char *str, int n)
 {
 	return mvaddnstr(y, x, str, n);
+}
+
+int
+wrap_addnwstr(const wchar_t *str, int n)
+{
+	return addnwstr(str, n);
+}
+
+int
+wrap_mvaddnwstr(int y, int x, const wchar_t *str, int n)
+{
+	return mvaddnwstr(y, x, str, n);
 }
 
