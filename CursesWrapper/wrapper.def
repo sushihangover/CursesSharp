@@ -1,0 +1,37 @@
+LIBRARY CursesWrapper
+EXPORTS
+	wrap_addch
+	wrap_mvaddch
+	
+	wrap_addstr
+	wrap_addnstr
+	wrap_mvaddstr
+	wrap_mvaddnstr
+
+	wrap_attrset
+
+	wrap_erase
+
+	wrap_COLOR_PAIR
+	wrap_PAIR_NUMBER
+	wrap_start_color
+	wrap_has_colors
+	wrap_init_pair
+	
+	wrap_getch
+	
+	wrap_initscr
+	wrap_endwin
+	
+	wrap_echo
+	wrap_noecho
+	wrap_keypad
+	wrap_nodelay
+	wrap_raw
+	wrap_noraw
+
+	wrap_napms
+
+	wrap_move
+	
+	wrap_refresh
