@@ -1,5 +1,29 @@
 #include <curses.h>
 
+int
+wrap_LINES(void)
+{
+	return LINES;
+}
+
+int
+wrap_COLS(void)
+{
+	return COLS;
+}
+
+int
+wrap_COLORS(void)
+{
+	return COLORS;
+}
+
+int
+wrap_TABSIZE(void)
+{
+	return TABSIZE;
+}
+
 /*
   Name:								addchstr
 

@@ -18,6 +18,9 @@ EXPORTS
 	wrap_has_colors
 	wrap_init_pair
 	
+	wrap_traceon
+	wrap_traceoff
+
 	wrap_getch
 	
 	wrap_initscr
@@ -35,3 +38,8 @@ EXPORTS
 	wrap_move
 	
 	wrap_refresh
+
+	wrap_LINES
+	wrap_COLS
+	wrap_COLORS
+	wrap_TABSIZE

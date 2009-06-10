@@ -203,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\debug.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getch.c"
 				>
 			</File>

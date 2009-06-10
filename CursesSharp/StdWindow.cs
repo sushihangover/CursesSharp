@@ -39,13 +39,13 @@ namespace Curses
 
         public void AddStr(string str)
         {
-            if (NativeMethods.wrap_addstr(str) != 0)
+            if (NativeMethods.wrap_addnstr(str, str.Length) != 0)
                 throw new CursesException("addstr() failed.");
         }
 
         public void MvAddStr(int y, int x, string str)
         {
-            if (NativeMethods.wrap_mvaddstr(y, x, str) != 0)
+            if (NativeMethods.wrap_mvaddnstr(y, x, str, str.Length) != 0)
                 throw new CursesException("mvaddstr() failed.");
         }
 

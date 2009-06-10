@@ -36,6 +36,11 @@ namespace Curses
         internal static extern Boolean wrap_has_colors();
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_init_pair(short color, short fg, short bg);
+        /* debug.c */
+        [DllImport("CursesWrapper.dll")]
+        internal static extern void wrap_traceon();
+        [DllImport("CursesWrapper.dll")]
+        internal static extern void wrap_traceoff();
         /* getch.c */
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_getch();
@@ -66,5 +71,15 @@ namespace Curses
         /* refresh.c */
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_refresh();
+        /* wrapper.c */
+        [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_LINES();
+        [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_COLS();
+        [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_COLORS();
+        [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_TABSIZE();
+
     }
 }

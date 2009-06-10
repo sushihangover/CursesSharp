@@ -11,6 +11,26 @@ namespace Curses
             get { return stdscr; }
         }
 
+        public static int Lines
+        {
+            get { return NativeMethods.wrap_LINES(); }
+        }
+
+        public static int Cols
+        {
+            get { return NativeMethods.wrap_COLS(); }
+        }
+
+        public static int Colors
+        {
+            get { return NativeMethods.wrap_COLORS(); }
+        }
+
+        public static int TabSize
+        {
+            get { return NativeMethods.wrap_TABSIZE(); }
+        }
+
         public static IWindow InitScr()
         {
             if (stdscr != null)
@@ -88,6 +108,16 @@ namespace Curses
         {
             if (NativeMethods.wrap_napms(ms) != 0)
                 throw new CursesException("napms() failed.");
+        }
+
+        public static void TraceOn()
+        {
+            NativeMethods.wrap_traceon();
+        }
+
+        public static void TraceOff()
+        {
+            NativeMethods.wrap_traceoff();
         }
     }
 }
