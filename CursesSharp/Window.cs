@@ -69,7 +69,7 @@ namespace CursesSharp
 
         public int AddStr(string str)
         {
-            if (Curses.HasWideChar)
+            if (Curses.UseWideChar)
             {
                 return Curses.Verify(NativeMethods.wrap_waddnwstr(this.winptr, str, str.Length));
             }
@@ -81,7 +81,7 @@ namespace CursesSharp
 
         public int MvAddStr(int y, int x, string str)
         {
-            if (Curses.HasWideChar)
+            if (Curses.UseWideChar)
             {
                 return Curses.Verify(NativeMethods.wrap_mvwaddnwstr(this.winptr, y, x, str, str.Length));
             }

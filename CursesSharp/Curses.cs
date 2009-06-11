@@ -7,13 +7,19 @@ namespace CursesSharp
 
     public static partial class Curses
     {
-        private static bool hasWideChar = false;
+        private static bool useWideChar = true;
         private static bool checkErrors = true;
         private static Window stdscr = null;
 
         public static bool HasWideChar
         {
-            get { return hasWideChar; }
+            get { return NativeMethods.wrap_has_widechar(); }
+        }
+
+        public static bool UseWideChar
+        {
+            get { return useWideChar; }
+            set { useWideChar = value && HasWideChar; }
         }
 
         public static bool CheckErrors
@@ -52,7 +58,7 @@ namespace CursesSharp
             if (stdscr != null)
                 throw new InvalidOperationException("Curses is already initialized.");
 
-            hasWideChar = NativeMethods.wrap_has_widechar();
+            UseWideChar = true;
 
             IntPtr winptr = NativeMethods.wrap_initscr();
             if (winptr == IntPtr.Zero)
