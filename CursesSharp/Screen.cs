@@ -78,6 +78,12 @@ namespace Curses
                 throw new CursesException("init_pair() failed.");
         }
 
+        public static void UseDefaultColors()
+        {
+            if (NativeMethods.wrap_use_default_colors() != 0)
+                throw new CursesException("use_default_colors() failed.");
+        }
+
         public static void Echo()
         {
             if (NativeMethods.wrap_echo() != 0)
@@ -88,6 +94,18 @@ namespace Curses
         {
             if (NativeMethods.wrap_noecho() != 0)
                 throw new CursesException("noecho() failed.");
+        }
+
+        public static void Nl()
+        {
+            if (NativeMethods.wrap_nl() != 0)
+                throw new CursesException("nl() failed.");
+        }
+
+        public static void NoNl()
+        {
+            if (NativeMethods.wrap_nonl() != 0)
+                throw new CursesException("nonl() failed.");
         }
 
         public static void Raw()
@@ -106,6 +124,11 @@ namespace Curses
         {
             if (NativeMethods.wrap_napms(ms) != 0)
                 throw new CursesException("napms() failed.");
+        }
+
+        public static int CursSet(int visibility)
+        {
+            return NativeMethods.wrap_curs_set(visibility);
         }
 
         public static void TraceOn()

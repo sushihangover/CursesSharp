@@ -9,7 +9,7 @@ namespace Curses
 			return KEY_F0 + n;
 		}
 
-        public static uint COLOR_PAIR(short n)
+        public static uint COLOR_PAIR(int n)
         {
             return NativeMethods.wrap_COLOR_PAIR(n);
         }

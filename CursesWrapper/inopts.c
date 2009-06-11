@@ -73,6 +73,18 @@ wrap_keypad(WINDOW *win, int bf)
 }
 
 int
+wrap_nl(void)
+{
+	return nl();
+}
+
+int
+wrap_nonl(void)
+{
+	return nonl();
+}
+
+int
 wrap_nodelay(WINDOW *win, int bf)
 {
 	return nodelay(win, bf);
@@ -88,5 +100,11 @@ int
 wrap_noraw(void)
 {
 	return noraw();
+}
+
+void 
+wrap_timeout(int delay)
+{
+	timeout(delay);
 }
 

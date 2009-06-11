@@ -94,6 +94,11 @@ namespace Curses
                 throw new CursesException("nodelay() failed.");
         }
 
+        public void Timeout(int delay)
+        {
+            NativeMethods.wrap_timeout(delay);
+        }
+
         public void Move(int y, int x)
         {
             if (NativeMethods.wrap_move(y, x) != 0)

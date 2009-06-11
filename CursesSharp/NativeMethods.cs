@@ -27,7 +27,7 @@ namespace Curses
         internal static extern int wrap_erase();
         /* color.c */
         [DllImport("CursesWrapper.dll")]
-        internal static extern uint wrap_COLOR_PAIR(short n);
+        internal static extern uint wrap_COLOR_PAIR(int n);
         [DllImport("CursesWrapper.dll")]
         internal static extern short wrap_PAIR_NUMBER(uint n);
         [DllImport("CursesWrapper.dll")]
@@ -36,6 +36,8 @@ namespace Curses
         internal static extern Boolean wrap_has_colors();
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_init_pair(short color, short fg, short bg);
+        [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_use_default_colors();
         /* debug.c */
         [DllImport("CursesWrapper.dll")]
         internal static extern void wrap_traceon();
@@ -57,14 +59,22 @@ namespace Curses
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_keypad(IntPtr win, Boolean bf);
         [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_nl();
+        [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_nonl();
+        [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_nodelay(IntPtr win, Boolean bf);
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_raw();
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_noraw();
+        [DllImport("CursesWrapper.dll")]
+        internal static extern void wrap_timeout(int delay);
         /* kernel.c */
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_napms(int ms);
+        [DllImport("CursesWrapper.dll")]
+        internal static extern int wrap_curs_set(int visibility);
         /* move.c */
         [DllImport("CursesWrapper.dll")]
         internal static extern int wrap_move(int y, int x);

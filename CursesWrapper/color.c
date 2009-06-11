@@ -35,7 +35,7 @@
 */
 
 unsigned int
-wrap_COLOR_PAIR(short n)
+wrap_COLOR_PAIR(int n)
 {
 	return COLOR_PAIR(n);
 }
@@ -64,3 +64,8 @@ wrap_init_pair(short color, short fg, short bg)
 	return init_pair(color, fg, bg);
 }
 
+int 
+wrap_use_default_colors(void)
+{
+	return use_default_colors();
+}

@@ -17,6 +17,7 @@ EXPORTS
 	wrap_start_color
 	wrap_has_colors
 	wrap_init_pair
+	wrap_use_default_colors
 	
 	wrap_traceon
 	wrap_traceoff
@@ -29,12 +30,16 @@ EXPORTS
 	wrap_echo
 	wrap_noecho
 	wrap_keypad
+	wrap_nl
+	wrap_nonl
 	wrap_nodelay
 	wrap_raw
 	wrap_noraw
+	wrap_timeout
 
 	wrap_napms
-
+	wrap_curs_set
+	
 	wrap_move
 	
 	wrap_refresh

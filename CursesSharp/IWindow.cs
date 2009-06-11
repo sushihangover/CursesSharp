@@ -21,6 +21,7 @@ namespace Curses
         /* initscr.c */
         void Keypad(bool bf);
         void NoDelay(bool bf);
+        void Timeout(int delay);
         /* move.c */
         void Move(int y, int x);
         /* refresh.c */

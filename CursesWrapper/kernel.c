@@ -49,3 +49,9 @@ wrap_napms(int ms)
 	return napms(ms);
 }
 
+int 
+wrap_curs_set(int visibility)
+{
+	return curs_set(visibility);
+}
+
