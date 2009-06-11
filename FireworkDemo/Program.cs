@@ -12,13 +12,12 @@ namespace FireworkDemo
             Defs.COLOR_RED, Defs.COLOR_MAGENTA, Defs.COLOR_YELLOW, Defs.COLOR_WHITE
         };
 
-
         static void Main(string[] args)
         {
-            IWindow stdscr = Screen.InitScr();
+            Screen.InitScr();
             try
             {
-                Main2(stdscr);
+                Main2();
             }
             finally
             {
@@ -26,21 +25,23 @@ namespace FireworkDemo
             }
         }
 
-        private static void Main2(IWindow stdscr)
-        {
-            stdscr.NoDelay(true);
-            Screen.NoEcho();
+        private static Random rng;
 
-            if (Screen.HasColors())
+        private static void Main2()
+        {
+            Screen.NoDelay = true;
+            Screen.Echo = false;
+
+            if (Screen.HasColors)
             {
                 Screen.StartColor();
                 for (short i = 1; i < 8; ++i)
                     Screen.InitPair(i, color_table[i], Defs.COLOR_BLACK);
             }
 
-            Random rng = new Random();
+            rng = new Random();
             int flag = 0;
-            while (stdscr.GetCh() == -1)
+            while (Screen.GetCh() == -1)
             {
                 int start, end, row, diff, direction;
                 do
@@ -53,96 +54,96 @@ namespace FireworkDemo
                     diff = Math.Abs(start - end);
                 } while (diff < 2 || diff >= Screen.Lines - 2);
 
-                stdscr.AttrSet(Defs.A_NORMAL);
+                Screen.AttrSet(Defs.A_NORMAL);
                 for (row = 1; row < diff; ++row)
                 {
-                    stdscr.MvAddStr(Screen.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
+                    Screen.MvAddStr(Screen.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
                     if (flag++ > 0)
                     {
-                        MyRefresh(stdscr);
-                        stdscr.Erase();
+                        MyRefresh();
+                        Screen.Erase();
                         flag = 0;
                     }
                 }
 
                 if (flag++ > 0)
                 {
-                    MyRefresh(stdscr);
+                    MyRefresh();
                     flag = 0;
                 }
 
-                Explode(rng, stdscr, Screen.Lines - row, diff * direction + start);
-                stdscr.Erase();
-                MyRefresh(stdscr);
+                Explode(Screen.Lines - row, diff * direction + start);
+                Screen.Erase();
+                MyRefresh();
             }
         }
 
-        private static void Explode(Random rng, IWindow stdscr, int row, int col)
+        private static void Explode(int row, int col)
         {
-            stdscr.Erase();
-            AddStr(stdscr, row, col, "-");
-            MyRefresh(stdscr);
+            Screen.Erase();
+            AddStr(row, col, "-");
+            MyRefresh();
 
             col--;
 
-            GetColor(rng, stdscr);
-            AddStr(stdscr, row - 1, col, " - ");
-            AddStr(stdscr, row,     col, "-+-");
-            AddStr(stdscr, row + 1, col, " - ");
-            MyRefresh(stdscr);
+            GetColor();
+            AddStr(row - 1, col, " - ");
+            AddStr(row,     col, "-+-");
+            AddStr(row + 1, col, " - ");
+            MyRefresh();
 
             col--;
 
-            GetColor(rng, stdscr);
-            AddStr(stdscr, row - 2, col, " --- ");
-            AddStr(stdscr, row - 1, col, "-+++-");
-            AddStr(stdscr, row,     col, "-+#+-");
-            AddStr(stdscr, row + 1, col, "-+++-");
-            AddStr(stdscr, row + 2, col, " --- ");
-            MyRefresh(stdscr);
+            GetColor();
+            AddStr(row - 2, col, " --- ");
+            AddStr(row - 1, col, "-+++-");
+            AddStr(row,     col, "-+#+-");
+            AddStr(row + 1, col, "-+++-");
+            AddStr(row + 2, col, " --- ");
+            MyRefresh();
 
-            GetColor(rng, stdscr);
-            AddStr(stdscr, row - 2, col, " +++ ");
-            AddStr(stdscr, row - 1, col, "++#++");
-            AddStr(stdscr, row,     col, "+# #+");
-            AddStr(stdscr, row + 1, col, "++#++");
-            AddStr(stdscr, row + 2, col, " +++ ");
-            MyRefresh(stdscr);
+            GetColor();
+            AddStr(row - 2, col, " +++ ");
+            AddStr(row - 1, col, "++#++");
+            AddStr(row,     col, "+# #+");
+            AddStr(row + 1, col, "++#++");
+            AddStr(row + 2, col, " +++ ");
+            MyRefresh();
 
-            GetColor(rng, stdscr);
-            AddStr(stdscr, row - 2, col, "  #  ");
-            AddStr(stdscr, row - 1, col, "## ##");
-            AddStr(stdscr, row,     col, "#   #");
-            AddStr(stdscr, row + 1, col, "## ##");
-            AddStr(stdscr, row + 2, col, "  #  ");
-            MyRefresh(stdscr);
+            GetColor();
+            AddStr(row - 2, col, "  #  ");
+            AddStr(row - 1, col, "## ##");
+            AddStr(row,     col, "#   #");
+            AddStr(row + 1, col, "## ##");
+            AddStr(row + 2, col, "  #  ");
+            MyRefresh();
 
-            GetColor(rng, stdscr);
-            AddStr(stdscr, row - 2, col, " # # ");
-            AddStr(stdscr, row - 1, col, "#   #");
-            AddStr(stdscr, row,     col, "     ");
-            AddStr(stdscr, row + 1, col, "#   #");
-            AddStr(stdscr, row + 2, col, " # # ");
-            MyRefresh(stdscr);
+            GetColor();
+            AddStr(row - 2, col, " # # ");
+            AddStr(row - 1, col, "#   #");
+            AddStr(row,     col, "     ");
+            AddStr(row + 1, col, "#   #");
+            AddStr(row + 2, col, " # # ");
+            MyRefresh();
         }
 
-        private static void AddStr(IWindow stdscr, int y, int x, string str)
+        private static void AddStr(int y, int x, string str)
         {
             if (x >= 0 && x < Screen.Cols && y >= 0 && y < Screen.Lines)
-                stdscr.MvAddStr(y, x, str);
+                Screen.MvAddStr(y, x, str);
         }
 
-        private static void MyRefresh(IWindow stdscr)
+        private static void MyRefresh()
         {
             Screen.NapMs(DELAYSIZE);
-            stdscr.Move(Screen.Lines - 1, Screen.Cols - 1);
-            stdscr.Refresh();
+            Screen.Move(Screen.Lines - 1, Screen.Cols - 1);
+            Screen.Refresh();
         }
 
-        private static void GetColor(Random rng, IWindow stdscr)
+        private static void GetColor()
         {
             uint bold = (rng.Next(2) > 0) ? Defs.A_BOLD : Defs.A_NORMAL;            
-            stdscr.AttrSet(Defs.COLOR_PAIR((short)rng.Next(8)) | bold);
+            Screen.AttrSet(Defs.COLOR_PAIR((short)rng.Next(8)) | bold);
         }
 
     }

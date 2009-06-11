@@ -67,9 +67,12 @@ namespace Curses
                 throw new CursesException("start_color() failed.");
         }
 
-        public static bool HasColors()
+        public static bool HasColors
         {
-            return NativeMethods.wrap_has_colors();
+            get
+            {
+                return NativeMethods.wrap_has_colors();
+            }
         }
 
         public static void InitPair(short color, short fg, short bg)
@@ -84,40 +87,55 @@ namespace Curses
                 throw new CursesException("use_default_colors() failed.");
         }
 
-        public static void Echo()
+        public static bool Echo
         {
-            if (NativeMethods.wrap_echo() != 0)
-                throw new CursesException("echo() failed.");
+            set
+            {
+                if (value)
+                {
+                    if (NativeMethods.wrap_echo() != 0)
+                        throw new CursesException("echo() failed.");
+                }
+                else
+                {
+                    if (NativeMethods.wrap_noecho() != 0)
+                        throw new CursesException("noecho() failed.");
+                }
+            }
         }
 
-        public static void NoEcho()
+        public static bool Nl
         {
-            if (NativeMethods.wrap_noecho() != 0)
-                throw new CursesException("noecho() failed.");
+            set
+            {
+                if (value)
+                {
+                    if (NativeMethods.wrap_nl() != 0)
+                        throw new CursesException("nl() failed.");
+                }
+                else
+                {
+                    if (NativeMethods.wrap_nonl() != 0)
+                        throw new CursesException("nonl() failed.");
+                }
+            }
         }
 
-        public static void Nl()
+        public static bool Raw
         {
-            if (NativeMethods.wrap_nl() != 0)
-                throw new CursesException("nl() failed.");
-        }
-
-        public static void NoNl()
-        {
-            if (NativeMethods.wrap_nonl() != 0)
-                throw new CursesException("nonl() failed.");
-        }
-
-        public static void Raw()
-        {
-            if (NativeMethods.wrap_raw() != 0)
-                throw new CursesException("raw() failed.");
-        }
-
-        public static void NoRaw()
-        {
-            if (NativeMethods.wrap_noraw() != 0)
-                throw new CursesException("noraw() failed.");
+            set
+            {
+                if (value)
+                {
+                    if (NativeMethods.wrap_raw() != 0)
+                        throw new CursesException("raw() failed.");
+                }
+                else
+                {
+                    if (NativeMethods.wrap_noraw() != 0)
+                        throw new CursesException("noraw() failed.");
+                }
+            }
         }
 
         public static void NapMs(int ms)
@@ -140,5 +158,79 @@ namespace Curses
         {
             NativeMethods.wrap_traceoff();
         }
+
+        #region StdScr shortcuts
+
+        public static void AddCh(char ch)
+        {
+            StdScr.AddCh(ch);
+        }
+
+        public static void AddCh(uint ch)
+        {
+            StdScr.AddCh(ch);
+        }
+
+        public static void MvAddCh(int y, int x, char ch)
+        {
+            StdScr.MvAddCh(y, x, ch);
+        }
+
+        public static void MvAddCh(int y, int x, uint ch)
+        {
+            StdScr.MvAddCh(y, x, ch);
+        }
+
+        public static void AddStr(string str)
+        {
+            StdScr.AddStr(str);
+        }
+
+        public static void MvAddStr(int y, int x, string str)
+        {
+            StdScr.MvAddStr(y, x, str);
+        }
+
+        public static void AttrSet(uint attr)
+        {
+            StdScr.AttrSet(attr);
+        }
+
+        public static void Erase()
+        {
+            StdScr.Erase();
+        }
+
+        public static int GetCh()
+        {
+            return StdScr.GetCh();
+        }
+
+        public static bool Keypad
+        {
+            set { StdScr.Keypad = value; }
+        }
+
+        public static bool NoDelay
+        {
+            set { StdScr.NoDelay = value; }
+        }
+
+        public static int Timeout
+        {
+            set { StdScr.Timeout = value; }
+        }
+
+        public static void Move(int y, int x)
+        {
+            StdScr.Move(y, x);
+        }
+
+        public static void Refresh()
+        {
+            StdScr.Refresh();
+        }
+
+        #endregion
     }
 }

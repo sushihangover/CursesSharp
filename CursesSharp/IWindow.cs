@@ -19,9 +19,9 @@ namespace Curses
         /* getch.c */
         int GetCh();
         /* initscr.c */
-        void Keypad(bool bf);
-        void NoDelay(bool bf);
-        void Timeout(int delay);
+        bool Keypad { set; }
+        bool NoDelay { set; }
+        int Timeout { set; }
         /* move.c */
         void Move(int y, int x);
         /* refresh.c */

@@ -82,21 +82,30 @@ namespace Curses
             return NativeMethods.wrap_getch();
         }
 
-        public void Keypad(bool bf)
+        public bool Keypad
         {
-            if (NativeMethods.wrap_keypad(this.stdscr, bf) != 0)
-                throw new CursesException("keypad() failed.");
+            set
+            {
+                if (NativeMethods.wrap_keypad(this.stdscr, value) != 0)
+                    throw new CursesException("keypad() failed.");
+            }
         }
 
-        public void NoDelay(bool bf)
+        public bool NoDelay
         {
-            if (NativeMethods.wrap_nodelay(this.stdscr, bf) != 0)
-                throw new CursesException("nodelay() failed.");
+            set
+            {
+                if (NativeMethods.wrap_nodelay(this.stdscr, value) != 0)
+                    throw new CursesException("nodelay() failed.");
+            }
         }
 
-        public void Timeout(int delay)
+        public int Timeout
         {
-            NativeMethods.wrap_timeout(delay);
+            set
+            {
+                NativeMethods.wrap_timeout(value);
+            }
         }
 
         public void Move(int y, int x)
