@@ -11,11 +11,6 @@
 	int echochar(const chtype ch);
 	int wechochar(WINDOW *win, const chtype ch);
 
-	int addrawch(chtype ch);
-	int waddrawch(WINDOW *win, chtype ch);
-	int mvaddrawch(int y, int x, chtype ch);
-	int mvwaddrawch(WINDOW *win, int y, int x, chtype ch);
-
 	int add_wch(const cchar_t *wch);
 	int wadd_wch(WINDOW *win, const cchar_t *wch);
 	int mvadd_wch(int y, int x, const cchar_t *wch);
@@ -46,14 +41,19 @@
 */
 
 int
-wrap_addch(unsigned int ch)
+wrap_waddch(WINDOW *win, unsigned int ch)
 {
-	return addch(ch);
+	return waddch(win, ch);
 }
 
 int
-wrap_mvaddch(int y, int x, unsigned int ch)
+wrap_mvwaddch(WINDOW *win, int y, int x, unsigned int ch)
 {
-	return mvaddch(y, x, ch);
+	return mvwaddch(win, y, x, ch);
 }
 
+int
+wrap_wechochar(WINDOW *win, unsigned int ch)
+{
+	return wechochar(win, ch);
+}

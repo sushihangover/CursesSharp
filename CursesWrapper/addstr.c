@@ -45,26 +45,25 @@
 */
 
 int
-wrap_addnstr(const char *str, int n)
+wrap_waddnstr(WINDOW *win, const char *str, int n)
 {
-	return addnstr(str, n);
+	return waddnstr(win, str, n);
 }
 
 int
-wrap_mvaddnstr(int y, int x, const char *str, int n)
+wrap_mvwaddnstr(WINDOW *win, int y, int x, const char *str, int n)
 {
-	return mvaddnstr(y, x, str, n);
+	return mvwaddnstr(win, y, x, str, n);
 }
 
 int
-wrap_addnwstr(const wchar_t *str, int n)
+wrap_waddnwstr(WINDOW *win, const wchar_t *str, int n)
 {
-	return addnwstr(str, n);
+	return waddnwstr(win, str, n);
 }
 
 int
-wrap_mvaddnwstr(int y, int x, const wchar_t *str, int n)
+wrap_mvwaddnwstr(WINDOW *win, int y, int x, const wchar_t *str, int n)
 {
-	return mvaddnwstr(y, x, str, n);
+	return mvwaddnwstr(win, y, x, str, n);
 }
-

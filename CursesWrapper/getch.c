@@ -17,10 +17,6 @@
 	int mvwget_wch(WINDOW *win, int y, int x, wint_t *wch);
 	int unget_wch(const wchar_t wch);
 
-	unsigned long PDC_get_key_modifiers(void);
-	int PDC_save_key_modifiers(bool flag);
-	int PDC_return_key_modifiers(bool flag);
-
   Return Value:
 	These functions return ERR or the value of the character, meta 
 	character or function key token.
@@ -41,8 +37,26 @@
 */
 
 int
-wrap_getch(void)
+wrap_wgetch(WINDOW* win)
 {
-	return getch();
+	return wgetch(win);
+}
+
+int 
+wrap_mvwgetch(WINDOW *win, int y, int x)
+{
+	return mvwgetch(win, y, x);
+}
+
+int 
+wrap_ungetch(int ch)
+{
+	return ungetch(ch);
+}
+
+int 
+wrap_flushinp(void)
+{
+	return flushinp();
 }
 

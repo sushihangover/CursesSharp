@@ -1,48 +1,91 @@
 LIBRARY CursesWrapper
 EXPORTS
-	wrap_addch
-	wrap_mvaddch
+	wrap_waddch
+	wrap_mvwaddch
+	wrap_wechochar
 	
-	wrap_addnstr
-	wrap_mvaddnstr
-	wrap_addnwstr
-	wrap_mvaddnwstr
+	wrap_waddnstr
+	wrap_mvwaddnstr
+	wrap_waddnwstr
+	wrap_mvwaddnwstr
 
-	wrap_attrset
-
-	wrap_erase
+	wrap_wattroff
+	wrap_wattron
+	wrap_wattrset
+	wrap_wstandend
+	wrap_wstandout
+	wrap_wcolor_set
+	wrap_wattr_get
+	wrap_wchgat
+	wrap_mvwchgat
+	
+	wrap_wclear
+	wrap_werase
+	wrap_wclrtobot
+	wrap_wclrtoeol
 
 	wrap_COLOR_PAIR
 	wrap_PAIR_NUMBER
 	wrap_start_color
-	wrap_has_colors
 	wrap_init_pair
+	wrap_init_color
+	wrap_color_content
+	wrap_pair_content
+	wrap_has_colors
+	wrap_can_change_color
+	wrap_assume_default_colors
 	wrap_use_default_colors
 	
 	wrap_traceon
 	wrap_traceoff
 
-	wrap_getch
+	wrap_wgetch
+	wrap_mvwgetch
+	wrap_ungetch
+	wrap_flushinp
 	
 	wrap_initscr
 	wrap_endwin
+	wrap_isendwin
+	wrap_resize_term
 	
+	wrap_cbreak
+	wrap_nocbreak
 	wrap_echo
 	wrap_noecho
+	wrap_halfdelay
+	wrap_intrflush
 	wrap_keypad
+	wrap_meta
 	wrap_nl
 	wrap_nonl
 	wrap_nodelay
 	wrap_raw
 	wrap_noraw
-	wrap_timeout
+	wrap_qiflush
+	wrap_noqiflush
+	wrap_notimeout
+	wrap_wtimeout
 
+	wrap_def_prog_mode
+	wrap_def_shell_mode
+	wrap_reset_prog_mode
+	wrap_reset_shell_mode
+	wrap_resetty
+	wrap_savetty
+	wrap_getsyx
+	wrap_setsyx
+	wrap_ripoffline
 	wrap_napms
 	wrap_curs_set
 	
-	wrap_move
+	wrap_wmove
 	
-	wrap_refresh
+	wrap_wrefresh
+	wrap_wnoutrefresh
+	wrap_doupdate
+	wrap_redrawwin
+	wrap_wredrawln
 
 	wrap_has_widechar
 	wrap_LINES

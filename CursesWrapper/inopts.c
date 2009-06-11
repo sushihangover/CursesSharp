@@ -15,17 +15,13 @@
 	int nl(void);
 	int nonl(void);
 	int nodelay(WINDOW *win, bool bf);
-	int notimeout(WINDOW *win, bool bf);
 	int raw(void);
 	int noraw(void);
 	void noqiflush(void);
 	void qiflush(void);
+	int notimeout(WINDOW *win, bool bf);
 	void timeout(int delay);
 	void wtimeout(WINDOW *win, int delay);
-	int typeahead(int fildes);
-
-	int crmode(void);
-	int nocrmode(void);
 
   Return Value:
 	All functions return OK on success and ERR on error.
@@ -55,6 +51,18 @@
 */
 
 int
+wrap_cbreak(void)
+{
+	return cbreak();
+}
+
+int
+wrap_nocbreak(void)
+{
+	return nocbreak();
+}
+
+int
 wrap_echo(void)
 {
 	return echo();
@@ -66,10 +74,28 @@ wrap_noecho(void)
 	return noecho();
 }
 
+int 
+wrap_halfdelay(int tenths)
+{
+	return halfdelay(tenths);
+}
+
+int
+wrap_intrflush(WINDOW *win, int bf)
+{
+	return intrflush(win, bf);
+}
+
 int
 wrap_keypad(WINDOW *win, int bf)
 {
 	return keypad(win, bf);
+}
+
+int
+wrap_meta(WINDOW *win, int bf)
+{
+	return meta(win, bf);
 }
 
 int
@@ -102,9 +128,27 @@ wrap_noraw(void)
 	return noraw();
 }
 
-void 
-wrap_timeout(int delay)
+void
+wrap_qiflush(void)
 {
-	timeout(delay);
+	qiflush();
+}
+
+void
+wrap_noqiflush(void)
+{
+	noqiflush();
+}
+
+int
+wrap_notimeout(WINDOW *win, int bf)
+{
+	return notimeout(win, bf);
+}
+
+void
+wrap_wtimeout(WINDOW *win, int delay)
+{
+	wtimeout(win, delay);
 }
 

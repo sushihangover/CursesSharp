@@ -15,8 +15,6 @@
 	int assume_default_colors(int f, int b);
 	int use_default_colors(void);
 
-	int PDC_set_line_color(short color);
-
   Return Value:
 	All functions return OK on success and ERR on error, except for
 	has_colors() and can_change_colors(), which return TRUE or FALSE.
@@ -53,15 +51,45 @@ wrap_start_color(void)
 }
 
 int
+wrap_init_pair(short color, short fg, short bg)
+{
+	return init_pair(color, fg, bg);
+}
+
+int
+wrap_init_color(short color, short red, short green, short blue)
+{
+	return init_color(color, red, green, blue);
+}
+
+int 
+wrap_color_content(short color, short *red, short *green, short *blue)
+{
+	return color_content(color, red, green, blue);
+}
+
+int 
+wrap_pair_content(short pair, short *fg, short *bg)
+{
+	return pair_content(pair, fg, bg);
+}
+
+int
 wrap_has_colors(void)
 {
 	return has_colors();
 }
 
-int
-wrap_init_pair(short color, short fg, short bg)
+int 
+wrap_can_change_color(void)
 {
-	return init_pair(color, fg, bg);
+	return can_change_color();
+}
+
+int 
+wrap_assume_default_colors(int f, int b)
+{
+	return assume_default_colors(f, b);
 }
 
 int 

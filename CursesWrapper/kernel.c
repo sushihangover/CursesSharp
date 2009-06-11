@@ -44,6 +44,60 @@
 */
 
 int 
+wrap_def_prog_mode(void)
+{
+	return def_prog_mode();
+}
+
+int 
+wrap_def_shell_mode(void)
+{
+	return def_shell_mode();
+}
+
+int 
+wrap_reset_prog_mode(void)
+{
+	return reset_prog_mode();
+}
+
+int 
+wrap_reset_shell_mode(void)
+{
+	return reset_shell_mode();
+}
+
+int 
+wrap_resetty(void)
+{
+	return resetty();
+}
+
+int 
+wrap_savetty(void)
+{
+	return savetty();
+}
+
+void 
+wrap_getsyx(int *y, int *x)
+{
+	getsyx(*y, *x);
+}
+
+void 
+wrap_setsyx(int y, int x)
+{
+	setsyx(y, x);
+}
+
+int 
+wrap_ripoffline(int line, int (*init)(WINDOW *, int))
+{
+	return ripoffline(line, init);
+}
+
+int 
 wrap_napms(int ms)
 {
 	return napms(ms);

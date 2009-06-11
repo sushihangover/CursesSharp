@@ -44,3 +44,15 @@ wrap_endwin(void)
 	return endwin();
 }
 
+int 
+wrap_isendwin(void)
+{
+	return isendwin();
+}
+
+int 
+wrap_resize_term(int nlines, int ncols)
+{
+	return resize_term(nlines, ncols);
+}
+

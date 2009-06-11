@@ -16,8 +16,8 @@
 */
 
 int
-wrap_move(int y, int x)
+wrap_wmove(WINDOW *win, int y, int x)
 {
-	return move(y, x);
+	return wmove(win, y, x);
 }
 

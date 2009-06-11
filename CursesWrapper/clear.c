@@ -27,8 +27,26 @@
 	wclrtoeol				Y	Y	Y
 */
 
-int
-wrap_erase(void)
+int 
+wrap_wclear(WINDOW *win)
 {
-	return erase();
+	return wclear(win);
+}
+
+int 
+wrap_werase(WINDOW *win)
+{
+	return werase(win);
+}
+
+int 
+wrap_wclrtobot(WINDOW *win)
+{
+	return wclrtobot(win);
+}
+
+int 
+wrap_wclrtoeol(WINDOW *win)
+{
+	return wclrtoeol(win);
 }
