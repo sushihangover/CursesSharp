@@ -1,6 +1,6 @@
 using System;
 
-namespace Curses
+namespace CursesSharp
 {
     public class CursesException : ApplicationException
     {

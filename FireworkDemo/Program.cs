@@ -1,5 +1,5 @@
 using System;
-using Curses;
+using CursesSharp;
 
 namespace FireworkDemo
 {
@@ -14,14 +14,14 @@ namespace FireworkDemo
 
         static void Main(string[] args)
         {
-            Screen.InitScr();
+            Curses.InitScr();
             try
             {
                 Main2();
             }
             finally
             {
-                Screen.EndWin();
+                Curses.EndWin();
             }
         }
 
@@ -29,39 +29,39 @@ namespace FireworkDemo
 
         private static void Main2()
         {
-            Screen.NoDelay = true;
-            Screen.Echo = false;
+            Curses.NoDelay = true;
+            Curses.NoEcho();
 
-            if (Screen.HasColors)
+            if (Curses.HasColors)
             {
-                Screen.StartColor();
+                Curses.StartColor();
                 for (short i = 1; i < 8; ++i)
-                    Screen.InitPair(i, color_table[i], Defs.COLOR_BLACK);
+                    Curses.InitPair(i, color_table[i], Defs.COLOR_BLACK);
             }
 
             rng = new Random();
             int flag = 0;
-            while (Screen.GetCh() == -1)
+            while (Curses.GetCh() == -1)
             {
                 int start, end, row, diff, direction;
                 do
                 {
-                    start = rng.Next(Screen.Cols - 3);
-                    end = rng.Next(Screen.Cols - 3);
+                    start = rng.Next(Curses.Cols - 3);
+                    end = rng.Next(Curses.Cols - 3);
                     start = (start < 2) ? 2 : start;
                     end = (end < 2) ? 2 : end;
                     direction = (start > end) ? -1 : 1;
                     diff = Math.Abs(start - end);
-                } while (diff < 2 || diff >= Screen.Lines - 2);
+                } while (diff < 2 || diff >= Curses.Lines - 2);
 
-                Screen.AttrSet(Defs.A_NORMAL);
+                Curses.AttrSet(Defs.A_NORMAL);
                 for (row = 1; row < diff; ++row)
                 {
-                    Screen.MvAddStr(Screen.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
+                    Curses.MvAddStr(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
                     if (flag++ > 0)
                     {
                         MyRefresh();
-                        Screen.Erase();
+                        Curses.Erase();
                         flag = 0;
                     }
                 }
@@ -72,15 +72,15 @@ namespace FireworkDemo
                     flag = 0;
                 }
 
-                Explode(Screen.Lines - row, diff * direction + start);
-                Screen.Erase();
+                Explode(Curses.Lines - row, diff * direction + start);
+                Curses.Erase();
                 MyRefresh();
             }
         }
 
         private static void Explode(int row, int col)
         {
-            Screen.Erase();
+            Curses.Erase();
             AddStr(row, col, "-");
             MyRefresh();
 
@@ -129,21 +129,21 @@ namespace FireworkDemo
 
         private static void AddStr(int y, int x, string str)
         {
-            if (x >= 0 && x < Screen.Cols && y >= 0 && y < Screen.Lines)
-                Screen.MvAddStr(y, x, str);
+            if (x >= 0 && x < Curses.Cols && y >= 0 && y < Curses.Lines)
+                Curses.MvAddStr(y, x, str);
         }
 
         private static void MyRefresh()
         {
-            Screen.NapMs(DELAYSIZE);
-            Screen.Move(Screen.Lines - 1, Screen.Cols - 1);
-            Screen.Refresh();
+            Curses.NapMs(DELAYSIZE);
+            Curses.Move(Curses.Lines - 1, Curses.Cols - 1);
+            Curses.Refresh();
         }
 
         private static void GetColor()
         {
             uint bold = (rng.Next(2) > 0) ? Defs.A_BOLD : Defs.A_NORMAL;            
-            Screen.AttrSet(Defs.COLOR_PAIR((short)rng.Next(8)) | bold);
+            Curses.AttrSet(Defs.COLOR_PAIR((short)rng.Next(8)) | bold);
         }
 
     }

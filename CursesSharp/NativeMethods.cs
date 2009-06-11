@@ -1,9 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Curses
+namespace CursesSharp
 {
-    internal delegate int RipOffLineFun(IntPtr win, int cols);
+    internal delegate int RipOffLineFunInt(IntPtr win, int cols);
 
     internal static class NativeMethods
     {
@@ -124,7 +124,7 @@ namespace Curses
         [DllImport("CursesWrapper")]
         internal static extern int wrap_endwin();
         [DllImport("CursesWrapper")]
-        internal static extern int wrap_isendwin();
+        internal static extern Boolean wrap_isendwin();
         [DllImport("CursesWrapper")]
         internal static extern int wrap_resize_term(int nlines, int ncols);
         /* inopts.c */
@@ -180,7 +180,7 @@ namespace Curses
         [DllImport("CursesWrapper")]
         internal static extern void wrap_setsyx(int y, int x);
         [DllImport("CursesWrapper")]
-        internal static extern int wrap_ripoffline(int line, RipOffLineFun init);
+        internal static extern int wrap_ripoffline(int line, RipOffLineFunInt init);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_napms(int ms);
         [DllImport("CursesWrapper")]
@@ -191,7 +191,7 @@ namespace Curses
         [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
         internal static extern IntPtr wrap_key_name(char c);
         [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
-        internal static extern int wrap_has_key(int key);
+        internal static extern Boolean wrap_has_key(int key);
         /* move.c */
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wmove(IntPtr win, int y, int x);

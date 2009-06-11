@@ -1,5 +1,5 @@
 using System;
-using Curses;
+using CursesSharp;
 
 namespace RainDemo
 {
@@ -7,14 +7,14 @@ namespace RainDemo
     {
         static void Main(string[] args)
         {
-            Screen.InitScr();
+            Curses.InitScr();
             try
             {
                 Main2();
             }
             finally
             {
-                Screen.EndWin();
+                Curses.EndWin();
             }
         }
 
@@ -23,26 +23,26 @@ namespace RainDemo
         private static void Main2()
         {
             rng = new Random();
-            if (Screen.HasColors)
+            if (Curses.HasColors)
             {
-                Screen.StartColor();
+                Curses.StartColor();
                 short bg = Defs.COLOR_BLACK;
                 try
                 {
-                    Screen.UseDefaultColors();
+                    Curses.UseDefaultColors();
                     bg = -1;
                 }
                 catch (CursesException) { }
-                Screen.InitPair(1, Defs.COLOR_BLUE, bg);
-                Screen.InitPair(2, Defs.COLOR_CYAN, bg);
+                Curses.InitPair(1, Defs.COLOR_BLUE, bg);
+                Curses.InitPair(2, Defs.COLOR_CYAN, bg);
             }
-            Screen.Nl = true;
-            Screen.Echo = false;
-            Screen.CursSet(0);
-            Screen.Timeout = 0;
-            Screen.Keypad = true;
+            Curses.Nl();
+            Curses.NoEcho();
+            Curses.CursSet(0);
+            Curses.Timeout = 0;
+            Curses.Keypad = true;
 
-            int r = Screen.Lines - 4, c = Screen.Cols - 4;
+            int r = Curses.Lines - 4, c = Curses.Cols - 4;
             int[] xpos = new int[5];
             int[] ypos = new int[5];
             for (int j = 0; j < 5; ++j)
@@ -56,63 +56,63 @@ namespace RainDemo
                 int x = rng.Next(c) + 2;
                 int y = rng.Next(r) + 2;
 
-                Screen.MvAddCh(y, x, '.');
+                Curses.MvAddCh(y, x, '.');
 
-                Screen.MvAddCh(ypos[j], xpos[j], 'o');
-
-                j = NextJ(j);
-                Screen.MvAddCh(ypos[j], xpos[j], 'O');
+                Curses.MvAddCh(ypos[j], xpos[j], 'o');
 
                 j = NextJ(j);
-                Screen.MvAddCh(ypos[j] - 1, xpos[j], '-');
-                Screen.MvAddStr(ypos[j], xpos[j] - 1, "|.|");
-                Screen.MvAddCh(ypos[j] + 1, xpos[j], '-');
+                Curses.MvAddCh(ypos[j], xpos[j], 'O');
 
                 j = NextJ(j);
-                Screen.MvAddCh(ypos[j] - 2, xpos[j], '-');
-                Screen.MvAddStr(ypos[j] - 1, xpos[j] - 1, "/ \\");
-                Screen.MvAddStr(ypos[j], xpos[j] - 2, "| O |");
-                Screen.MvAddStr(ypos[j] + 1, xpos[j] - 1, "\\ /");
-                Screen.MvAddCh(ypos[j] + 2, xpos[j], '-');
+                Curses.MvAddCh(ypos[j] - 1, xpos[j], '-');
+                Curses.MvAddStr(ypos[j], xpos[j] - 1, "|.|");
+                Curses.MvAddCh(ypos[j] + 1, xpos[j], '-');
 
                 j = NextJ(j);
-                Screen.MvAddCh(ypos[j] - 2, xpos[j], ' ');
-                Screen.MvAddStr(ypos[j] - 1, xpos[j] - 1, "   ");
-                Screen.MvAddStr(ypos[j], xpos[j] - 2, "     ");
-                Screen.MvAddStr(ypos[j] + 1, xpos[j] - 1, "   ");
-                Screen.MvAddCh(ypos[j] + 2, xpos[j], ' ');
+                Curses.MvAddCh(ypos[j] - 2, xpos[j], '-');
+                Curses.MvAddStr(ypos[j] - 1, xpos[j] - 1, "/ \\");
+                Curses.MvAddStr(ypos[j], xpos[j] - 2, "| O |");
+                Curses.MvAddStr(ypos[j] + 1, xpos[j] - 1, "\\ /");
+                Curses.MvAddCh(ypos[j] + 2, xpos[j], '-');
+
+                j = NextJ(j);
+                Curses.MvAddCh(ypos[j] - 2, xpos[j], ' ');
+                Curses.MvAddStr(ypos[j] - 1, xpos[j] - 1, "   ");
+                Curses.MvAddStr(ypos[j], xpos[j] - 2, "     ");
+                Curses.MvAddStr(ypos[j] + 1, xpos[j] - 1, "   ");
+                Curses.MvAddCh(ypos[j] + 2, xpos[j], ' ');
 
                 xpos[j] = x;
                 ypos[j] = y;
 
-                switch (Screen.GetCh())
+                switch (Curses.GetCh())
                 {
                     case 'q':
                     case 'Q':
-                        Screen.CursSet(1);
+                        Curses.CursSet(1);
                         return;
                     case 's':
-                        Screen.NoDelay = false;
+                        Curses.NoDelay = false;
                         break;
                     case ' ':
-                        Screen.NoDelay = true;
+                        Curses.NoDelay = true;
                         break;
                     default: break;
                 }
-                Screen.NapMs(50);
+                Curses.NapMs(50);
             }
         }
 
         private static int NextJ(int j)
         {
             j = (j + 5 - 1) % 5;
-            if (Screen.HasColors)
+            if (Curses.HasColors)
             {
                 int z = rng.Next(3);
                 uint color = Defs.COLOR_PAIR(z);
                 if (z > 0)
                     color |= Defs.A_BOLD;
-                Screen.AttrSet(color);
+                Curses.AttrSet(color);
             }
             return j;
         }

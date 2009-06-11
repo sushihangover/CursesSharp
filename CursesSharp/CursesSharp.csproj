@@ -7,8 +7,8 @@
     <ProjectGuid>{9130123E-DF5F-42BA-9B4F-1F76CD57591B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Curses</RootNamespace>
-    <AssemblyName>Curses</AssemblyName>
+    <RootNamespace>CursesSharp</RootNamespace>
+    <AssemblyName>CursesSharp</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,14 +33,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CursesStdscr.cs" />
     <Compile Include="Defs.cs" />
     <Compile Include="DefsGen.cs" />
-    <Compile Include="Screen.cs" />
+    <Compile Include="Curses.cs" />
     <Compile Include="Errors.cs" />
-    <Compile Include="IWindow.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StdWindow.cs" />
+    <Compile Include="Window.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
