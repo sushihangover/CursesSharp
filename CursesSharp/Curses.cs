@@ -1,21 +1,61 @@
+#region Copyright 2009 Robert Konklewski
+
+/*
+ * CursesSharp
+ * 
+ * Copyright 2009 Robert Konklewski
+ * 
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * www.gnu.org/licenses/>.
+ * 
+ */
+
+#endregion
+
 using System;
 using System.Runtime.InteropServices;
 
 namespace CursesSharp
 {
+    /// <summary>
+    /// A callback function type for use in RipOffLine method.
+    /// </summary>
+    /// <param name="win"></param>
+    /// <param name="ncols"></param>
+    /// <returns></returns>
     public delegate int RipOffLineFun(Window win, int ncols);
 
+    /// <summary>
+    /// Static interface to the curses library.
+    /// </summary>
     public static partial class Curses
     {
         private static bool useWideChar = true;
         private static bool checkErrors = true;
         private static Window stdscr = null;
 
+        /// <summary>
+        /// Returns the status of wide character (Unicode) support in 
+        /// the curses library wrapper.
+        /// </summary>
         public static bool HasWideChar
         {
             get { return NativeMethods.wrap_has_widechar(); }
         }
 
+        /// <summary>
+        /// Gets or sets 
+        /// </summary>
         public static bool UseWideChar
         {
             get { return useWideChar; }

@@ -1,3 +1,9 @@
+/*
+ * This is a test program for CursesSharp.
+ * Based on rain.c demo from the PDCurses library 
+ * (http://pdcurses.sourceforge.net/)
+ */
+
 using System;
 using CursesSharp;
 
