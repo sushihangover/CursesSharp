@@ -58,7 +58,7 @@ namespace CursesSharp
             if (stdscr != null)
                 throw new InvalidOperationException("Curses is already initialized.");
 
-            UseWideChar = true;
+            UseWideChar = useWideChar;
 
             IntPtr winptr = NativeMethods.wrap_initscr();
             if (winptr == IntPtr.Zero)
