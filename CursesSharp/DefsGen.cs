@@ -2,7 +2,7 @@
 
 namespace Curses
 {
-	public static class Curses
+	public static partial class Defs
 	{
 		// Character attributes
 		public const uint A_NORMAL = 0x00000000U;
@@ -153,11 +153,6 @@ namespace Curses
 		public const int KEY_SUNDO = 0x194;
 		public const int KEY_SUSPEND = 0x195;
 		public const int KEY_UNDO = 0x196;
-
-		public static int KEY_F(int n)
-		{
-			return KEY_F0 + n;
-		}
 
 		// Mouse event masks
 		public const uint BUTTON1_PRESSED = 0x00000002U;

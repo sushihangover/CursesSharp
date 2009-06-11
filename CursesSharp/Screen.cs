@@ -61,16 +61,6 @@ namespace Curses
             stdscr = null;
         }
 
-        public static uint COLOR_PAIR(short n)
-        {
-            return NativeMethods.wrap_COLOR_PAIR(n);
-        }
-
-        public static short PAIR_NUMBER(uint n)
-        {
-            return NativeMethods.wrap_PAIR_NUMBER(n);
-        }
-
         public static void StartColor()
         {
             if (NativeMethods.wrap_start_color() != 0)

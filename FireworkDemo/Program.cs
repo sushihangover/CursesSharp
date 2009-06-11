@@ -6,6 +6,11 @@ namespace FireworkDemo
     class Program
     {
         private const int DELAYSIZE = 200;
+        private static short[] color_table = {
+            Defs.COLOR_RED, Defs.COLOR_BLUE, Defs.COLOR_GREEN, Defs.COLOR_CYAN,
+            Defs.COLOR_RED, Defs.COLOR_MAGENTA, Defs.COLOR_YELLOW, Defs.COLOR_WHITE
+        };
+
 
         static void Main(string[] args)
         {
@@ -29,7 +34,7 @@ namespace FireworkDemo
             {
                 Screen.StartColor();
                 for (short i = 1; i < 8; ++i)
-                    Screen.InitPair(i, 7, 0);
+                    Screen.InitPair(i, color_table[i], Defs.COLOR_BLACK);
             }
 
             Random rng = new Random();
@@ -136,7 +141,8 @@ namespace FireworkDemo
         private static void GetColor(Random rng, IWindow stdscr)
         {
             uint bold = (rng.Next(2) > 0) ? 0x00800000U : 0U;
-            stdscr.AttrSet(Screen.COLOR_PAIR((short)rng.Next(8)) | bold);
+            
+            stdscr.AttrSet(Defs.COLOR_PAIR((short)rng.Next(8)) | bold);
         }
 
     }

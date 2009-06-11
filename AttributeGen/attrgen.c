@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	fprintf(OUT, "namespace Curses\n");
 	fprintf(OUT, "{\n");
 
-	fprintf(OUT, "\tpublic static class Curses\n");
+	fprintf(OUT, "\tpublic static partial class Defs\n");
 	fprintf(OUT, "\t{\n");
 
 	fprintf(OUT, "\t\t// Character attributes\n");
@@ -182,13 +182,6 @@ int main(int argc, char **argv)
 	GEN_KEY(KEY_SUNDO);
 	GEN_KEY(KEY_SUSPEND);
 	GEN_KEY(KEY_UNDO);
-
-	fprintf(OUT, "\n");
-
-	fprintf(OUT, "\t\tpublic static int KEY_F(int n)\n");
-	fprintf(OUT, "\t\t{\n");
-	fprintf(OUT, "\t\t\treturn KEY_F0 + n;\n");
-	fprintf(OUT, "\t\t}\n");
 
 	fprintf(OUT, "\n");
 

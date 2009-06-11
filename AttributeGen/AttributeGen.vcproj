@@ -89,6 +89,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="$(OutDir)\AttributeGen.exe $(SolutionDir)\CursesSharp\DefsGen.cs"
 			/>
 		</Configuration>
 		<Configuration
