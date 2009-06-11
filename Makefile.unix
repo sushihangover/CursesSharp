@@ -10,11 +10,11 @@ MCSEXE		= gmcs -target:exe
 CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED
 CURSES_LDFLAGS	= -lncursesw
 
-
 WRAPPER_DIR	= CursesWrapper
-WRAPPER_SRCS	= addch.c clear.c debug.c inopts.c refresh.c addstr.c	\
-		color.c getch.c kernel.c wrapper.c attr.c initscr.c	\
-		move.c
+WRAPPER_SRCS	= addch.c addchstr.c addstr.c attr.c beep.c bkgd.c 	\
+		  border.c clear.c color.c debug.c getch.c initscr.c 	\
+		  inopts.c kernel.c keyname.c move.c outopts.c 		\
+		  refresh.c touch.c window.c wrapper.c
 WRAPPER_OBJS	= $(WRAPPER_SRCS:%.c=$(OBJ_DIR)/%.o)
 WRAPPER_BIN	= $(BIN_DIR)/libCursesWrapper.so
 
