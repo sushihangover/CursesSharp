@@ -227,6 +227,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getyx.c"
+				>
+			</File>
+			<File
 				RelativePath=".\initscr.c"
 				>
 			</File>

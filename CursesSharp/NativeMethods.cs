@@ -142,6 +142,15 @@ namespace CursesSharp
         internal static extern int wrap_ungetch(int ch);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_flushinp();
+        /* getyx.c */
+        [DllImport("CursesWrapper")]
+        internal static extern void wrap_getyx(IntPtr win, out int y, out int x);
+        [DllImport("CursesWrapper")]
+        internal static extern void wrap_getparyx(IntPtr win, out int y, out int x);
+        [DllImport("CursesWrapper")]
+        internal static extern void wrap_getbegyx(IntPtr win, out int y, out int x);
+        [DllImport("CursesWrapper")]
+        internal static extern void wrap_getmaxyx(IntPtr win, out int y, out int x);
         /* initscr.c */
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_initscr();

@@ -235,6 +235,26 @@ namespace CursesSharp
             return NativeMethods.wrap_mvwgetch(this.winptr, y, x);
         }
 
+        public void GetYX(out int y, out int x)
+        {
+            NativeMethods.wrap_getyx(this.winptr, out y, out x);
+        }
+
+        public void GetParYX(out int y, out int x)
+        {
+            NativeMethods.wrap_getparyx(this.winptr, out y, out x);
+        }
+
+        public void GetBegYX(out int y, out int x)
+        {
+            NativeMethods.wrap_getbegyx(this.winptr, out y, out x);
+        }
+
+        public void GetMaxYX(out int y, out int x)
+        {
+            NativeMethods.wrap_getmaxyx(this.winptr, out y, out x);
+        }
+
         public bool IntrFlush
         {
             set

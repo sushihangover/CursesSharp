@@ -150,53 +150,6 @@ wrap_TABSIZE(void)
 */
 
 /*
-  Name:								getyx
-
-  Synopsis:
-	void getyx(WINDOW *win, int y, int x);
-	void getparyx(WINDOW *win, int y, int x);
-	void getbegyx(WINDOW *win, int y, int x);
-	void getmaxyx(WINDOW *win, int y, int x);
-
-	int getbegy(WINDOW *win);
-	int getbegx(WINDOW *win);
-	int getcury(WINDOW *win);
-	int getcurx(WINDOW *win);
-	int getpary(WINDOW *win);
-	int getparx(WINDOW *win);
-	int getmaxy(WINDOW *win);
-	int getmaxx(WINDOW *win);
-
-  Description:
-	With the getyx() macro, the cursor position of the window is 
-	placed in the two integer variables y and x. getbegyx() and 
-	getmaxyx() return the current beginning coordinates and size of 
-	the specified window respectively. getparyx() returns the 
-	beginning coordinates of the parent's window if the specified 
-	window is a sub-window otherwise -1 is returned. These functions 
-	are implemented as macros.
-
-	The functions getbegy(), getbegx(), getcurx(), getcury(), 
-	getmaxy(), getmaxx(), getpary(), and getparx() return the 
-	appropriate coordinate or size values, or ERR in the case of a 
-	NULL window.
-
-  Portability				     X/Open    BSD    SYS V
-	getyx					Y	Y	Y
-	getparyx				-	-      4.0
-	getbegyx				-	-      3.0
-	getmaxyx				-	-      3.0
-	getbegy					-	-	-
-	getbegx					-	-	-
-	getcury					-	-	-
-	getcurx					-	-	-
-	getpary					-	-	-
-	getparx					-	-	-
-	getmaxy					-	-	-
-	getmaxx					-	-	-
-*/
-
-/*
   Name:								inch
 
   Synopsis:

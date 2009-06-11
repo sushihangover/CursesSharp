@@ -61,6 +61,11 @@ EXPORTS
 	wrap_ungetch
 	wrap_flushinp
 	
+	wrap_getyx
+	wrap_getparyx
+	wrap_getbegyx
+	wrap_getmaxyx
+	
 	wrap_initscr
 	wrap_endwin
 	wrap_isendwin
