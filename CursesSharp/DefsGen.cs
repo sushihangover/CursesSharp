@@ -154,6 +154,11 @@ namespace CursesSharp
 		public const int KEY_SUSPEND = 0x195;
 		public const int KEY_UNDO = 0x196;
 
+		public static int KEY_F(int n)
+		{
+			return KEY_F0 + n;
+		}
+
 		// Mouse event masks
 		public const uint BUTTON1_PRESSED = 0x00000002U;
 		public const uint BUTTON1_RELEASED = 0x00000001U;

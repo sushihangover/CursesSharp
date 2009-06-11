@@ -2,13 +2,8 @@
 
 namespace CursesSharp
 {
-	public static partial class Defs
-	{
-		public static int KEY_F(int n)
-		{
-			return KEY_F0 + n;
-		}
-
+    public static partial class Defs
+    {
         public static uint COLOR_PAIR(int n)
         {
             return NativeMethods.wrap_COLOR_PAIR(n);
