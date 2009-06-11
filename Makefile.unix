@@ -1,0 +1,85 @@
+OBJ_DIR		= obj
+BIN_DIR		= bin
+
+CC		= gcc -c
+LD		= gcc
+LDSHARED	= gcc -shared
+MCSDLL		= gmcs -target:library
+MCSEXE		= gmcs -target:exe
+
+CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED
+CURSES_LDFLAGS	= -lncursesw
+
+
+WRAPPER_DIR	= CursesWrapper
+WRAPPER_SRCS	= addch.c clear.c debug.c inopts.c refresh.c addstr.c	\
+		color.c getch.c kernel.c wrapper.c attr.c initscr.c	\
+		move.c
+WRAPPER_OBJS	= $(WRAPPER_SRCS:%.c=$(OBJ_DIR)/%.o)
+WRAPPER_BIN	= $(BIN_DIR)/libCursesWrapper.so
+
+ATTRGEN_DIR	= AttributeGen
+ATTRGEN_SRCS	= attrgen.c
+ATTRGEN_OBJS	= $(ATTRGEN_SRCS:%.c=$(OBJ_DIR)/%.o)
+ATTRGEN_BIN	= $(BIN_DIR)/AttributeGen
+
+CURSHARP_DIR	= CursesSharp
+CURSHARP_SRCS	= Defs.cs Errors.cs IWindow.cs NativeMethods.cs		\
+		Screen.cs StdWindow.cs Properties/AssemblyInfo.cs	\
+		DefsGen.cs
+CURSHARP_OBJS	= $(CURSHARP_SRCS:%=$(CURSHARP_DIR)/%)
+CURSHARP_BIN	= $(BIN_DIR)/CursesSharp.dll
+
+FIREWORK_DIR	= FireworkDemo
+FIREWORK_SRCS	= Program.cs Properties/AssemblyInfo.cs
+FIREWORK_OBJS	= $(FIREWORK_SRCS:%=$(FIREWORK_DIR)/%)
+FIREWORK_BIN	= $(BIN_DIR)/FireworkDemo.exe
+
+RAINDEMO_DIR	= RainDemo
+RAINDEMO_SRCS	= Program.cs Properties/AssemblyInfo.cs
+RAINDEMO_OBJS	= $(RAINDEMO_SRCS:%=$(RAINDEMO_DIR)/%)
+RAINDEMO_BIN	= $(BIN_DIR)/RainDemo.exe
+
+
+all: $(OBJ_DIR) $(BIN_DIR) $(WRAPPER_BIN) $(ATTRGEN_BIN)
+all: $(CURSHARP_BIN) $(FIREWORK_BIN) $(RAINDEMO_BIN)
+
+$(OBJ_DIR):
+	mkdir $@
+
+$(BIN_DIR):
+	mkdir $@
+
+
+$(WRAPPER_BIN): $(WRAPPER_OBJS)
+	$(LDSHARED) -o $@ $^ $(CURSES_LDFLAGS)
+
+$(OBJ_DIR)/%.o: $(WRAPPER_DIR)/%.c
+	$(CC) $(CURSES_CFLAGS) -fPIC -o $@ $<
+
+
+$(ATTRGEN_BIN): $(ATTRGEN_OBJS)
+	$(LD) -o $@ $^ $(CURSES_LDFLAGS)
+
+$(OBJ_DIR)/%.o: $(ATTRGEN_DIR)/%.c
+	$(CC) $(CURSES_CFLAGS) -o $@ $<
+
+
+$(CURSHARP_DIR)/DefsGen.cs: $(ATTRGEN_BIN)
+	$(ATTRGEN_BIN) $@
+
+$(CURSHARP_BIN): $(CURSHARP_OBJS) $(WRAPPER_BIN)
+	$(MCSDLL) -out:$@ $(CURSHARP_OBJS)
+
+
+$(FIREWORK_BIN): $(FIREWORK_OBJS) $(CURSHARP_BIN)
+	$(MCSEXE) -out:$@ $(FIREWORK_OBJS) -reference:$(CURSHARP_BIN)
+
+
+$(RAINDEMO_BIN): $(RAINDEMO_OBJS) $(CURSHARP_BIN)
+	$(MCSEXE) -out:$@ $(RAINDEMO_OBJS) -reference:$(CURSHARP_BIN)
+
+
+clean:
+	rm -fr $(OBJ_DIR) $(BIN_DIR)
+
