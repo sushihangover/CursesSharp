@@ -30,164 +30,8 @@ wrap_TABSIZE(void)
 	return TABSIZE;
 }
 
-/*
-  Name:								addchstr
 
-  Synopsis:
-	int addchstr(const chtype *ch);
-	int addchnstr(const chtype *ch, int n);
-	int waddchstr(WINDOW *win, const chtype *ch);
-	int waddchnstr(WINDOW *win, const chtype *ch, int n);
-	int mvaddchstr(int y, int x, const chtype *ch);
-	int mvaddchnstr(int y, int x, const chtype *ch, int n);
-	int mvwaddchstr(WINDOW *, int y, int x, const chtype *ch);
-	int mvwaddchnstr(WINDOW *, int y, int x, const chtype *ch, int n);
 
-	int add_wchstr(const cchar_t *wch);
-	int add_wchnstr(const cchar_t *wch, int n);
-	int wadd_wchstr(WINDOW *win, const cchar_t *wch);
-	int wadd_wchnstr(WINDOW *win, const cchar_t *wch, int n);
-	int mvadd_wchstr(int y, int x, const cchar_t *wch);
-	int mvadd_wchnstr(int y, int x, const cchar_t *wch, int n);
-	int mvwadd_wchstr(WINDOW *win, int y, int x, const cchar_t *wch);
-	int mvwadd_wchnstr(WINDOW *win, int y, int x, const cchar_t *wch,
-		int n);
-
-  Return Value:
-	All functions return OK or ERR.
-
-  Portability				     X/Open    BSD    SYS V
-	addchstr				Y	-      4.0
-	waddchstr				Y	-      4.0
-	mvaddchstr				Y	-      4.0
-	mvwaddchstr				Y	-      4.0
-	addchnstr				Y	-      4.0
-	waddchnstr				Y	-      4.0
-	mvaddchnstr				Y	-      4.0
-	mvwaddchnstr				Y	-      4.0
-	add_wchstr				Y
-	wadd_wchstr				Y
-	mvadd_wchstr				Y
-	mvwadd_wchstr				Y
-	add_wchnstr				Y
-	wadd_wchnstr				Y
-	mvadd_wchnstr				Y
-	mvwadd_wchnstr				Y
-*/
-
-/*
-  Name:								beep
-
-  Synopsis:
-	int beep(void);
-	int flash(void);
-
-  Return Value:
-	These functions return OK.
-
-  Portability				     X/Open    BSD    SYS V
-	beep					Y	Y	Y
-	flash					Y	Y	Y
-*/
-
-/*
-  Name:								bkgd
-
-  Synopsis:
-	int bkgd(chtype ch);
-	void bkgdset(chtype ch);
-	chtype getbkgd(WINDOW *win);
-	int wbkgd(WINDOW *win, chtype ch);
-	void wbkgdset(WINDOW *win, chtype ch);
-
-	int bkgrnd(const cchar_t *wch);
-	void bkgrndset(const cchar_t *wch);
-	int getbkgrnd(cchar_t *wch);
-	int wbkgrnd(WINDOW *win, const cchar_t *wch);
-	void wbkgrndset(WINDOW *win, const cchar_t *wch);
-	int wgetbkgrnd(WINDOW *win, cchar_t *wch);
-
-  Return Value:
-	bkgd() and wbkgd() return OK, unless the window is NULL, in 
-	which case they return ERR.
-
-  Portability				     X/Open    BSD    SYS V
-	bkgd					Y	-      4.0
-	bkgdset					Y	-      4.0
-	getbkgd					Y
-	wbkgd					Y	-      4.0
-	wbkgdset				Y	-      4.0
-	bkgrnd					Y
-	bkgrndset				Y
-	getbkgrnd				Y
-	wbkgrnd					Y
-	wbkgrndset				Y
-	wgetbkgrnd				Y
-*/
-
-/*
-  Name:								border
-
-  Synopsis:
-	int border(chtype ls, chtype rs, chtype ts, chtype bs, chtype tl, 
-		   chtype tr, chtype bl, chtype br);
-	int wborder(WINDOW *win, chtype ls, chtype rs, chtype ts, 
-		    chtype bs, chtype tl, chtype tr, chtype bl, chtype br);
-	int box(WINDOW *win, chtype verch, chtype horch);
-	int hline(chtype ch, int n);
-	int vline(chtype ch, int n);
-	int whline(WINDOW *win, chtype ch, int n);
-	int wvline(WINDOW *win, chtype ch, int n);
-	int mvhline(int y, int x, chtype ch, int n);
-	int mvvline(int y, int x, chtype ch, int n);
-	int mvwhline(WINDOW *win, int y, int x, chtype ch, int n);
-	int mvwvline(WINDOW *win, int y, int x, chtype ch, int n);
-
-	int border_set(const cchar_t *ls, const cchar_t *rs,
-		       const cchar_t *ts, const cchar_t *bs,
-		       const cchar_t *tl, const cchar_t *tr,
-		       const cchar_t *bl, const cchar_t *br);
-	int wborder_set(WINDOW *win, const cchar_t *ls, const cchar_t *rs,
-			const cchar_t *ts, const cchar_t *bs,
-			const cchar_t *tl, const cchar_t *tr,
-			const cchar_t *bl, const cchar_t *br);
-	int box_set(WINDOW *win, const cchar_t *verch, const cchar_t *horch);
-	int hline_set(const cchar_t *wch, int n);
-	int vline_set(const cchar_t *wch, int n);
-	int whline_set(WINDOW *win, const cchar_t *wch, int n);
-	int wvline_set(WINDOW *win, const cchar_t *wch, int n);
-	int mvhline_set(int y, int x, const cchar_t *wch, int n);
-	int mvvline_set(int y, int x, const cchar_t *wch, int n);
-	int mvwhline_set(WINDOW *win, int y, int x, const cchar_t *wch, int n);
-	int mvwvline_set(WINDOW *win, int y, int x, const cchar_t *wch, int n);
-
-  Return Value:
-	These functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	border					Y	-      4.0
-	wborder					Y	-      4.0
-	box					Y	Y	Y
-	hline					Y	-      4.0
-	vline					Y	-      4.0
-	whline					Y	-      4.0
-	wvline					Y	-      4.0
-	mvhline					Y
-	mvvline					Y
-	mvwhline				Y
-	mvwvline				Y
-	border_set				Y
-	wborder_set				Y
-	box_set					Y
-	hline_set				Y
-	vline_set				Y
-	whline_set				Y
-	wvline_set				Y
-	mvhline_set				Y
-	mvvline_set				Y
-	mvwhline_set				Y
-	mvwvline_set				Y
-*/
 
 /*
   Name:								delch
@@ -540,32 +384,6 @@ wrap_TABSIZE(void)
 */
 
 /*
-  Name:								keyname
-
-  Synopsis:
-	char *keyname(int key);
-
-	char *key_name(wchar_t c);
-
-	bool has_key(int key);
-
-  Description:
-	keyname() returns a string corresponding to the argument key. 
-	key may be any key returned by wgetch().
-
-	key_name() is the wide-character version. It takes a wchar_t 
-	parameter, but still returns a char *.
-
-	has_key() returns TRUE for recognized keys, FALSE otherwise. 
-	This function is an ncurses extension.
-
-  Portability				     X/Open    BSD    SYS V
-	keyname					Y	-      3.0
-	key_name				Y
-	has_key					-	-	-
-*/
-
-/*
   Name:								mouse
 
   Synopsis:
@@ -709,36 +527,6 @@ wrap_TABSIZE(void)
 */
 
 /*
-  Name:								outopts
-
-  Synopsis:
-	int clearok(WINDOW *win, bool bf);
-	int idlok(WINDOW *win, bool bf);
-	void idcok(WINDOW *win, bool bf);
-	void immedok(WINDOW *win, bool bf);
-	int leaveok(WINDOW *win, bool bf);
-	int setscrreg(int top, int bot);
-	int wsetscrreg(WINDOW *win, int top, int bot);
-	int scrollok(WINDOW *win, bool bf);
-
-	int raw_output(bool bf);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	clearok					Y	Y	Y
-	idlok					Y	Y	Y
-	idcok					Y	-      4.0
-	immedok					Y	-      4.0
-	leaveok					Y	Y	Y
-	setscrreg				Y	Y	Y
-	wsetscrreg				Y	Y	Y
-	scrollok				Y	Y	Y
-	raw_output				-	-	-
-*/
-
-/*
   Name:								overlay
 
   Synopsis:
@@ -824,79 +612,6 @@ wrap_TABSIZE(void)
 	show_panel				-	-	Y
 	top_panel				-	-	Y
 	update_panels				-	-	Y
-*/
-
-/*
-  Name:								printw
-
-  Synopsis:
-	int printw(const char *fmt, ...);
-	int wprintw(WINDOW *win, const char *fmt, ...);
-	int mvprintw(int y, int x, const char *fmt, ...);
-	int mvwprintw(WINDOW *win, int y, int x, const char *fmt,...);
-	int vwprintw(WINDOW *win, const char *fmt, va_list varglist);
-	int vw_printw(WINDOW *win, const char *fmt, va_list varglist);
-
-  Return Value:
-	All functions return the number of characters printed, or 
-	ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	printw					Y	Y	Y
-	wprintw					Y	Y	Y
-	mvprintw				Y	Y	Y
-	mvwprintw				Y	Y	Y
-	vwprintw				Y	-      4.0
-	vw_printw				Y
-*/
-
-/*
-  Name:								refresh
-
-  Synopsis:
-	int refresh(void);
-	int wrefresh(WINDOW *win);
-	int wnoutrefresh(WINDOW *win);
-	int doupdate(void);
-	int redrawwin(WINDOW *win);
-	int wredrawln(WINDOW *win, int beg_line, int num_lines);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	refresh					Y	Y	Y
-	wrefresh				Y	Y	Y
-	wnoutrefresh				Y	Y	Y
-	doupdate				Y	Y	Y
-	redrawwin				Y	-      4.0
-	wredrawln				Y	-      4.0
-*/
-
-/*
-  Name:								scanw
-
-  Synopsis:
-	int scanw(const char *fmt, ...);
-	int wscanw(WINDOW *win, const char *fmt, ...);
-	int mvscanw(int y, int x, const char *fmt, ...);
-	int mvwscanw(WINDOW *win, int y, int x, const char *fmt, ...);
-	int vwscanw(WINDOW *win, const char *fmt, va_list varglist);
-	int vw_scanw(WINDOW *win, const char *fmt, va_list varglist);
-
-  Return Value:
-	Upon successful completion, the scanw, mvscanw, mvwscanw and
-	wscanw functions return the number of items successfully
-	matched.  On end-of-file, they return EOF.  Otherwise they
-	return ERR.
-
-  Portability				     X/Open    BSD    SYS V
-	scanw					Y	Y	Y
-	wscanw					Y	Y	Y
-	mvscanw					Y	Y	Y
-	mvwscanw				Y	Y	Y
-	vwscanw					Y	-      4.0
-	vw_scanw				Y
 */
 
 /*
@@ -1096,30 +811,6 @@ wrap_TABSIZE(void)
 */
 
 /*
-  Name:								touch
-
-  Synopsis:
-	int touchwin(WINDOW *win);
-	int touchline(WINDOW *win, int start, int count);
-	int untouchwin(WINDOW *win);
-	int wtouchln(WINDOW *win, int y, int n, int changed);
-	bool is_linetouched(WINDOW *win, int line);
-	bool is_wintouched(WINDOW *win);
-
-  Return Value:
-	All functions return OK on success and ERR on error except
-	is_wintouched() and is_linetouched().
-
-  Portability				     X/Open    BSD    SYS V
-	touchwin				Y	Y	Y
-	touchline				Y	-      3.0
-	untouchwin				Y	-      4.0
-	wtouchln				Y	Y	Y
-	is_linetouched				Y	-      4.0
-	is_wintouched				Y	-      4.0
-*/
-
-/*
   Name:								util
 
   Synopsis:
@@ -1158,63 +849,6 @@ wrap_TABSIZE(void)
 	PDC_mbtowc				-	-	-
 	PDC_mbstowcs				-	-	-
 	PDC_wcstombs				-	-	-
-*/
-
-/*
-  Name:								window
-
-  Synopsis:
-	WINDOW *newwin(int nlines, int ncols, int begy, int begx);
-  	WINDOW *derwin(WINDOW* orig, int nlines, int ncols,
-		int begy, int begx);
-	WINDOW *subwin(WINDOW* orig, int nlines, int ncols,
-		int begy, int begx);
-	WINDOW *dupwin(WINDOW *win);
-	int delwin(WINDOW *win);
-	int mvwin(WINDOW *win, int y, int x);
-	int mvderwin(WINDOW *win, int pary, int parx);
-	int syncok(WINDOW *win, bool bf);
-	void wsyncup(WINDOW *win);
-	void wcursyncup(WINDOW *win);
-	void wsyncdown(WINDOW *win);
-
-	WINDOW *resize_window(WINDOW *win, int nlines, int ncols);
-	int wresize(WINDOW *win, int nlines, int ncols);
-	WINDOW *PDC_makelines(WINDOW *win);
-	WINDOW *PDC_makenew(int nlines, int ncols, int begy, int begx);
-	void PDC_sync(WINDOW *win);
-
-  Return Value:
-	newwin(), subwin(), derwin() and dupwin() return a pointer
-	to the new window, or NULL on failure. delwin(), mvwin(),
-	mvderwin() and syncok() return OK or ERR. wsyncup(),
-	wcursyncup() and wsyncdown() return nothing.
-
-  Errors:
-	It is an error to call resize_window() before calling initscr().
-	Also, an error will be generated if we fail to create a newly
-	sized replacement window for curscr, or stdscr. This could
-	happen when increasing the window size. NOTE: If this happens,
-	the previously successfully allocated windows are left alone;
-	i.e., the resize is NOT cancelled for those windows.
-
-  Portability				     X/Open    BSD    SYS V
-	newwin					Y	Y	Y
-	delwin					Y	Y	Y
-	mvwin					Y	Y	Y
-	subwin					Y	Y	Y
-	derwin					Y	-	Y
-	mvderwin				Y	-	Y
-	dupwin					Y	-      4.0
-	wsyncup					Y	-      4.0
-	syncok					Y	-      4.0
-	wcursyncup				Y	-      4.0
-	wsyncdown				Y	-      4.0
-	resize_window				-	-	-
-	wresize					-	-	-
-	PDC_makelines				-	-	-
-	PDC_makenew				-	-	-
-	PDC_sync				-	-	-
 */
 
 /*

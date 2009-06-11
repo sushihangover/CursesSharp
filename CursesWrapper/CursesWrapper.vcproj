@@ -187,11 +187,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\addchstr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\addstr.c"
 				>
 			</File>
 			<File
 				RelativePath=".\attr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\beep.c"
+				>
+			</File>
+			<File
+				RelativePath=".\bkgd.c"
+				>
+			</File>
+			<File
+				RelativePath=".\border.c"
 				>
 			</File>
 			<File
@@ -223,11 +239,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\keyname.c"
+				>
+			</File>
+			<File
 				RelativePath=".\move.c"
 				>
 			</File>
 			<File
+				RelativePath=".\outopts.c"
+				>
+			</File>
+			<File
 				RelativePath=".\refresh.c"
+				>
+			</File>
+			<File
+				RelativePath=".\touch.c"
+				>
+			</File>
+			<File
+				RelativePath=".\window.c"
 				>
 			</File>
 			<File

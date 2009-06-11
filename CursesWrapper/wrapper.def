@@ -4,6 +4,9 @@ EXPORTS
 	wrap_mvwaddch
 	wrap_wechochar
 	
+	wrap_waddchnstr
+	wrap_mvwaddchnstr
+	
 	wrap_waddnstr
 	wrap_mvwaddnstr
 	wrap_waddnwstr
@@ -18,6 +21,20 @@ EXPORTS
 	wrap_wattr_get
 	wrap_wchgat
 	wrap_mvwchgat
+	
+	wrap_beep
+	wrap_flash
+	
+	wrap_getbkgd
+	wrap_wbkgd
+	wrap_wbkgdset
+	
+	wrap_wborder
+	wrap_box
+	wrap_whline
+	wrap_wvline
+	wrap_mvwhline
+	wrap_mvwvline
 	
 	wrap_wclear
 	wrap_werase
@@ -79,13 +96,44 @@ EXPORTS
 	wrap_napms
 	wrap_curs_set
 	
+	wrap_keyname
+	wrap_key_name
+	wrap_has_key
+	
 	wrap_wmove
+	
+	wrap_clearok
+	wrap_idlok
+	wrap_idcok
+	wrap_immedok
+	wrap_leaveok
+	wrap_wsetscrreg
+	wrap_scrollok
 	
 	wrap_wrefresh
 	wrap_wnoutrefresh
 	wrap_doupdate
 	wrap_redrawwin
 	wrap_wredrawln
+	
+	wrap_touchwin
+	wrap_touchline
+	wrap_untouchwin
+	wrap_wtouchln
+	wrap_is_linetouched
+	wrap_is_wintouched
+	
+	wrap_newwin
+	wrap_derwin
+	wrap_subwin
+	wrap_dupwin
+	wrap_delwin
+	wrap_mvwin
+	wrap_mvderwin
+	wrap_syncok
+	wrap_wsyncup
+	wrap_wcursyncup
+	wrap_wsyncdown
 
 	wrap_has_widechar
 	wrap_LINES
