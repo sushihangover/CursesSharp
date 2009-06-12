@@ -88,6 +88,14 @@ EXPORTS
 	wrap_noqiflush
 	wrap_notimeout
 	wrap_wtimeout
+	
+	wrap_winsch
+	wrap_mvwinsch
+	
+	wrap_winsnstr
+	wrap_mvwinsnstr
+	wrap_wins_nwstr
+	wrap_mvwins_nwstr
 
 	wrap_def_prog_mode
 	wrap_def_shell_mode

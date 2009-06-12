@@ -518,6 +518,50 @@ namespace CursesSharp
 
         #endregion
 
+        #region insch.c
+
+        internal static void winsch(IntPtr win, uint ch)
+        {
+            int ret = NativeMethods.wrap_winsch(win, ch);
+            Verify(ret, "winsch");
+        }
+
+        internal static void mvwinsch(IntPtr win, int y, int x, uint ch)
+        {
+            int ret = NativeMethods.wrap_mvwinsch(win, y, x, ch);
+            Verify(ret, "mvwinsch");
+        }
+
+        #endregion
+
+        #region insstr.c
+
+        internal static void winsnstr(IntPtr win, string str, int n)
+        {
+            int ret = NativeMethods.wrap_winsnstr(win, str, n);
+            Verify(ret, "winsnstr");
+        }
+
+        internal static void mvwinsnstr(IntPtr win, int y, int x, string str, int n)
+        {
+            int ret = NativeMethods.wrap_mvwinsnstr(win, y, x, str, n);
+            Verify(ret, "mvwinsnstr");
+        }
+
+        internal static void wins_nwstr(IntPtr win, string wstr, int n)
+        {
+            int ret = NativeMethods.wrap_wins_nwstr(win, wstr, n);
+            Verify(ret, "wins_nwstr");
+        }
+
+        internal static void mvwins_nwstr(IntPtr win, int y, int x, string wstr, int n)
+        {
+            int ret = NativeMethods.wrap_mvwins_nwstr(win, y, x, wstr, n);
+            Verify(ret, "mvwins_nwstr");
+        }
+
+        #endregion
+
         #region kernel.c
 
         internal static void def_prog_mode()

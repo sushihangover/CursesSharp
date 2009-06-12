@@ -239,6 +239,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\insch.c"
+				>
+			</File>
+			<File
+				RelativePath=".\insstr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\kernel.c"
 				>
 			</File>

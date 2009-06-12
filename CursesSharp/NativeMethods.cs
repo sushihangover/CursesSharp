@@ -195,6 +195,20 @@ namespace CursesSharp
         internal static extern int wrap_notimeout(IntPtr win, Boolean bf);
         [DllImport("CursesWrapper")]
         internal static extern void wrap_wtimeout(IntPtr win, int delay);
+        /* insch.c */
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_winsch(IntPtr win, uint ch);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_mvwinsch(IntPtr win, int y, int x, uint ch);
+        /* insstr.c */
+        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        internal static extern int wrap_winsnstr(IntPtr win, String str, int n);
+        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        internal static extern int wrap_mvwinsnstr(IntPtr win, int y, int x, String str, int n);
+        [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
+        internal static extern int wrap_wins_nwstr(IntPtr win, String wstr, int n);
+        [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
+        internal static extern int wrap_mvwins_nwstr(IntPtr win, int y, int x, String wstr, int n);
         /* kernel.c */
         [DllImport("CursesWrapper")]
         internal static extern int wrap_def_prog_mode();

@@ -274,6 +274,60 @@ namespace CursesSharp
             CursesMethods.getmaxyx(this.winptr, out y, out x);
         }
 
+        public void InsCh(char ch)
+        {
+            CursesMethods.winsch(this.winptr, (byte)ch);
+        }
+
+        public void InsCh(uint ch)
+        {
+            CursesMethods.winsch(this.winptr, ch);
+        }
+
+        public void InsCh(int y, int x, char ch)
+        {
+            CursesMethods.mvwinsch(this.winptr, y, x, (byte)ch);
+        }
+
+        public void InsCh(int y, int x, uint ch)
+        {
+            CursesMethods.mvwinsch(this.winptr, y, x, ch);
+        }
+
+        public void InsStr(string str)
+        {
+            this.InsStr(str, str.Length);
+        }
+
+        public void InsStr(string str, int n)
+        {
+            if (Curses.UseWideChar)
+            {
+                CursesMethods.wins_nwstr(this.winptr, str, n);
+            }
+            else
+            {
+                CursesMethods.winsnstr(this.winptr, str, n);
+            }
+        }
+
+        public void InsStr(int y, int x, string str)
+        {
+            this.InsStr(y, x, str, str.Length);
+        }
+
+        public void InsStr(int y, int x, string str, int n)
+        {
+            if (Curses.UseWideChar)
+            {
+                CursesMethods.mvwins_nwstr(this.winptr, y, x, str, n);
+            }
+            else
+            {
+                CursesMethods.mvwinsnstr(this.winptr, y, x, str, n);
+            }
+        }
+
         public bool IntrFlush
         {
             set

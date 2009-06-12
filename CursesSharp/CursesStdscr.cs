@@ -200,6 +200,46 @@ namespace CursesSharp
             return StdScr.GetCh(y, x);
         }
 
+        public static void InsCh(char ch)
+        {
+            StdScr.InsCh(ch);
+        }
+
+        public static void InsCh(uint ch)
+        {
+            StdScr.InsCh(ch);
+        }
+
+        public static void InsCh(int y, int x, char ch)
+        {
+            StdScr.InsCh(y, x, ch);
+        }
+
+        public static void InsCh(int y, int x, uint ch)
+        {
+            StdScr.InsCh(y, x, ch);
+        }
+
+        public static void InsStr(string str)
+        {
+            StdScr.InsStr(str);
+        }
+
+        public static void InsStr(string str, int n)
+        {
+            StdScr.InsStr(str, n);
+        }
+
+        public static void InsStr(int y, int x, string str)
+        {
+            StdScr.InsStr(y, x, str);
+        }
+
+        public static void InsStr(int y, int x, string str, int n)
+        {
+            StdScr.InsStr(y, x, str, n);
+        }
+
         public static bool IntrFlush
         {
             set { StdScr.IntrFlush = value; }
