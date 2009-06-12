@@ -34,6 +34,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CursesMethods.cs" />
     <Compile Include="CursesStdscr.cs" />
     <Compile Include="Defs.cs" />
     <Compile Include="DefsGen.cs" />
