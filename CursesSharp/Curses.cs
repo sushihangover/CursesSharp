@@ -41,11 +41,10 @@ namespace CursesSharp
     public static partial class Curses
     {
         private static bool useWideChar = true;
-        private static bool checkErrors = true;
         private static Window stdscr = null;
 
         /// <summary>
-        /// Returns the status of wide character (Unicode) support in 
+        /// Returns the status of wide character (UTF-16) support in 
         /// the curses library wrapper.
         /// </summary>
         public static bool HasWideChar
@@ -53,19 +52,10 @@ namespace CursesSharp
             get { return NativeMethods.wrap_has_widechar(); }
         }
 
-        /// <summary>
-        /// Gets or sets 
-        /// </summary>
         public static bool UseWideChar
         {
             get { return useWideChar; }
             set { useWideChar = value && HasWideChar; }
-        }
-
-        public static bool CheckErrors
-        {
-            get { return checkErrors; }
-            set { checkErrors = value; }
         }
 
         public static Window StdScr
@@ -124,44 +114,44 @@ namespace CursesSharp
             }
         }
 
-        public static int ResizeTerm(int nlines, int ncols)
+        public static void ResizeTerm(int nlines, int ncols)
         {
-            return Verify(NativeMethods.wrap_resize_term(nlines, ncols));
+            Verify(NativeMethods.wrap_resize_term(nlines, ncols));
         }
 
-        public static int Beep()
+        public static void Beep()
         {
-            return Verify(NativeMethods.wrap_beep());
+            Verify(NativeMethods.wrap_beep());
         }
 
-        public static int Flash()
+        public static void Flash()
         {
-            return Verify(NativeMethods.wrap_flash());
+            Verify(NativeMethods.wrap_flash());
         }
 
-        public static int StartColor()
+        public static void StartColor()
         {
-            return Verify(NativeMethods.wrap_start_color());
+            Verify(NativeMethods.wrap_start_color());
         }
 
-        public static int InitPair(short color, short fg, short bg)
+        public static void InitPair(short color, short fg, short bg)
         {
-            return Verify(NativeMethods.wrap_init_pair(color, fg, bg));
+            Verify(NativeMethods.wrap_init_pair(color, fg, bg));
         }
 
-        public static int InitColor(short color, short red, short green, short blue)
+        public static void InitColor(short color, short red, short green, short blue)
         {
-            return Verify(NativeMethods.wrap_init_color(color, red, green, blue));
+            Verify(NativeMethods.wrap_init_color(color, red, green, blue));
         }
 
-        public static int ColorContent(short color, out short red, out short green, out short blue)
+        public static void ColorContent(short color, out short red, out short green, out short blue)
         {
-            return Verify(NativeMethods.wrap_color_content(color, out red, out green, out blue));
+            Verify(NativeMethods.wrap_color_content(color, out red, out green, out blue));
         }
 
-        public static int PairContent(short color, out short fg, out short bg)
+        public static void PairContent(short color, out short fg, out short bg)
         {
-            return Verify(NativeMethods.wrap_pair_content(color, out fg, out bg));
+            Verify(NativeMethods.wrap_pair_content(color, out fg, out bg));
         }
 
         public static bool HasColors
@@ -180,69 +170,69 @@ namespace CursesSharp
             }
         }
 
-        public static int AssumeDefaultColors(int f, int b)
+        public static void AssumeDefaultColors(int f, int b)
         {
-            return Verify(NativeMethods.wrap_assume_default_colors(f, b));
+            Verify(NativeMethods.wrap_assume_default_colors(f, b));
         }
 
-        public static int UseDefaultColors()
+        public static void UseDefaultColors()
         {
-            return Verify(NativeMethods.wrap_use_default_colors());
+            Verify(NativeMethods.wrap_use_default_colors());
         }
 
-        public static int UngetCh(int ch)
+        public static void UngetCh(int ch)
         {
-            return Verify(NativeMethods.wrap_ungetch(ch));
+            Verify(NativeMethods.wrap_ungetch(ch));
         }
 
-        public static int FlushInp()
+        public static void FlushInp()
         {
-            return Verify(NativeMethods.wrap_flushinp());
+            Verify(NativeMethods.wrap_flushinp());
         }
 
-        public static int CBreak()
+        public static void CBreak()
         {
-            return Verify(NativeMethods.wrap_cbreak());
+            Verify(NativeMethods.wrap_cbreak());
         }
 
-        public static int NoCBreak()
+        public static void NoCBreak()
         {
-            return Verify(NativeMethods.wrap_nocbreak());
+            Verify(NativeMethods.wrap_nocbreak());
         }
 
-        public static int Echo()
+        public static void Echo()
         {
-            return Verify(NativeMethods.wrap_echo());
+            Verify(NativeMethods.wrap_echo());
         }
 
-        public static int NoEcho()
+        public static void NoEcho()
         {
-            return Verify(NativeMethods.wrap_noecho());
+            Verify(NativeMethods.wrap_noecho());
         }
 
-        public static int HalfDelay(int tenths)
+        public static void HalfDelay(int tenths)
         {
-            return Verify(NativeMethods.wrap_halfdelay(tenths));
+            Verify(NativeMethods.wrap_halfdelay(tenths));
         }
 
-        public static int Nl()
+        public static void Nl()
         {
-            return Verify(NativeMethods.wrap_nl());
+            Verify(NativeMethods.wrap_nl());
         }
 
-        public static int NoNl()
+        public static void NoNl()
         {
-            return Verify(NativeMethods.wrap_nonl());
+            Verify(NativeMethods.wrap_nonl());
         }
 
-        public static int Raw()
+        public static void Raw()
         {
-            return Verify(NativeMethods.wrap_raw());
+            Verify(NativeMethods.wrap_raw());
         }
 
-        public static int NoRaw()
+        public static void NoRaw()
         {
-            return Verify(NativeMethods.wrap_noraw());
+            Verify(NativeMethods.wrap_noraw());
         }
 
         public static void QiFlush()
@@ -255,34 +245,34 @@ namespace CursesSharp
             NativeMethods.wrap_noqiflush();
         }
 
-        public static int DefProgMode()
+        public static void DefProgMode()
         {
-            return Verify(NativeMethods.wrap_def_prog_mode());
+            Verify(NativeMethods.wrap_def_prog_mode());
         }
 
-        public static int DefShellMode()
+        public static void DefShellMode()
         {
-            return Verify(NativeMethods.wrap_def_shell_mode());
+            Verify(NativeMethods.wrap_def_shell_mode());
         }
 
-        public static int ResetProgMode()
+        public static void ResetProgMode()
         {
-            return Verify(NativeMethods.wrap_reset_prog_mode());
+            Verify(NativeMethods.wrap_reset_prog_mode());
         }
 
-        public static int ResetShellMode()
+        public static void ResetShellMode()
         {
-            return Verify(NativeMethods.wrap_reset_shell_mode());
+            Verify(NativeMethods.wrap_reset_shell_mode());
         }
 
-        public static int ResetTty()
+        public static void ResetTty()
         {
-            return Verify(NativeMethods.wrap_resetty());
+            Verify(NativeMethods.wrap_resetty());
         }
 
-        public static int SaveTty()
+        public static void SaveTty()
         {
-            return Verify(NativeMethods.wrap_savetty());
+            Verify(NativeMethods.wrap_savetty());
         }
 
         public static void GetSYX(out int y, out int x)
@@ -295,18 +285,18 @@ namespace CursesSharp
             NativeMethods.wrap_setsyx(y, x);
         }
 
-        public static int RipOffLine(int line, RipOffLineFun init)
+        public static void RipOffLine(int line, RipOffLineFun init)
         {
             RipOffLineFunInt initInt = delegate(IntPtr winptr, int ncols)
             {
                 return init(new Window(winptr, false), ncols);
             };
-            return Verify(NativeMethods.wrap_ripoffline(line, initInt));
+            Verify(NativeMethods.wrap_ripoffline(line, initInt));
         }
 
-        public static int NapMs(int ms)
+        public static void NapMs(int ms)
         {
-            return Verify(NativeMethods.wrap_napms(ms));
+            Verify(NativeMethods.wrap_napms(ms));
         }
 
         public static int CursSet(int visibility)
@@ -316,13 +306,15 @@ namespace CursesSharp
 
         public static string KeyName(int key)
         {
-            IntPtr strPtr = Verify(NativeMethods.wrap_keyname(key));
+            IntPtr strPtr = NativeMethods.wrap_keyname(key);
+            Verify(strPtr);
             return Marshal.PtrToStringAnsi(strPtr);
         }
 
         public static string KeyName(char key)
         {
-            IntPtr strPtr = Verify(NativeMethods.wrap_key_name(key));
+            IntPtr strPtr = NativeMethods.wrap_key_name(key);
+            Verify(strPtr);
             return Marshal.PtrToStringAnsi(strPtr);
         }
 
@@ -331,9 +323,9 @@ namespace CursesSharp
             return NativeMethods.wrap_has_key(key);
         }
 
-        public static int DoUpdate()
+        public static void DoUpdate()
         {
-            return Verify(NativeMethods.wrap_doupdate());
+            Verify(NativeMethods.wrap_doupdate());
         }
 
         public static void TraceOn()
@@ -355,18 +347,28 @@ namespace CursesSharp
             return new Window(winptr, true);
         }
 
-        internal static int Verify(int result)
+        internal static void Verify(int result, string fname)
         {
-            if (checkErrors && result != 0)
-                throw new CursesException("Function failed.");
-            return result;
+            if (result != 0)
+                throw new CursesException(fname + "() returned ERR");
         }
 
-        internal static IntPtr Verify(IntPtr result)
+        internal static void Verify(int result)
         {
-            if (checkErrors && result == IntPtr.Zero)
-                throw new CursesException("Function failed.");
-            return result;
+            if (result != 0)
+                throw new CursesException("Function returned ERR");
+        }
+
+        internal static void Verify(IntPtr result, string fname)
+        {
+            if (result == IntPtr.Zero)
+                throw new CursesException(fname + "() returned NULL");
+        }
+
+        internal static void Verify(IntPtr result)
+        {
+            if (result == IntPtr.Zero)
+                throw new CursesException("Function returned NULL");
         }
     }
 }

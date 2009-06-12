@@ -51,113 +51,133 @@ namespace CursesSharp
         #endregion
 
 
-        public int AddCh(char ch)
+        public void AddCh(char ch)
         {
-            return Curses.Verify(NativeMethods.wrap_waddch(this.winptr, (byte)ch));
+            Curses.Verify(NativeMethods.wrap_waddch(this.winptr, (byte)ch));
         }
 
-        public int AddCh(uint ch)
+        public void AddCh(uint ch)
         {
-            return Curses.Verify(NativeMethods.wrap_waddch(this.winptr, ch));
+            Curses.Verify(NativeMethods.wrap_waddch(this.winptr, ch));
         }
 
-        public int MvAddCh(int y, int x, char ch)
+        public void AddCh(int y, int x, char ch)
         {
-            return Curses.Verify(NativeMethods.wrap_mvwaddch(this.winptr, y, x, (byte)ch));
+            Curses.Verify(NativeMethods.wrap_mvwaddch(this.winptr, y, x, (byte)ch));
         }
 
-        public int MvAddCh(int y, int x, uint ch)
+        public void AddCh(int y, int x, uint ch)
         {
-            return Curses.Verify(NativeMethods.wrap_mvwaddch(this.winptr, y, x, ch));
+            Curses.Verify(NativeMethods.wrap_mvwaddch(this.winptr, y, x, ch));
         }
 
-        public int EchoChar(char ch)
+        public void EchoChar(char ch)
         {
-            return Curses.Verify(NativeMethods.wrap_wechochar(this.winptr, (byte)ch));
+            Curses.Verify(NativeMethods.wrap_wechochar(this.winptr, (byte)ch));
         }
 
-        public int EchoChar(uint ch)
+        public void EchoChar(uint ch)
         {
-            return Curses.Verify(NativeMethods.wrap_wechochar(this.winptr, ch));
+            Curses.Verify(NativeMethods.wrap_wechochar(this.winptr, ch));
         }
 
-        public int AddChStr(uint[] chstr)
+        public void AddChStr(uint[] chstr)
         {
-            return Curses.Verify(NativeMethods.wrap_waddchnstr(this.winptr, chstr, chstr.Length));
+            this.AddChStr(chstr, chstr.Length);
         }
 
-        public int MvAddChStr(int y, int x, uint[] chstr)
+        public void AddChStr(uint[] chstr, int n)
         {
-            return Curses.Verify(NativeMethods.wrap_mvwaddchnstr(this.winptr, y, x, chstr, chstr.Length));
+            Curses.Verify(NativeMethods.wrap_waddchnstr(this.winptr, chstr, n));
         }
 
-        public int AddStr(string str)
+        public void AddChStr(int y, int x, uint[] chstr)
+        {
+            this.AddChStr(y, x, chstr, chstr.Length);
+        }
+
+        public void AddChStr(int y, int x, uint[] chstr, int n)
+        {
+            Curses.Verify(NativeMethods.wrap_mvwaddchnstr(this.winptr, y, x, chstr, n));
+        }
+
+        public void AddStr(string str)
+        {
+            this.AddStr(str, str.Length);
+        }
+
+        public void AddStr(string str, int n)
         {
             if (Curses.UseWideChar)
             {
-                return Curses.Verify(NativeMethods.wrap_waddnwstr(this.winptr, str, str.Length));
+                Curses.Verify(NativeMethods.wrap_waddnwstr(this.winptr, str, n));
             }
             else
             {
-                return Curses.Verify(NativeMethods.wrap_waddnstr(this.winptr, str, str.Length));
+                Curses.Verify(NativeMethods.wrap_waddnstr(this.winptr, str, n));
             }
         }
 
-        public int MvAddStr(int y, int x, string str)
+        public void AddStr(int y, int x, string str)
+        {
+            this.AddStr(y, x, str, str.Length);
+        }
+
+        public void AddStr(int y, int x, string str, int n)
         {
             if (Curses.UseWideChar)
             {
-                return Curses.Verify(NativeMethods.wrap_mvwaddnwstr(this.winptr, y, x, str, str.Length));
+                Curses.Verify(NativeMethods.wrap_mvwaddnwstr(this.winptr, y, x, str, n));
             }
             else
             {
-                return Curses.Verify(NativeMethods.wrap_mvwaddnstr(this.winptr, y, x, str, str.Length));
+                Curses.Verify(NativeMethods.wrap_mvwaddnstr(this.winptr, y, x, str, n));
             }
         }
 
-        public int AttrOff(uint attr)
+        public void AttrOff(uint attr)
         {
-            return Curses.Verify(NativeMethods.wrap_wattroff(this.winptr, attr));
+            Curses.Verify(NativeMethods.wrap_wattroff(this.winptr, attr));
         }
 
-        public int AttrOn(uint attr)
+        public void AttrOn(uint attr)
         {
-            return Curses.Verify(NativeMethods.wrap_wattron(this.winptr, attr));
+            Curses.Verify(NativeMethods.wrap_wattron(this.winptr, attr));
         }
 
-        public int AttrSet(uint attr)
+        public void AttrSet(uint attr)
         {
-            return Curses.Verify(NativeMethods.wrap_wattrset(this.winptr, attr));
+            Curses.Verify(NativeMethods.wrap_wattrset(this.winptr, attr));
         }
 
-        public int Standend()
+        public void Standend()
         {
-            return Curses.Verify(NativeMethods.wrap_wstandend(this.winptr));
+            Curses.Verify(NativeMethods.wrap_wstandend(this.winptr));
         }
 
-        public int Standout()
+        public void Standout()
         {
-            return Curses.Verify(NativeMethods.wrap_wstandout(this.winptr));
+            Curses.Verify(NativeMethods.wrap_wstandout(this.winptr));
         }
 
-        public int ColorSet(short color_pair)
+        public void ColorSet(short color_pair)
         {
-            return Curses.Verify(NativeMethods.wrap_wcolor_set(this.winptr, color_pair));
+            Curses.Verify(NativeMethods.wrap_wcolor_set(this.winptr, color_pair));
         }
 
-        public int AttrGet(out uint attrs, out short color_pair)
+        public void AttrGet(out uint attrs, out short color_pair)
         {
-            return Curses.Verify(NativeMethods.wrap_wattr_get(this.winptr, out attrs, out color_pair));
+            Curses.Verify(NativeMethods.wrap_wattr_get(this.winptr, out attrs, out color_pair));
         }
 
-        public int ChgAt(int n, uint attr, short color)
+        public void ChgAt(int n, uint attr, short color)
         {
-            return Curses.Verify(NativeMethods.wrap_wchgat(this.winptr, n, attr, color));
+            Curses.Verify(NativeMethods.wrap_wchgat(this.winptr, n, attr, color));
         }
 
-        public int MvChgAt(int y, int x, int n, uint attr, short color)
+        public void ChgAt(int y, int x, int n, uint attr, short color)
         {
-            return Curses.Verify(NativeMethods.wrap_mvwchgat(this.winptr, y, x, n, attr, color));
+            Curses.Verify(NativeMethods.wrap_mvwchgat(this.winptr, y, x, n, attr, color));
         }
 
         public uint GetBkgd()
@@ -165,9 +185,9 @@ namespace CursesSharp
             return NativeMethods.wrap_getbkgd(this.winptr);
         }
 
-        public int Bkgd(uint ch)
+        public void Bkgd(uint ch)
         {
-            return Curses.Verify(NativeMethods.wrap_wbkgd(this.winptr, ch));
+            Curses.Verify(NativeMethods.wrap_wbkgd(this.winptr, ch));
         }
 
         public void BkgdSet(uint ch)
@@ -175,54 +195,54 @@ namespace CursesSharp
             NativeMethods.wrap_wbkgdset(this.winptr, ch);
         }
 
-        public int Border(uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
+        public void Border(uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
         {
-            return Curses.Verify(NativeMethods.wrap_wborder(this.winptr, ls, rs, ts, bs, tl, tr, bl, br));
+            Curses.Verify(NativeMethods.wrap_wborder(this.winptr, ls, rs, ts, bs, tl, tr, bl, br));
         }
 
-        public int Box(uint verch, uint horch)
+        public void Box(uint verch, uint horch)
         {
-            return Curses.Verify(NativeMethods.wrap_box(this.winptr, verch, horch));
+            Curses.Verify(NativeMethods.wrap_box(this.winptr, verch, horch));
         }
 
-        public int HLine(uint ch, int n)
+        public void HLine(uint ch, int n)
         {
-            return Curses.Verify(NativeMethods.wrap_whline(this.winptr, ch, n));
+            Curses.Verify(NativeMethods.wrap_whline(this.winptr, ch, n));
         }
 
-        public int VLine(uint ch, int n)
+        public void VLine(uint ch, int n)
         {
-            return Curses.Verify(NativeMethods.wrap_wvline(this.winptr, ch, n));
+            Curses.Verify(NativeMethods.wrap_wvline(this.winptr, ch, n));
         }
 
-        public int MvHLine(int y, int x, uint ch, int n)
+        public void HLine(int y, int x, uint ch, int n)
         {
-            return Curses.Verify(NativeMethods.wrap_mvwhline(this.winptr, y, x, ch, n));
+            Curses.Verify(NativeMethods.wrap_mvwhline(this.winptr, y, x, ch, n));
         }
 
-        public int MvVLine(int y, int x, uint ch, int n)
+        public void VLine(int y, int x, uint ch, int n)
         {
-            return Curses.Verify(NativeMethods.wrap_mvwvline(this.winptr, y, x, ch, n));
+            Curses.Verify(NativeMethods.wrap_mvwvline(this.winptr, y, x, ch, n));
         }
 
-        public int Clear()
+        public void Clear()
         {
-            return Curses.Verify(NativeMethods.wrap_wclear(this.winptr));
+            Curses.Verify(NativeMethods.wrap_wclear(this.winptr));
         }
 
-        public int Erase()
+        public void Erase()
         {
-            return Curses.Verify(NativeMethods.wrap_werase(this.winptr));
+            Curses.Verify(NativeMethods.wrap_werase(this.winptr));
         }
 
-        public int ClrToBot()
+        public void ClrToBot()
         {
-            return Curses.Verify(NativeMethods.wrap_wclrtobot(this.winptr));
+            Curses.Verify(NativeMethods.wrap_wclrtobot(this.winptr));
         }
 
-        public int ClrToEol()
+        public void ClrToEol()
         {
-            return Curses.Verify(NativeMethods.wrap_wclrtoeol(this.winptr));
+            Curses.Verify(NativeMethods.wrap_wclrtoeol(this.winptr));
         }
 
         public int GetCh()
@@ -230,7 +250,7 @@ namespace CursesSharp
             return NativeMethods.wrap_wgetch(this.winptr);
         }
 
-        public int MvGetCh(int y, int x)
+        public int GetCh(int y, int x)
         {
             return NativeMethods.wrap_mvwgetch(this.winptr, y, x);
         }
@@ -303,9 +323,9 @@ namespace CursesSharp
             }
         }
 
-        public int Move(int y, int x)
+        public void Move(int y, int x)
         {
-            return Curses.Verify(NativeMethods.wrap_wmove(this.winptr, y, x));
+            Curses.Verify(NativeMethods.wrap_wmove(this.winptr, y, x));
         }
 
         public bool ClearOk
@@ -356,49 +376,49 @@ namespace CursesSharp
             }
         }
 
-        public int SetScrReg(int top, int bot)
+        public void SetScrReg(int top, int bot)
         {
-            return Curses.Verify(NativeMethods.wrap_wsetscrreg(this.winptr, top, bot));
+            Curses.Verify(NativeMethods.wrap_wsetscrreg(this.winptr, top, bot));
         }
 
-        public int Refresh()
+        public void Refresh()
         {
-            return Curses.Verify(NativeMethods.wrap_wrefresh(this.winptr));
+            Curses.Verify(NativeMethods.wrap_wrefresh(this.winptr));
         }
 
-        public int WnOutRefresh()
+        public void WnOutRefresh()
         {
-            return Curses.Verify(NativeMethods.wrap_wnoutrefresh(this.winptr));
+            Curses.Verify(NativeMethods.wrap_wnoutrefresh(this.winptr));
         }
 
-        public int RedrawWin()
+        public void RedrawWin()
         {
-            return Curses.Verify(NativeMethods.wrap_redrawwin(this.winptr));
+            Curses.Verify(NativeMethods.wrap_redrawwin(this.winptr));
         }
 
-        public int RedrawLn(int beg_line, int num_lines)
+        public void RedrawLn(int beg_line, int num_lines)
         {
-            return Curses.Verify(NativeMethods.wrap_wredrawln(this.winptr, beg_line, num_lines));
+            Curses.Verify(NativeMethods.wrap_wredrawln(this.winptr, beg_line, num_lines));
         }
 
-        public int TouchWin()
+        public void TouchWin()
         {
-            return Curses.Verify(NativeMethods.wrap_touchwin(this.winptr));
+            Curses.Verify(NativeMethods.wrap_touchwin(this.winptr));
         }
 
-        public int TouchLine(int start, int count)
+        public void TouchLine(int start, int count)
         {
-            return Curses.Verify(NativeMethods.wrap_touchline(this.winptr, start, count));
+            Curses.Verify(NativeMethods.wrap_touchline(this.winptr, start, count));
         }
 
-        public int UntouchWin()
+        public void UntouchWin()
         {
-            return Curses.Verify(NativeMethods.wrap_untouchwin(this.winptr));
+            Curses.Verify(NativeMethods.wrap_untouchwin(this.winptr));
         }
 
-        public int TouchLn(int y, int n, int changed)
+        public void TouchLn(int y, int n, int changed)
         {
-            return Curses.Verify(NativeMethods.wrap_wtouchln(this.winptr, y, n, changed));
+            Curses.Verify(NativeMethods.wrap_wtouchln(this.winptr, y, n, changed));
         }
 
         public bool IsLineTouched(int line)
@@ -413,30 +433,33 @@ namespace CursesSharp
 
         public Window DerWin(int nlines, int ncols, int begy, int begx)
         {
-            IntPtr newptr = Curses.Verify(NativeMethods.wrap_derwin(this.winptr, nlines, ncols, begy, begx));
+            IntPtr newptr = NativeMethods.wrap_derwin(this.winptr, nlines, ncols, begy, begx);
+            Curses.Verify(newptr);
             return new Window(newptr, true);
         }
 
         public Window SubWin(int nlines, int ncols, int begy, int begx)
         {
-            IntPtr newptr = Curses.Verify(NativeMethods.wrap_subwin(this.winptr, nlines, ncols, begy, begx));
+            IntPtr newptr = NativeMethods.wrap_subwin(this.winptr, nlines, ncols, begy, begx);
+            Curses.Verify(newptr);
             return new Window(newptr, true);
         }
 
         public Window DupWin(int nlines, int ncols, int begy, int begx)
         {
-            IntPtr newptr = Curses.Verify(NativeMethods.wrap_dupwin(this.winptr));
+            IntPtr newptr = NativeMethods.wrap_dupwin(this.winptr);
+            Curses.Verify(newptr);
             return new Window(newptr, true);
         }
 
-        public int MvWin(int y, int x)
+        public void MvWin(int y, int x)
         {
-            return Curses.Verify(NativeMethods.wrap_mvwin(this.winptr, y, x));
+            Curses.Verify(NativeMethods.wrap_mvwin(this.winptr, y, x));
         }
 
-        public int MvDerWin(int pary, int parx)
+        public void MvDerWin(int pary, int parx)
         {
-            return Curses.Verify(NativeMethods.wrap_mvderwin(this.winptr, pary, parx));
+            Curses.Verify(NativeMethods.wrap_mvderwin(this.winptr, pary, parx));
         }
 
         public bool SyncOk

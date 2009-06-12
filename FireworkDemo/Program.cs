@@ -63,7 +63,7 @@ namespace FireworkDemo
                 Curses.AttrSet(Defs.A_NORMAL);
                 for (row = 1; row < diff; ++row)
                 {
-                    Curses.MvAddStr(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
+                    Curses.AddStr(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
                     if (flag++ > 0)
                     {
                         MyRefresh();
@@ -136,7 +136,7 @@ namespace FireworkDemo
         private static void AddStr(int y, int x, string str)
         {
             if (x >= 0 && x < Curses.Cols && y >= 0 && y < Curses.Lines)
-                Curses.MvAddStr(y, x, str);
+                Curses.AddStr(y, x, str);
         }
 
         private static void MyRefresh()

@@ -62,31 +62,31 @@ namespace RainDemo
                 int x = rng.Next(c) + 2;
                 int y = rng.Next(r) + 2;
 
-                Curses.MvAddCh(y, x, '.');
+                Curses.AddCh(y, x, '.');
 
-                Curses.MvAddCh(ypos[j], xpos[j], 'o');
-
-                j = NextJ(j);
-                Curses.MvAddCh(ypos[j], xpos[j], 'O');
+                Curses.AddCh(ypos[j], xpos[j], 'o');
 
                 j = NextJ(j);
-                Curses.MvAddCh(ypos[j] - 1, xpos[j], '-');
-                Curses.MvAddStr(ypos[j], xpos[j] - 1, "|.|");
-                Curses.MvAddCh(ypos[j] + 1, xpos[j], '-');
+                Curses.AddCh(ypos[j], xpos[j], 'O');
 
                 j = NextJ(j);
-                Curses.MvAddCh(ypos[j] - 2, xpos[j], '-');
-                Curses.MvAddStr(ypos[j] - 1, xpos[j] - 1, "/ \\");
-                Curses.MvAddStr(ypos[j], xpos[j] - 2, "| O |");
-                Curses.MvAddStr(ypos[j] + 1, xpos[j] - 1, "\\ /");
-                Curses.MvAddCh(ypos[j] + 2, xpos[j], '-');
+                Curses.AddCh(ypos[j] - 1, xpos[j], '-');
+                Curses.AddStr(ypos[j], xpos[j] - 1, "|.|");
+                Curses.AddCh(ypos[j] + 1, xpos[j], '-');
 
                 j = NextJ(j);
-                Curses.MvAddCh(ypos[j] - 2, xpos[j], ' ');
-                Curses.MvAddStr(ypos[j] - 1, xpos[j] - 1, "   ");
-                Curses.MvAddStr(ypos[j], xpos[j] - 2, "     ");
-                Curses.MvAddStr(ypos[j] + 1, xpos[j] - 1, "   ");
-                Curses.MvAddCh(ypos[j] + 2, xpos[j], ' ');
+                Curses.AddCh(ypos[j] - 2, xpos[j], '-');
+                Curses.AddStr(ypos[j] - 1, xpos[j] - 1, "/ \\");
+                Curses.AddStr(ypos[j], xpos[j] - 2, "| O |");
+                Curses.AddStr(ypos[j] + 1, xpos[j] - 1, "\\ /");
+                Curses.AddCh(ypos[j] + 2, xpos[j], '-');
+
+                j = NextJ(j);
+                Curses.AddCh(ypos[j] - 2, xpos[j], ' ');
+                Curses.AddStr(ypos[j] - 1, xpos[j] - 1, "   ");
+                Curses.AddStr(ypos[j], xpos[j] - 2, "     ");
+                Curses.AddStr(ypos[j] + 1, xpos[j] - 1, "   ");
+                Curses.AddCh(ypos[j] + 2, xpos[j], ' ');
 
                 xpos[j] = x;
                 ypos[j] = y;

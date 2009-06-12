@@ -32,16 +32,16 @@ namespace CursesSharp
     internal static class NativeMethods
     {
         /* addch.c */
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper")]
         internal static extern int wrap_waddch(IntPtr win, uint ch);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwaddch(IntPtr win, int y, int x, uint ch);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper")]
         internal static extern int wrap_wechochar(IntPtr win, uint ch);
         /* addchstr.c */
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper")]
         internal static extern int wrap_waddchnstr(IntPtr win, uint[] chstr, int n);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwaddchnstr(IntPtr win, int y, int x, uint[] chstr, int n);
         /* addstr.c */
         [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
@@ -219,11 +219,11 @@ namespace CursesSharp
         [DllImport("CursesWrapper")]
         internal static extern int wrap_curs_set(int visibility);
         /* keyname.c */
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_keyname(int key);
         [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
         internal static extern IntPtr wrap_key_name(char c);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper")]
         internal static extern Boolean wrap_has_key(int key);
         /* move.c */
         [DllImport("CursesWrapper")]

@@ -30,99 +30,99 @@ namespace CursesSharp
     {
         #region Shortcuts to stdscr
 
-        public static int AddCh(char ch)
+        public static void AddCh(char ch)
         {
-            return StdScr.AddCh(ch);
+            StdScr.AddCh(ch);
         }
 
-        public static int AddCh(uint ch)
+        public static void AddCh(uint ch)
         {
-            return StdScr.AddCh(ch);
+            StdScr.AddCh(ch);
         }
 
-        public static int MvAddCh(int y, int x, char ch)
+        public static void AddCh(int y, int x, char ch)
         {
-            return StdScr.MvAddCh(y, x, ch);
+            StdScr.AddCh(y, x, ch);
         }
 
-        public static int MvAddCh(int y, int x, uint ch)
+        public static void AddCh(int y, int x, uint ch)
         {
-            return StdScr.MvAddCh(y, x, ch);
+            StdScr.AddCh(y, x, ch);
         }
 
-        public static int EchoChar(char ch)
+        public static void EchoChar(char ch)
         {
-            return StdScr.EchoChar(ch);
+            StdScr.EchoChar(ch);
         }
 
-        public static int EchoChar(uint ch)
+        public static void EchoChar(uint ch)
         {
-            return StdScr.EchoChar(ch);
+            StdScr.EchoChar(ch);
         }
 
-        public static int AddChStr(uint[] chstr)
+        public static void AddChStr(uint[] chstr)
         {
-            return StdScr.AddChStr(chstr);
+            StdScr.AddChStr(chstr);
         }
 
-        public static int MvAddChStr(int y, int x, uint[] chstr)
+        public static void AddChStr(int y, int x, uint[] chstr)
         {
-            return StdScr.MvAddChStr(y, x, chstr);
+            StdScr.AddChStr(y, x, chstr);
         }
 
-        public static int AddStr(string str)
+        public static void AddStr(string str)
         {
-            return StdScr.AddStr(str);
+            StdScr.AddStr(str);
         }
 
-        public static int MvAddStr(int y, int x, string str)
+        public static void AddStr(int y, int x, string str)
         {
-            return StdScr.MvAddStr(y, x, str);
+            StdScr.AddStr(y, x, str);
         }
 
-        public static int AttrOff(uint attr)
+        public static void AttrOff(uint attr)
         {
-            return StdScr.AttrOff(attr);
+            StdScr.AttrOff(attr);
         }
 
-        public static int AttrOn(uint attr)
+        public static void AttrOn(uint attr)
         {
-            return StdScr.AttrOn(attr);
+            StdScr.AttrOn(attr);
         }
 
-        public static int AttrSet(uint attr)
+        public static void AttrSet(uint attr)
         {
-            return StdScr.AttrSet(attr);
+            StdScr.AttrSet(attr);
         }
 
-        public static int Standend()
+        public static void Standend()
         {
-            return StdScr.Standend();
+            StdScr.Standend();
         }
 
-        public static int Standout()
+        public static void Standout()
         {
-            return StdScr.Standout();
+            StdScr.Standout();
         }
 
-        public static int ColorSet(short color_pair)
+        public static void ColorSet(short color_pair)
         {
-            return StdScr.ColorSet(color_pair);
+            StdScr.ColorSet(color_pair);
         }
 
-        public static int AttrGet(out uint attrs, out short color_pair)
+        public static void AttrGet(out uint attrs, out short color_pair)
         {
-            return StdScr.AttrGet(out attrs, out color_pair);
+            StdScr.AttrGet(out attrs, out color_pair);
         }
 
-        public static int ChgAt(int n, uint attr, short color)
+        public static void ChgAt(int n, uint attr, short color)
         {
-            return StdScr.ChgAt(n, attr, color);
+            StdScr.ChgAt(n, attr, color);
         }
 
-        public static int MvChgAt(int y, int x, int n, uint attr, short color)
+        public static void ChgAt(int y, int x, int n, uint attr, short color)
         {
-            return StdScr.MvChgAt(y, x, n, attr, color);
+            StdScr.ChgAt(y, x, n, attr, color);
         }
 
         public static uint GetBkgd()
@@ -130,9 +130,9 @@ namespace CursesSharp
             return StdScr.GetBkgd();
         }
 
-        public static int Bkgd(uint ch)
+        public static void Bkgd(uint ch)
         {
-            return StdScr.Bkgd(ch);
+            StdScr.Bkgd(ch);
         }
 
         public static void BkgdSet(uint ch)
@@ -140,54 +140,54 @@ namespace CursesSharp
             StdScr.BkgdSet(ch);
         }
 
-        public static int Border(uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
+        public static void Border(uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
         {
-            return StdScr.Border(ls, rs, ts, bs, tl, tr, bl, br);
+            StdScr.Border(ls, rs, ts, bs, tl, tr, bl, br);
         }
 
-        public static int Box(uint verch, uint horch)
+        public static void Box(uint verch, uint horch)
         {
-            return StdScr.Box(verch, horch);
+            StdScr.Box(verch, horch);
         }
 
-        public static int HLine(uint ch, int n)
+        public static void HLine(uint ch, int n)
         {
-            return StdScr.HLine(ch, n);
+            StdScr.HLine(ch, n);
         }
 
-        public static int VLine(uint ch, int n)
+        public static void VLine(uint ch, int n)
         {
-            return StdScr.VLine(ch, n);
+            StdScr.VLine(ch, n);
         }
 
-        public static int MvHLine(int y, int x, uint ch, int n)
+        public static void HLine(int y, int x, uint ch, int n)
         {
-            return StdScr.MvHLine(y, x, ch, n);
+            StdScr.HLine(y, x, ch, n);
         }
 
-        public static int MvVLine(int y, int x, uint ch, int n)
+        public static void VLine(int y, int x, uint ch, int n)
         {
-            return StdScr.MvVLine(y, x, ch, n);
+            StdScr.VLine(y, x, ch, n);
         }
 
-        public static int Clear()
+        public static void Clear()
         {
-            return StdScr.Clear();
+            StdScr.Clear();
         }
 
-        public static int Erase()
+        public static void Erase()
         {
-            return StdScr.Erase();
+            StdScr.Erase();
         }
 
-        public static int ClrToBot()
+        public static void ClrToBot()
         {
-            return StdScr.ClrToBot();
+            StdScr.ClrToBot();
         }
 
-        public static int ClrToEol()
+        public static void ClrToEol()
         {
-            return StdScr.ClrToEol();
+            StdScr.ClrToEol();
         }
 
         public static int GetCh()
@@ -195,9 +195,9 @@ namespace CursesSharp
             return StdScr.GetCh();
         }
 
-        public static int MvGetCh(int y, int x)
+        public static int GetCh(int y, int x)
         {
-            return StdScr.MvGetCh(y, x);
+            return StdScr.GetCh(y, x);
         }
 
         public static bool IntrFlush
@@ -230,9 +230,9 @@ namespace CursesSharp
             set { StdScr.Timeout = value; }
         }
 
-        public static int Move(int y, int x)
+        public static void Move(int y, int x)
         {
-            return StdScr.Move(y, x);
+            StdScr.Move(y, x);
         }
 
         public static bool ClearOk
@@ -265,29 +265,29 @@ namespace CursesSharp
             set { StdScr.ScrollOk = value; }
         }
 
-        public static int SetScrReg(int top, int bot)
+        public static void SetScrReg(int top, int bot)
         {
-            return StdScr.SetScrReg(top, bot);
+            StdScr.SetScrReg(top, bot);
         }
 
-        public static int Refresh()
+        public static void Refresh()
         {
-            return StdScr.Refresh();
+            StdScr.Refresh();
         }
 
-        public static int TouchWin()
+        public static void TouchWin()
         {
-            return StdScr.TouchWin();
+            StdScr.TouchWin();
         }
 
-        public static int TouchLine(int start, int count)
+        public static void TouchLine(int start, int count)
         {
-            return StdScr.TouchLine(start, count);
+            StdScr.TouchLine(start, count);
         }
 
-        public static int UntouchWin()
+        public static void UntouchWin()
         {
-            return StdScr.UntouchWin();
+            StdScr.UntouchWin();
         }
 
         #endregion
