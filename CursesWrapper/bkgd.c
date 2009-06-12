@@ -70,6 +70,6 @@ wrap_wbkgd(WINDOW *win, unsigned int ch)
 void 
 wrap_wbkgdset(WINDOW *win, unsigned int ch)
 {
-	return wbkgdset(win, ch);
+	wbkgdset(win, ch);
 }
 
