@@ -1,20 +1,21 @@
 OBJ_DIR		= obj
 BIN_DIR		= bin
 
-CC		= gcc -c
+CC		= gcc -c -Wall
 LD		= gcc
 LDSHARED	= gcc -shared
 MCSDLL		= gmcs -target:library
 MCSEXE		= gmcs -target:exe
 
-CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED
+CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED -DHAVE_NCURSESW_H
 CURSES_LDFLAGS	= -lncursesw
 
 WRAPPER_DIR	= CursesWrapper
 WRAPPER_SRCS	= addch.c addchstr.c addstr.c attr.c beep.c bkgd.c 	\
-		  border.c clear.c color.c debug.c getch.c initscr.c 	\
-		  inopts.c kernel.c keyname.c move.c outopts.c 		\
-		  refresh.c touch.c window.c wrapper.c
+		  border.c clear.c color.c debug.c getch.c getyx.c 	\
+		  initscr.c inopts.c insch.c insstr.c kernel.c		\
+		  keyname.c move.c outopts.c refresh.c touch.c		\
+		  window.c wrapper.c
 WRAPPER_OBJS	= $(WRAPPER_SRCS:%.c=$(OBJ_DIR)/%.o)
 WRAPPER_BIN	= $(BIN_DIR)/libCursesWrapper.so
 
@@ -24,9 +25,9 @@ ATTRGEN_OBJS	= $(ATTRGEN_SRCS:%.c=$(OBJ_DIR)/%.o)
 ATTRGEN_BIN	= $(BIN_DIR)/AttributeGen
 
 CURSHARP_DIR	= CursesSharp
-CURSHARP_SRCS	= Defs.cs Errors.cs IWindow.cs NativeMethods.cs		\
-		Screen.cs StdWindow.cs Properties/AssemblyInfo.cs	\
-		DefsGen.cs
+CURSHARP_SRCS	= Curses.cs CursesMethods.cs CursesStdscr.cs Defs.cs	\
+		  DefsGen.cs Errors.cs NativeMethods.cs	Window.cs	\
+		  Properties/AssemblyInfo.cs
 CURSHARP_OBJS	= $(CURSHARP_SRCS:%=$(CURSHARP_DIR)/%)
 CURSHARP_BIN	= $(BIN_DIR)/CursesSharp.dll
 

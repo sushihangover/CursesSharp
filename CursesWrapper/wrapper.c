@@ -18,12 +18,12 @@
  * 
  */
 
-#include <curses.h>
+#include "wrapper.h"
 
 int
 wrap_has_widechar(void)
 {
-	return 1;
+	return sizeof(wchar_t) == 2;
 }
 
 int

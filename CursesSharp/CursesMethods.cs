@@ -882,7 +882,7 @@ namespace CursesSharp
 
         internal static void Verify(int result, string fname)
         {
-            if (result != 0)
+            if (result == -1)
                 throw new CursesException(fname + "() returned ERR");
         }
 

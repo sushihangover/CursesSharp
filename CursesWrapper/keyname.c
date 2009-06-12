@@ -18,7 +18,7 @@
  * 
  */
 
-#include <curses.h>
+#include "wrapper.h"
 
 /*
   Name:								keyname
@@ -46,13 +46,13 @@
 	has_key					-	-	-
 */
 
-char *
+const char *
 wrap_keyname(int key)
 {
 	return keyname(key);
 }
 
-char *
+const char *
 wrap_key_name(wchar_t c)
 {
 	return key_name(c);

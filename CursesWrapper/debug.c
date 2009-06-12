@@ -18,7 +18,7 @@
  * 
  */
 
-#include <curses.h>
+#include "wrapper.h"
 
 /*
   Name:								debug

@@ -18,7 +18,7 @@
  * 
  */
 
-#include <curses.h>
+#include "wrapper.h"
 
 /*
   Name:								addchstr
@@ -56,13 +56,13 @@
 */
 
 int
-wrap_waddchnstr(WINDOW *win, const unsigned int *chstr, int n)
+wrap_waddchnstr(WINDOW *win, unsigned int *chstr, int n)
 {
-	return waddchnstr(win, chstr, n);
+	return waddchnstr(win, (chtype*)chstr, n);
 }
 
 int
-wrap_mvwaddchnstr(WINDOW *win, int y, int x, const unsigned int *chstr, int n)
+wrap_mvwaddchnstr(WINDOW *win, int y, int x, unsigned int *chstr, int n)
 {
-	return mvwaddchnstr(win, y, x, chstr, n);
+	return mvwaddchnstr(win, y, x, (chtype*)chstr, n);
 }
