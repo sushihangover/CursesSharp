@@ -42,8 +42,8 @@ namespace RainDemo
                 Curses.InitPair(1, Defs.COLOR_BLUE, bg);
                 Curses.InitPair(2, Defs.COLOR_CYAN, bg);
             }
-            Curses.Nl();
-            Curses.NoEcho();
+            Curses.Nl = true;
+            Curses.Echo = false;
             Curses.CursSet(0);
             Curses.Timeout = 0;
             Curses.Keypad = true;

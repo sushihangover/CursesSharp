@@ -314,6 +314,8 @@ namespace CursesSharp
         [DllImport("CursesWrapper")]
         internal static extern int wrap_COLORS();
         [DllImport("CursesWrapper")]
+        internal static extern int wrap_COLOR_PAIRS();
+        [DllImport("CursesWrapper")]
         internal static extern int wrap_TABSIZE();
     }
 }

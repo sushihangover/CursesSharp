@@ -77,6 +77,11 @@ namespace CursesSharp
             get { return CursesMethods.COLORS(); }
         }
 
+        public static int ColorPairs
+        {
+            get { return CursesMethods.COLOR_PAIRS(); }
+        }
+
         public static int TabSize
         {
             get { return CursesMethods.TABSIZE(); }
@@ -187,24 +192,26 @@ namespace CursesSharp
             CursesMethods.flushinp();
         }
 
-        public static void CBreak()
+        public static bool CBreak
         {
-            CursesMethods.cbreak();
+            set
+            {
+                if (value)
+                    CursesMethods.cbreak();
+                else
+                    CursesMethods.nocbreak();
+            }
         }
 
-        public static void NoCBreak()
+        public static bool Echo
         {
-            CursesMethods.nocbreak();
-        }
-
-        public static void Echo()
-        {
-            CursesMethods.echo();
-        }
-
-        public static void NoEcho()
-        {
-            CursesMethods.noecho();
+            set
+            {
+                if (value)
+                    CursesMethods.echo();
+                else
+                    CursesMethods.noecho();
+            }
         }
 
         public static void HalfDelay(int tenths)
@@ -212,34 +219,37 @@ namespace CursesSharp
             CursesMethods.halfdelay(tenths);
         }
 
-        public static void Nl()
+        public static bool Nl
         {
-            CursesMethods.nl();
+            set
+            {
+                if (value)
+                    CursesMethods.nl();
+                else
+                    CursesMethods.nonl();
+            }
         }
 
-        public static void NoNl()
+        public static bool Raw
         {
-            CursesMethods.nonl();
+            set
+            {
+                if (value)
+                    CursesMethods.raw();
+                else
+                    CursesMethods.noraw();
+            }
         }
 
-        public static void Raw()
+        public static bool QiFlush
         {
-            CursesMethods.raw();
-        }
-
-        public static void NoRaw()
-        {
-            CursesMethods.noraw();
-        }
-
-        public static void QiFlush()
-        {
-            CursesMethods.qiflush();
-        }
-
-        public static void NoQiFlush()
-        {
-            CursesMethods.noqiflush();
+            set
+            {
+                if (value)
+                    CursesMethods.qiflush();
+                else
+                    CursesMethods.noqiflush();
+            }
         }
 
         public static void DefProgMode()

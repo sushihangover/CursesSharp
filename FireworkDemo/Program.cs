@@ -36,7 +36,7 @@ namespace FireworkDemo
         private static void Main2()
         {
             Curses.NoDelay = true;
-            Curses.NoEcho();
+            Curses.Echo = false;
 
             if (Curses.HasColors)
             {

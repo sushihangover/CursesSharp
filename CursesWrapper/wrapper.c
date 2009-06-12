@@ -45,6 +45,12 @@ wrap_COLORS(void)
 }
 
 int
+wrap_COLOR_PAIRS(void)
+{
+	return COLOR_PAIRS;
+}
+
+int
 wrap_TABSIZE(void)
 {
 	return TABSIZE;

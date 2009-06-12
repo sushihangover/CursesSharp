@@ -152,4 +152,5 @@ EXPORTS
 	wrap_LINES
 	wrap_COLS
 	wrap_COLORS
+	wrap_COLOR_PAIRS
 	wrap_TABSIZE

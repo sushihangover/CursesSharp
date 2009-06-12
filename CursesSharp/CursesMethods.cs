@@ -871,6 +871,11 @@ namespace CursesSharp
             return NativeMethods.wrap_COLORS();
         }
 
+        internal static int COLOR_PAIRS()
+        {
+            return NativeMethods.wrap_COLOR_PAIRS();
+        }
+
         internal static int TABSIZE()
         {
             return NativeMethods.wrap_TABSIZE();
