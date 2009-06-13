@@ -55,6 +55,15 @@ EXPORTS
 	
 	wrap_traceon
 	wrap_traceoff
+	
+	wrap_wdelch
+	wrap_mvwdelch
+	
+	wrap_wdeleteln
+	wrap_winsdelln
+	wrap_winsertln
+	wrap_mvwdeleteln
+	wrap_mvwinsertln
 
 	wrap_wgetch
 	wrap_mvwgetch

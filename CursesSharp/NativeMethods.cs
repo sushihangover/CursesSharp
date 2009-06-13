@@ -133,6 +133,22 @@ namespace CursesSharp
         internal static extern void wrap_traceon();
         [DllImport("CursesWrapper")]
         internal static extern void wrap_traceoff();
+        /* delch.c */
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_wdelch(IntPtr win);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_mvwdelch(IntPtr win, int y, int x);
+        /* deleteln.c */
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_wdeleteln(IntPtr win);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_winsdelln(IntPtr win, int n);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_winsertln(IntPtr win);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_mvwdeleteln(IntPtr win, int y, int x);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_mvwinsertln(IntPtr win, int y, int x);
         /* getch.c */
         [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
         internal static extern int wrap_wgetch(IntPtr win);

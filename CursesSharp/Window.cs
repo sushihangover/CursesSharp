@@ -244,6 +244,41 @@ namespace CursesSharp
             CursesMethods.wclrtoeol(this.winptr);
         }
 
+        public void DelCh()
+        {
+            CursesMethods.wdelch(this.winptr);
+        }
+
+        public void DelCh(int y, int x)
+        {
+            CursesMethods.mvwdelch(this.winptr, y, x);
+        }
+
+        public void DeleteLn()
+        {
+            CursesMethods.wdeleteln(this.winptr);
+        }
+
+        public void DeleteLn(int y, int x)
+        {
+            CursesMethods.mvwdeleteln(this.winptr, y, x);
+        }
+
+        public void InsDelLn(int n)
+        {
+            CursesMethods.winsdelln(this.winptr, n);
+        }
+
+        public void InsertLn()
+        {
+            CursesMethods.winsertln(this.winptr);
+        }
+
+        public void InsertLn(int y, int x)
+        {
+            CursesMethods.mvwinsertln(this.winptr, y, x);
+        }
+
         public int GetCh()
         {
             return CursesMethods.wgetch(this.winptr);

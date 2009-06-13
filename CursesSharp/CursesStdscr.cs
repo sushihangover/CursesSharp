@@ -190,6 +190,41 @@ namespace CursesSharp
             StdScr.ClrToEol();
         }
 
+        public static void DelCh()
+        {
+            StdScr.DelCh();
+        }
+
+        public static void DelCh(int y, int x)
+        {
+            StdScr.DelCh(y, x);
+        }
+
+        public static void DeleteLn()
+        {
+            StdScr.DeleteLn();
+        }
+
+        public static void DeleteLn(int y, int x)
+        {
+            StdScr.DeleteLn(y, x);
+        }
+
+        public static void InsDelLn(int n)
+        {
+            StdScr.InsDelLn(n);
+        }
+
+        public static void InsertLn()
+        {
+            StdScr.InsertLn();
+        }
+
+        public static void InsertLn(int y, int x)
+        {
+            StdScr.InsertLn(y, x);
+        }
+
         public static int GetCh()
         {
             return StdScr.GetCh();

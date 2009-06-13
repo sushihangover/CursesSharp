@@ -223,6 +223,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\delch.c"
+				>
+			</File>
+			<File
+				RelativePath=".\deleteln.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getch.c"
 				>
 			</File>

@@ -337,6 +337,56 @@ namespace CursesSharp
 
         #endregion
 
+        #region delch.c
+
+        internal static void wdelch(IntPtr win)
+        {
+            int ret = NativeMethods.wrap_wdelch(win);
+            Verify(ret, "wdelch");
+        }
+
+        internal static void mvwdelch(IntPtr win, int y, int x)
+        {
+            int ret = NativeMethods.wrap_mvwdelch(win, y, x);
+            Verify(ret, "mvwdelch");
+        }
+
+        #endregion
+
+        #region deleteln.c
+
+        internal static void wdeleteln(IntPtr win)
+        {
+            int ret = NativeMethods.wrap_wdeleteln(win);
+            Verify(ret, "wdeleteln");
+        }
+
+        internal static void winsdelln(IntPtr win, int n)
+        {
+            int ret = NativeMethods.wrap_winsdelln(win, n);
+            Verify(ret, "winsdelln");
+        }
+
+        internal static void winsertln(IntPtr win)
+        {
+            int ret = NativeMethods.wrap_winsertln(win);
+            Verify(ret, "winsertln");
+        }
+
+        internal static void mvwdeleteln(IntPtr win, int y, int x)
+        {
+            int ret = NativeMethods.wrap_mvwdeleteln(win, y, x);
+            Verify(ret, "mvwdeleteln");
+        }
+
+        internal static void mvwinsertln(IntPtr win, int y, int x)
+        {
+            int ret = NativeMethods.wrap_mvwinsertln(win, y, x);
+            Verify(ret, "mvwinsertln");
+        }
+
+        #endregion
+
         #region getch.c
 
         internal static int wgetch(IntPtr win)

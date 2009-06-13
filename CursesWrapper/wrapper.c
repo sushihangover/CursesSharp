@@ -60,57 +60,6 @@ wrap_TABSIZE(void)
 
 
 /*
-  Name:								delch
-
-  Synopsis:
-	int delch(void);
-	int wdelch(WINDOW *win);
-	int mvdelch(int y, int x);
-	int mvwdelch(WINDOW *win, int y, int x);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	delch					Y	Y	Y
-	wdelch					Y	Y	Y
-	mvdelch					Y	Y	Y
-	mvwdelch				Y	Y	Y
-*/
-
-/*
-  Name:								deleteln
-
-  Synopsis:
-	int deleteln(void);
-	int wdeleteln(WINDOW *win);
-	int insdelln(int n);
-	int winsdelln(WINDOW *win, int n);
-	int insertln(void);
-	int winsertln(WINDOW *win);
-
-	int mvdeleteln(int y, int x);
-	int mvwdeleteln(WINDOW *win, int y, int x);
-	int mvinsertln(int y, int x);
-	int mvwinsertln(WINDOW *win, int y, int x);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	deleteln				Y	Y	Y
-	wdeleteln				Y	Y	Y
-	mvdeleteln				-	-	-
-	mvwdeleteln				-	-	-
-	insdelln				Y	-      4.0
-	winsdelln				Y	-      4.0
-	insertln				Y	Y	Y
-	winsertln				Y	Y	Y
-	mvinsertln				-	-	-
-	mvwinsertln				-	-	-
-*/
-
-/*
   Name:								getstr
 
   Synopsis:
