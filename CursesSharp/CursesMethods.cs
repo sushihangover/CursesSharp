@@ -1,5 +1,4 @@
 #region Copyright 2009 Robert Konklewski
-
 /*
  * CursesSharp
  * 
@@ -19,7 +18,6 @@
  * www.gnu.org/licenses/>.
  * 
  */
-
 #endregion
 
 using System;
@@ -30,7 +28,6 @@ namespace CursesSharp
     internal static class CursesMethods
     {
         #region addch.c
-
         internal static void waddch(IntPtr win, uint ch)
         {
             int ret = NativeMethods.wrap_waddch(win, ch);
@@ -48,11 +45,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_wechochar(win, ch);
             Verify(ret, "wechochar");
         }
-
         #endregion
 
         #region addchstr.c
-
         internal static void waddchnstr(IntPtr win, uint[] chstr, int n)
         {
             int ret = NativeMethods.wrap_waddchnstr(win, chstr, n);
@@ -64,11 +59,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwaddchnstr(win, y, x, chstr, n);
             Verify(ret, "mvwaddchnstr");
         }
-
         #endregion
 
         #region addstr.c
-
         internal static void waddnstr(IntPtr win, string str, int n)
         {
             int ret = NativeMethods.wrap_waddnstr(win, str, n);
@@ -92,11 +85,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwaddnwstr(win, y, x, str, n);
             Verify(ret, "mvwaddnwstr");
         }
-
         #endregion
 
         #region attr.c
-
         internal static void wattroff(IntPtr win, uint attrs)
         {
             int ret = NativeMethods.wrap_wattroff(win, attrs);
@@ -150,11 +141,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwchgat(win, y, x, n, attr, color);
             Verify(ret, "mvwchgat");
         }
-
         #endregion
 
         #region beep.c
-
         internal static void beep()
         {
             int ret = NativeMethods.wrap_beep();
@@ -166,11 +155,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_flash();
             Verify(ret, "flash");
         }
-
         #endregion
 
         #region bkgd.c
-
         internal static uint getbkgd(IntPtr win)
         {
             return NativeMethods.wrap_getbkgd(win);
@@ -186,11 +173,9 @@ namespace CursesSharp
         {
             NativeMethods.wrap_wbkgdset(win, ch);
         }
-
         #endregion
 
         #region border.c
-
         internal static void wborder(IntPtr win, uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
         {
             int ret = NativeMethods.wrap_wborder(win, ls, rs, ts, bs, tl, tr, bl, br);
@@ -226,11 +211,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwvline(win, y, x, ch, n);
             Verify(ret, "mvwvline");
         }
-
         #endregion
 
         #region clear.c
-
         internal static void wclear(IntPtr win)
         {
             int ret = NativeMethods.wrap_wclear(win);
@@ -254,11 +237,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_wclrtoeol(win);
             Verify(ret, "wclrtoeol");
         }
-
         #endregion
 
         #region color.c
-
         internal static uint COLOR_PAIR(int n)
         {
             return NativeMethods.wrap_COLOR_PAIR(n);
@@ -320,11 +301,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_use_default_colors();
             Verify(ret, "use_default_colors");
         }
-
         #endregion
 
         #region debug.c
-
         internal static void traceon()
         {
             NativeMethods.wrap_traceon();
@@ -334,11 +313,9 @@ namespace CursesSharp
         {
             NativeMethods.wrap_traceoff();
         }
-
         #endregion
 
         #region delch.c
-
         internal static void wdelch(IntPtr win)
         {
             int ret = NativeMethods.wrap_wdelch(win);
@@ -350,11 +327,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwdelch(win, y, x);
             Verify(ret, "mvwdelch");
         }
-
         #endregion
 
         #region deleteln.c
-
         internal static void wdeleteln(IntPtr win)
         {
             int ret = NativeMethods.wrap_wdeleteln(win);
@@ -372,11 +347,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_winsertln(win);
             Verify(ret, "winsertln");
         }
-
         #endregion
 
         #region getch.c
-
         internal static int wgetch(IntPtr win)
         {
             return NativeMethods.wrap_wgetch(win);
@@ -398,11 +371,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_flushinp();
             Verify(ret, "flushinp");
         }
-
         #endregion
 
         #region getyx.c
-
         internal static void getyx(IntPtr win, out int y, out int x)
         {
             NativeMethods.wrap_getyx(win, out y, out x);
@@ -422,11 +393,9 @@ namespace CursesSharp
         {
             NativeMethods.wrap_getmaxyx(win, out y, out x);
         }
-
         #endregion
 
         #region initscr.c
-
         internal static IntPtr initscr()
         {
             IntPtr ret = NativeMethods.wrap_initscr();
@@ -450,11 +419,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_resize_term(nlines, ncols);
             Verify(ret, "resize_term");
         }
-
         #endregion
 
         #region inopts.c
-
         internal static void cbreak()
         {
             int ret = NativeMethods.wrap_cbreak();
@@ -553,11 +520,9 @@ namespace CursesSharp
         {
             NativeMethods.wrap_wtimeout(win, delay);
         }
-
         #endregion
 
         #region insch.c
-
         internal static void winsch(IntPtr win, uint ch)
         {
             int ret = NativeMethods.wrap_winsch(win, ch);
@@ -569,11 +534,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwinsch(win, y, x, ch);
             Verify(ret, "mvwinsch");
         }
-
         #endregion
 
         #region insstr.c
-
         internal static void winsnstr(IntPtr win, string str, int n)
         {
             int ret = NativeMethods.wrap_winsnstr(win, str, n);
@@ -597,11 +560,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwins_nwstr(win, y, x, wstr, n);
             Verify(ret, "mvwins_nwstr");
         }
-
         #endregion
 
         #region kernel.c
-
         internal static void def_prog_mode()
         {
             int ret = NativeMethods.wrap_def_prog_mode();
@@ -664,11 +625,9 @@ namespace CursesSharp
         {
             return NativeMethods.wrap_curs_set(visibility);
         }
-
         #endregion
 
         #region keyname.c
-
         internal static string keyname(int key)
         {
             IntPtr ret = NativeMethods.wrap_keyname(key);
@@ -687,21 +646,17 @@ namespace CursesSharp
         {
             return NativeMethods.wrap_has_key(key);
         }
-
         #endregion
 
         #region move.c
-
         internal static void wmove(IntPtr win, int y, int x)
         {
             int ret = NativeMethods.wrap_wmove(win, y, x);
             Verify(ret, "wmove");
         }
-
         #endregion
 
         #region outopts.c
-
         internal static void clearok(IntPtr win, bool bf)
         {
             int ret = NativeMethods.wrap_clearok(win, bf);
@@ -741,11 +696,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_scrollok(win, bf);
             Verify(ret, "scrollok");
         }
-
         #endregion
 
         #region refresh.c
-
         internal static void wrefresh(IntPtr win)
         {
             int ret = NativeMethods.wrap_wrefresh(win);
@@ -775,11 +728,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_wredrawln(win, beg_line, num_lines);
             Verify(ret, "wredrawln");
         }
-
         #endregion
 
         #region scroll.c
-
         internal static void scroll(IntPtr win)
         {
             int ret = NativeMethods.wrap_scroll(win);
@@ -791,11 +742,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_wscrl(win, n);
             Verify(ret, "wscrl");
         }
-
         #endregion
 
         #region touch.c
-
         internal static void touchwin(IntPtr win)
         {
             int ret = NativeMethods.wrap_touchwin(win);
@@ -829,11 +778,9 @@ namespace CursesSharp
         {
             return NativeMethods.wrap_is_wintouched(win);
         }
-
         #endregion
 
         #region util.c
-
         internal static string unctrl(uint c)
         {
             IntPtr ret = NativeMethods.wrap_unctrl(c);
@@ -856,11 +803,9 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_delay_output(ms);
             Verify(ret, "delay_output");
         }
-
         #endregion
 
         #region window.c
-
         internal static IntPtr newwin(int nlines, int ncols, int begy, int begx)
         {
             IntPtr ret = NativeMethods.wrap_newwin(nlines, ncols, begy, begx);
@@ -927,11 +872,9 @@ namespace CursesSharp
         {
             NativeMethods.wrap_wsyncdown(win);
         }
-
         #endregion
 
         #region wrapper.c
-
         internal static bool has_widechar()
         {
             return NativeMethods.wrap_has_widechar();
@@ -961,11 +904,9 @@ namespace CursesSharp
         {
             return NativeMethods.wrap_TABSIZE();
         }
-
         #endregion
 
         #region Error checking
-
         internal static void Verify(int result, string fname)
         {
             if (result == -1)
@@ -977,7 +918,6 @@ namespace CursesSharp
             if (result == IntPtr.Zero)
                 throw new CursesException(fname + "() returned NULL");
         }
-
         #endregion
     }
 }

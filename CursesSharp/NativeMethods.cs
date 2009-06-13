@@ -22,6 +22,7 @@
 
 #endregion
 
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -31,28 +32,34 @@ namespace CursesSharp
 
     internal static class NativeMethods
     {
-        /* addch.c */
+        #region addch.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_waddch(IntPtr win, uint ch);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwaddch(IntPtr win, int y, int x, uint ch);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wechochar(IntPtr win, uint ch);
-        /* addchstr.c */
+        #endregion
+
+        #region addchstr.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_waddchnstr(IntPtr win, uint[] chstr, int n);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwaddchnstr(IntPtr win, int y, int x, uint[] chstr, int n);
-        /* addstr.c */
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        #endregion
+
+        #region addstr.c
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_waddnstr(IntPtr win, String str, int n);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_mvwaddnstr(IntPtr win, int y, int x, String str, int n);
-        [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_waddnwstr(IntPtr win, String str, int n);
-        [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_mvwaddnwstr(IntPtr win, int y, int x, String str, int n);
-        /* attr.c */
+        #endregion
+
+        #region attr.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wattroff(IntPtr win, uint attrs);
         [DllImport("CursesWrapper")]
@@ -71,19 +78,25 @@ namespace CursesSharp
         internal static extern int wrap_wchgat(IntPtr win, int n, uint attr, short color);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwchgat(IntPtr win, int y, int x, int n, uint attr, short color);
-        /* beep.c */
+        #endregion
+
+        #region beep.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_beep();
         [DllImport("CursesWrapper")]
         internal static extern int wrap_flash();
-        /* bkgd.c */
+        #endregion
+
+        #region bkgd.c
         [DllImport("CursesWrapper")]
         internal static extern uint wrap_getbkgd(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wbkgd(IntPtr win, uint ch);
         [DllImport("CursesWrapper")]
         internal static extern void wrap_wbkgdset(IntPtr win, uint ch);
-        /* border.c */
+        #endregion
+
+        #region border.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wborder(IntPtr win, uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br);
         [DllImport("CursesWrapper")]
@@ -96,7 +109,9 @@ namespace CursesSharp
         internal static extern int wrap_mvwhline(IntPtr win, int y, int x, uint ch, int n);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwvline(IntPtr win, int y, int x, uint ch, int n);
-        /* clear.c */
+        #endregion
+
+        #region clear.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wclear(IntPtr win);
         [DllImport("CursesWrapper")]
@@ -105,7 +120,9 @@ namespace CursesSharp
         internal static extern int wrap_wclrtobot(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wclrtoeol(IntPtr win);
-        /* color.c */
+        #endregion
+
+        #region color.c
         [DllImport("CursesWrapper")]
         internal static extern uint wrap_COLOR_PAIR(int n);
         [DllImport("CursesWrapper")]
@@ -128,33 +145,43 @@ namespace CursesSharp
         internal static extern int wrap_assume_default_colors(int f, int b);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_use_default_colors();
-        /* debug.c */
+        #endregion
+
+        #region debug.c
         [DllImport("CursesWrapper")]
         internal static extern void wrap_traceon();
         [DllImport("CursesWrapper")]
         internal static extern void wrap_traceoff();
-        /* delch.c */
+        #endregion
+
+        #region delch.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wdelch(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwdelch(IntPtr win, int y, int x);
-        /* deleteln.c */
+        #endregion
+
+        #region deleteln.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wdeleteln(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_winsdelln(IntPtr win, int n);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_winsertln(IntPtr win);
-        /* getch.c */
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        #endregion
+
+        #region getch.c
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_wgetch(IntPtr win);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_mvwgetch(IntPtr win, int y, int x);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_ungetch(int ch);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_flushinp();
-        /* getyx.c */
+        #endregion
+
+        #region getyx.c
         [DllImport("CursesWrapper")]
         internal static extern void wrap_getyx(IntPtr win, out int y, out int x);
         [DllImport("CursesWrapper")]
@@ -163,7 +190,9 @@ namespace CursesSharp
         internal static extern void wrap_getbegyx(IntPtr win, out int y, out int x);
         [DllImport("CursesWrapper")]
         internal static extern void wrap_getmaxyx(IntPtr win, out int y, out int x);
-        /* initscr.c */
+        #endregion
+
+        #region initscr.c
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_initscr();
         [DllImport("CursesWrapper")]
@@ -172,7 +201,9 @@ namespace CursesSharp
         internal static extern Boolean wrap_isendwin();
         [DllImport("CursesWrapper")]
         internal static extern int wrap_resize_term(int nlines, int ncols);
-        /* inopts.c */
+        #endregion
+
+        #region inopts.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_cbreak();
         [DllImport("CursesWrapper")]
@@ -207,21 +238,27 @@ namespace CursesSharp
         internal static extern int wrap_notimeout(IntPtr win, Boolean bf);
         [DllImport("CursesWrapper")]
         internal static extern void wrap_wtimeout(IntPtr win, int delay);
-        /* insch.c */
+        #endregion
+
+        #region insch.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_winsch(IntPtr win, uint ch);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_mvwinsch(IntPtr win, int y, int x, uint ch);
-        /* insstr.c */
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        #endregion
+
+        #region insstr.c
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_winsnstr(IntPtr win, String str, int n);
-        [DllImport("CursesWrapper", CharSet=CharSet.Ansi)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_mvwinsnstr(IntPtr win, int y, int x, String str, int n);
-        [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_wins_nwstr(IntPtr win, String wstr, int n);
-        [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_mvwins_nwstr(IntPtr win, int y, int x, String wstr, int n);
-        /* kernel.c */
+        #endregion
+
+        #region kernel.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_def_prog_mode();
         [DllImport("CursesWrapper")]
@@ -244,17 +281,23 @@ namespace CursesSharp
         internal static extern int wrap_napms(int ms);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_curs_set(int visibility);
-        /* keyname.c */
+        #endregion
+
+        #region keyname.c
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_keyname(int key);
-        [DllImport("CursesWrapper", CharSet=CharSet.Unicode)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern IntPtr wrap_key_name(char c);
         [DllImport("CursesWrapper")]
         internal static extern Boolean wrap_has_key(int key);
-        /* move.c */
+        #endregion
+
+        #region move.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wmove(IntPtr win, int y, int x);
-        /* outopts.c */
+        #endregion
+
+        #region outopts.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_clearok(IntPtr win, Boolean bf);
         [DllImport("CursesWrapper")]
@@ -269,7 +312,9 @@ namespace CursesSharp
         internal static extern int wrap_wsetscrreg(IntPtr win, int top, int bot);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_scrollok(IntPtr win, Boolean bf);
-        /* refresh.c */
+        #endregion
+
+        #region refresh.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wrefresh(IntPtr win);
         [DllImport("CursesWrapper")]
@@ -280,12 +325,16 @@ namespace CursesSharp
         internal static extern int wrap_redrawwin(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wredrawln(IntPtr win, int beg_line, int num_lines);
-        /* scroll.c */
+        #endregion
+
+        #region scroll.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_scroll(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wscrl(IntPtr win, int n);
-        /* touch.c */
+        #endregion
+
+        #region touch.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_touchwin(IntPtr win);
         [DllImport("CursesWrapper")]
@@ -298,7 +347,9 @@ namespace CursesSharp
         internal static extern Boolean wrap_is_linetouched(IntPtr win, int line);
         [DllImport("CursesWrapper")]
         internal static extern Boolean wrap_is_wintouched(IntPtr win);
-        /* util.c */
+        #endregion
+
+        #region util.c
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_unctrl(uint c);
         [DllImport("CursesWrapper")]
@@ -307,7 +358,9 @@ namespace CursesSharp
         internal static extern void wrap_use_env(Boolean x);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_delay_output(int ms);
-        /* window.c */
+        #endregion
+
+        #region window.c
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_newwin(int nlines, int ncols, int begy, int begx);
         [DllImport("CursesWrapper")]
@@ -330,7 +383,9 @@ namespace CursesSharp
         internal static extern void wrap_wcursyncup(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern void wrap_wsyncdown(IntPtr win);
-        /* wrapper.c */
+        #endregion
+
+        #region wrapper.c
         [DllImport("CursesWrapper")]
         internal static extern Boolean wrap_has_widechar();
         [DllImport("CursesWrapper")]
@@ -343,5 +398,6 @@ namespace CursesSharp
         internal static extern int wrap_COLOR_PAIRS();
         [DllImport("CursesWrapper")]
         internal static extern int wrap_TABSIZE();
+        #endregion
     }
 }
