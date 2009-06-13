@@ -555,14 +555,14 @@ namespace CursesSharp
             CursesMethods.touchline(this.winptr, start, count);
         }
 
+        public void TouchLine(int y, int n, int changed)
+        {
+            CursesMethods.wtouchln(this.winptr, y, n, changed);
+        }
+
         public void UntouchWin()
         {
             CursesMethods.untouchwin(this.winptr);
-        }
-
-        public void TouchLn(int y, int n, int changed)
-        {
-            CursesMethods.wtouchln(this.winptr, y, n, changed);
         }
 
         public bool IsLineTouched(int line)
