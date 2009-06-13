@@ -225,6 +225,26 @@ namespace CursesSharp
             return StdScr.GetCh(y, x);
         }
 
+        public static string GetStr()
+        {
+            return StdScr.GetStr();
+        }
+
+        public static string GetStr(int n)
+        {
+            return StdScr.GetStr(n);
+        }
+
+        public static string GetStr(int y, int x)
+        {
+            return StdScr.GetStr(y, x);
+        }
+
+        public static string GetStr(int y, int x, int n)
+        {
+            return StdScr.GetStr(y, x, n);
+        }
+
         public static void InsCh(char ch)
         {
             StdScr.InsCh(ch);

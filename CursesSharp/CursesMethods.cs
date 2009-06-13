@@ -21,6 +21,7 @@
 #endregion
 
 using System;
+using System.Text;
 using System.Runtime.InteropServices;
 
 namespace CursesSharp
@@ -373,6 +374,32 @@ namespace CursesSharp
         }
         #endregion
 
+        #region getstr.c
+        internal static void wgetnstr(IntPtr win, StringBuilder str, int n)
+        {
+            int ret = NativeMethods.wrap_wgetnstr(win, str, n);
+            Verify(ret, "wgetnstr");
+        }
+
+        internal static void mvwgetnstr(IntPtr win, int y, int x, StringBuilder str, int n)
+        {
+            int ret = NativeMethods.wrap_mvwgetnstr(win, y, x, str, n);
+            Verify(ret, "mvwgetnstr");
+        }
+
+        internal static void wgetn_wstr(IntPtr win, StringBuilder wstr, int n)
+        {
+            int ret = NativeMethods.wrap_wgetnstr(win, wstr, n);
+            Verify(ret, "wgetn_wstr");
+        }
+
+        internal static void mvwgetn_wstr(IntPtr win, int y, int x, StringBuilder wstr, int n)
+        {
+            int ret = NativeMethods.wrap_mvwgetnstr(win, y, x, wstr, n);
+            Verify(ret, "mvwgetn_wstr");
+        }
+        #endregion
+
         #region getyx.c
         internal static void getyx(IntPtr win, out int y, out int x)
         {
@@ -695,6 +722,26 @@ namespace CursesSharp
         {
             int ret = NativeMethods.wrap_scrollok(win, bf);
             Verify(ret, "scrollok");
+        }
+        #endregion
+
+        #region overlay.c
+        internal static void overlay(IntPtr src_w, IntPtr dst_w)
+        {
+            int ret = NativeMethods.wrap_overlay(src_w, dst_w);
+            Verify(ret, "overlay");
+        }
+
+        internal static void overwrite(IntPtr src_w, IntPtr dst_w)
+        {
+            int ret = NativeMethods.wrap_overwrite(src_w, dst_w);
+            Verify(ret, "overwrite");
+        }
+
+        internal static void copywin(IntPtr src_w, IntPtr dst_w, int src_tr, int src_tc, int dst_tr, int dst_tc, int dst_br, int dst_bc, bool overlay)
+        {
+            int ret = NativeMethods.wrap_copywin(src_w, dst_w, src_tr, src_tc, dst_tr, dst_tc, dst_br, dst_bc, overlay);
+            Verify(ret, "copywin");
         }
         #endregion
 

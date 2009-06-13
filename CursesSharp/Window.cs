@@ -23,11 +23,14 @@
 #endregion
 
 using System;
+using System.Text;
 
 namespace CursesSharp
 {
     public class Window : IDisposable
     {
+        private const int DEFAULT_BUFSZ = 1023;
+
         private IntPtr winptr;
         private bool ownsPtr;
 
@@ -279,6 +282,44 @@ namespace CursesSharp
             return CursesMethods.mvwgetch(this.winptr, y, x);
         }
 
+        public string GetStr()
+        {
+            return this.GetStr(DEFAULT_BUFSZ);
+        }
+
+        public string GetStr(int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            if (Curses.UseWideChar)
+            {
+                CursesMethods.wgetn_wstr(this.winptr, sb, n);
+            }
+            else
+            {
+                CursesMethods.wgetnstr(this.winptr, sb, n);
+            }
+            return sb.ToString();
+        }
+
+        public string GetStr(int y, int x)
+        {
+            return this.GetStr(y, x, DEFAULT_BUFSZ);
+        }
+
+        public string GetStr(int y, int x, int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            if (Curses.UseWideChar)
+            {
+                CursesMethods.mvwgetn_wstr(this.winptr, y, x, sb, n);
+            }
+            else
+            {
+                CursesMethods.mvwgetnstr(this.winptr, y, x, sb, n);
+            }
+            return sb.ToString();
+        }
+
         public void GetYX(out int y, out int x)
         {
             CursesMethods.getyx(this.winptr, out y, out x);
@@ -457,6 +498,21 @@ namespace CursesSharp
         public void SetScrReg(int top, int bot)
         {
             CursesMethods.wsetscrreg(this.winptr, top, bot);
+        }
+
+        public void Overlay(Window dstWin)
+        {
+            CursesMethods.overlay(this.winptr, dstWin.winptr);
+        }
+
+        public void Overwrite(Window dstWin)
+        {
+            CursesMethods.overlay(this.winptr, dstWin.winptr);
+        }
+
+        public void CopyWin(Window dstWin, int src_tr, int src_tc, int dst_tr, int dst_tc, int dst_br, int dst_bc, bool overlay)
+        {
+            CursesMethods.copywin(this.winptr, dstWin.winptr, src_tr, src_tc, dst_tr, dst_tc, dst_br, dst_bc, overlay);
         }
 
         public void Refresh()

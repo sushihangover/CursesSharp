@@ -68,6 +68,11 @@ EXPORTS
 	wrap_ungetch
 	wrap_flushinp
 	
+	wrap_wgetnstr
+	wrap_mvwgetnstr
+	wrap_wgetn_wstr
+	wrap_mvwgetn_wstr
+	
 	wrap_getyx
 	wrap_getparyx
 	wrap_getbegyx
@@ -129,6 +134,10 @@ EXPORTS
 	wrap_leaveok
 	wrap_wsetscrreg
 	wrap_scrollok
+	
+	wrap_overlay
+	wrap_overwrite
+	wrap_copywin
 	
 	wrap_wrefresh
 	wrap_wnoutrefresh

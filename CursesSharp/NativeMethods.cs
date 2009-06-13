@@ -24,6 +24,7 @@
 
 
 using System;
+using System.Text;
 using System.Runtime.InteropServices;
 
 namespace CursesSharp
@@ -181,6 +182,17 @@ namespace CursesSharp
         internal static extern int wrap_flushinp();
         #endregion
 
+        #region getstr.c
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_wgetnstr(IntPtr win, StringBuilder str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_mvwgetnstr(IntPtr win, int y, int x, StringBuilder str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
+        internal static extern int wrap_wgetn_wstr(IntPtr win, StringBuilder wstr, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
+        internal static extern int wrap_mvwgetn_wstr(IntPtr win, int y, int x, StringBuilder wstr, int n);
+        #endregion
+
         #region getyx.c
         [DllImport("CursesWrapper")]
         internal static extern void wrap_getyx(IntPtr win, out int y, out int x);
@@ -312,6 +324,15 @@ namespace CursesSharp
         internal static extern int wrap_wsetscrreg(IntPtr win, int top, int bot);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_scrollok(IntPtr win, Boolean bf);
+        #endregion
+
+        #region overlay.c
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_overlay(IntPtr src_w, IntPtr dst_w);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_overwrite(IntPtr src_w, IntPtr dst_w);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_copywin(IntPtr src_w, IntPtr dst_w, int src_tr, int src_tc, int dst_tr, int dst_tc, int dst_br, int dst_bc, Boolean overlay);
         #endregion
 
         #region refresh.c

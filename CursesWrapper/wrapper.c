@@ -60,51 +60,6 @@ wrap_TABSIZE(void)
 
 
 /*
-  Name:								getstr
-
-  Synopsis:
-	int getstr(char *str);
-	int wgetstr(WINDOW *win, char *str);
-	int mvgetstr(int y, int x, char *str);
-	int mvwgetstr(WINDOW *win, int y, int x, char *str);
-	int getnstr(char *str, int n);
-	int wgetnstr(WINDOW *win, char *str, int n);
-	int mvgetnstr(int y, int x, char *str, int n);
-	int mvwgetnstr(WINDOW *win, int y, int x, char *str, int n);
-
-	int get_wstr(wint_t *wstr);
-	int wget_wstr(WINDOW *win, wint_t *wstr);
-	int mvget_wstr(int y, int x, wint_t *wstr);
-	int mvwget_wstr(WINDOW *win, int, int, wint_t *wstr);
-	int getn_wstr(wint_t *wstr, int n);
-	int wgetn_wstr(WINDOW *win, wint_t *wstr, int n);
-	int mvgetn_wstr(int y, int x, wint_t *wstr, int n);
-	int mvwgetn_wstr(WINDOW *win, int y, int x, wint_t *wstr, int n);
-
-  Return Value:
-	This functions return ERR on failure or any other value on 
-	success.
-
-  Portability				     X/Open    BSD    SYS V
-	getstr					Y	Y	Y
-	wgetstr					Y	Y	Y
-	mvgetstr				Y	Y	Y
-	mvwgetstr				Y	Y	Y
-	getnstr					Y	-      4.0
-	wgetnstr				Y	-      4.0
-	mvgetnstr				Y	-       -
-	mvwgetnstr				Y	-       -
-	get_wstr				Y
-	wget_wstr				Y
-	mvget_wstr				Y
-	mvwget_wstr				Y
-	getn_wstr				Y
-	wgetn_wstr				Y
-	mvgetn_wstr				Y
-	mvwgetn_wstr				Y
-*/
-
-/*
   Name:								inch
 
   Synopsis:
@@ -373,25 +328,6 @@ wrap_TABSIZE(void)
 	mousemask				-	-	-
 	nc_getmouse				-	-	-
 	ungetmouse				-	-	-
-*/
-
-/*
-  Name:								overlay
-
-  Synopsis:
-	int overlay(const WINDOW *src_w, WINDOW *dst_w)
-	int overwrite(const WINDOW *src_w, WINDOW *dst_w)
-	int copywin(const WINDOW *src_w, WINDOW *dst_w, int src_tr,
-		    int src_tc, int dst_tr, int dst_tc, int dst_br,
-		    int dst_bc, bool overlay)
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	overlay					Y	Y	Y
-	overwrite				Y	Y	Y
-	copywin					Y	-      3.0
 */
 
 /*
