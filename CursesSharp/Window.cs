@@ -520,7 +520,7 @@ namespace CursesSharp
             CursesMethods.wrefresh(this.winptr);
         }
 
-        public void WnOutRefresh()
+        public void NoOutRefresh()
         {
             CursesMethods.wnoutrefresh(this.winptr);
         }
