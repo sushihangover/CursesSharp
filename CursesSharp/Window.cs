@@ -454,6 +454,16 @@ namespace CursesSharp
             CursesMethods.wredrawln(this.winptr, beg_line, num_lines);
         }
 
+        public void Scroll()
+        {
+            CursesMethods.scroll(this.winptr);
+        }
+
+        public void Scroll(int n)
+        {
+            CursesMethods.wscrl(this.winptr, n);
+        }
+
         public void TouchWin()
         {
             CursesMethods.touchwin(this.winptr);

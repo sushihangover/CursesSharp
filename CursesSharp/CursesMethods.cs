@@ -740,6 +740,22 @@ namespace CursesSharp
 
         #endregion
 
+        #region scroll.c
+
+        internal static void scroll(IntPtr win)
+        {
+            int ret = NativeMethods.wrap_scroll(win);
+            Verify(ret, "scroll");
+        }
+
+        internal static void wscrl(IntPtr win, int n)
+        {
+            int ret = NativeMethods.wrap_wscrl(win, n);
+            Verify(ret, "wscrl");
+        }
+
+        #endregion
+
         #region touch.c
 
         internal static void touchwin(IntPtr win)
@@ -774,6 +790,33 @@ namespace CursesSharp
         internal static bool is_wintouched(IntPtr win)
         {
             return NativeMethods.wrap_is_wintouched(win);
+        }
+
+        #endregion
+
+        #region util.c
+
+        internal static string unctrl(uint c)
+        {
+            IntPtr ret = NativeMethods.wrap_unctrl(c);
+            Verify(ret, "unctrl");
+            return Marshal.PtrToStringAnsi(ret);
+        }
+
+        internal static void filter()
+        {
+            NativeMethods.wrap_filter();
+        }
+
+        internal static void use_env(bool x)
+        {
+            NativeMethods.wrap_use_env(x);
+        }
+
+        internal static void delay_output(int ms)
+        {
+            int ret = NativeMethods.wrap_delay_output(ms);
+            Verify(ret, "delay_output");
         }
 
         #endregion

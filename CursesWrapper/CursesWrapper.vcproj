@@ -267,7 +267,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scroll.c"
+				>
+			</File>
+			<File
 				RelativePath=".\touch.c"
+				>
+			</File>
+			<File
+				RelativePath=".\util.c"
 				>
 			</File>
 			<File

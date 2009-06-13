@@ -341,6 +341,26 @@ namespace CursesSharp
             CursesMethods.traceoff();
         }
 
+        public static string UnCtrl(uint c)
+        {
+            return CursesMethods.unctrl(c);
+        }
+
+        public static void Filter()
+        {
+            CursesMethods.filter();
+        }
+
+        public static void UseEnv(bool x)
+        {
+            CursesMethods.use_env(x);
+        }
+
+        public static void DelayOutput(int ms)
+        {
+            CursesMethods.delay_output(ms);
+        }
+
         public static Window NewWin(int nlines, int ncols, int begy, int begx)
         {
             IntPtr winptr = CursesMethods.newwin(nlines, ncols, begy, begx);

@@ -315,6 +315,11 @@ namespace CursesSharp
             StdScr.Refresh();
         }
 
+        public static void Scroll(int n)
+        {
+            StdScr.Scroll(n);
+        }
+
         public static void TouchWin()
         {
             StdScr.TouchWin();

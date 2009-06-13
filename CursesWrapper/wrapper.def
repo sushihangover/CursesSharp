@@ -129,12 +129,20 @@ EXPORTS
 	wrap_redrawwin
 	wrap_wredrawln
 	
+	wrap_scroll
+	wrap_wscrl
+	
 	wrap_touchwin
 	wrap_touchline
 	wrap_untouchwin
 	wrap_wtouchln
 	wrap_is_linetouched
 	wrap_is_wintouched
+	
+	wrap_unctrl
+	wrap_filter
+	wrap_use_env
+	wrap_delay_output
 	
 	wrap_newwin
 	wrap_derwin

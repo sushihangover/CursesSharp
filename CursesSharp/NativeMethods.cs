@@ -268,6 +268,11 @@ namespace CursesSharp
         internal static extern int wrap_redrawwin(IntPtr win);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wredrawln(IntPtr win, int beg_line, int num_lines);
+        /* scroll.c */
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_scroll(IntPtr win);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_wscrl(IntPtr win, int n);
         /* touch.c */
         [DllImport("CursesWrapper")]
         internal static extern int wrap_touchwin(IntPtr win);
@@ -281,6 +286,15 @@ namespace CursesSharp
         internal static extern Boolean wrap_is_linetouched(IntPtr win, int line);
         [DllImport("CursesWrapper")]
         internal static extern Boolean wrap_is_wintouched(IntPtr win);
+        /* util.c */
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_unctrl(uint c);
+        [DllImport("CursesWrapper")]
+        internal static extern void wrap_filter();
+        [DllImport("CursesWrapper")]
+        internal static extern void wrap_use_env(Boolean x);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_delay_output(int ms);
         /* window.c */
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_newwin(int nlines, int ncols, int begy, int begx);

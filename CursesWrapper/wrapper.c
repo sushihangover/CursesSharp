@@ -540,23 +540,6 @@ wrap_TABSIZE(void)
 */
 
 /*
-  Name:								scroll
-
-  Synopsis:
-	int scroll(WINDOW *win);
-	int scrl(int n);
-	int wscrl(WINDOW *win, int n);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	scroll					Y	Y	Y
-	scrl					Y	-      4.0
-	wscrl					Y	-      4.0
-*/
-
-/*
   Name:								slk
 
   Synopsis:
@@ -708,47 +691,6 @@ wrap_TABSIZE(void)
 
   Portability				     X/Open    BSD    SYS V
 	mvcur					Y	Y	Y
-*/
-
-/*
-  Name:								util
-
-  Synopsis:
-	char *unctrl(chtype c);
-	void filter(void);
-	void use_env(bool x);
-	int delay_output(int ms);
-
-	int getcchar(const cchar_t *wcval, wchar_t *wch, attr_t *attrs,
-		     short *color_pair, void *opts);
-	int setcchar(cchar_t *wcval, const wchar_t *wch, const attr_t attrs,
-		     short color_pair, const void *opts);
-	wchar_t *wunctrl(cchar_t *wc);
-
-	int PDC_mbtowc(wchar_t *pwc, const char *s, size_t n);
-	size_t PDC_mbstowcs(wchar_t *dest, const char *src, size_t n);
-	size_t PDC_wcstombs(char *dest, const wchar_t *src, size_t n);
-
-  Return Value:
-	unctrl() and wunctrl() return NULL on failure. delay_output() 
-	always returns OK.
-
-	getcchar() returns the number of wide characters wcval points to 
-	when wch is NULL; when it's not, getcchar() returns OK or ERR. 
-
-	setcchar() returns OK or ERR.
-
-  Portability				     X/Open    BSD    SYS V
-	unctrl					Y	Y	Y
-	filter					Y	-      3.0
-	use_env					Y	-      4.0
-	delay_output				Y	Y	Y
-	getcchar				Y
-	setcchar				Y
-	wunctrl					Y
-	PDC_mbtowc				-	-	-
-	PDC_mbstowcs				-	-	-
-	PDC_wcstombs				-	-	-
 */
 
 /*
