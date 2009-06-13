@@ -205,11 +205,6 @@ namespace CursesSharp
             StdScr.DeleteLn();
         }
 
-        public static void DeleteLn(int y, int x)
-        {
-            StdScr.DeleteLn(y, x);
-        }
-
         public static void InsDelLn(int n)
         {
             StdScr.InsDelLn(n);
@@ -218,11 +213,6 @@ namespace CursesSharp
         public static void InsertLn()
         {
             StdScr.InsertLn();
-        }
-
-        public static void InsertLn(int y, int x)
-        {
-            StdScr.InsertLn(y, x);
         }
 
         public static int GetCh()

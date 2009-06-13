@@ -373,18 +373,6 @@ namespace CursesSharp
             Verify(ret, "winsertln");
         }
 
-        internal static void mvwdeleteln(IntPtr win, int y, int x)
-        {
-            int ret = NativeMethods.wrap_mvwdeleteln(win, y, x);
-            Verify(ret, "mvwdeleteln");
-        }
-
-        internal static void mvwinsertln(IntPtr win, int y, int x)
-        {
-            int ret = NativeMethods.wrap_mvwinsertln(win, y, x);
-            Verify(ret, "mvwinsertln");
-        }
-
         #endregion
 
         #region getch.c

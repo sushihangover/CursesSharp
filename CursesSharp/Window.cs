@@ -259,11 +259,6 @@ namespace CursesSharp
             CursesMethods.wdeleteln(this.winptr);
         }
 
-        public void DeleteLn(int y, int x)
-        {
-            CursesMethods.mvwdeleteln(this.winptr, y, x);
-        }
-
         public void InsDelLn(int n)
         {
             CursesMethods.winsdelln(this.winptr, n);
@@ -272,11 +267,6 @@ namespace CursesSharp
         public void InsertLn()
         {
             CursesMethods.winsertln(this.winptr);
-        }
-
-        public void InsertLn(int y, int x)
-        {
-            CursesMethods.mvwinsertln(this.winptr, y, x);
         }
 
         public int GetCh()

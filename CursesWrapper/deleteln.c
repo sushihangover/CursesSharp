@@ -70,14 +70,3 @@ wrap_winsertln(WINDOW *win)
 	return winsertln(win);
 }
 
-int 
-wrap_mvwdeleteln(WINDOW *win, int y, int x)
-{
-	return mvwdeleteln(win, y, x);
-}
-
-int 
-wrap_mvwinsertln(WINDOW *win, int y, int x)
-{
-	return mvwinsertln(win, y, x);
-}
