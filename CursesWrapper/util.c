@@ -72,7 +72,7 @@ wrap_filter(void)
 WRAP_API void
 wrap_use_env(int x)
 {
-	use_env(x);
+	use_env((bool)x);
 }
 
 WRAP_API int

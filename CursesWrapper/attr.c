@@ -129,7 +129,7 @@ wrap_wcolor_set(WINDOW *win, short color_pair)
 WRAP_API int
 wrap_wattr_get(WINDOW *win, unsigned int *attrs, short *color_pair)
 {
-	return wattr_get(win, attrs, color_pair, 0);
+	return wattr_get(win, (attr_t*)attrs, color_pair, 0);
 }
 
 WRAP_API int

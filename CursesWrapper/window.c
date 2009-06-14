@@ -116,7 +116,7 @@ wrap_mvderwin(WINDOW *win, int pary, int parx)
 WRAP_API int
 wrap_syncok(WINDOW *win, int bf)
 {
-	return syncok(win, bf);
+	return syncok(win, (bool)bf);
 }
 
 WRAP_API void

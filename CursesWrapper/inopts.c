@@ -103,19 +103,19 @@ wrap_halfdelay(int tenths)
 WRAP_API int
 wrap_intrflush(WINDOW *win, int bf)
 {
-	return intrflush(win, bf);
+	return intrflush(win, (bool)bf);
 }
 
 WRAP_API int
 wrap_keypad(WINDOW *win, int bf)
 {
-	return keypad(win, bf);
+	return keypad(win, (bool)bf);
 }
 
 WRAP_API int
 wrap_meta(WINDOW *win, int bf)
 {
-	return meta(win, bf);
+	return meta(win, (bool)bf);
 }
 
 WRAP_API int
@@ -133,7 +133,7 @@ wrap_nonl(void)
 WRAP_API int
 wrap_nodelay(WINDOW *win, int bf)
 {
-	return nodelay(win, bf);
+	return nodelay(win, (bool)bf);
 }
 
 WRAP_API int
@@ -163,7 +163,7 @@ wrap_noqiflush(void)
 WRAP_API int
 wrap_notimeout(WINDOW *win, int bf)
 {
-	return notimeout(win, bf);
+	return notimeout(win, (bool)bf);
 }
 
 WRAP_API void
