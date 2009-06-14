@@ -15,8 +15,8 @@ WRAPPER_SRCS	= addch.c addchstr.c addstr.c attr.c beep.c bkgd.c 	\
 		  border.c clear.c color.c debug.c delch.c deleteln.c	\
 		  getch.c getstr.c getyx.c inch.c inchstr.c initscr.c	\
 		  inopts.c insch.c insstr.c instr.c kernel.c keyname.c	\
-		  move.c outopts.c overlay.c pad.c refresh.c scroll.c	\
-		  touch.c util.c window.c wrapper.c
+		  mouse.c move.c outopts.c overlay.c pad.c refresh.c	\
+		  scroll.c touch.c util.c window.c wrapper.c
 WRAPPER_OBJS	= $(WRAPPER_SRCS:%.c=$(OBJ_DIR)/%.o)
 WRAPPER_BIN	= $(BIN_DIR)/libCursesWrapper.so
 
@@ -31,6 +31,7 @@ CURSHARP_SRCS	= Curses.cs CursesMethods.cs CursesStdscr.cs DefsGen.cs	\
 		  WindowBase.cs Properties/AssemblyInfo.cs
 CURSHARP_OBJS	= $(CURSHARP_SRCS:%=$(CURSHARP_DIR)/%)
 CURSHARP_BIN	= $(BIN_DIR)/CursesSharp.dll
+CURSHARP_FLAGS	= -define:NCURSES_MOUSE_VERSION
 
 FIREWORK_DIR	= FireworkDemo
 FIREWORK_SRCS	= Program.cs Properties/AssemblyInfo.cs
@@ -71,7 +72,7 @@ $(CURSHARP_DIR)/DefsGen.cs: $(ATTRGEN_BIN)
 	$(ATTRGEN_BIN) $@
 
 $(CURSHARP_BIN): $(CURSHARP_OBJS) $(WRAPPER_BIN)
-	$(MCSDLL) -out:$@ $(CURSHARP_OBJS)
+	$(MCSDLL) -out:$@ $(CURSHARP_FLAGS) $(CURSHARP_OBJS)
 
 
 $(FIREWORK_BIN): $(FIREWORK_OBJS) $(CURSHARP_BIN)
