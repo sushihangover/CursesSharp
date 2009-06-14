@@ -34,13 +34,17 @@ namespace CursesSharp
     /// <returns></returns>
     public delegate int RipOffLineFun(Window win, int ncols);
 
-    public class MEvent
+    public class MouseEvent
     {
         private int id;
         private int x, y, z;
         private Mouse bstate;
 
-        public MEvent(int id, int x, int y, int z, Mouse bstate)
+        public MouseEvent()
+        {
+        }
+
+        public MouseEvent(int id, int x, int y, int z, Mouse bstate)
         {
             this.id = id;
             this.x = x;
@@ -367,14 +371,14 @@ namespace CursesSharp
             }
         }
 
-        public static MEvent GetMouse()
+        public static MouseEvent GetMouse()
         {
             WrapMEvent wme;
             CursesMethods.getmouse(out wme);
-            return new MEvent(wme.id, wme.x, wme.y, wme.z, (Mouse)wme.bstate);
+            return new MouseEvent(wme.id, wme.x, wme.y, wme.z, (Mouse)wme.bstate);
         }
 
-        public static void GetMouse(MEvent mevent)
+        public static void GetMouse(MouseEvent mevent)
         {
             WrapMEvent wme;
             CursesMethods.getmouse(out wme);
@@ -385,7 +389,7 @@ namespace CursesSharp
             mevent.ButtonState = (Mouse)wme.bstate;
         }
 
-        public static void UngetMouse(MEvent mevent)
+        public static void UngetMouse(MouseEvent mevent)
         {
             WrapMEvent wme;
             wme.id = mevent.Id;
@@ -396,15 +400,18 @@ namespace CursesSharp
             CursesMethods.ungetmouse(ref wme);
         }
 
-        public static uint MouseMask(uint mask)
+        public static Mouse MouseMask(Mouse mask)
         {
-            uint dummy;
+            Mouse dummy;
             return MouseMask(mask, out dummy);
         }
 
-        public static uint MouseMask(uint mask, out uint oldmask)
+        public static Mouse MouseMask(Mouse mask, out Mouse oldmask)
         {
-            return CursesMethods.mousemask(mask, out oldmask);
+            uint tmpMask = 0;
+            uint outMask = CursesMethods.mousemask((uint)mask, out tmpMask);
+            oldmask = (Mouse)tmpMask;
+            return (Mouse)outMask;
         }
 
         public static int MouseInterval(int wait)
