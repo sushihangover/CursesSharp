@@ -238,7 +238,7 @@ int main(int argc, char **argv)
 
 	fprintf(OUT, "\t// Mouse event masks\n");
 	fprintf(OUT, "\t[System.FlagsAttribute]\n");
-	fprintf(OUT, "\tpublic enum Mouse : uint\n");
+	fprintf(OUT, "\tpublic enum MouseState : uint\n");
 	fprintf(OUT, "\t{\n");
 	GEN_MMASK(BUTTON1_PRESSED);			fprintf(OUT, ",\n");
 	GEN_MMASK(BUTTON1_RELEASED);		fprintf(OUT, ",\n");

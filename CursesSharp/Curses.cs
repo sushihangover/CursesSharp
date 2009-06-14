@@ -38,13 +38,13 @@ namespace CursesSharp
     {
         private int id;
         private int x, y, z;
-        private Mouse bstate;
+        private MouseState bstate;
 
         public MouseEvent()
         {
         }
 
-        public MouseEvent(int id, int x, int y, int z, Mouse bstate)
+        public MouseEvent(int id, int x, int y, int z, MouseState bstate)
         {
             this.id = id;
             this.x = x;
@@ -77,7 +77,7 @@ namespace CursesSharp
             internal set { this.z = value; }
         }
 
-        public Mouse ButtonState
+        public MouseState State
         {
             get { return this.bstate; }
             internal set { this.bstate = value; }
@@ -375,7 +375,7 @@ namespace CursesSharp
         {
             WrapMEvent wme;
             CursesMethods.getmouse(out wme);
-            return new MouseEvent(wme.id, wme.x, wme.y, wme.z, (Mouse)wme.bstate);
+            return new MouseEvent(wme.id, wme.x, wme.y, wme.z, (MouseState)wme.bstate);
         }
 
         public static void GetMouse(MouseEvent mevent)
@@ -386,7 +386,7 @@ namespace CursesSharp
             mevent.X = wme.x;
             mevent.Y = wme.y;
             mevent.Z = wme.z;
-            mevent.ButtonState = (Mouse)wme.bstate;
+            mevent.State = (MouseState)wme.bstate;
         }
 
         public static void UngetMouse(MouseEvent mevent)
@@ -396,22 +396,22 @@ namespace CursesSharp
             wme.x = mevent.X;
             wme.y = mevent.Y;
             wme.z = mevent.Z;
-            wme.bstate = (uint)mevent.ButtonState;
+            wme.bstate = (uint)mevent.State;
             CursesMethods.ungetmouse(ref wme);
         }
 
-        public static Mouse MouseMask(Mouse mask)
+        public static MouseState MouseMask(MouseState mask)
         {
-            Mouse dummy;
+            MouseState dummy;
             return MouseMask(mask, out dummy);
         }
 
-        public static Mouse MouseMask(Mouse mask, out Mouse oldmask)
+        public static MouseState MouseMask(MouseState mask, out MouseState oldmask)
         {
             uint tmpMask = 0;
             uint outMask = CursesMethods.mousemask((uint)mask, out tmpMask);
-            oldmask = (Mouse)tmpMask;
-            return (Mouse)outMask;
+            oldmask = (MouseState)tmpMask;
+            return (MouseState)outMask;
         }
 
         public static int MouseInterval(int wait)
