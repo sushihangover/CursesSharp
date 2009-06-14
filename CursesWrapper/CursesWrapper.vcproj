@@ -41,7 +41,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)\pdcurses&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;PDC_WIDE;HAVE_USE_WIDECHAR"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;PDC_WIDE;HAVE_USE_WIDECHAR;NCURSES_MOUSE_VERSION"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -121,7 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)\pdcurses&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;PDC_WIDE;HAVE_USE_WIDECHAR"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;PDC_WIDE;HAVE_USE_WIDECHAR;NCURSES_MOUSE_VERSION"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"
@@ -278,6 +278,10 @@
 			</File>
 			<File
 				RelativePath=".\keyname.c"
+				>
+			</File>
+			<File
+				RelativePath=".\mouse.c"
 				>
 			</File>
 			<File

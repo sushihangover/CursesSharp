@@ -447,6 +447,16 @@ namespace CursesSharp
             }
         }
 
+        public bool Enclose(int y, int x)
+        {
+            return CursesMethods.wenclose(this.winptr, y, x);
+        }
+
+        public bool MouseTrafo(ref int y, ref int x, bool to_screen)
+        {
+            return CursesMethods.wmouse_trafo(this.winptr, ref y, ref x, to_screen);
+        }
+
         public void Move(int y, int x)
         {
             CursesMethods.wmove(this.winptr, y, x);

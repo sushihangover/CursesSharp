@@ -33,7 +33,7 @@
 #define GEN_ACS(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (ACS_ ## x))
 #define GEN_COLOR(x) fprintf(OUT, "\t\tpublic const short " #x " = 0x%x;\n", (COLOR_ ## x))
 #define GEN_KEY(x) fprintf(OUT, "\t\tpublic const int " #x " = 0x%.3x;\n", (KEY_ ## x))
-#define GEN_MMASK(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (x))
+#define GEN_MMASK(x) fprintf(OUT, "\t\t" #x " = 0x%.8lxU", (x))
 
 int main(int argc, char **argv)
 {
@@ -237,33 +237,34 @@ int main(int argc, char **argv)
 	fprintf(OUT, "\n");
 
 	fprintf(OUT, "\t// Mouse event masks\n");
-	fprintf(OUT, "\tpublic static class Mouse\n");
+	fprintf(OUT, "\t[System.FlagsAttribute]\n");
+	fprintf(OUT, "\tpublic enum Mouse : uint\n");
 	fprintf(OUT, "\t{\n");
-	GEN_MMASK(BUTTON1_PRESSED);
-	GEN_MMASK(BUTTON1_RELEASED);
-	GEN_MMASK(BUTTON1_CLICKED);
-	GEN_MMASK(BUTTON1_DOUBLE_CLICKED);
-	GEN_MMASK(BUTTON1_TRIPLE_CLICKED);
-	GEN_MMASK(BUTTON2_PRESSED);
-	GEN_MMASK(BUTTON2_RELEASED);
-	GEN_MMASK(BUTTON2_CLICKED);
-	GEN_MMASK(BUTTON2_DOUBLE_CLICKED);
-	GEN_MMASK(BUTTON2_TRIPLE_CLICKED);
-	GEN_MMASK(BUTTON3_PRESSED);
-	GEN_MMASK(BUTTON3_RELEASED);
-	GEN_MMASK(BUTTON3_CLICKED);
-	GEN_MMASK(BUTTON3_DOUBLE_CLICKED);
-	GEN_MMASK(BUTTON3_TRIPLE_CLICKED);
-	GEN_MMASK(BUTTON4_PRESSED);
-	GEN_MMASK(BUTTON4_RELEASED);
-	GEN_MMASK(BUTTON4_CLICKED);
-	GEN_MMASK(BUTTON4_DOUBLE_CLICKED);
-	GEN_MMASK(BUTTON4_TRIPLE_CLICKED);
-	GEN_MMASK(BUTTON_SHIFT);
-	GEN_MMASK(BUTTON_CTRL);
-	GEN_MMASK(BUTTON_ALT);
-	GEN_MMASK(ALL_MOUSE_EVENTS);
-	GEN_MMASK(REPORT_MOUSE_POSITION);
+	GEN_MMASK(BUTTON1_PRESSED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON1_RELEASED);		fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON1_CLICKED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON1_DOUBLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON1_TRIPLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON2_PRESSED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON2_RELEASED);		fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON2_CLICKED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON2_DOUBLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON2_TRIPLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON3_PRESSED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON3_RELEASED);		fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON3_CLICKED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON3_DOUBLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON3_TRIPLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON4_PRESSED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON4_RELEASED);		fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON4_CLICKED);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON4_DOUBLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON4_TRIPLE_CLICKED);	fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON_SHIFT);			fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON_CTRL);				fprintf(OUT, ",\n");
+	GEN_MMASK(BUTTON_ALT);				fprintf(OUT, ",\n");
+	GEN_MMASK(ALL_MOUSE_EVENTS);		fprintf(OUT, ",\n");
+	GEN_MMASK(REPORT_MOUSE_POSITION);	fprintf(OUT, "\n");
 	fprintf(OUT, "\t}\n");
 
 	fprintf(OUT, "}\n");

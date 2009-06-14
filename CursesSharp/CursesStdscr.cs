@@ -315,6 +315,11 @@ namespace CursesSharp
             set { StdScr.Timeout = value; }
         }
 
+        public static bool MouseTrafo(ref int y, ref int x, bool to_screen)
+        {
+            return StdScr.MouseTrafo(ref y, ref x, to_screen);
+        }
+
         public static void Move(int y, int x)
         {
             StdScr.Move(y, x);

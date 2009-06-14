@@ -747,6 +747,82 @@ namespace CursesSharp
         }
         #endregion
 
+        #region mouse.c
+#if NCURSES_MOUSE_VERSION
+        internal static bool has_mouse()
+        {
+            return NativeMethods.wrap_has_mouse();
+        }
+
+        internal static void getmouse(out WrapMEvent mevent)
+        {
+            int ret = NativeMethods.wrap_getmouse(out mevent);
+            Verify(ret, "getmouse");
+        }
+
+        internal static void ungetmouse(ref WrapMEvent mevent)
+        {
+            int ret = NativeMethods.wrap_ungetmouse(ref mevent);
+            Verify(ret, "ungetmouse");
+        }
+
+        internal static uint mousemask(uint mask, out uint oldmask)
+        {
+            return NativeMethods.wrap_mousemask(mask, out oldmask);
+        }
+
+        internal static bool wenclose(IntPtr win, int y, int x)
+        {
+            return NativeMethods.wrap_wenclose(win, y, x);
+        }
+
+        internal static bool wmouse_trafo(IntPtr win, ref int y, ref int x, bool to_screen)
+        {
+            return NativeMethods.wrap_wmouse_trafo(win, ref y, ref x, to_screen);
+        }
+
+        internal static int mouseinterval(int wait)
+        {
+            return NativeMethods.wrap_mouseinterval(wait);
+        }
+#else
+        internal static bool has_mouse()
+        {
+            return false;
+        }
+
+        internal static void getmouse(out WrapMEvent mevent)
+        {
+            throw new NotImplementedException("CursesSharp compiled without mouse support");
+        }
+
+        internal static void ungetmouse(ref WrapMEvent mevent)
+        {
+            throw new NotImplementedException("CursesSharp compiled without mouse support");
+        }
+
+        internal static uint mousemask(uint mask, out uint oldmask)
+        {
+            throw new NotImplementedException("CursesSharp compiled without mouse support");
+        }
+
+        internal static bool wenclose(IntPtr win, int y, int x)
+        {
+            throw new NotImplementedException("CursesSharp compiled without mouse support");
+        }
+
+        internal static bool wmouse_trafo(IntPtr win, ref int y, ref int x, bool to_screen)
+        {
+            throw new NotImplementedException("CursesSharp compiled without mouse support");
+        }
+
+        internal static int mouseinterval(int wait)
+        {
+            throw new NotImplementedException("CursesSharp compiled without mouse support");
+        }
+#endif
+        #endregion
+
         #region outopts.c
         internal static void clearok(IntPtr win, bool bf)
         {

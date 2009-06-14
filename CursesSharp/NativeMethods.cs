@@ -31,6 +31,16 @@ namespace CursesSharp
 {
     internal delegate int RipOffLineFunInt(IntPtr win, int cols);
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct WrapMEvent
+    {
+	    internal int id;
+        internal int x;
+        internal int y;
+        internal int z;
+        internal uint bstate;
+    };
+
     internal static class NativeMethods
     {
         #region addch.c
@@ -337,6 +347,25 @@ namespace CursesSharp
         internal static extern IntPtr wrap_keyname(int key);
         [DllImport("CursesWrapper")]
         internal static extern Boolean wrap_has_key(int key);
+        #endregion
+
+        #region mouse.c
+#if NCURSES_MOUSE_VERSION
+        [DllImport("CursesWrapper")]
+        internal static extern Boolean wrap_has_mouse();
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_getmouse(out WrapMEvent wrap_mevent);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_ungetmouse(ref WrapMEvent wrap_mevent);
+        [DllImport("CursesWrapper")]
+        internal static extern uint wrap_mousemask(uint mask, out uint oldmask);
+        [DllImport("CursesWrapper")]
+        internal static extern Boolean wrap_wenclose(IntPtr win, int y, int x);
+        [DllImport("CursesWrapper")]
+        internal static extern Boolean wrap_wmouse_trafo(IntPtr win, ref int y, ref int x, Boolean to_screen);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_mouseinterval(int wait);
+#endif
         #endregion
 
         #region move.c

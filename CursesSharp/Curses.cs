@@ -34,6 +34,52 @@ namespace CursesSharp
     /// <returns></returns>
     public delegate int RipOffLineFun(Window win, int ncols);
 
+    public class MEvent
+    {
+        private int id;
+        private int x, y, z;
+        private Mouse bstate;
+
+        public MEvent(int id, int x, int y, int z, Mouse bstate)
+        {
+            this.id = id;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.bstate = bstate;
+        }
+
+        public int Id
+        {
+            get { return this.id; }
+            internal set { this.id = value; }
+        }
+
+        public int X
+        {
+            get { return this.x; }
+            internal set { this.x = value; }
+        }
+
+        public int Y
+        {
+            get { return this.y; }
+            internal set { this.y = value; }
+        }
+
+        public int Z
+        {
+            get { return this.z; }
+            internal set { this.z = value; }
+        }
+
+        public Mouse ButtonState
+        {
+            get { return this.bstate; }
+            internal set { this.bstate = value; }
+        }
+    };
+
     /// <summary>
     /// Static interface to the curses library.
     /// </summary>
@@ -311,6 +357,59 @@ namespace CursesSharp
         public static bool HasKey(int key)
         {
             return CursesMethods.has_key(key);
+        }
+
+        public static bool HasMouse
+        {
+            get
+            {
+                return CursesMethods.has_mouse();
+            }
+        }
+
+        public static MEvent GetMouse()
+        {
+            WrapMEvent wme;
+            CursesMethods.getmouse(out wme);
+            return new MEvent(wme.id, wme.x, wme.y, wme.z, (Mouse)wme.bstate);
+        }
+
+        public static void GetMouse(MEvent mevent)
+        {
+            WrapMEvent wme;
+            CursesMethods.getmouse(out wme);
+            mevent.Id = wme.id;
+            mevent.X = wme.x;
+            mevent.Y = wme.y;
+            mevent.Z = wme.z;
+            mevent.ButtonState = (Mouse)wme.bstate;
+        }
+
+        public static void UngetMouse(MEvent mevent)
+        {
+            WrapMEvent wme;
+            wme.id = mevent.Id;
+            wme.x = mevent.X;
+            wme.y = mevent.Y;
+            wme.z = mevent.Z;
+            wme.bstate = (uint)mevent.ButtonState;
+            CursesMethods.ungetmouse(ref wme);
+        }
+
+        public static uint MouseMask(uint mask)
+        {
+            uint dummy;
+            return MouseMask(mask, out dummy);
+        }
+
+        public static uint MouseMask(uint mask, out uint oldmask)
+        {
+            return CursesMethods.mousemask(mask, out oldmask);
+        }
+
+        public static int MouseInterval(int wait)
+        {
+            return CursesMethods.mouseinterval(wait);
         }
 
         public static void DoUpdate()
