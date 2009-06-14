@@ -7,16 +7,16 @@ LDSHARED	= gcc -shared
 MCSDLL		= gmcs -target:library
 MCSEXE		= gmcs -target:exe
 
-CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED -DHAVE_NCURSESW_H
+CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED -DHAVE_NCURSESW_NCURSES_H
 CURSES_LDFLAGS	= -lncursesw
 
 WRAPPER_DIR	= CursesWrapper
 WRAPPER_SRCS	= addch.c addchstr.c addstr.c attr.c beep.c bkgd.c 	\
 		  border.c clear.c color.c debug.c delch.c deleteln.c	\
-		  getch.c getstr.c getyx.c initscr.c inopts.c insch.c	\
-		  insstr.c kernel.c keyname.c move.c outopts.c 		\
-		  overlay.c pad.c refresh.c scroll.c touch.c util.c	\
-		  window.c wrapper.c
+		  getch.c getstr.c getyx.c inch.c inchstr.c initscr.c	\
+		  inopts.c insch.c insstr.c instr.c kernel.c keyname.c	\
+		  move.c outopts.c overlay.c pad.c refresh.c scroll.c	\
+		  touch.c util.c window.c wrapper.c
 WRAPPER_OBJS	= $(WRAPPER_SRCS:%.c=$(OBJ_DIR)/%.o)
 WRAPPER_BIN	= $(BIN_DIR)/libCursesWrapper.so
 
