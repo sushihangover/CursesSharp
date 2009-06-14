@@ -21,12 +21,6 @@
 #include "wrapper.h"
 
 WRAP_API int
-wrap_has_widechar(void)
-{
-	return sizeof(wchar_t) == 2;
-}
-
-WRAP_API int
 wrap_LINES(void)
 {
 	return LINES;

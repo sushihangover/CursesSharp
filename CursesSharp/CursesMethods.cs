@@ -63,6 +63,19 @@ namespace CursesSharp
         #endregion
 
         #region addstr.c
+#if HAVE_USE_WIDECHAR
+        internal static void waddnstr(IntPtr win, string str, int n)
+        {
+            int ret = NativeMethods.wrap_waddnwstr(win, str, n);
+            Verify(ret, "waddnwstr");
+        }
+
+        internal static void mvwaddnstr(IntPtr win, int y, int x, string str, int n)
+        {
+            int ret = NativeMethods.wrap_mvwaddnwstr(win, y, x, str, n);
+            Verify(ret, "mvwaddnwstr");
+        }
+#else
         internal static void waddnstr(IntPtr win, string str, int n)
         {
             int ret = NativeMethods.wrap_waddnstr(win, str, n);
@@ -74,18 +87,7 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwaddnstr(win, y, x, str, n);
             Verify(ret, "mvwaddnstr");
         }
-
-        internal static void waddnwstr(IntPtr win, string str, int n)
-        {
-            int ret = NativeMethods.wrap_waddnwstr(win, str, n);
-            Verify(ret, "waddnwstr");
-        }
-
-        internal static void mvwaddnwstr(IntPtr win, int y, int x, string str, int n)
-        {
-            int ret = NativeMethods.wrap_mvwaddnwstr(win, y, x, str, n);
-            Verify(ret, "mvwaddnwstr");
-        }
+#endif
         #endregion
 
         #region attr.c
@@ -375,6 +377,19 @@ namespace CursesSharp
         #endregion
 
         #region getstr.c
+#if HAVE_USE_WIDECHAR
+        internal static void wgetnstr(IntPtr win, StringBuilder wstr, int n)
+        {
+            int ret = NativeMethods.wrap_wgetn_wstr(win, wstr, n);
+            Verify(ret, "wgetn_wstr");
+        }
+
+        internal static void mvwgetnstr(IntPtr win, int y, int x, StringBuilder wstr, int n)
+        {
+            int ret = NativeMethods.wrap_mvwgetn_wstr(win, y, x, wstr, n);
+            Verify(ret, "mvwgetn_wstr");
+        }
+#else
         internal static void wgetnstr(IntPtr win, StringBuilder str, int n)
         {
             int ret = NativeMethods.wrap_wgetnstr(win, str, n);
@@ -386,18 +401,7 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwgetnstr(win, y, x, str, n);
             Verify(ret, "mvwgetnstr");
         }
-
-        internal static void wgetn_wstr(IntPtr win, StringBuilder wstr, int n)
-        {
-            int ret = NativeMethods.wrap_wgetnstr(win, wstr, n);
-            Verify(ret, "wgetn_wstr");
-        }
-
-        internal static void mvwgetn_wstr(IntPtr win, int y, int x, StringBuilder wstr, int n)
-        {
-            int ret = NativeMethods.wrap_mvwgetnstr(win, y, x, wstr, n);
-            Verify(ret, "mvwgetn_wstr");
-        }
+#endif
         #endregion
 
         #region getyx.c
@@ -597,6 +601,19 @@ namespace CursesSharp
         #endregion
 
         #region insstr.c
+#if HAVE_USE_WIDECHAR
+        internal static void winsnstr(IntPtr win, string str, int n)
+        {
+            int ret = NativeMethods.wrap_wins_nwstr(win, str, n);
+            Verify(ret, "wins_nwstr");
+        }
+
+        internal static void mvwinsnstr(IntPtr win, int y, int x, string str, int n)
+        {
+            int ret = NativeMethods.wrap_mvwins_nwstr(win, y, x, str, n);
+            Verify(ret, "mvwins_nwstr");
+        }
+#else
         internal static void winsnstr(IntPtr win, string str, int n)
         {
             int ret = NativeMethods.wrap_winsnstr(win, str, n);
@@ -608,21 +625,25 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwinsnstr(win, y, x, str, n);
             Verify(ret, "mvwinsnstr");
         }
-
-        internal static void wins_nwstr(IntPtr win, string wstr, int n)
-        {
-            int ret = NativeMethods.wrap_wins_nwstr(win, wstr, n);
-            Verify(ret, "wins_nwstr");
-        }
-
-        internal static void mvwins_nwstr(IntPtr win, int y, int x, string wstr, int n)
-        {
-            int ret = NativeMethods.wrap_mvwins_nwstr(win, y, x, wstr, n);
-            Verify(ret, "mvwins_nwstr");
-        }
+#endif
         #endregion
 
         #region instr.c
+#if HAVE_USE_WIDECHAR
+        internal static int winnstr(IntPtr win, StringBuilder str, int n)
+        {
+            int ret = NativeMethods.wrap_winnwstr(win, str, n);
+            Verify(ret, "winnwstr");
+            return ret;
+        }
+
+        internal static int mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n)
+        {
+            int ret = NativeMethods.wrap_mvwinnwstr(win, y, x, str, n);
+            Verify(ret, "mvwinnwstr");
+            return ret;
+        }
+#else
         internal static int winnstr(IntPtr win, StringBuilder str, int n)
         {
             int ret = NativeMethods.wrap_winnstr(win, str, n);
@@ -636,21 +657,7 @@ namespace CursesSharp
             Verify(ret, "mvwinnstr");
             return ret;
         }
-
-        internal static int winnwstr(IntPtr win, StringBuilder wstr, int n)
-        {
-            int ret = NativeMethods.wrap_winnwstr(win, wstr, n);
-            Verify(ret, "winnwstr");
-            return ret;
-        }
-
-        internal static int mvwinnwstr(IntPtr win, int y, int x, StringBuilder wstr, int n)
-        {
-            int ret = NativeMethods.wrap_mvwinnwstr(win, y, x, wstr, n);
-            Verify(ret, "mvwinnwstr");
-            return ret;
-        }
-
+#endif
         #endregion
 
         #region kernel.c
@@ -723,13 +730,6 @@ namespace CursesSharp
         {
             IntPtr ret = NativeMethods.wrap_keyname(key);
             Verify(ret, "keyname");
-            return Marshal.PtrToStringAnsi(ret);
-        }
-
-        internal static string key_name(char c)
-        {
-            IntPtr ret = NativeMethods.wrap_key_name(c);
-            Verify(ret, "key_name");
             return Marshal.PtrToStringAnsi(ret);
         }
 
@@ -1020,11 +1020,6 @@ namespace CursesSharp
         #endregion
 
         #region wrapper.c
-        internal static bool has_widechar()
-        {
-            return NativeMethods.wrap_has_widechar();
-        }
-
         internal static int LINES()
         {
             return NativeMethods.wrap_LINES();

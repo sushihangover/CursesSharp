@@ -50,14 +50,17 @@ namespace CursesSharp
         #endregion
 
         #region addstr.c
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_waddnstr(IntPtr win, String str, int n);
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_mvwaddnstr(IntPtr win, int y, int x, String str, int n);
+#if HAVE_USE_WIDECHAR
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_waddnwstr(IntPtr win, String str, int n);
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_mvwaddnwstr(IntPtr win, int y, int x, String str, int n);
+#else
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_waddnstr(IntPtr win, String str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_mvwaddnstr(IntPtr win, int y, int x, String str, int n);
+#endif
         #endregion
 
         #region attr.c
@@ -183,14 +186,17 @@ namespace CursesSharp
         #endregion
 
         #region getstr.c
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_wgetnstr(IntPtr win, StringBuilder str, int n);
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_mvwgetnstr(IntPtr win, int y, int x, StringBuilder str, int n);
+#if HAVE_USE_WIDECHAR
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_wgetn_wstr(IntPtr win, StringBuilder wstr, int n);
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_mvwgetn_wstr(IntPtr win, int y, int x, StringBuilder wstr, int n);
+#else
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_wgetnstr(IntPtr win, StringBuilder str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_mvwgetnstr(IntPtr win, int y, int x, StringBuilder str, int n);
+#endif
         #endregion
 
         #region getyx.c
@@ -274,25 +280,31 @@ namespace CursesSharp
         #endregion
 
         #region insstr.c
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_winsnstr(IntPtr win, String str, int n);
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_mvwinsnstr(IntPtr win, int y, int x, String str, int n);
+#if HAVE_USE_WIDECHAR
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_wins_nwstr(IntPtr win, String wstr, int n);
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_mvwins_nwstr(IntPtr win, int y, int x, String wstr, int n);
+#else
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_winsnstr(IntPtr win, String str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_mvwinsnstr(IntPtr win, int y, int x, String str, int n);
+#endif
         #endregion
 
         #region instr.c
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_winnstr(IntPtr win, StringBuilder str, int n);
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        internal static extern int wrap_mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n);
+#if HAVE_USE_WIDECHAR
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_winnwstr(IntPtr win, StringBuilder wstr, int n);
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_mvwinnwstr(IntPtr win, int y, int x, StringBuilder wstr, int n);
+#else
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_winnstr(IntPtr win, StringBuilder str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n);
+#endif
         #endregion
 
         #region kernel.c
@@ -323,8 +335,6 @@ namespace CursesSharp
         #region keyname.c
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_keyname(int key);
-        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
-        internal static extern IntPtr wrap_key_name(char c);
         [DllImport("CursesWrapper")]
         internal static extern Boolean wrap_has_key(int key);
         #endregion
@@ -445,8 +455,6 @@ namespace CursesSharp
         #endregion
 
         #region wrapper.c
-        [DllImport("CursesWrapper")]
-        internal static extern Boolean wrap_has_widechar();
         [DllImport("CursesWrapper")]
         internal static extern int wrap_LINES();
         [DllImport("CursesWrapper")]

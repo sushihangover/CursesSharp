@@ -52,12 +52,6 @@ wrap_keyname(int key)
 	return keyname(key);
 }
 
-WRAP_API const char *
-wrap_key_name(wchar_t c)
-{
-	return key_name(c);
-}
-
 WRAP_API int
 wrap_has_key(int key)
 {

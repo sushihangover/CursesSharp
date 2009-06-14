@@ -115,14 +115,7 @@ namespace CursesSharp
 
         public void AddStr(string str, int n)
         {
-            if (Curses.UseWideChar)
-            {
-                CursesMethods.waddnwstr(this.winptr, str, n);
-            }
-            else
-            {
-                CursesMethods.waddnstr(this.winptr, str, n);
-            }
+            CursesMethods.waddnstr(this.winptr, str, n);
         }
 
         public void AddStr(int y, int x, string str)
@@ -132,14 +125,7 @@ namespace CursesSharp
 
         public void AddStr(int y, int x, string str, int n)
         {
-            if (Curses.UseWideChar)
-            {
-                CursesMethods.mvwaddnwstr(this.winptr, y, x, str, n);
-            }
-            else
-            {
-                CursesMethods.mvwaddnstr(this.winptr, y, x, str, n);
-            }
+            CursesMethods.mvwaddnstr(this.winptr, y, x, str, n);
         }
 
         public void AttrOff(uint attr)
@@ -295,14 +281,7 @@ namespace CursesSharp
         public string GetStr(int n)
         {
             StringBuilder sb = new StringBuilder(n + 1);
-            if (Curses.UseWideChar)
-            {
-                CursesMethods.wgetn_wstr(this.winptr, sb, n);
-            }
-            else
-            {
-                CursesMethods.wgetnstr(this.winptr, sb, n);
-            }
+            CursesMethods.wgetnstr(this.winptr, sb, n);
             return sb.ToString();
         }
 
@@ -314,14 +293,7 @@ namespace CursesSharp
         public string GetStr(int y, int x, int n)
         {
             StringBuilder sb = new StringBuilder(n + 1);
-            if (Curses.UseWideChar)
-            {
-                CursesMethods.mvwgetn_wstr(this.winptr, y, x, sb, n);
-            }
-            else
-            {
-                CursesMethods.mvwgetnstr(this.winptr, y, x, sb, n);
-            }
+            CursesMethods.mvwgetnstr(this.winptr, y, x, sb, n);
             return sb.ToString();
         }
 
@@ -400,14 +372,7 @@ namespace CursesSharp
 
         public void InsStr(string str, int n)
         {
-            if (Curses.UseWideChar)
-            {
-                CursesMethods.wins_nwstr(this.winptr, str, n);
-            }
-            else
-            {
-                CursesMethods.winsnstr(this.winptr, str, n);
-            }
+            CursesMethods.winsnstr(this.winptr, str, n);
         }
 
         public void InsStr(int y, int x, string str)
@@ -417,43 +382,20 @@ namespace CursesSharp
 
         public void InsStr(int y, int x, string str, int n)
         {
-            if (Curses.UseWideChar)
-            {
-                CursesMethods.mvwins_nwstr(this.winptr, y, x, str, n);
-            }
-            else
-            {
-                CursesMethods.mvwinsnstr(this.winptr, y, x, str, n);
-            }
+            CursesMethods.mvwinsnstr(this.winptr, y, x, str, n);
         }
 
         public string InStr(int n)
         {
             StringBuilder sb = new StringBuilder(n + 1);
-            int nOut = 0;
-            if (Curses.UseWideChar)
-            {
-                nOut = CursesMethods.winnstr(this.winptr, sb, n);
-            }
-            else
-            {
-                nOut = CursesMethods.winnwstr(this.winptr, sb, n);
-            }
+            int nOut = CursesMethods.winnstr(this.winptr, sb, n);
             return sb.ToString(0, nOut);
         }
 
         public string InStr(int y, int x, int n)
         {
             StringBuilder sb = new StringBuilder(n + 1);
-            int nOut = 0;
-            if (Curses.UseWideChar)
-            {
-                nOut = CursesMethods.mvwinnstr(this.winptr, y, x, sb, n);
-            }
-            else
-            {
-                nOut = CursesMethods.mvwinnwstr(this.winptr, y, x, sb, n);
-            }
+            int nOut = CursesMethods.mvwinnstr(this.winptr, y, x, sb, n);
             return sb.ToString(0, nOut);
         }
 

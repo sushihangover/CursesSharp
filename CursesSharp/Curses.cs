@@ -39,23 +39,7 @@ namespace CursesSharp
     /// </summary>
     public static partial class Curses
     {
-        private static bool useWideChar = true;
         private static Window stdscr = null;
-
-        /// <summary>
-        /// Returns the status of wide character (UTF-16) support in 
-        /// the curses library wrapper.
-        /// </summary>
-        public static bool HasWideChar
-        {
-            get { return CursesMethods.has_widechar(); }
-        }
-
-        public static bool UseWideChar
-        {
-            get { return useWideChar; }
-            set { useWideChar = value && HasWideChar; }
-        }
 
         public static Window StdScr
         {
@@ -101,8 +85,6 @@ namespace CursesSharp
         {
             if (stdscr != null)
                 throw new InvalidOperationException("Curses is already initialized.");
-
-            UseWideChar = useWideChar;
 
             IntPtr winptr = CursesMethods.initscr();
             stdscr = new Window(winptr, false);
@@ -324,11 +306,6 @@ namespace CursesSharp
         public static string KeyName(int key)
         {
             return CursesMethods.keyname(key);
-        }
-
-        public static string KeyName(char key)
-        {
-            return CursesMethods.key_name(key);
         }
 
         public static bool HasKey(int key)

@@ -76,6 +76,8 @@ wrap_mvwinsnstr(WINDOW *win, int y, int x, char *str, int n)
 	return mvwinsnstr(win, y, x, str, n);
 }
 
+#ifdef HAVE_USE_WIDECHAR
+
 WRAP_API int
 wrap_wins_nwstr(WINDOW *win, wchar_t *wstr, int n)
 {
@@ -87,3 +89,5 @@ wrap_mvwins_nwstr(WINDOW *win, int y, int x, wchar_t *wstr, int n)
 {
 	return mvwins_nwstr(win, y, x, wstr, n);
 }
+
+#endif
