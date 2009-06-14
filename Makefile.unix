@@ -15,8 +15,8 @@ WRAPPER_SRCS	= addch.c addchstr.c addstr.c attr.c beep.c bkgd.c 	\
 		  border.c clear.c color.c debug.c delch.c deleteln.c	\
 		  getch.c getstr.c getyx.c initscr.c inopts.c insch.c	\
 		  insstr.c kernel.c keyname.c move.c outopts.c 		\
-		  overlay.c refresh.c scroll.c touch.c util.c window.c	\
-		  wrapper.c
+		  overlay.c pad.c refresh.c scroll.c touch.c util.c	\
+		  window.c wrapper.c
 WRAPPER_OBJS	= $(WRAPPER_SRCS:%.c=$(OBJ_DIR)/%.o)
 WRAPPER_BIN	= $(BIN_DIR)/libCursesWrapper.so
 
@@ -27,8 +27,8 @@ ATTRGEN_BIN	= $(BIN_DIR)/AttributeGen
 
 CURSHARP_DIR	= CursesSharp
 CURSHARP_SRCS	= Curses.cs CursesMethods.cs CursesStdscr.cs Defs.cs	\
-		  DefsGen.cs Errors.cs NativeMethods.cs	Window.cs	\
-		  Properties/AssemblyInfo.cs
+		  DefsGen.cs Errors.cs NativeMethods.cs	Pad.cs		\
+		  Window.cs WindowBase.cs Properties/AssemblyInfo.cs
 CURSHARP_OBJS	= $(CURSHARP_SRCS:%=$(CURSHARP_DIR)/%)
 CURSHARP_BIN	= $(BIN_DIR)/CursesSharp.dll
 
