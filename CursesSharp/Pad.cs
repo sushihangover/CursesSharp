@@ -26,39 +26,37 @@ using System;
 
 namespace CursesSharp
 {
-    public sealed class Window : WindowBase
+    public sealed class Pad : WindowBase
     {
-        internal Window(IntPtr winptr, bool ownsPtr)
-            :base(winptr, ownsPtr)
+        internal Pad(IntPtr winptr)
+            : base(winptr, true)
         {
         }
 
-        public void Refresh()
+        public override void EchoChar(char ch)
         {
-            CursesMethods.wrefresh(this.Handle);
+            CursesMethods.pechochar(this.Handle, (byte)ch);
         }
 
-        public void NoOutRefresh()
+        public override void EchoChar(uint ch)
         {
-            CursesMethods.wnoutrefresh(this.Handle);
+            CursesMethods.pechochar(this.Handle, ch);
         }
 
-        public Window DerWin(int nlines, int ncols, int begy, int begx)
+        public void Refresh(int py, int px, int sy1, int sx1, int sy2, int sx2)
         {
-            IntPtr newptr = CursesMethods.derwin(this.Handle, nlines, ncols, begy, begx);
-            return new Window(newptr, true);
+            CursesMethods.prefresh(this.Handle, py, px, sy1, sx1, sy2, sx2);
         }
 
-        public Window SubWin(int nlines, int ncols, int begy, int begx)
+        public void NoOutRefresh(int py, int px, int sy1, int sx1, int sy2, int sx2)
         {
-            IntPtr newptr = CursesMethods.subwin(this.Handle, nlines, ncols, begy, begx);
-            return new Window(newptr, true);
+            CursesMethods.pnoutrefresh(this.Handle, py, px, sy1, sx1, sy2, sx2);
         }
 
-        public Window DupWin(int nlines, int ncols, int begy, int begx)
+        public Pad SubPad(int nlines, int ncols, int begy, int begx)
         {
-            IntPtr newptr = CursesMethods.dupwin(this.Handle);
-            return new Window(newptr, true);
+            IntPtr newptr = NativeMethods.wrap_subpad(this.Handle, nlines, ncols, begy, begx);
+            return new Pad(newptr);
         }
     }
 }

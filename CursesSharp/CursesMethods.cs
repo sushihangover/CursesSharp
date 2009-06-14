@@ -745,6 +745,40 @@ namespace CursesSharp
         }
         #endregion
 
+        #region pad.c
+        internal static IntPtr newpad(int nlines, int ncols)
+        {
+            IntPtr ret = NativeMethods.wrap_newpad(nlines, ncols);
+            Verify(ret, "newpad");
+            return ret;
+        }
+
+        internal static IntPtr subpad(IntPtr orig, int nlines, int ncols, int begy, int begx)
+        {
+            IntPtr ret = NativeMethods.wrap_subpad(orig, nlines, ncols, begy, begx);
+            Verify(ret, "subpad");
+            return ret;
+        }
+
+        internal static void prefresh(IntPtr win, int py, int px, int sy1, int sx1, int sy2, int sx2)
+        {
+            int ret = NativeMethods.wrap_prefresh(win, py, px, sy1, sx1, sy2, sx2);
+            Verify(ret, "prefresh");
+        }
+
+        internal static void pnoutrefresh(IntPtr win, int py, int px, int sy1, int sx1, int sy2, int sx2)
+        {
+            int ret = NativeMethods.wrap_pnoutrefresh(win, py, px, sy1, sx1, sy2, sx2);
+            Verify(ret, "pnoutrefresh");
+        }
+
+        internal static void pechochar(IntPtr pad, uint ch)
+        {
+            int ret = NativeMethods.wrap_pechochar(pad, ch);
+            Verify(ret, "pechochar");
+        }
+        #endregion
+
         #region refresh.c
         internal static void wrefresh(IntPtr win)
         {

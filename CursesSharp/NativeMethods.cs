@@ -335,6 +335,19 @@ namespace CursesSharp
         internal static extern int wrap_copywin(IntPtr src_w, IntPtr dst_w, int src_tr, int src_tc, int dst_tr, int dst_tc, int dst_br, int dst_bc, Boolean overlay);
         #endregion
 
+        #region pad.c
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_newpad(int nlines, int ncols);
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_subpad(IntPtr orig, int nlines, int ncols, int begy, int begx);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_prefresh(IntPtr win, int py, int px, int sy1, int sx1, int sy2, int sx2);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_pnoutrefresh(IntPtr win, int py, int px, int sy1, int sx1, int sy2, int sx2);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_pechochar(IntPtr pad, uint ch);
+        #endregion
+
         #region refresh.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_wrefresh(IntPtr win);

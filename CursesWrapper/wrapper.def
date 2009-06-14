@@ -138,6 +138,12 @@ EXPORTS
 	wrap_overlay
 	wrap_overwrite
 	wrap_copywin
+
+	wrap_newpad
+	wrap_subpad
+	wrap_prefresh
+	wrap_pnoutrefresh
+	wrap_pechochar
 	
 	wrap_wrefresh
 	wrap_wnoutrefresh

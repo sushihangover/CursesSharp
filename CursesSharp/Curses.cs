@@ -366,5 +366,11 @@ namespace CursesSharp
             IntPtr winptr = CursesMethods.newwin(nlines, ncols, begy, begx);
             return new Window(winptr, true);
         }
+
+        public static Pad NewPad(int nlines, int ncols)
+        {
+            IntPtr winptr = CursesMethods.newpad(nlines, ncols);
+            return new Pad(winptr);
+        }
     }
 }
