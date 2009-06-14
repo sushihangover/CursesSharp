@@ -345,6 +345,34 @@ namespace CursesSharp
             CursesMethods.getmaxyx(this.winptr, out y, out x);
         }
 
+        public uint InCh()
+        {
+            return CursesMethods.winch(this.winptr);
+        }
+
+        public uint InCh(int y, int x)
+        {
+            return CursesMethods.mvwinch(this.winptr, y, x);
+        }
+
+        public uint[] InChStr(int n)
+        {
+            uint[] buf = new uint[n + 1];
+            int nOut = CursesMethods.winchnstr(this.winptr, buf, n);
+            uint[] ret = new uint[nOut];
+            Array.Copy(buf, ret, nOut);
+            return ret;
+        }
+
+        public uint[] InChStr(int y, int x, int n)
+        {
+            uint[] buf = new uint[n + 1];
+            int nOut = CursesMethods.mvwinchnstr(this.winptr, y, x, buf, n);
+            uint[] ret = new uint[nOut];
+            Array.Copy(buf, ret, nOut);
+            return ret;
+        }
+
         public void InsCh(char ch)
         {
             CursesMethods.winsch(this.winptr, (byte)ch);
@@ -397,6 +425,36 @@ namespace CursesSharp
             {
                 CursesMethods.mvwinsnstr(this.winptr, y, x, str, n);
             }
+        }
+
+        public string InStr(int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            int nOut = 0;
+            if (Curses.UseWideChar)
+            {
+                nOut = CursesMethods.winnstr(this.winptr, sb, n);
+            }
+            else
+            {
+                nOut = CursesMethods.winnwstr(this.winptr, sb, n);
+            }
+            return sb.ToString(0, nOut);
+        }
+
+        public string InStr(int y, int x, int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            int nOut = 0;
+            if (Curses.UseWideChar)
+            {
+                nOut = CursesMethods.mvwinnstr(this.winptr, y, x, sb, n);
+            }
+            else
+            {
+                nOut = CursesMethods.mvwinnwstr(this.winptr, y, x, sb, n);
+            }
+            return sb.ToString(0, nOut);
         }
 
         public bool IntrFlush

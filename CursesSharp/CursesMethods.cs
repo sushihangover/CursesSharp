@@ -422,6 +422,39 @@ namespace CursesSharp
         }
         #endregion
 
+        #region inch.c
+        internal static uint winch(IntPtr win)
+        {
+            uint ret = NativeMethods.wrap_winch(win);
+            Verify((int)ret, "winch");
+            return ret;
+        }
+
+        internal static uint mvwinch(IntPtr win, int y, int x)
+        {
+            uint ret = NativeMethods.wrap_mvwinch(win, y, x);
+            Verify((int)ret, "mvwinch");
+            return ret;
+        }
+        #endregion
+
+        #region inchstr.c
+        internal static int winchnstr(IntPtr win, uint[] ch, int n)
+        {
+            int ret = NativeMethods.wrap_winchnstr(win, ch, n);
+            Verify(ret, "winchnstr");
+            return ret;
+        }
+
+        internal static int mvwinchnstr(IntPtr win, int y, int x, uint[] ch, int n)
+        {
+            int ret = NativeMethods.wrap_mvwinchnstr(win, y, x, ch, n);
+            Verify(ret, "mvwinchnstr");
+            return ret;
+        }
+
+        #endregion
+
         #region initscr.c
         internal static IntPtr initscr()
         {
@@ -587,6 +620,37 @@ namespace CursesSharp
             int ret = NativeMethods.wrap_mvwins_nwstr(win, y, x, wstr, n);
             Verify(ret, "mvwins_nwstr");
         }
+        #endregion
+
+        #region instr.c
+        internal static int winnstr(IntPtr win, StringBuilder str, int n)
+        {
+            int ret = NativeMethods.wrap_winnstr(win, str, n);
+            Verify(ret, "winnstr");
+            return ret;
+        }
+
+        internal static int mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n)
+        {
+            int ret = NativeMethods.wrap_mvwinnstr(win, y, x, str, n);
+            Verify(ret, "mvwinnstr");
+            return ret;
+        }
+
+        internal static int winnwstr(IntPtr win, StringBuilder wstr, int n)
+        {
+            int ret = NativeMethods.wrap_winnwstr(win, wstr, n);
+            Verify(ret, "winnwstr");
+            return ret;
+        }
+
+        internal static int mvwinnwstr(IntPtr win, int y, int x, StringBuilder wstr, int n)
+        {
+            int ret = NativeMethods.wrap_mvwinnwstr(win, y, x, wstr, n);
+            Verify(ret, "mvwinnwstr");
+            return ret;
+        }
+
         #endregion
 
         #region kernel.c

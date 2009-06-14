@@ -204,6 +204,20 @@ namespace CursesSharp
         internal static extern void wrap_getmaxyx(IntPtr win, out int y, out int x);
         #endregion
 
+        #region inch.c
+        [DllImport("CursesWrapper")]
+        internal static extern uint wrap_winch(IntPtr win);
+        [DllImport("CursesWrapper")]
+        internal static extern uint wrap_mvwinch(IntPtr win, int y, int x);
+        #endregion
+
+        #region inchstr.c
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_winchnstr(IntPtr win, uint[] ch, int n);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_mvwinchnstr(IntPtr win, int y, int x, uint[] ch, int n);
+        #endregion
+
         #region initscr.c
         [DllImport("CursesWrapper")]
         internal static extern IntPtr wrap_initscr();
@@ -268,6 +282,17 @@ namespace CursesSharp
         internal static extern int wrap_wins_nwstr(IntPtr win, String wstr, int n);
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         internal static extern int wrap_mvwins_nwstr(IntPtr win, int y, int x, String wstr, int n);
+        #endregion
+
+        #region instr.c
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_winnstr(IntPtr win, StringBuilder str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
+        internal static extern int wrap_winnwstr(IntPtr win, StringBuilder wstr, int n);
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
+        internal static extern int wrap_mvwinnwstr(IntPtr win, int y, int x, StringBuilder wstr, int n);
         #endregion
 
         #region kernel.c

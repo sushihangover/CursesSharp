@@ -59,16 +59,19 @@ int main(int argc, char **argv)
 	fprintf(OUT, "\tpublic static class Attrs\n");
 	fprintf(OUT, "\t{\n");
 	GEN_ATTR(NORMAL);
+	GEN_ATTR(ALTCHARSET);
+	GEN_ATTR(BLINK);
+	GEN_ATTR(BOLD);
+	GEN_ATTR(DIM);
+	GEN_ATTR(INVIS);
+	GEN_ATTR(PROTECT);
+	GEN_ATTR(REVERSE);
 	GEN_ATTR(STANDOUT);
 	GEN_ATTR(UNDERLINE);
-	GEN_ATTR(REVERSE);
-	GEN_ATTR(BLINK);
-	GEN_ATTR(DIM);
-	GEN_ATTR(BOLD);
-	GEN_ATTR(PROTECT);
-	GEN_ATTR(INVIS);
-	GEN_ATTR(ALTCHARSET);
+	fprintf(OUT, "\t\t// Attribute masks\n");
+	GEN_ATTR(ATTRIBUTES);
 	GEN_ATTR(CHARTEXT);
+	GEN_ATTR(COLOR);
 	fprintf(OUT, "\t}\n");
 
 	fprintf(OUT, "\n");
@@ -116,10 +119,10 @@ int main(int argc, char **argv)
 	fprintf(OUT, "\tpublic static class Colors\n");
 	fprintf(OUT, "\t{\n");
 	GEN_COLOR(BLACK);
-	GEN_COLOR(RED);
-	GEN_COLOR(GREEN);
 	GEN_COLOR(BLUE);
+	GEN_COLOR(GREEN);
 	GEN_COLOR(CYAN);
+	GEN_COLOR(RED);
 	GEN_COLOR(MAGENTA);
 	GEN_COLOR(YELLOW);
 	GEN_COLOR(WHITE);
@@ -226,6 +229,9 @@ int main(int argc, char **argv)
 	fprintf(OUT, "\t\t{\n");
 	fprintf(OUT, "\t\t\treturn Keys.F0 + n;\n");
 	fprintf(OUT, "\t\t}\n");
+	fprintf(OUT, "\n");
+	GEN_KEY(MIN);
+	GEN_KEY(MAX);
 	fprintf(OUT, "\t}\n");
 
 	fprintf(OUT, "\n");
@@ -248,6 +254,11 @@ int main(int argc, char **argv)
 	GEN_MMASK(BUTTON3_CLICKED);
 	GEN_MMASK(BUTTON3_DOUBLE_CLICKED);
 	GEN_MMASK(BUTTON3_TRIPLE_CLICKED);
+	GEN_MMASK(BUTTON4_PRESSED);
+	GEN_MMASK(BUTTON4_RELEASED);
+	GEN_MMASK(BUTTON4_CLICKED);
+	GEN_MMASK(BUTTON4_DOUBLE_CLICKED);
+	GEN_MMASK(BUTTON4_TRIPLE_CLICKED);
 	GEN_MMASK(BUTTON_SHIFT);
 	GEN_MMASK(BUTTON_CTRL);
 	GEN_MMASK(BUTTON_ALT);
