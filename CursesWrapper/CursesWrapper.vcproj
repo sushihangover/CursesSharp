@@ -64,7 +64,7 @@
 				AdditionalDependencies="pdcurses.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\pdcurses&quot;"
-				ModuleDefinitionFile="wrapper.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -141,7 +141,7 @@
 				AdditionalDependencies="pdcurses.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\pdcurses&quot;"
-				ModuleDefinitionFile="wrapper.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -243,6 +243,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\inch.c"
+				>
+			</File>
+			<File
+				RelativePath=".\inchstr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\initscr.c"
 				>
 			</File>
@@ -256,6 +264,10 @@
 			</File>
 			<File
 				RelativePath=".\insstr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\instr.c"
 				>
 			</File>
 			<File
@@ -307,7 +319,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wrapper.def"
+				RelativePath=".\wrapper.h"
 				>
 			</File>
 		</Filter>

@@ -43,7 +43,7 @@
 	PDC_debug				-	-	-
 */
 
-void
+WRAP_API void
 wrap_traceon(void)
 {
 #ifdef PDCDEBUG
@@ -51,7 +51,7 @@ wrap_traceon(void)
 #endif
 }
 
-void
+WRAP_API void
 wrap_traceoff(void)
 {
 #ifdef PDCDEBUG

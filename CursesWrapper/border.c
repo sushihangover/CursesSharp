@@ -66,7 +66,7 @@
 	mvwvline_set				Y
 */
 
-int 
+WRAP_API int
 wrap_wborder(WINDOW *win, unsigned int ls, unsigned int rs, unsigned int ts, 
 			 unsigned int bs, unsigned int tl, unsigned int tr, unsigned int bl,
 			 unsigned int br)
@@ -74,31 +74,31 @@ wrap_wborder(WINDOW *win, unsigned int ls, unsigned int rs, unsigned int ts,
 	return wborder(win, ls, rs, ts, bs, tl, tr, bl, br);
 }
 
-int 
+WRAP_API int
 wrap_box(WINDOW *win, unsigned int verch, unsigned int horch)
 {
 	return box(win, verch, horch);
 }
 
-int 
+WRAP_API int
 wrap_whline(WINDOW *win, unsigned int ch, int n)
 {
 	return whline(win, ch, n);
 }
 
-int 
+WRAP_API int
 wrap_wvline(WINDOW *win, unsigned int ch, int n)
 {
 	return wvline(win, ch, n);
 }
 
-int 
+WRAP_API int
 wrap_mvwhline(WINDOW *win, int y, int x, unsigned int ch, int n)
 {
 	return mvwhline(win, y, x, ch, n);
 }
 
-int 
+WRAP_API int
 wrap_mvwvline(WINDOW *win, int y, int x, unsigned int ch, int n)
 {
 	return mvwvline(win, y, x, ch, n);

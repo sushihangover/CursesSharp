@@ -55,19 +55,19 @@
 	wgetbkgrnd				Y
 */
 
-unsigned int
+WRAP_API unsigned int
 wrap_getbkgd(WINDOW *win)
 {
 	return getbkgd(win);
 }
 
-int 
+WRAP_API int
 wrap_wbkgd(WINDOW *win, unsigned int ch)
 {
 	return wbkgd(win, ch);
 }
 
-void 
+WRAP_API void
 wrap_wbkgdset(WINDOW *win, unsigned int ch)
 {
 	wbkgdset(win, ch);

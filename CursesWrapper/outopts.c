@@ -50,43 +50,43 @@
 	raw_output				-	-	-
 */
 
-int 
+WRAP_API int
 wrap_clearok(WINDOW *win, int bf)
 {
 	return clearok(win, bf);
 }
 
-int 
+WRAP_API int
 wrap_idlok(WINDOW *win, int bf)
 {
 	return idlok(win, bf);
 }
 
-void 
+WRAP_API void
 wrap_idcok(WINDOW *win, int bf)
 {
 	idcok(win, bf);
 }
 
-void 
+WRAP_API void
 wrap_immedok(WINDOW *win, int bf)
 {
 	immedok(win, bf);
 }
 
-int 
+WRAP_API int
 wrap_leaveok(WINDOW *win, int bf)
 {
 	return leaveok(win, bf);
 }
 
-int 
+WRAP_API int
 wrap_wsetscrreg(WINDOW *win, int top, int bot)
 {
 	return wsetscrreg(win, top, bot);
 }
 
-int 
+WRAP_API int
 wrap_scrollok(WINDOW *win, int bf)
 {
 	return scrollok(win, bf);

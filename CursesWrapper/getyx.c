@@ -67,25 +67,25 @@
 	getmaxx					-	-	-
 */
 
-void 
+WRAP_API void
 wrap_getyx(WINDOW *win, int *y, int *x)
 {
 	getyx(win, *y, *x);
 }
 
-void 
+WRAP_API void
 wrap_getparyx(WINDOW *win, int *y, int *x)
 {
 	getparyx(win, *y, *x);
 }
 
-void 
+WRAP_API void
 wrap_getbegyx(WINDOW *win, int *y, int *x)
 {
 	getbegyx(win, *y, *x);
 }
 
-void 
+WRAP_API void
 wrap_getmaxyx(WINDOW *win, int *y, int *x)
 {
 	getmaxyx(win, *y, *x);

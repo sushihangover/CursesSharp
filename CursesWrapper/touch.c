@@ -44,37 +44,37 @@
 	is_wintouched				Y	-      4.0
 */
 
-int 
+WRAP_API int
 wrap_touchwin(WINDOW *win)
 {
 	return touchwin(win);
 }
 
-int 
+WRAP_API int
 wrap_touchline(WINDOW *win, int start, int count)
 {
 	return touchline(win, start, count);
 }
 
-int 
+WRAP_API int
 wrap_untouchwin(WINDOW *win)
 {
 	return untouchwin(win);
 }
 
-int 
+WRAP_API int
 wrap_wtouchln(WINDOW *win, int y, int n, int changed)
 {
 	return wtouchln(win, y, n, changed);
 }
 
-int 
+WRAP_API int
 wrap_is_linetouched(WINDOW *win, int line)
 {
 	return is_linetouched(win, line);
 }
 
-int 
+WRAP_API int
 wrap_is_wintouched(WINDOW *win)
 {
 	return is_wintouched(win);

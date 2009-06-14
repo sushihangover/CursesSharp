@@ -57,25 +57,25 @@
 	PDC_wcstombs				-	-	-
 */
 
-const char *
+WRAP_API const char *
 wrap_unctrl(unsigned int c)
 {
 	return unctrl(c);
 }
 
-void 
+WRAP_API void
 wrap_filter(void)
 {
 	filter();
 }
 
-void 
+WRAP_API void
 wrap_use_env(int x)
 {
 	use_env(x);
 }
 
-int 
+WRAP_API int
 wrap_delay_output(int ms)
 {
 	return delay_output(ms);

@@ -56,25 +56,25 @@
 	PDC_get_key_modifiers			-	-	-
 */
 
-int
+WRAP_API int
 wrap_wgetch(WINDOW* win)
 {
 	return wgetch(win);
 }
 
-int 
+WRAP_API int
 wrap_mvwgetch(WINDOW *win, int y, int x)
 {
 	return mvwgetch(win, y, x);
 }
 
-int 
+WRAP_API int
 wrap_ungetch(int ch)
 {
 	return ungetch(ch);
 }
 
-int 
+WRAP_API int
 wrap_flushinp(void)
 {
 	return flushinp();

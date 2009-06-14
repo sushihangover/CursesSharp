@@ -52,67 +52,67 @@
 	PDC_set_line_color			-	-       -
 */
 
-unsigned int
+WRAP_API unsigned int
 wrap_COLOR_PAIR(int n)
 {
 	return COLOR_PAIR(n);
 }
 
-short
+WRAP_API short
 wrap_PAIR_NUMBER(unsigned int n)
 {
 	return (short)(PAIR_NUMBER(n));
 }
 
-int
+WRAP_API int
 wrap_start_color(void)
 {
 	return start_color();
 }
 
-int
+WRAP_API int
 wrap_init_pair(short color, short fg, short bg)
 {
 	return init_pair(color, fg, bg);
 }
 
-int
+WRAP_API int
 wrap_init_color(short color, short red, short green, short blue)
 {
 	return init_color(color, red, green, blue);
 }
 
-int 
+WRAP_API int
 wrap_color_content(short color, short *red, short *green, short *blue)
 {
 	return color_content(color, red, green, blue);
 }
 
-int 
+WRAP_API int
 wrap_pair_content(short pair, short *fg, short *bg)
 {
 	return pair_content(pair, fg, bg);
 }
 
-int
+WRAP_API int
 wrap_has_colors(void)
 {
 	return has_colors();
 }
 
-int 
+WRAP_API int
 wrap_can_change_color(void)
 {
 	return can_change_color();
 }
 
-int 
+WRAP_API int
 wrap_assume_default_colors(int f, int b)
 {
 	return assume_default_colors(f, b);
 }
 
-int 
+WRAP_API int
 wrap_use_default_colors(void)
 {
 	return use_default_colors();

@@ -55,13 +55,13 @@
 	mvwins_wch				Y
 */
 
-int 
+WRAP_API int
 wrap_winsch(WINDOW *win, unsigned int ch)
 {
 	return winsch(win, ch);
 }
 
-int 
+WRAP_API int
 wrap_mvwinsch(WINDOW *win, int y, int x, unsigned int ch)
 {
 	return mvwinsch(win, y, x, ch);

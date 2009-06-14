@@ -35,13 +35,13 @@
 	flash					Y	Y	Y
 */
 
-int
+WRAP_API int
 wrap_beep(void)
 {
 	return beep();
 }
 
-int
+WRAP_API int
 wrap_flash(void)
 {
 	return flash();

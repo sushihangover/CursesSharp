@@ -64,25 +64,25 @@
 	mvwaddnwstr				Y
 */
 
-int
+WRAP_API int
 wrap_waddnstr(WINDOW *win, char *str, int n)
 {
 	return waddnstr(win, str, n);
 }
 
-int
+WRAP_API int
 wrap_mvwaddnstr(WINDOW *win, int y, int x, char *str, int n)
 {
 	return mvwaddnstr(win, y, x, str, n);
 }
 
-int
+WRAP_API int
 wrap_waddnwstr(WINDOW *win, wchar_t *str, int n)
 {
 	return waddnwstr(win, str, n);
 }
 
-int
+WRAP_API int
 wrap_mvwaddnwstr(WINDOW *win, int y, int x, wchar_t *str, int n)
 {
 	return mvwaddnwstr(win, y, x, str, n);

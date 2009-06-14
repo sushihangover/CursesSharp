@@ -90,55 +90,55 @@
 	getattrs				-
 */
 
-int
+WRAP_API int
 wrap_wattroff(WINDOW *win, unsigned int attrs)
 {
 	return wattroff(win, attrs);
 }
 
-int
+WRAP_API int
 wrap_wattron(WINDOW *win, unsigned int attrs)
 {
 	return wattron(win, attrs);
 }
 
-int
+WRAP_API int
 wrap_wattrset(WINDOW *win, unsigned int attrs)
 {
 	return wattrset(win, attrs);
 }
 
-int
+WRAP_API int
 wrap_wstandend(WINDOW* win)
 {
 	return wstandend(win);
 }
 
-int
+WRAP_API int
 wrap_wstandout(WINDOW* win)
 {
 	return wstandout(win);
 }
 
-int 
+WRAP_API int
 wrap_wcolor_set(WINDOW *win, short color_pair)
 {
 	return wcolor_set(win, color_pair, 0);
 }
 
-int 
+WRAP_API int
 wrap_wattr_get(WINDOW *win, unsigned int *attrs, short *color_pair)
 {
 	return wattr_get(win, attrs, color_pair, 0);
 }
 
-int 
+WRAP_API int
 wrap_wchgat(WINDOW *win, int n, unsigned int attr, short color)
 {
 	return wchgat(win, n, attr, color, 0);
 }
 
-int 
+WRAP_API int
 wrap_mvwchgat(WINDOW *win, int y, int x, int n, unsigned int attr, short color)
 {
 	return mvwchgat(win, y, x, n, attr, color, 0);

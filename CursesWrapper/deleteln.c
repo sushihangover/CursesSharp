@@ -52,19 +52,19 @@
 	mvwinsertln				-	-	-
 */
 
-int 
+WRAP_API int
 wrap_wdeleteln(WINDOW *win)
 {
 	return wdeleteln(win);
 }
 
-int 
+WRAP_API int
 wrap_winsdelln(WINDOW *win, int n)
 {
 	return winsdelln(win, n);
 }
 
-int 
+WRAP_API int
 wrap_winsertln(WINDOW *win)
 {
 	return winsertln(win);

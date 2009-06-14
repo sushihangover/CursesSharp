@@ -55,13 +55,13 @@
 	mvwadd_wchnstr				Y
 */
 
-int
+WRAP_API int
 wrap_waddchnstr(WINDOW *win, unsigned int *chstr, int n)
 {
 	return waddchnstr(win, (chtype*)chstr, n);
 }
 
-int
+WRAP_API int
 wrap_mvwaddchnstr(WINDOW *win, int y, int x, unsigned int *chstr, int n)
 {
 	return mvwaddchnstr(win, y, x, (chtype*)chstr, n);

@@ -46,19 +46,19 @@
 	has_key					-	-	-
 */
 
-const char *
+WRAP_API const char *
 wrap_keyname(int key)
 {
 	return keyname(key);
 }
 
-const char *
+WRAP_API const char *
 wrap_key_name(wchar_t c)
 {
 	return key_name(c);
 }
 
-int
+WRAP_API int
 wrap_has_key(int key)
 {
 	return has_key(key);

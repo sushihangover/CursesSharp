@@ -71,67 +71,67 @@
 	PDC_sync				-	-	-
 */
 
-WINDOW *
+WRAP_API WINDOW *
 wrap_newwin(int nlines, int ncols, int begy, int begx)
 {
 	return newwin(nlines, ncols, begy, begx);
 }
 
-WINDOW *
+WRAP_API WINDOW *
 wrap_derwin(WINDOW* orig, int nlines, int ncols, int begy, int begx)
 {
 	return derwin(orig, nlines, ncols, begy, begx);
 }
 
-WINDOW *
+WRAP_API WINDOW *
 wrap_subwin(WINDOW* orig, int nlines, int ncols, int begy, int begx)
 {
 	return subwin(orig, nlines, ncols, begy, begx);
 }
 
-WINDOW *
+WRAP_API WINDOW *
 wrap_dupwin(WINDOW *win)
 {
 	return dupwin(win);
 }
 
-int 
+WRAP_API int
 wrap_delwin(WINDOW *win)
 {
 	return delwin(win);
 }
 
-int 
+WRAP_API int
 wrap_mvwin(WINDOW *win, int y, int x)
 {
 	return mvwin(win, y, x);
 }
 
-int 
+WRAP_API int
 wrap_mvderwin(WINDOW *win, int pary, int parx)
 {
 	return mvderwin(win, pary, parx);
 }
 
-int 
+WRAP_API int
 wrap_syncok(WINDOW *win, int bf)
 {
 	return syncok(win, bf);
 }
 
-void 
+WRAP_API void
 wrap_wsyncup(WINDOW *win)
 {
 	wsyncup(win);
 }
 
-void 
+WRAP_API void
 wrap_wcursyncup(WINDOW *win)
 {
 	wcursyncup(win);
 }
 
-void 
+WRAP_API void
 wrap_wsyncdown(WINDOW *win)
 {
 	wsyncdown(win);

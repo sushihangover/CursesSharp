@@ -63,67 +63,67 @@
 	saveterm				-
 */
 
-int 
+WRAP_API int
 wrap_def_prog_mode(void)
 {
 	return def_prog_mode();
 }
 
-int 
+WRAP_API int
 wrap_def_shell_mode(void)
 {
 	return def_shell_mode();
 }
 
-int 
+WRAP_API int
 wrap_reset_prog_mode(void)
 {
 	return reset_prog_mode();
 }
 
-int 
+WRAP_API int
 wrap_reset_shell_mode(void)
 {
 	return reset_shell_mode();
 }
 
-int 
+WRAP_API int
 wrap_resetty(void)
 {
 	return resetty();
 }
 
-int 
+WRAP_API int
 wrap_savetty(void)
 {
 	return savetty();
 }
 
-void 
+WRAP_API void
 wrap_getsyx(int *y, int *x)
 {
 	getsyx(*y, *x);
 }
 
-void 
+WRAP_API void
 wrap_setsyx(int y, int x)
 {
 	setsyx(y, x);
 }
 
-int 
+WRAP_API int
 wrap_ripoffline(int line, int (*init)(WINDOW *, int))
 {
 	return ripoffline(line, init);
 }
 
-int 
+WRAP_API int
 wrap_napms(int ms)
 {
 	return napms(ms);
 }
 
-int 
+WRAP_API int
 wrap_curs_set(int visibility)
 {
 	return curs_set(visibility);

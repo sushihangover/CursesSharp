@@ -70,103 +70,103 @@
 	nocrmode				-
 */
 
-int
+WRAP_API int
 wrap_cbreak(void)
 {
 	return cbreak();
 }
 
-int
+WRAP_API int
 wrap_nocbreak(void)
 {
 	return nocbreak();
 }
 
-int
+WRAP_API int
 wrap_echo(void)
 {
 	return echo();
 }
 
-int
+WRAP_API int
 wrap_noecho(void)
 {
 	return noecho();
 }
 
-int 
+WRAP_API int
 wrap_halfdelay(int tenths)
 {
 	return halfdelay(tenths);
 }
 
-int
+WRAP_API int
 wrap_intrflush(WINDOW *win, int bf)
 {
 	return intrflush(win, bf);
 }
 
-int
+WRAP_API int
 wrap_keypad(WINDOW *win, int bf)
 {
 	return keypad(win, bf);
 }
 
-int
+WRAP_API int
 wrap_meta(WINDOW *win, int bf)
 {
 	return meta(win, bf);
 }
 
-int
+WRAP_API int
 wrap_nl(void)
 {
 	return nl();
 }
 
-int
+WRAP_API int
 wrap_nonl(void)
 {
 	return nonl();
 }
 
-int
+WRAP_API int
 wrap_nodelay(WINDOW *win, int bf)
 {
 	return nodelay(win, bf);
 }
 
-int
+WRAP_API int
 wrap_raw(void)
 {
 	return raw();
 }
 
-int
+WRAP_API int
 wrap_noraw(void)
 {
 	return noraw();
 }
 
-void
+WRAP_API void
 wrap_qiflush(void)
 {
 	qiflush();
 }
 
-void
+WRAP_API void
 wrap_noqiflush(void)
 {
 	noqiflush();
 }
 
-int
+WRAP_API int
 wrap_notimeout(WINDOW *win, int bf)
 {
 	return notimeout(win, bf);
 }
 
-void
+WRAP_API void
 wrap_wtimeout(WINDOW *win, int delay)
 {
 	wtimeout(win, delay);

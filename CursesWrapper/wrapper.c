@@ -20,37 +20,37 @@
 
 #include "wrapper.h"
 
-int
+WRAP_API int
 wrap_has_widechar(void)
 {
 	return sizeof(wchar_t) == 2;
 }
 
-int
+WRAP_API int
 wrap_LINES(void)
 {
 	return LINES;
 }
 
-int
+WRAP_API int
 wrap_COLS(void)
 {
 	return COLS;
 }
 
-int
+WRAP_API int
 wrap_COLORS(void)
 {
 	return COLORS;
 }
 
-int
+WRAP_API int
 wrap_COLOR_PAIRS(void)
 {
 	return COLOR_PAIRS;
 }
 
-int
+WRAP_API int
 wrap_TABSIZE(void)
 {
 	return TABSIZE;
@@ -58,134 +58,6 @@ wrap_TABSIZE(void)
 
 
 
-
-/*
-  Name:								inch
-
-  Synopsis:
-	chtype inch(void);
-	chtype winch(WINDOW *win);
-	chtype mvinch(int y, int x);
-	chtype mvwinch(WINDOW *win, int y, int x);
-
-	int in_wch(cchar_t *wcval);
-	int win_wch(WINDOW *win, cchar_t *wcval);
-	int mvin_wch(int y, int x, cchar_t *wcval);
-	int mvwin_wch(WINDOW *win, int y, int x, cchar_t *wcval);
-
-  Description:
-	The inch() functions retrieve the character and attribute from 
-	the current or specified window position, in the form of a 
-	chtype. If a NULL window is specified, (chtype)ERR is returned.
-
-	The in_wch() functions are the wide-character versions; instead 
-	of returning a chtype, they store a cchar_t at the address 
-	specified by wcval, and return OK or ERR. (No value is stored 
-	when ERR is returned.) Note that in PDCurses, chtype and cchar_t 
-	are the same.
-
-  Portability				     X/Open    BSD    SYS V
-	inch					Y	Y	Y
-	winch					Y	Y	Y
-	mvinch					Y	Y	Y
-	mvwinch					Y	Y	Y
-	in_wch					Y
-	win_wch					Y
-	mvin_wch				Y
-	mvwin_wch				Y
-*/
-
-/*
-  Name:								inchstr
-
-  Synopsis:
-	int inchstr(chtype *ch);
-	int inchnstr(chtype *ch, int n);
-	int winchstr(WINDOW *win, chtype *ch);
-	int winchnstr(WINDOW *win, chtype *ch, int n);
-	int mvinchstr(int y, int x, chtype *ch);
-	int mvinchnstr(int y, int x, chtype *ch, int n);
-	int mvwinchstr(WINDOW *, int y, int x, chtype *ch);
-	int mvwinchnstr(WINDOW *, int y, int x, chtype *ch, int n);
-
-	int in_wchstr(cchar_t *wch);
-	int in_wchnstr(cchar_t *wch, int n);
-	int win_wchstr(WINDOW *win, cchar_t *wch);
-	int win_wchnstr(WINDOW *win, cchar_t *wch, int n);
-	int mvin_wchstr(int y, int x, cchar_t *wch);
-	int mvin_wchnstr(int y, int x, cchar_t *wch, int n);
-	int mvwin_wchstr(WINDOW *win, int y, int x, cchar_t *wch);
-	int mvwin_wchnstr(WINDOW *win, int y, int x, cchar_t *wch, int n);
-
-  Return Value:
-	All functions return the number of elements read, or ERR on 
-	error.
-
-  Portability				     X/Open    BSD    SYS V
-	inchstr					Y	-      4.0
-	winchstr				Y	-      4.0
-	mvinchstr				Y	-      4.0
-	mvwinchstr				Y	-      4.0
-	inchnstr				Y	-      4.0
-	winchnstr				Y	-      4.0
-	mvinchnstr				Y	-      4.0
-	mvwinchnstr				Y	-      4.0
-	in_wchstr				Y
-	win_wchstr				Y
-	mvin_wchstr				Y
-	mvwin_wchstr				Y
-	in_wchnstr				Y
-	win_wchnstr				Y
-	mvin_wchnstr				Y
-	mvwin_wchnstr				Y
-*/
-
-/*
-  Name:								instr
-
-  Synopsis:
-	int instr(char *str);
-	int innstr(char *str, int n);
-	int winstr(WINDOW *win, char *str);
-	int winnstr(WINDOW *win, char *str, int n);
-	int mvinstr(int y, int x, char *str);
-	int mvinnstr(int y, int x, char *str, int n);
-	int mvwinstr(WINDOW *win, int y, int x, char *str);
-	int mvwinnstr(WINDOW *win, int y, int x, char *str, int n);
-
-	int inwstr(wchar_t *wstr);
-	int innwstr(wchar_t *wstr, int n);
-	int winwstr(WINDOW *win, wchar_t *wstr);
-	int winnwstr(WINDOW *win, wchar_t *wstr, int n);
-	int mvinwstr(int y, int x, wchar_t *wstr);
-	int mvinnwstr(int y, int x, wchar_t *wstr, int n);
-	int mvwinwstr(WINDOW *win, int y, int x, wchar_t *wstr);
-	int mvwinnwstr(WINDOW *win, int y, int x, wchar_t *wstr, int n);
-
-  Return Value:
-	Upon successful completion, innstr(), mvinnstr(), mvwinnstr() 
-	and winnstr() return the number of characters actually read into
-	the string; instr(), mvinstr(), mvwinstr() and winstr() return 
-	OK. Otherwise, all these functions return ERR.
-
-  Portability				     X/Open    BSD    SYS V
-	instr					Y	-      4.0
-	winstr					Y	-      4.0
-	mvinstr					Y	-      4.0
-	mvwinstr				Y	-      4.0
-	innstr					Y	-      4.0
-	winnstr					Y	-      4.0
-	mvinnstr				Y	-      4.0
-	mvwinnstr				Y	-      4.0
-	inwstr					Y
-	winwstr					Y
-	mvinwstr				Y
-	mvwinwstr				Y
-	innwstr					Y
-	winnwstr				Y
-	mvinnwstr				Y
-	mvwinnwstr				Y
-*/
 
 /*
   Name:								mouse

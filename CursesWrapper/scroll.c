@@ -37,13 +37,13 @@
 	wscrl					Y	-      4.0
 */
 
-int 
+WRAP_API int
 wrap_scroll(WINDOW *win)
 {
 	return scroll(win);
 }
 
-int 
+WRAP_API int
 wrap_wscrl(WINDOW *win, int n)
 {
 	return wscrl(win, n);

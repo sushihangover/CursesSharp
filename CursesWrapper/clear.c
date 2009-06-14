@@ -47,25 +47,25 @@
 	wclrtoeol				Y	Y	Y
 */
 
-int 
+WRAP_API int
 wrap_wclear(WINDOW *win)
 {
 	return wclear(win);
 }
 
-int 
+WRAP_API int
 wrap_werase(WINDOW *win)
 {
 	return werase(win);
 }
 
-int 
+WRAP_API int
 wrap_wclrtobot(WINDOW *win)
 {
 	return wclrtobot(win);
 }
 
-int 
+WRAP_API int
 wrap_wclrtoeol(WINDOW *win)
 {
 	return wclrtoeol(win);

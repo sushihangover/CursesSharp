@@ -65,25 +65,25 @@
 	mvwgetn_wstr				Y
 */
 
-int 
+WRAP_API int
 wrap_wgetnstr(WINDOW *win, char *str, int n)
 {
 	return wgetnstr(win, str, n);
 }
 
-int 
+WRAP_API int
 wrap_mvwgetnstr(WINDOW *win, int y, int x, char *str, int n)
 {
 	return mvwgetnstr(win, y, x, str, n);
 }
 
-int 
+WRAP_API int
 wrap_wgetn_wstr(WINDOW *win, wchar_t *wstr, int n)
 {
 	return wgetn_wstr(win, (wint_t*)wstr, n);
 }
 
-int 
+WRAP_API int
 wrap_mvwgetn_wstr(WINDOW *win, int y, int x, wchar_t *wstr, int n)
 {
 	return mvwgetn_wstr(win, y, x, (wint_t*)wstr, n);

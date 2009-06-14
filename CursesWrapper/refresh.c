@@ -43,31 +43,31 @@
 	wredrawln				Y	-      4.0
 */
 
-int 
+WRAP_API int
 wrap_wrefresh(WINDOW *win)
 {
 	return wrefresh(win);
 }
 
-int 
+WRAP_API int
 wrap_wnoutrefresh(WINDOW *win)
 {
 	return wnoutrefresh(win);
 }
 
-int 
+WRAP_API int
 wrap_doupdate(void)
 {
 	return doupdate();
 }
 
-int 
+WRAP_API int
 wrap_redrawwin(WINDOW *win)
 {
 	return redrawwin(win);
 }
 
-int 
+WRAP_API int
 wrap_wredrawln(WINDOW *win, int beg_line, int num_lines)
 {
 	return wredrawln(win, beg_line, num_lines);

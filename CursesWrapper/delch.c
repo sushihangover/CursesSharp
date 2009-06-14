@@ -39,13 +39,13 @@
 	mvwdelch				Y	Y	Y
 */
 
-int 
+WRAP_API int
 wrap_wdelch(WINDOW *win)
 {
 	return wdelch(win);
 }
 
-int 
+WRAP_API int
 wrap_mvwdelch(WINDOW *win, int y, int x)
 {
 	return mvwdelch(win, y, x);

@@ -52,25 +52,25 @@
 	curses_version				-	-	-
 */
 
-WINDOW *
+WRAP_API WINDOW *
 wrap_initscr(void)
 {
 	return initscr();
 }
 
-int
+WRAP_API int
 wrap_endwin(void)
 {
 	return endwin();
 }
 
-int 
+WRAP_API int
 wrap_isendwin(void)
 {
 	return isendwin();
 }
 
-int 
+WRAP_API int
 wrap_resize_term(int nlines, int ncols)
 {
 	return resize_term(nlines, ncols);
