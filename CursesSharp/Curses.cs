@@ -87,6 +87,16 @@ namespace CursesSharp
             get { return CursesMethods.TABSIZE(); }
         }
 
+        public static uint COLOR_PAIR(int n)
+        {
+            return CursesMethods.COLOR_PAIR(n);
+        }
+
+        public static short PAIR_NUMBER(uint n)
+        {
+            return CursesMethods.PAIR_NUMBER(n);
+        }
+
         public static Window InitScr()
         {
             if (stdscr != null)

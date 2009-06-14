@@ -32,15 +32,15 @@ namespace RainDemo
             if (Curses.HasColors)
             {
                 Curses.StartColor();
-                short bg = Defs.COLOR_BLACK;
+                short bg = Colors.BLACK;
                 try
                 {
                     Curses.UseDefaultColors();
                     bg = -1;
                 }
                 catch (CursesException) { }
-                Curses.InitPair(1, Defs.COLOR_BLUE, bg);
-                Curses.InitPair(2, Defs.COLOR_CYAN, bg);
+                Curses.InitPair(1, Colors.BLUE, bg);
+                Curses.InitPair(2, Colors.CYAN, bg);
             }
             Curses.Nl = true;
             Curses.Echo = false;
@@ -115,9 +115,9 @@ namespace RainDemo
             if (Curses.HasColors)
             {
                 int z = rng.Next(3);
-                uint color = Defs.COLOR_PAIR(z);
+                uint color = Curses.COLOR_PAIR(z);
                 if (z > 0)
-                    color |= Defs.A_BOLD;
+                    color |= Attrs.BOLD;
                 Curses.AttrSet(color);
             }
             return j;

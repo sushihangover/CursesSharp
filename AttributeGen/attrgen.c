@@ -18,7 +18,9 @@
  * 
  */
 
-#ifdef HAVE_NCURSES_H
+#if defined(HAVE_NCURSESW_NCURSES_H)
+#include <ncursesw/ncurses.h>
+#elif defined(HAVE_NCURSES_H)
 #include <ncurses.h>
 #else
 #include <curses.h>
@@ -27,10 +29,10 @@
 #include <stdio.h>
 
 
-#define GEN_ATTR(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (x))
-#define GEN_ACS(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (x))
-#define GEN_COLOR(x) fprintf(OUT, "\t\tpublic const short " #x " = 0x%x;\n", (x))
-#define GEN_KEY(x) fprintf(OUT, "\t\tpublic const int " #x " = 0x%.3x;\n", (x))
+#define GEN_ATTR(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (A_ ## x))
+#define GEN_ACS(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (ACS_ ## x))
+#define GEN_COLOR(x) fprintf(OUT, "\t\tpublic const short " #x " = 0x%x;\n", (COLOR_ ## x))
+#define GEN_KEY(x) fprintf(OUT, "\t\tpublic const int " #x " = 0x%.3x;\n", (KEY_ ## x))
 #define GEN_MMASK(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (x))
 
 int main(int argc, char **argv)
@@ -53,175 +55,184 @@ int main(int argc, char **argv)
 	fprintf(OUT, "namespace CursesSharp\n");
 	fprintf(OUT, "{\n");
 
-	fprintf(OUT, "\tpublic static partial class Defs\n");
+	fprintf(OUT, "\t// Character attributes\n");
+	fprintf(OUT, "\tpublic static class Attrs\n");
 	fprintf(OUT, "\t{\n");
-
-	fprintf(OUT, "\t\t// Character attributes\n");
-	GEN_ATTR(A_NORMAL);
-	GEN_ATTR(A_STANDOUT);
-	GEN_ATTR(A_UNDERLINE);
-	GEN_ATTR(A_REVERSE);
-	GEN_ATTR(A_BLINK);
-	GEN_ATTR(A_DIM);
-	GEN_ATTR(A_BOLD);
-	GEN_ATTR(A_PROTECT);
-	GEN_ATTR(A_INVIS);
-	GEN_ATTR(A_ALTCHARSET);
-	GEN_ATTR(A_CHARTEXT);
-
-	fprintf(OUT, "\n");
-
-	fprintf(OUT, "\t\t// Line drawing characters\n");
-	GEN_ACS(ACS_BLOCK);
-	GEN_ACS(ACS_BOARD);
-	GEN_ACS(ACS_BTEE);
-	GEN_ACS(ACS_BULLET);
-	GEN_ACS(ACS_CKBOARD);
-	GEN_ACS(ACS_DARROW);
-	GEN_ACS(ACS_DEGREE);
-	GEN_ACS(ACS_DIAMOND);
-	GEN_ACS(ACS_GEQUAL);
-	GEN_ACS(ACS_HLINE);
-	GEN_ACS(ACS_LANTERN);
-	GEN_ACS(ACS_LARROW);
-	GEN_ACS(ACS_LEQUAL);
-	GEN_ACS(ACS_LLCORNER);
-	GEN_ACS(ACS_LRCORNER);
-	GEN_ACS(ACS_LTEE);
-	GEN_ACS(ACS_NEQUAL);
-	GEN_ACS(ACS_PI);
-	GEN_ACS(ACS_PLMINUS);
-	GEN_ACS(ACS_PLUS);
-	GEN_ACS(ACS_RARROW);
-	GEN_ACS(ACS_RTEE);
-	GEN_ACS(ACS_S1);
-	GEN_ACS(ACS_S3);
-	GEN_ACS(ACS_S7);
-	GEN_ACS(ACS_S9);
-	GEN_ACS(ACS_STERLING);
-	GEN_ACS(ACS_TTEE);
-	GEN_ACS(ACS_UARROW);
-	GEN_ACS(ACS_ULCORNER);
-	GEN_ACS(ACS_URCORNER);
-	GEN_ACS(ACS_VLINE);
-	
-	fprintf(OUT, "\n");
-
-	fprintf(OUT, "\t\t// Colors\n");
-	GEN_COLOR(COLOR_BLACK);
-	GEN_COLOR(COLOR_RED);
-	GEN_COLOR(COLOR_GREEN);
-	GEN_COLOR(COLOR_BLUE);
-	GEN_COLOR(COLOR_CYAN);
-	GEN_COLOR(COLOR_MAGENTA);
-	GEN_COLOR(COLOR_YELLOW);
-	GEN_COLOR(COLOR_WHITE);
+	GEN_ATTR(NORMAL);
+	GEN_ATTR(STANDOUT);
+	GEN_ATTR(UNDERLINE);
+	GEN_ATTR(REVERSE);
+	GEN_ATTR(BLINK);
+	GEN_ATTR(DIM);
+	GEN_ATTR(BOLD);
+	GEN_ATTR(PROTECT);
+	GEN_ATTR(INVIS);
+	GEN_ATTR(ALTCHARSET);
+	GEN_ATTR(CHARTEXT);
+	fprintf(OUT, "\t}\n");
 
 	fprintf(OUT, "\n");
 
-	fprintf(OUT, "\t\t// Keys\n");
-	GEN_KEY(KEY_BREAK);
-	GEN_KEY(KEY_DOWN);
-	GEN_KEY(KEY_UP);
-	GEN_KEY(KEY_LEFT);
-	GEN_KEY(KEY_RIGHT);
-	GEN_KEY(KEY_HOME);
-	GEN_KEY(KEY_BACKSPACE);
-	GEN_KEY(KEY_F0);
-	GEN_KEY(KEY_DL);
-	GEN_KEY(KEY_IL);
-	GEN_KEY(KEY_DC);
-	GEN_KEY(KEY_IC);
-	GEN_KEY(KEY_EIC);
-	GEN_KEY(KEY_CLEAR);
-	GEN_KEY(KEY_EOS);
-	GEN_KEY(KEY_EOL);
-	GEN_KEY(KEY_SF);
-	GEN_KEY(KEY_SR);
-	GEN_KEY(KEY_NPAGE);
-	GEN_KEY(KEY_PPAGE);
-	GEN_KEY(KEY_STAB);
-	GEN_KEY(KEY_CTAB);
-	GEN_KEY(KEY_CATAB);
-	GEN_KEY(KEY_ENTER);
-	GEN_KEY(KEY_SRESET);
-	GEN_KEY(KEY_RESET);
-	GEN_KEY(KEY_PRINT);
-	GEN_KEY(KEY_LL);
-	GEN_KEY(KEY_A1);
-	GEN_KEY(KEY_A3);
-	GEN_KEY(KEY_B2);
-	GEN_KEY(KEY_C1);
-	GEN_KEY(KEY_C3);
-	GEN_KEY(KEY_BTAB);
-	GEN_KEY(KEY_BEG);
-	GEN_KEY(KEY_CANCEL);
-	GEN_KEY(KEY_CLOSE);
-	GEN_KEY(KEY_COMMAND);
-	GEN_KEY(KEY_COPY);
-	GEN_KEY(KEY_CREATE);
-	GEN_KEY(KEY_END);
-	GEN_KEY(KEY_EXIT);
-	GEN_KEY(KEY_FIND);
-	GEN_KEY(KEY_HELP);
-	GEN_KEY(KEY_MARK);
-	GEN_KEY(KEY_MESSAGE);
-	GEN_KEY(KEY_MOUSE);
-	GEN_KEY(KEY_MOVE);
-	GEN_KEY(KEY_NEXT);
-	GEN_KEY(KEY_OPEN);
-	GEN_KEY(KEY_OPTIONS);
-	GEN_KEY(KEY_PREVIOUS);
-	GEN_KEY(KEY_REDO);
-	GEN_KEY(KEY_REFERENCE);
-	GEN_KEY(KEY_REFRESH);
-	GEN_KEY(KEY_REPLACE);
-	GEN_KEY(KEY_RESIZE);
-	GEN_KEY(KEY_RESTART);
-	GEN_KEY(KEY_RESUME);
-	GEN_KEY(KEY_SAVE);
-	GEN_KEY(KEY_SBEG);
-	GEN_KEY(KEY_SCANCEL);
-	GEN_KEY(KEY_SCOMMAND);
-	GEN_KEY(KEY_SCOPY);
-	GEN_KEY(KEY_SCREATE);
-	GEN_KEY(KEY_SDC);
-	GEN_KEY(KEY_SDL);
-	GEN_KEY(KEY_SELECT);
-	GEN_KEY(KEY_SEND);
-	GEN_KEY(KEY_SEOL);
-	GEN_KEY(KEY_SEXIT);
-	GEN_KEY(KEY_SFIND);
-	GEN_KEY(KEY_SHELP);
-	GEN_KEY(KEY_SHOME);
-	GEN_KEY(KEY_SIC);
-	GEN_KEY(KEY_SLEFT);
-	GEN_KEY(KEY_SMESSAGE);
-	GEN_KEY(KEY_SMOVE);
-	GEN_KEY(KEY_SNEXT);
-	GEN_KEY(KEY_SOPTIONS);
-	GEN_KEY(KEY_SPREVIOUS);
-	GEN_KEY(KEY_SPRINT);
-	GEN_KEY(KEY_SREDO);
-	GEN_KEY(KEY_SREPLACE);
-	GEN_KEY(KEY_SRIGHT);
-	GEN_KEY(KEY_SRSUME);
-	GEN_KEY(KEY_SSAVE);
-	GEN_KEY(KEY_SSUSPEND);
-	GEN_KEY(KEY_SUNDO);
-	GEN_KEY(KEY_SUSPEND);
-	GEN_KEY(KEY_UNDO);
+	fprintf(OUT, "\t// Line drawing characters\n");
+	fprintf(OUT, "\tpublic static class Acs\n");
+	fprintf(OUT, "\t{\n");
+	GEN_ACS(BLOCK);
+	GEN_ACS(BOARD);
+	GEN_ACS(BTEE);
+	GEN_ACS(BULLET);
+	GEN_ACS(CKBOARD);
+	GEN_ACS(DARROW);
+	GEN_ACS(DEGREE);
+	GEN_ACS(DIAMOND);
+	GEN_ACS(GEQUAL);
+	GEN_ACS(HLINE);
+	GEN_ACS(LANTERN);
+	GEN_ACS(LARROW);
+	GEN_ACS(LEQUAL);
+	GEN_ACS(LLCORNER);
+	GEN_ACS(LRCORNER);
+	GEN_ACS(LTEE);
+	GEN_ACS(NEQUAL);
+	GEN_ACS(PI);
+	GEN_ACS(PLMINUS);
+	GEN_ACS(PLUS);
+	GEN_ACS(RARROW);
+	GEN_ACS(RTEE);
+	GEN_ACS(S1);
+	GEN_ACS(S3);
+	GEN_ACS(S7);
+	GEN_ACS(S9);
+	GEN_ACS(STERLING);
+	GEN_ACS(TTEE);
+	GEN_ACS(UARROW);
+	GEN_ACS(ULCORNER);
+	GEN_ACS(URCORNER);
+	GEN_ACS(VLINE);
+	fprintf(OUT, "\t}\n");
 
 	fprintf(OUT, "\n");
 
+	fprintf(OUT, "\t// Colors\n");
+	fprintf(OUT, "\tpublic static class Colors\n");
+	fprintf(OUT, "\t{\n");
+	GEN_COLOR(BLACK);
+	GEN_COLOR(RED);
+	GEN_COLOR(GREEN);
+	GEN_COLOR(BLUE);
+	GEN_COLOR(CYAN);
+	GEN_COLOR(MAGENTA);
+	GEN_COLOR(YELLOW);
+	GEN_COLOR(WHITE);
+	fprintf(OUT, "\t}\n");
+
+	fprintf(OUT, "\n");
+
+	fprintf(OUT, "\t// Keys\n");
+	fprintf(OUT, "\tpublic static class Keys\n");
+	fprintf(OUT, "\t{\n");
+	GEN_KEY(BREAK);
+	GEN_KEY(DOWN);
+	GEN_KEY(UP);
+	GEN_KEY(LEFT);
+	GEN_KEY(RIGHT);
+	GEN_KEY(HOME);
+	GEN_KEY(BACKSPACE);
+	GEN_KEY(F0);
+	GEN_KEY(DL);
+	GEN_KEY(IL);
+	GEN_KEY(DC);
+	GEN_KEY(IC);
+	GEN_KEY(EIC);
+	GEN_KEY(CLEAR);
+	GEN_KEY(EOS);
+	GEN_KEY(EOL);
+	GEN_KEY(SF);
+	GEN_KEY(SR);
+	GEN_KEY(NPAGE);
+	GEN_KEY(PPAGE);
+	GEN_KEY(STAB);
+	GEN_KEY(CTAB);
+	GEN_KEY(CATAB);
+	GEN_KEY(ENTER);
+	GEN_KEY(SRESET);
+	GEN_KEY(RESET);
+	GEN_KEY(PRINT);
+	GEN_KEY(LL);
+	GEN_KEY(A1);
+	GEN_KEY(A3);
+	GEN_KEY(B2);
+	GEN_KEY(C1);
+	GEN_KEY(C3);
+	GEN_KEY(BTAB);
+	GEN_KEY(BEG);
+	GEN_KEY(CANCEL);
+	GEN_KEY(CLOSE);
+	GEN_KEY(COMMAND);
+	GEN_KEY(COPY);
+	GEN_KEY(CREATE);
+	GEN_KEY(END);
+	GEN_KEY(EXIT);
+	GEN_KEY(FIND);
+	GEN_KEY(HELP);
+	GEN_KEY(MARK);
+	GEN_KEY(MESSAGE);
+	GEN_KEY(MOUSE);
+	GEN_KEY(MOVE);
+	GEN_KEY(NEXT);
+	GEN_KEY(OPEN);
+	GEN_KEY(OPTIONS);
+	GEN_KEY(PREVIOUS);
+	GEN_KEY(REDO);
+	GEN_KEY(REFERENCE);
+	GEN_KEY(REFRESH);
+	GEN_KEY(REPLACE);
+	GEN_KEY(RESIZE);
+	GEN_KEY(RESTART);
+	GEN_KEY(RESUME);
+	GEN_KEY(SAVE);
+	GEN_KEY(SBEG);
+	GEN_KEY(SCANCEL);
+	GEN_KEY(SCOMMAND);
+	GEN_KEY(SCOPY);
+	GEN_KEY(SCREATE);
+	GEN_KEY(SDC);
+	GEN_KEY(SDL);
+	GEN_KEY(SELECT);
+	GEN_KEY(SEND);
+	GEN_KEY(SEOL);
+	GEN_KEY(SEXIT);
+	GEN_KEY(SFIND);
+	GEN_KEY(SHELP);
+	GEN_KEY(SHOME);
+	GEN_KEY(SIC);
+	GEN_KEY(SLEFT);
+	GEN_KEY(SMESSAGE);
+	GEN_KEY(SMOVE);
+	GEN_KEY(SNEXT);
+	GEN_KEY(SOPTIONS);
+	GEN_KEY(SPREVIOUS);
+	GEN_KEY(SPRINT);
+	GEN_KEY(SREDO);
+	GEN_KEY(SREPLACE);
+	GEN_KEY(SRIGHT);
+	GEN_KEY(SRSUME);
+	GEN_KEY(SSAVE);
+	GEN_KEY(SSUSPEND);
+	GEN_KEY(SUNDO);
+	GEN_KEY(SUSPEND);
+	GEN_KEY(UNDO);
+	fprintf(OUT, "\n");
 	fprintf(OUT, "\t\tpublic static int KEY_F(int n)\n");
 	fprintf(OUT, "\t\t{\n");
-	fprintf(OUT, "\t\t\treturn KEY_F0 + n;\n");
+	fprintf(OUT, "\t\t\treturn Keys.F0 + n;\n");
 	fprintf(OUT, "\t\t}\n");
+	fprintf(OUT, "\t}\n");
 
 	fprintf(OUT, "\n");
 
-	fprintf(OUT, "\t\t// Mouse event masks\n");
+	fprintf(OUT, "\t// Mouse event masks\n");
+	fprintf(OUT, "\tpublic static class Mouse\n");
+	fprintf(OUT, "\t{\n");
 	GEN_MMASK(BUTTON1_PRESSED);
 	GEN_MMASK(BUTTON1_RELEASED);
 	GEN_MMASK(BUTTON1_CLICKED);
@@ -242,7 +253,6 @@ int main(int argc, char **argv)
 	GEN_MMASK(BUTTON_ALT);
 	GEN_MMASK(ALL_MOUSE_EVENTS);
 	GEN_MMASK(REPORT_MOUSE_POSITION);
-
 	fprintf(OUT, "\t}\n");
 
 	fprintf(OUT, "}\n");

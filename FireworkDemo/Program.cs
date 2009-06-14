@@ -14,8 +14,8 @@ namespace FireworkDemo
         private const int DELAYSIZE = 200;
 
         private static short[] color_table = {
-            Defs.COLOR_RED, Defs.COLOR_BLUE, Defs.COLOR_GREEN, Defs.COLOR_CYAN,
-            Defs.COLOR_RED, Defs.COLOR_MAGENTA, Defs.COLOR_YELLOW, Defs.COLOR_WHITE
+            Colors.RED, Colors.BLUE, Colors.GREEN, Colors.CYAN,
+            Colors.RED, Colors.MAGENTA, Colors.YELLOW, Colors.WHITE
         };
 
         static void Main(string[] args)
@@ -42,7 +42,7 @@ namespace FireworkDemo
             {
                 Curses.StartColor();
                 for (short i = 1; i < 8; ++i)
-                    Curses.InitPair(i, color_table[i], Defs.COLOR_BLACK);
+                    Curses.InitPair(i, color_table[i], Colors.BLACK);
             }
 
             rng = new Random();
@@ -60,7 +60,7 @@ namespace FireworkDemo
                     diff = Math.Abs(start - end);
                 } while (diff < 2 || diff >= Curses.Lines - 2);
 
-                Curses.AttrSet(Defs.A_NORMAL);
+                Curses.AttrSet(Attrs.NORMAL);
                 for (row = 1; row < diff; ++row)
                 {
                     Curses.AddStr(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
@@ -148,8 +148,8 @@ namespace FireworkDemo
 
         private static void GetColor()
         {
-            uint bold = (rng.Next(2) > 0) ? Defs.A_BOLD : Defs.A_NORMAL;            
-            Curses.AttrSet(Defs.COLOR_PAIR((short)rng.Next(8)) | bold);
+            uint bold = (rng.Next(2) > 0) ? Attrs.BOLD : Attrs.NORMAL;            
+            Curses.AttrSet(Curses.COLOR_PAIR((short)rng.Next(8)) | bold);
         }
 
     }
