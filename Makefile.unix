@@ -7,7 +7,8 @@ LDSHARED	= gcc -shared
 MCSDLL		= gmcs -target:library
 MCSEXE		= gmcs -target:exe
 
-CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED -DHAVE_NCURSESW_NCURSES_H
+CURSES_CFLAGS	= -D_XOPEN_SOURCE_EXTENDED -DHAVE_NCURSESW_NCURSES_H	\
+		  -DHAVE_PANEL_H
 CURSES_LDFLAGS	= -lncursesw
 
 WRAPPER_DIR	= CursesWrapper
@@ -27,12 +28,13 @@ ATTRGEN_OBJS	= $(ATTRGEN_SRCS:%.c=$(OBJ_DIR)/%.o)
 ATTRGEN_BIN	= $(BIN_DIR)/AttributeGen
 
 CURSHARP_DIR	= CursesSharp
-CURSHARP_SRCS	= Curses.cs CursesMethods.cs Stdscr.cs DefsGen.cs	\
-		  Errors.cs NativeMethods.cs Pad.cs Window.cs		\
-		  WindowBase.cs Properties/AssemblyInfo.cs
+CURSHARP_SRCS	= Curses.cs CursesMethods.cs DefsGen.cs Errors.cs	\
+		  NativeMethods.cs Pad.cs Panel.cs SoftLabels.cs	\
+		  Stdscr.cs Window.cs WindowBase.cs			\
+		  Properties/AssemblyInfo.cs
 CURSHARP_OBJS	= $(CURSHARP_SRCS:%=$(CURSHARP_DIR)/%)
 CURSHARP_BIN	= $(BIN_DIR)/CursesSharp.dll
-CURSHARP_FLAGS	= -define:NCURSES_MOUSE_VERSION
+CURSHARP_FLAGS	= -define:NCURSES_MOUSE_VERSION,HAVE_PANEL_H
 
 FIREWORK_DIR	= FireworkDemo
 FIREWORK_SRCS	= Program.cs Properties/AssemblyInfo.cs
