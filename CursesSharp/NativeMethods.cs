@@ -432,6 +432,38 @@ namespace CursesSharp
         internal static extern int wrap_wscrl(IntPtr win, int n);
         #endregion
 
+        #region slk.c
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_init(int fmt);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_refresh();
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_noutrefresh();
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_slk_label(int labnum);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_clear();
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_restore();
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_touch();
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_attron(uint attrs);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_attrset(uint attrs);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_attroff(uint attrs);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_slk_color(short color_pair);
+#if HAVE_USE_WIDECHAR
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
+        internal static extern int wrap_slk_wset(int labnum, String label, int justify);
+#else
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_slk_set(int labnum, String label, int justify);
+#endif
+        #endregion
+
         #region touch.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_touchwin(IntPtr win);

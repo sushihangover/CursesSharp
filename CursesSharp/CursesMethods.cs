@@ -965,6 +965,91 @@ namespace CursesSharp
         }
         #endregion
 
+        #region slk.c
+        internal static void slk_init(int fmt)
+        {
+            int ret = NativeMethods.wrap_slk_init(fmt);
+            Verify(ret, "slk_init");
+        }
+
+        internal static void slk_refresh()
+        {
+            int ret = NativeMethods.wrap_slk_refresh();
+            Verify(ret, "slk_refresh");
+        }
+
+        internal static void slk_noutrefresh()
+        {
+            int ret = NativeMethods.wrap_slk_noutrefresh();
+            Verify(ret, "slk_noutrefresh");
+        }
+
+        internal static string slk_label(int labnum)
+        {
+            IntPtr ret = NativeMethods.wrap_slk_label(labnum);
+            Verify(ret, "slk_label");
+            return Marshal.PtrToStringAnsi(ret);
+        }
+
+        internal static void slk_clear()
+        {
+            int ret = NativeMethods.wrap_slk_clear();
+            Verify(ret, "slk_clear");
+        }
+
+        internal static void slk_restore()
+        {
+            int ret = NativeMethods.wrap_slk_restore();
+            Verify(ret, "slk_restore");
+        }
+
+        internal static void slk_touch()
+        {
+            int ret = NativeMethods.wrap_slk_touch();
+            Verify(ret, "slk_touch");
+        }
+
+        internal static void slk_attron(uint attrs)
+        {
+            int ret = NativeMethods.wrap_slk_attron(attrs);
+            Verify(ret, "slk_attron");
+        }
+
+        internal static void slk_attrset(uint attrs)
+        {
+            int ret = NativeMethods.wrap_slk_attrset(attrs);
+            Verify(ret, "slk_attrset");
+        }
+
+        internal static void slk_attroff(uint attrs)
+        {
+            int ret = NativeMethods.wrap_slk_attroff(attrs);
+            Verify(ret, "slk_attroff");
+        }
+
+        internal static void slk_color(short color_pair)
+        {
+            int ret = NativeMethods.wrap_slk_color(color_pair);
+            Verify(ret, "slk_color");
+        }
+
+#if HAVE_USE_WIDECHAR
+        internal static void slk_set(int labnum, string label, int justify)
+        {
+            int ret = NativeMethods.wrap_slk_wset(labnum, label, justify);
+            Verify(ret, "slk_wset");
+        }
+
+#else
+        internal static void slk_set(int labnum, string label, int justify)        
+        {
+            int ret = NativeMethods.wrap_slk_set(labnum, label, justify);
+            Verify(ret, "slk_set");
+        }
+
+#endif
+        #endregion
+
         #region touch.c
         internal static void touchwin(IntPtr win)
         {

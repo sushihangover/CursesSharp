@@ -20,56 +20,85 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								slk
 
-  Synopsis:
-	int slk_init(int fmt);
-	int slk_set(int labnum, const char *label, int justify);
-	int slk_refresh(void);
-	int slk_noutrefresh(void);
-	char *slk_label(int labnum);
-	int slk_clear(void);
-	int slk_restore(void);
-	int slk_touch(void);
-	int slk_attron(const chtype attrs);
-	int slk_attr_on(const attr_t attrs, void *opts);
-	int slk_attrset(const chtype attrs);
-	int slk_attr_set(const attr_t attrs, short color_pair, void *opts);
-	int slk_attroff(const chtype attrs);
-	int slk_attr_off(const attr_t attrs, void *opts);
-	int slk_color(short color_pair);
+WRAP_API int 
+wrap_slk_init(int fmt)
+{
+	return slk_init(fmt);
+}
 
-	int slk_wset(int labnum, const wchar_t *label, int justify);
+WRAP_API int 
+wrap_slk_set(int labnum, char *label, int justify)
+{
+	return slk_set(labnum, label, justify);
+}
 
-	int PDC_mouse_in_slk(int y, int x);
-	void PDC_slk_free(void);
-	void PDC_slk_initialize(void);
+WRAP_API int 
+wrap_slk_refresh(void)
+{
+	return slk_refresh();
+}
 
-	wchar_t *slk_wlabel(int labnum)
+WRAP_API int 
+wrap_slk_noutrefresh(void)
+{
+	return slk_noutrefresh();
+}
 
-  Return Value:
-	All functions return OK on success and ERR on error.
+WRAP_API const char *
+wrap_slk_label(int labnum)
+{
+	return slk_label(labnum);
+}
 
-  Portability				     X/Open    BSD    SYS V
-	slk_init				Y	-	Y
-	slk_set					Y	-	Y
-	slk_refresh				Y	-	Y
-	slk_noutrefresh				Y	-	Y
-	slk_label				Y	-	Y
-	slk_clear				Y	-	Y
-	slk_restore				Y	-	Y
-	slk_touch				Y	-	Y
-	slk_attron				Y	-	Y
-	slk_attrset				Y	-	Y
-	slk_attroff				Y	-	Y
-	slk_attr_on				Y
-	slk_attr_set				Y
-	slk_attr_off				Y
-	slk_wset				Y
-	PDC_mouse_in_slk			-	-	-
-	PDC_slk_free				-	-	-
-	PDC_slk_initialize			-	-	-
-	slk_wlabel				-	-	-
-*/
+WRAP_API int 
+wrap_slk_clear(void)
+{
+	return slk_clear();
+}
 
+WRAP_API int 
+wrap_slk_restore(void)
+{
+	return slk_restore();
+}
+
+WRAP_API int 
+wrap_slk_touch(void)
+{
+	return slk_touch();
+}
+
+WRAP_API int 
+wrap_slk_attron(unsigned int attrs)
+{
+	return slk_attron(attrs);
+}
+
+WRAP_API int 
+wrap_slk_attrset(unsigned int attrs)
+{
+	return slk_attrset(attrs);
+}
+
+WRAP_API int 
+wrap_slk_attroff(unsigned int attrs)
+{
+	return slk_attroff(attrs);
+}
+
+WRAP_API int 
+wrap_slk_color(short color_pair)
+{
+	return slk_color(color_pair);
+}
+
+#ifdef HAVE_USE_WIDECHAR
+
+WRAP_API int 
+wrap_slk_wset(int labnum, wchar_t *label, int justify)
+{
+	return slk_wset(labnum, label, justify);
+}
+
+#endif
