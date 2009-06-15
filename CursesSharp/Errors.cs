@@ -41,5 +41,17 @@ namespace CursesSharp
             : base(message, inner)
         {
         }
+
+        internal static void Verify(int result, string fname)
+        {
+            if (result == -1)
+                throw new CursesException(fname + "() returned ERR");
+        }
+
+        internal static void Verify(IntPtr result, string fname)
+        {
+            if (result == IntPtr.Zero)
+                throw new CursesException(fname + "() returned NULL");
+        }
     }
 }
