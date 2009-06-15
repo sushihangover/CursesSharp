@@ -20,37 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								deleteln
-
-  Synopsis:
-	int deleteln(void);
-	int wdeleteln(WINDOW *win);
-	int insdelln(int n);
-	int winsdelln(WINDOW *win, int n);
-	int insertln(void);
-	int winsertln(WINDOW *win);
-
-	int mvdeleteln(int y, int x);
-	int mvwdeleteln(WINDOW *win, int y, int x);
-	int mvinsertln(int y, int x);
-	int mvwinsertln(WINDOW *win, int y, int x);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	deleteln				Y	Y	Y
-	wdeleteln				Y	Y	Y
-	mvdeleteln				-	-	-
-	mvwdeleteln				-	-	-
-	insdelln				Y	-      4.0
-	winsdelln				Y	-      4.0
-	insertln				Y	Y	Y
-	winsertln				Y	Y	Y
-	mvinsertln				-	-	-
-	mvwinsertln				-	-	-
-*/
 
 WRAP_API int
 wrap_wdeleteln(WINDOW *win)

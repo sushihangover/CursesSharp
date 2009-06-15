@@ -20,35 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								mouse
-
-  Synopsis:
-	int mouseinterval(int wait);
-	bool wenclose(const WINDOW *win, int y, int x);
-	bool wmouse_trafo(const WINDOW *win, int *y, int *x, bool to_screen);
-	bool mouse_trafo(int *y, int *x, bool to_screen);
-	mmask_t mousemask(mmask_t mask, mmask_t *oldmask);
-	int nc_getmouse(MEVENT *event);
-	int ungetmouse(MEVENT *event);
-
-  Portability				     X/Open    BSD    SYS V
-	mouse_set				-	-      4.0
-	mouse_on				-	-      4.0
-	mouse_off				-	-      4.0
-	request_mouse_pos			-	-      4.0
-	map_button				-	-      4.0
-	wmouse_position				-	-      4.0
-	getmouse				-	-      4.0
-	getbmap					-	-      4.0
-	mouseinterval				-	-	-
-	wenclose				-	-	-
-	wmouse_trafo				-	-	-
-	mouse_trafo				-	-	-
-	mousemask				-	-	-
-	nc_getmouse				-	-	-
-	ungetmouse				-	-	-
-*/
 
 #ifdef NCURSES_MOUSE_VERSION
 

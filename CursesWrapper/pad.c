@@ -20,31 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								pad
-
-  Synopsis:
-	WINDOW *newpad(int nlines, int ncols);
-	WINDOW *subpad(WINDOW *orig, int nlines, int ncols,
-		       int begy, int begx);
-	int prefresh(WINDOW *win, int py, int px, int sy1, int sx1,
-		     int sy2, int sx2);
-	int pnoutrefresh(WINDOW *w, int py, int px, int sy1, int sx1,
-			 int sy2, int sx2);
-	int pechochar(WINDOW *pad, chtype ch);
-	int pecho_wchar(WINDOW *pad, const cchar_t *wch);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	newpad					Y	-	Y
-	subpad					Y	-	Y
-	prefresh				Y	-	Y
-	pnoutrefresh				Y	-	Y
-	pechochar				Y	-      3.0
-	pecho_wchar				Y
-*/
 
 WRAP_API WINDOW *
 wrap_newpad(int nlines, int ncols)

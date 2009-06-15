@@ -20,24 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								delch
-
-  Synopsis:
-	int delch(void);
-	int wdelch(WINDOW *win);
-	int mvdelch(int y, int x);
-	int mvwdelch(WINDOW *win, int y, int x);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	delch					Y	Y	Y
-	wdelch					Y	Y	Y
-	mvdelch					Y	Y	Y
-	mvwdelch				Y	Y	Y
-*/
 
 WRAP_API int
 wrap_wdelch(WINDOW *win)

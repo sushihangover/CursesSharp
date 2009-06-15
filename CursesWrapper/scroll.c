@@ -20,22 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								scroll
-
-  Synopsis:
-	int scroll(WINDOW *win);
-	int scrl(int n);
-	int wscrl(WINDOW *win, int n);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	scroll					Y	Y	Y
-	scrl					Y	-      4.0
-	wscrl					Y	-      4.0
-*/
 
 WRAP_API int
 wrap_scroll(WINDOW *win)

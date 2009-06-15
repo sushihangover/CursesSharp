@@ -20,51 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								border
-
-  Synopsis:
-	int border(chtype ls, chtype rs, chtype ts, chtype bs, chtype tl, 
-		   chtype tr, chtype bl, chtype br);
-	int wborder(WINDOW *win, chtype ls, chtype rs, chtype ts, 
-		    chtype bs, chtype tl, chtype tr, chtype bl, chtype br);
-	int box(WINDOW *win, chtype verch, chtype horch);
-	int hline(chtype ch, int n);
-	int vline(chtype ch, int n);
-	int whline(WINDOW *win, chtype ch, int n);
-	int wvline(WINDOW *win, chtype ch, int n);
-	int mvhline(int y, int x, chtype ch, int n);
-	int mvvline(int y, int x, chtype ch, int n);
-	int mvwhline(WINDOW *win, int y, int x, chtype ch, int n);
-	int mvwvline(WINDOW *win, int y, int x, chtype ch, int n);
-
-  Return Value:
-	These functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	border					Y	-      4.0
-	wborder					Y	-      4.0
-	box					Y	Y	Y
-	hline					Y	-      4.0
-	vline					Y	-      4.0
-	whline					Y	-      4.0
-	wvline					Y	-      4.0
-	mvhline					Y
-	mvvline					Y
-	mvwhline				Y
-	mvwvline				Y
-	border_set				Y
-	wborder_set				Y
-	box_set					Y
-	hline_set				Y
-	vline_set				Y
-	whline_set				Y
-	wvline_set				Y
-	mvhline_set				Y
-	mvvline_set				Y
-	mvwhline_set				Y
-	mvwvline_set				Y
-*/
 
 WRAP_API int
 wrap_wborder(WINDOW *win, unsigned int ls, unsigned int rs, unsigned int ts, 

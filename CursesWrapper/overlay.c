@@ -20,24 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								overlay
-
-  Synopsis:
-	int overlay(const WINDOW *src_w, WINDOW *dst_w)
-	int overwrite(const WINDOW *src_w, WINDOW *dst_w)
-	int copywin(const WINDOW *src_w, WINDOW *dst_w, int src_tr,
-		    int src_tc, int dst_tr, int dst_tc, int dst_br,
-		    int dst_bc, bool overlay)
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	overlay					Y	Y	Y
-	overwrite				Y	Y	Y
-	copywin					Y	-      3.0
-*/
 
 WRAP_API int
 wrap_overlay(WINDOW *src_w, WINDOW *dst_w)

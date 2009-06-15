@@ -20,20 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								beep
-
-  Synopsis:
-	int beep(void);
-	int flash(void);
-
-  Return Value:
-	These functions return OK.
-
-  Portability				     X/Open    BSD    SYS V
-	beep					Y	Y	Y
-	flash					Y	Y	Y
-*/
 
 WRAP_API int
 wrap_beep(void)

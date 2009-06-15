@@ -20,20 +20,6 @@
 
 #include "wrapper.h"
 
-/*  
-  Name:								move
-
-  Synopsis:
-	int move(int y, int x);
-	int wmove(WINDOW *win, int y, int x);
-
-  Return Value:
-	All functions return OK on success and ERR on error.
-
-  Portability				     X/Open    BSD    SYS V
-	move					Y	Y	Y
-	wmove					Y	Y	Y
-*/
 
 WRAP_API int
 wrap_wmove(WINDOW *win, int y, int x)

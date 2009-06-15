@@ -20,52 +20,6 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								instr
-
-  Synopsis:
-	int instr(char *str);
-	int innstr(char *str, int n);
-	int winstr(WINDOW *win, char *str);
-	int winnstr(WINDOW *win, char *str, int n);
-	int mvinstr(int y, int x, char *str);
-	int mvinnstr(int y, int x, char *str, int n);
-	int mvwinstr(WINDOW *win, int y, int x, char *str);
-	int mvwinnstr(WINDOW *win, int y, int x, char *str, int n);
-
-	int inwstr(wchar_t *wstr);
-	int innwstr(wchar_t *wstr, int n);
-	int winwstr(WINDOW *win, wchar_t *wstr);
-	int winnwstr(WINDOW *win, wchar_t *wstr, int n);
-	int mvinwstr(int y, int x, wchar_t *wstr);
-	int mvinnwstr(int y, int x, wchar_t *wstr, int n);
-	int mvwinwstr(WINDOW *win, int y, int x, wchar_t *wstr);
-	int mvwinnwstr(WINDOW *win, int y, int x, wchar_t *wstr, int n);
-
-  Return Value:
-	Upon successful completion, innstr(), mvinnstr(), mvwinnstr() 
-	and winnstr() return the number of characters actually read into
-	the string; instr(), mvinstr(), mvwinstr() and winstr() return 
-	OK. Otherwise, all these functions return ERR.
-
-  Portability				     X/Open    BSD    SYS V
-	instr					Y	-      4.0
-	winstr					Y	-      4.0
-	mvinstr					Y	-      4.0
-	mvwinstr				Y	-      4.0
-	innstr					Y	-      4.0
-	winnstr					Y	-      4.0
-	mvinnstr				Y	-      4.0
-	mvwinnstr				Y	-      4.0
-	inwstr					Y
-	winwstr					Y
-	mvinwstr				Y
-	mvwinwstr				Y
-	innwstr					Y
-	winnwstr				Y
-	mvinnwstr				Y
-	mvwinnwstr				Y
-*/
 
 WRAP_API int
 wrap_winnstr(WINDOW *win, char *str, int n)

@@ -301,11 +301,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\panel.c"
+				>
+			</File>
+			<File
 				RelativePath=".\refresh.c"
 				>
 			</File>
 			<File
+				RelativePath=".\scr_dump.c"
+				>
+			</File>
+			<File
 				RelativePath=".\scroll.c"
+				>
+			</File>
+			<File
+				RelativePath=".\slk.c"
+				>
+			</File>
+			<File
+				RelativePath=".\termattr.c"
 				>
 			</File>
 			<File
