@@ -20,28 +20,27 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								scr_dump
 
-  Synopsis:
-	int putwin(WINDOW *win, FILE *filep);
-	WINDOW *getwin(FILE *filep);
-	int scr_dump(const char *filename);
-	int scr_init(const char *filename);
-	int scr_restore(const char *filename);
-	int scr_set(const char *filename);
+WRAP_API int 
+wrap_scr_dump(char *filename)
+{
+	return scr_dump(filename);
+}
 
-  Return Value:
-	On successful completion, getwin() returns a pointer to the 
-	window it created. Otherwise, it returns a null pointer. Other 
-	functions return OK or ERR.
+WRAP_API int 
+wrap_scr_init(char *filename)
+{
+	return scr_init(filename);
+}
 
-  Portability				     X/Open    BSD    SYS V
-	putwin					Y
-	getwin					Y
-	scr_dump				Y
-	scr_init				Y
-	scr_restore				Y
-	scr_set					Y
-*/
+WRAP_API int 
+wrap_scr_restore(char *filename)
+{
+	return scr_restore(filename);
+}
 
+WRAP_API int 
+wrap_scr_set(char *filename)
+{
+	return scr_set(filename);
+}

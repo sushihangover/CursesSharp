@@ -20,64 +20,51 @@
 
 #include "wrapper.h"
 
-/*
-  Name:								termattr
 
-  Synopsis:
-	int baudrate(void);
-	char erasechar(void);
-	bool has_ic(void);
-	bool has_il(void);
-	char killchar(void);
-	char *longname(void);
-	chtype termattrs(void);
-	attr_t term_attrs(void);
-	char *termname(void);
+WRAP_API int 
+wrap_baudrate(void)
+{
+	return baudrate();
+}
 
-	int erasewchar(wchar_t *ch);
-	int killwchar(wchar_t *ch);
+WRAP_API char 
+wrap_erasechar(void)
+{
+	return erasechar();
+}
 
-	char wordchar(void);
+WRAP_API char 
+wrap_killchar(void)
+{
+	return killchar();
+}
 
-  Description:
-	baudrate() is supposed to return the output speed of the 
-	terminal. In PDCurses, it simply returns INT_MAX.
+WRAP_API unsigned int
+wrap_termattrs(void)
+{
+	return termattrs();
+}
 
-	has_ic and has_il() return TRUE. These functions have meaning in 
-	some other implementations of curses.
+WRAP_API int
+wrap_has_ic(void)
+{
+	return has_ic();
+}
 
-	erasechar() and killchar() return ^H and ^U, respectively -- the 
-	ERASE and KILL characters. In other curses implementations, 
-	these may vary by terminal type. erasewchar() and killwchar() 
-	are the wide-character versions; they take a pointer to a 
-	location in which to store the character, and return OK or ERR.
+WRAP_API int
+wrap_has_il(void)
+{
+	return has_il();
+}
 
-	longname() returns a pointer to a static area containing a
-	verbose description of the current terminal. The maximum length
-	of the string is 128 characters.  It is defined only after the
-	call to initscr() or newterm().
+WRAP_API const char *
+wrap_termname(void)
+{
+	return termname();
+}
 
-	termname() returns a pointer to a static area containing a
-	short description of the current terminal (14 characters).
-
-	termattrs() returns a logical OR of all video attributes
-	supported by the terminal.
-
-	wordchar() is a PDCurses extension of the concept behind the 
-	functions erasechar() and killchar(), returning the "delete 
-	word" character, ^W.
-
-  Portability				     X/Open    BSD    SYS V
-	baudrate				Y	Y	Y
-	erasechar				Y	Y	Y
-	has_ic					Y	Y	Y
-	has_il					Y	Y	Y
-	killchar				Y	Y	Y
-	longname				Y	Y	Y
-	termattrs				Y	Y	Y
-	termname				Y	Y	Y
-	erasewchar				Y
-	killwchar				Y
-	term_attrs				Y
-	wordchar				-	-	-
-*/
+WRAP_API const char *
+wrap_longname(void)
+{
+	return longname();
+}

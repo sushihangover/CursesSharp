@@ -425,6 +425,17 @@ namespace CursesSharp
         internal static extern int wrap_wredrawln(IntPtr win, int beg_line, int num_lines);
         #endregion
 
+        #region scr_dump.c
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_scr_dump(String filename);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_scr_init(String filename);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_scr_restore(String filename);
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern int wrap_scr_set(String filename);
+        #endregion
+
         #region scroll.c
         [DllImport("CursesWrapper")]
         internal static extern int wrap_scroll(IntPtr win);
@@ -462,6 +473,25 @@ namespace CursesSharp
         [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
         internal static extern int wrap_slk_set(int labnum, String label, int justify);
 #endif
+        #endregion
+
+        #region termattr.c
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_baudrate();
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern char wrap_erasechar();
+        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        internal static extern char wrap_killchar();
+        [DllImport("CursesWrapper")]
+        internal static extern uint wrap_termattrs();
+        [DllImport("CursesWrapper")]
+        internal static extern Boolean wrap_has_ic();
+        [DllImport("CursesWrapper")]
+        internal static extern Boolean wrap_has_il();
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_termname();
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_longname();
         #endregion
 
         #region touch.c

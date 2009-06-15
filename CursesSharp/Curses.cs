@@ -465,5 +465,65 @@ namespace CursesSharp
             IntPtr winptr = CursesMethods.newpad(nlines, ncols);
             return new Pad(winptr);
         }
+
+        public static int Baudrate
+        {
+            get { return CursesMethods.baudrate(); }
+        }
+
+        public static char EraseChar
+        {
+            get { return CursesMethods.erasechar(); }
+        }
+
+        public static char KillChar
+        {
+            get { return CursesMethods.killchar(); }
+        }
+
+        public static uint TermAttrs
+        {
+            get { return CursesMethods.termattrs(); }
+        }
+
+        public static bool HasHwInsDelChar
+        {
+            get { return CursesMethods.has_ic(); }
+        }
+
+        public static bool HasHwInsDelLine
+        {
+            get { return CursesMethods.has_il(); }
+        }
+
+        public static string TerminalName
+        {
+            get { return CursesMethods.termname(); }
+        }
+
+        public static string TerminalLongName
+        {
+            get { return CursesMethods.longname(); }
+        }
+
+        public static void ScreenDump(string filename)
+        {
+            CursesMethods.scr_dump(filename);
+        }
+
+        public static void ScreenInit(string filename)
+        {
+            CursesMethods.scr_init(filename);
+        }
+
+        public static void ScreenRestore(string filename)
+        {
+            CursesMethods.scr_restore(filename);
+        }
+
+        public static void ScreenSet(string filename)
+        {
+            CursesMethods.scr_set(filename);
+        }
     }
 }

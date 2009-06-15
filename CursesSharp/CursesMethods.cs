@@ -951,6 +951,32 @@ namespace CursesSharp
         }
         #endregion
 
+        #region scr_dump.c
+        internal static void scr_dump(string filename)
+        {
+            int ret = NativeMethods.wrap_scr_dump(filename);
+            Verify(ret, "scr_dump");
+        }
+
+        internal static void scr_init(string filename)
+        {
+            int ret = NativeMethods.wrap_scr_init(filename);
+            Verify(ret, "scr_init");
+        }
+
+        internal static void scr_restore(string filename)
+        {
+            int ret = NativeMethods.wrap_scr_restore(filename);
+            Verify(ret, "scr_restore");
+        }
+
+        internal static void scr_set(string filename)
+        {
+            int ret = NativeMethods.wrap_scr_set(filename);
+            Verify(ret, "scr_set");
+        }
+        #endregion
+
         #region scroll.c
         internal static void scroll(IntPtr win)
         {
@@ -1048,6 +1074,54 @@ namespace CursesSharp
         }
 
 #endif
+        #endregion
+
+        #region termattr.c
+        internal static int baudrate()
+        {
+            int ret = NativeMethods.wrap_baudrate();
+            Verify(ret, "baudrate");
+            return ret;
+        }
+
+        internal static char erasechar()
+        {
+            return NativeMethods.wrap_erasechar();
+        }
+
+        internal static char killchar()
+        {
+            return NativeMethods.wrap_killchar();
+        }
+
+        internal static uint termattrs()
+        {
+            return NativeMethods.wrap_termattrs();
+        }
+
+        internal static bool has_ic()
+        {
+            return NativeMethods.wrap_has_ic();
+        }
+
+        internal static bool has_il()
+        {
+            return NativeMethods.wrap_has_il();
+        }
+
+        internal static string termname()
+        {
+            IntPtr ret = NativeMethods.wrap_termname();
+            Verify(ret, "termname");
+            return Marshal.PtrToStringAnsi(ret);
+        }
+
+        internal static string longname()
+        {
+            IntPtr ret = NativeMethods.wrap_longname();
+            Verify(ret, "longname");
+            return Marshal.PtrToStringAnsi(ret);
+        }
         #endregion
 
         #region touch.c
