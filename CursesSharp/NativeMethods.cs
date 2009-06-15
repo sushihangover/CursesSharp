@@ -30,6 +30,7 @@ namespace CursesSharp
 {
     internal delegate int RipOffLineFunInt(IntPtr win, int cols);
 
+#if NCURSES_MOUSE_VERSION
     [StructLayout(LayoutKind.Sequential)]
     internal struct WrapMEvent
     {
@@ -39,6 +40,7 @@ namespace CursesSharp
         internal int z;
         internal uint bstate;
     };
+#endif
 
     internal static class NativeMethods
     {

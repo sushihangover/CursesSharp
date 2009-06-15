@@ -458,6 +458,7 @@ namespace CursesSharp
             }
         }
 
+#if NCURSES_MOUSE_VERSION
         public bool Enclose(int y, int x)
         {
             return CursesMethods.wenclose(this.winptr, y, x);
@@ -467,6 +468,7 @@ namespace CursesSharp
         {
             return CursesMethods.wmouse_trafo(this.winptr, ref y, ref x, to_screen);
         }
+#endif
 
         public void Move(int y, int x)
         {

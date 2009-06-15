@@ -306,10 +306,12 @@ namespace CursesSharp
             set { Curses.StdScr.WaitOnEscape = value; }
         }
 
+#if NCURSES_MOUSE_VERSION
         public static bool MouseTrafo(ref int y, ref int x, bool to_screen)
         {
             return Curses.StdScr.MouseTrafo(ref y, ref x, to_screen);
         }
+#endif
 
         public static void Move(int y, int x)
         {

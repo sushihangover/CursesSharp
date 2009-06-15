@@ -34,6 +34,7 @@ namespace CursesSharp
     /// <returns></returns>
     public delegate int RipOffLineFun(Window win, int ncols);
 
+#if NCURSES_MOUSE_VERSION
     public class MouseEvent
     {
         private int id;
@@ -83,6 +84,7 @@ namespace CursesSharp
             internal set { this.bstate = value; }
         }
     };
+#endif
 
     /// <summary>
     /// Static interface to the curses library.
@@ -363,6 +365,7 @@ namespace CursesSharp
             return CursesMethods.has_key(key);
         }
 
+#if NCURSES_MOUSE_VERSION
         public static bool HasMouse
         {
             get
@@ -418,6 +421,7 @@ namespace CursesSharp
         {
             return CursesMethods.mouseinterval(wait);
         }
+#endif
 
         public static void DoUpdate()
         {

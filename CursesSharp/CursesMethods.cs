@@ -785,41 +785,6 @@ namespace CursesSharp
         {
             return NativeMethods.wrap_mouseinterval(wait);
         }
-#else
-        internal static bool has_mouse()
-        {
-            return false;
-        }
-
-        internal static void getmouse(out WrapMEvent mevent)
-        {
-            throw new NotImplementedException("CursesSharp compiled without mouse support");
-        }
-
-        internal static void ungetmouse(ref WrapMEvent mevent)
-        {
-            throw new NotImplementedException("CursesSharp compiled without mouse support");
-        }
-
-        internal static uint mousemask(uint mask, out uint oldmask)
-        {
-            throw new NotImplementedException("CursesSharp compiled without mouse support");
-        }
-
-        internal static bool wenclose(IntPtr win, int y, int x)
-        {
-            throw new NotImplementedException("CursesSharp compiled without mouse support");
-        }
-
-        internal static bool wmouse_trafo(IntPtr win, ref int y, ref int x, bool to_screen)
-        {
-            throw new NotImplementedException("CursesSharp compiled without mouse support");
-        }
-
-        internal static int mouseinterval(int wait)
-        {
-            throw new NotImplementedException("CursesSharp compiled without mouse support");
-        }
 #endif
         #endregion
 
