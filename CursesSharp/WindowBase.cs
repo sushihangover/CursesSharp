@@ -62,14 +62,28 @@ namespace CursesSharp
 
         public void Dispose()
         {
+            this.DisposeImpl();
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+        ~WindowBase()
+        {
+#if DEBUG
+            Debug.Assert(this.winptr == IntPtr.Zero, "Window not disposed");
+#endif
+            this.DisposeImpl();
+        }
+
+        private void DisposeImpl()
+        {
             if (this.winptr != IntPtr.Zero && this.ownsPtr)
             {
                 CursesMethods.delwin(this.winptr);
                 this.winptr = IntPtr.Zero;
             }
         }
-
-        #endregion
 
         public void AddCh(char ch)
         {

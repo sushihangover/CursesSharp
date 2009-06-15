@@ -23,6 +23,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 
 namespace CursesSharp
@@ -61,16 +62,33 @@ namespace CursesSharp
 
         public void Dispose()
         {
+            this.DisposeImpl(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+        ~Panel()
+        {
+#if DEBUG
+            Debug.Assert(this.handle == IntPtr.Zero, "Panel not disposed");
+#endif
+            this.DisposeImpl(false);
+        }
+
+        private void DisposeImpl(bool disposing)
+        {
             if (this.handle != IntPtr.Zero)
             {
-                allPanels.Remove(this.handle);
+                if (disposing)
+                {
+                    allPanels.Remove(this.handle);
+                }
                 CursesMethods.del_panel(this.handle);
                 this.handle = IntPtr.Zero;
                 this.window = null;
             }
         }
-
-        #endregion
 
         public Window Window
         {
