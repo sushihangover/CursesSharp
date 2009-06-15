@@ -23,6 +23,7 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 using System.Text;
 
 namespace CursesSharp
@@ -34,6 +35,12 @@ namespace CursesSharp
         private IntPtr winptr;
         private bool ownsPtr;
 
+        protected internal WindowBase()
+        {
+            this.winptr = IntPtr.Zero;
+            this.ownsPtr = false;
+        }
+
         protected internal WindowBase(IntPtr winptr, bool ownsPtr)
         {
             this.winptr = winptr;
@@ -43,6 +50,12 @@ namespace CursesSharp
         protected internal IntPtr Handle
         {
             get { return this.winptr; }
+            set 
+            {
+                Debug.Assert(this.winptr == IntPtr.Zero);
+                this.winptr = value;
+                this.ownsPtr = true;
+            }
         }
 
         #region IDisposable Members
@@ -515,7 +528,7 @@ namespace CursesSharp
             }
         }
 
-        public bool CanScroll
+        public bool EnableScroll
         {
             set
             {
@@ -593,12 +606,12 @@ namespace CursesSharp
             return CursesMethods.is_wintouched(this.winptr);
         }
 
-        public void MoveWin(int y, int x)
+        public void MoveWindowScreen(int y, int x)
         {
             CursesMethods.mvwin(this.winptr, y, x);
         }
 
-        public void MoveDerWin(int pary, int parx)
+        public void MoveWindowParent(int pary, int parx)
         {
             CursesMethods.mvderwin(this.winptr, pary, parx);
         }

@@ -28,8 +28,18 @@ namespace CursesSharp
 {
     public sealed class Window : WindowBase
     {
-        internal Window(IntPtr winptr, bool ownsPtr)
-            :base(winptr, ownsPtr)
+        internal static Window WrapHandle(IntPtr handle)
+        {
+            return new Window(handle, false);
+        }
+
+        public Window(int nlines, int ncols, int begy, int begx)
+        {
+            this.Handle = CursesMethods.newwin(nlines, ncols, begy, begx);
+        }
+
+        private Window(IntPtr handle, bool ownsPtr)
+            : base(handle, ownsPtr)
         {
         }
 
@@ -55,7 +65,7 @@ namespace CursesSharp
             return new Window(newptr, true);
         }
 
-        public Window DupWin(int nlines, int ncols, int begy, int begx)
+        public Window DupWin()
         {
             IntPtr newptr = CursesMethods.dupwin(this.Handle);
             return new Window(newptr, true);

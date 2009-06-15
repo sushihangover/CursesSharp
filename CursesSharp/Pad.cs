@@ -28,8 +28,13 @@ namespace CursesSharp
 {
     public sealed class Pad : WindowBase
     {
-        internal Pad(IntPtr winptr)
-            : base(winptr, true)
+        public Pad(int nlines, int ncols)
+        {
+            this.Handle = CursesMethods.newpad(nlines, ncols);
+        }
+
+        private Pad(IntPtr winptr, bool ownsPtr)
+            : base(winptr, ownsPtr)
         {
         }
 
@@ -56,7 +61,7 @@ namespace CursesSharp
         public Pad SubPad(int nlines, int ncols, int begy, int begx)
         {
             IntPtr newptr = NativeMethods.wrap_subpad(this.Handle, nlines, ncols, begy, begx);
-            return new Pad(newptr);
+            return new Pad(newptr, true);
         }
     }
 }

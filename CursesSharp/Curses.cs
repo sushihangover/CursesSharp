@@ -138,9 +138,7 @@ namespace CursesSharp
             if (stdscr != null)
                 throw new InvalidOperationException("Curses is already initialized.");
 
-            IntPtr winptr = CursesMethods.initscr();
-            stdscr = new Window(winptr, false);
-
+            stdscr = Window.WrapHandle(CursesMethods.initscr());
             return stdscr;
         }
 
@@ -148,6 +146,7 @@ namespace CursesSharp
         {
             if (stdscr == null)
                 throw new InvalidOperationException("Curses is not initialized.");
+            stdscr.Dispose();
             CursesMethods.endwin();
             stdscr = null;
         }
@@ -340,7 +339,7 @@ namespace CursesSharp
         {
             RipOffLineFunInt initInt = delegate(IntPtr winptr, int ncols)
             {
-                return init(new Window(winptr, false), ncols);
+                return init(Window.WrapHandle(winptr), ncols);
             };
             CursesMethods.ripoffline(line, initInt);
         }
@@ -456,18 +455,6 @@ namespace CursesSharp
         public static void DelayOutput(int ms)
         {
             CursesMethods.delay_output(ms);
-        }
-
-        public static Window NewWin(int nlines, int ncols, int begy, int begx)
-        {
-            IntPtr winptr = CursesMethods.newwin(nlines, ncols, begy, begx);
-            return new Window(winptr, true);
-        }
-
-        public static Pad NewPad(int nlines, int ncols)
-        {
-            IntPtr winptr = CursesMethods.newpad(nlines, ncols);
-            return new Pad(winptr);
         }
 
         public static int Baudrate

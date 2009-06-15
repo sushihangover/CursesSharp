@@ -343,9 +343,9 @@ namespace CursesSharp
             set { Curses.StdScr.CanLeaveCursor = value; }
         }
 
-        public static bool CanScroll
+        public static bool EnableScroll
         {
-            set { Curses.StdScr.CanScroll = value; }
+            set { Curses.StdScr.EnableScroll = value; }
         }
 
         public static void SetScrollRegion(int top, int bot)
