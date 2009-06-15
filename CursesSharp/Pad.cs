@@ -61,7 +61,7 @@ namespace CursesSharp
 
         public Pad SubPad(int nlines, int ncols, int begy, int begx)
         {
-            IntPtr newptr = NativeMethods.wrap_subpad(this.Handle, nlines, ncols, begy, begx);
+            IntPtr newptr = CursesMethods.subpad(this.Handle, nlines, ncols, begy, begx);
             return new Pad(newptr, true);
         }
     }

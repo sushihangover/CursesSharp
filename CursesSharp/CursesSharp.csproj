@@ -39,7 +39,6 @@
     <Compile Include="DefsGen.cs" />
     <Compile Include="Curses.cs" />
     <Compile Include="Errors.cs" />
-    <Compile Include="Internal\NativeMethods.cs" />
     <Compile Include="Pad.cs" />
     <Compile Include="Panel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
