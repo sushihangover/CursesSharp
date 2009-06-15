@@ -919,6 +919,88 @@ namespace CursesSharp
         }
         #endregion
 
+        #region panel.c
+#if HAVE_PANEL_H
+        internal static IntPtr new_panel(IntPtr win)
+        {
+            IntPtr ret = NativeMethods.wrap_new_panel(win);
+            Verify(ret, "new_panel");
+            return ret;
+        }
+
+        internal static void bottom_panel(IntPtr pan)
+        {
+            int ret = NativeMethods.wrap_bottom_panel(pan);
+            Verify(ret, "bottom_panel");
+        }
+
+        internal static void top_panel(IntPtr pan)
+        {
+            int ret = NativeMethods.wrap_top_panel(pan);
+            Verify(ret, "top_panel");
+        }
+
+        internal static void show_panel(IntPtr pan)
+        {
+            int ret = NativeMethods.wrap_show_panel(pan);
+            Verify(ret, "show_panel");
+        }
+
+        internal static void update_panels()
+        {
+            NativeMethods.wrap_update_panels();
+        }
+
+        internal static void hide_panel(IntPtr pan)
+        {
+            int ret = NativeMethods.wrap_hide_panel(pan);
+            Verify(ret, "hide_panel");
+        }
+
+        internal static IntPtr panel_window(IntPtr pan)
+        {
+            IntPtr ret = NativeMethods.wrap_panel_window(pan);
+            Verify(ret, "panel_window");
+            return ret;
+        }
+
+        internal static void replace_panel(IntPtr pan, IntPtr win)
+        {
+            int ret = NativeMethods.wrap_replace_panel(pan, win);
+            Verify(ret, "replace_panel");
+        }
+
+        internal static void move_panel(IntPtr pan, int starty, int startx)
+        {
+            int ret = NativeMethods.wrap_move_panel(pan, starty, startx);
+            Verify(ret, "move_panel");
+        }
+
+        internal static bool panel_hidden(IntPtr pan)
+        {
+            int ret = NativeMethods.wrap_panel_hidden(pan);
+            Verify(ret, "panel_hidden");
+            return (ret != 0);
+        }
+
+        internal static IntPtr panel_above(IntPtr pan)
+        {
+            return NativeMethods.wrap_panel_above(pan);
+        }
+
+        internal static IntPtr panel_below(IntPtr pan)
+        {
+            return NativeMethods.wrap_panel_below(pan);
+        }
+
+        internal static void del_panel(IntPtr pan)
+        {
+            int ret = NativeMethods.wrap_del_panel(pan);
+            Verify(ret, "del_panel");
+        }
+#endif
+        #endregion
+
         #region refresh.c
         internal static void wrefresh(IntPtr win)
         {

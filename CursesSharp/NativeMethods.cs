@@ -22,7 +22,6 @@
 
 #endregion
 
-
 using System;
 using System.Text;
 using System.Runtime.InteropServices;
@@ -34,7 +33,7 @@ namespace CursesSharp
     [StructLayout(LayoutKind.Sequential)]
     internal struct WrapMEvent
     {
-	    internal int id;
+        internal int id;
         internal int x;
         internal int y;
         internal int z;
@@ -410,6 +409,37 @@ namespace CursesSharp
         internal static extern int wrap_pnoutrefresh(IntPtr win, int py, int px, int sy1, int sx1, int sy2, int sx2);
         [DllImport("CursesWrapper")]
         internal static extern int wrap_pechochar(IntPtr pad, uint ch);
+        #endregion
+
+        #region panel.c
+#if HAVE_PANEL_H
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_new_panel(IntPtr win);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_bottom_panel(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_top_panel(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_show_panel(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern void wrap_update_panels();
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_hide_panel(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_panel_window(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_replace_panel(IntPtr pan, IntPtr win);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_move_panel(IntPtr pan, int starty, int startx);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_panel_hidden(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_panel_above(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern IntPtr wrap_panel_below(IntPtr pan);
+        [DllImport("CursesWrapper")]
+        internal static extern int wrap_del_panel(IntPtr pan);
+#endif
         #endregion
 
         #region refresh.c
