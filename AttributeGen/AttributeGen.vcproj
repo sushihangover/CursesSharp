@@ -91,7 +91,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="$(OutDir)\AttributeGen.exe $(SolutionDir)\CursesSharp\DefsGen.cs"
+				CommandLine="&quot;$(OutDir)\AttributeGen.exe&quot; &quot;$(SolutionDir)\CursesSharp\DefsGen.cs&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -170,6 +170,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="&quot;$(OutDir)\AttributeGen.exe&quot; &quot;$(SolutionDir)\CursesSharp\DefsGen.cs&quot;"
 			/>
 		</Configuration>
 	</Configurations>
