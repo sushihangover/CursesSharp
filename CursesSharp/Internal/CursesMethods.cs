@@ -24,7 +24,7 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace CursesSharp
+namespace CursesSharp.Internal
 {
     internal static class CursesMethods
     {

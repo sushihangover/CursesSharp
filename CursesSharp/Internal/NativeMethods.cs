@@ -26,7 +26,7 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace CursesSharp
+namespace CursesSharp.Internal
 {
     internal delegate int RipOffLineFunInt(IntPtr win, int cols);
 

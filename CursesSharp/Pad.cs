@@ -23,6 +23,7 @@
 #endregion
 
 using System;
+using CursesSharp.Internal;
 
 namespace CursesSharp
 {

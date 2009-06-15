@@ -25,6 +25,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using CursesSharp.Internal;
 
 namespace CursesSharp
 {
