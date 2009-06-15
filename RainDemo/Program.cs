@@ -42,11 +42,11 @@ namespace RainDemo
                 Curses.InitPair(1, Colors.BLUE, bg);
                 Curses.InitPair(2, Colors.CYAN, bg);
             }
-            Curses.Nl = true;
-            Curses.Echo = false;
-            Curses.CursSet(0);
-            Curses.Timeout = 0;
-            Curses.Keypad = true;
+            Curses.EnableNewlines = true;
+            Curses.EnableEcho = false;
+            Curses.CursorVisibility = 0;
+            Stdscr.BlockTimeout = 0;
+            Stdscr.UseKeypad = true;
 
             int r = Curses.Lines - 4, c = Curses.Cols - 4;
             int[] xpos = new int[5];
@@ -62,46 +62,46 @@ namespace RainDemo
                 int x = rng.Next(c) + 2;
                 int y = rng.Next(r) + 2;
 
-                Curses.AddCh(y, x, '.');
+                Stdscr.AddCh(y, x, '.');
 
-                Curses.AddCh(ypos[j], xpos[j], 'o');
-
-                j = NextJ(j);
-                Curses.AddCh(ypos[j], xpos[j], 'O');
+                Stdscr.AddCh(ypos[j], xpos[j], 'o');
 
                 j = NextJ(j);
-                Curses.AddCh(ypos[j] - 1, xpos[j], '-');
-                Curses.AddStr(ypos[j], xpos[j] - 1, "|.|");
-                Curses.AddCh(ypos[j] + 1, xpos[j], '-');
+                Stdscr.AddCh(ypos[j], xpos[j], 'O');
 
                 j = NextJ(j);
-                Curses.AddCh(ypos[j] - 2, xpos[j], '-');
-                Curses.AddStr(ypos[j] - 1, xpos[j] - 1, "/ \\");
-                Curses.AddStr(ypos[j], xpos[j] - 2, "| O |");
-                Curses.AddStr(ypos[j] + 1, xpos[j] - 1, "\\ /");
-                Curses.AddCh(ypos[j] + 2, xpos[j], '-');
+                Stdscr.AddCh(ypos[j] - 1, xpos[j], '-');
+                Stdscr.AddStr(ypos[j], xpos[j] - 1, "|.|");
+                Stdscr.AddCh(ypos[j] + 1, xpos[j], '-');
 
                 j = NextJ(j);
-                Curses.AddCh(ypos[j] - 2, xpos[j], ' ');
-                Curses.AddStr(ypos[j] - 1, xpos[j] - 1, "   ");
-                Curses.AddStr(ypos[j], xpos[j] - 2, "     ");
-                Curses.AddStr(ypos[j] + 1, xpos[j] - 1, "   ");
-                Curses.AddCh(ypos[j] + 2, xpos[j], ' ');
+                Stdscr.AddCh(ypos[j] - 2, xpos[j], '-');
+                Stdscr.AddStr(ypos[j] - 1, xpos[j] - 1, "/ \\");
+                Stdscr.AddStr(ypos[j], xpos[j] - 2, "| O |");
+                Stdscr.AddStr(ypos[j] + 1, xpos[j] - 1, "\\ /");
+                Stdscr.AddCh(ypos[j] + 2, xpos[j], '-');
+
+                j = NextJ(j);
+                Stdscr.AddCh(ypos[j] - 2, xpos[j], ' ');
+                Stdscr.AddStr(ypos[j] - 1, xpos[j] - 1, "   ");
+                Stdscr.AddStr(ypos[j], xpos[j] - 2, "     ");
+                Stdscr.AddStr(ypos[j] + 1, xpos[j] - 1, "   ");
+                Stdscr.AddCh(ypos[j] + 2, xpos[j], ' ');
 
                 xpos[j] = x;
                 ypos[j] = y;
 
-                switch (Curses.GetCh())
+                switch (Stdscr.GetCh())
                 {
                     case 'q':
                     case 'Q':
-                        Curses.CursSet(1);
+                        Curses.CursorVisibility = 1;
                         return;
                     case 's':
-                        Curses.NoDelay = false;
+                        Stdscr.IsBlocking = true;
                         break;
                     case ' ':
-                        Curses.NoDelay = true;
+                        Stdscr.IsBlocking = false;
                         break;
                     default: break;
                 }
@@ -118,7 +118,7 @@ namespace RainDemo
                 uint color = Curses.COLOR_PAIR(z);
                 if (z > 0)
                     color |= Attrs.BOLD;
-                Curses.AttrSet(color);
+                Stdscr.Attr = color;
             }
             return j;
         }

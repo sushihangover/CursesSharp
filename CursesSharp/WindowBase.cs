@@ -128,6 +128,21 @@ namespace CursesSharp
             CursesMethods.mvwaddnstr(this.winptr, y, x, str, n);
         }
 
+        public uint Attr
+        {
+            get
+            {
+                uint attrs;
+                short color_pair;
+                CursesMethods.wattr_get(this.winptr, out attrs, out color_pair);
+                return attrs;
+            }
+            set
+            {
+                CursesMethods.wattrset(this.winptr, value);
+            }
+        }
+
         public void AttrOff(uint attr)
         {
             CursesMethods.wattroff(this.winptr, attr);
@@ -136,11 +151,6 @@ namespace CursesSharp
         public void AttrOn(uint attr)
         {
             CursesMethods.wattron(this.winptr, attr);
-        }
-
-        public void AttrSet(uint attr)
-        {
-            CursesMethods.wattrset(this.winptr, attr);
         }
 
         public void Standend()
@@ -153,37 +163,38 @@ namespace CursesSharp
             CursesMethods.wstandout(this.winptr);
         }
 
-        public void ColorSet(short color_pair)
+        public short Color
         {
-            CursesMethods.wcolor_set(this.winptr, color_pair);
+            get
+            {
+                uint attrs;
+                short color_pair;
+                CursesMethods.wattr_get(this.winptr, out attrs, out color_pair);
+                return color_pair;
+            }
+            set
+            {
+                CursesMethods.wcolor_set(this.winptr, value);
+            }
         }
 
-        public void AttrGet(out uint attrs, out short color_pair)
-        {
-            CursesMethods.wattr_get(this.winptr, out attrs, out color_pair);
-        }
-
-        public void ChgAt(int n, uint attr, short color)
+        public void ChangeAttr(int n, uint attr, short color)
         {
             CursesMethods.wchgat(this.winptr, n, attr, color);
         }
 
-        public void ChgAt(int y, int x, int n, uint attr, short color)
+        public void ChangeAttr(int y, int x, int n, uint attr, short color)
         {
             CursesMethods.mvwchgat(this.winptr, y, x, n, attr, color);
         }
 
-        public uint GetBkgd()
+        public uint Background
         {
-            return CursesMethods.getbkgd(this.winptr);
+            get { return CursesMethods.getbkgd(this.winptr); }
+            set { CursesMethods.wbkgd(this.winptr, value); }
         }
 
-        public void Bkgd(uint ch)
-        {
-            CursesMethods.wbkgd(this.winptr, ch);
-        }
-
-        public void BkgdSet(uint ch)
+        public void FillBackground(uint ch)
         {
             CursesMethods.wbkgdset(this.winptr, ch);
         }
@@ -228,12 +239,12 @@ namespace CursesSharp
             CursesMethods.werase(this.winptr);
         }
 
-        public void ClrToBot()
+        public void ClearToBottom()
         {
             CursesMethods.wclrtobot(this.winptr);
         }
 
-        public void ClrToEol()
+        public void ClearToEol()
         {
             CursesMethods.wclrtoeol(this.winptr);
         }
@@ -399,7 +410,7 @@ namespace CursesSharp
             return sb.ToString(0, nOut);
         }
 
-        public bool IntrFlush
+        public bool FlushOnInterrupt
         {
             set
             {
@@ -407,7 +418,7 @@ namespace CursesSharp
             }
         }
 
-        public bool Keypad
+        public bool UseKeypad
         {
             set
             {
@@ -415,7 +426,7 @@ namespace CursesSharp
             }
         }
 
-        public bool Meta
+        public bool UseMeta
         {
             set
             {
@@ -423,27 +434,27 @@ namespace CursesSharp
             }
         }
 
-        public bool NoDelay
+        public bool IsBlocking
         {
             set
             {
-                CursesMethods.nodelay(this.winptr, value);
+                CursesMethods.nodelay(this.winptr, !value);
             }
         }
 
-        public bool NoTimeout
-        {
-            set
-            {
-                CursesMethods.notimeout(this.winptr, value);
-            }
-        }
-
-        public int Timeout
+        public int BlockTimeout
         {
             set
             {
                 CursesMethods.wtimeout(this.winptr, value);
+            }
+        }
+
+        public bool WaitOnEscape
+        {
+            set
+            {
+                CursesMethods.notimeout(this.winptr, !value);
             }
         }
 
@@ -462,7 +473,7 @@ namespace CursesSharp
             CursesMethods.wmove(this.winptr, y, x);
         }
 
-        public bool ClearOk
+        public bool ClearOnRefresh
         {
             set
             {
@@ -470,7 +481,7 @@ namespace CursesSharp
             }
         }
 
-        public bool IdlOk
+        public bool UseHwInsDelLine
         {
             set
             {
@@ -478,7 +489,7 @@ namespace CursesSharp
             }
         }
 
-        public bool IdcOk
+        public bool UseHwInsDelChar
         {
             set
             {
@@ -486,7 +497,7 @@ namespace CursesSharp
             }
         }
 
-        public bool ImmedOk
+        public bool ImmediateRefresh
         {
             set
             {
@@ -494,7 +505,7 @@ namespace CursesSharp
             }
         }
 
-        public bool LeaveOk
+        public bool CanLeaveCursor
         {
             set
             {
@@ -502,7 +513,7 @@ namespace CursesSharp
             }
         }
 
-        public bool ScrollOk
+        public bool CanScroll
         {
             set
             {
@@ -510,7 +521,7 @@ namespace CursesSharp
             }
         }
 
-        public void SetScrReg(int top, int bot)
+        public void SetScrollRegion(int top, int bot)
         {
             CursesMethods.wsetscrreg(this.winptr, top, bot);
         }
@@ -525,17 +536,17 @@ namespace CursesSharp
             CursesMethods.overlay(this.winptr, dstWin.winptr);
         }
 
-        public void CopyWin(WindowBase dstWin, int src_tr, int src_tc, int dst_tr, int dst_tc, int dst_br, int dst_bc, bool overlay)
+        public void Copy(WindowBase dstWin, int src_tr, int src_tc, int dst_tr, int dst_tc, int dst_br, int dst_bc, bool overlay)
         {
             CursesMethods.copywin(this.winptr, dstWin.winptr, src_tr, src_tc, dst_tr, dst_tc, dst_br, dst_bc, overlay);
         }
 
-        public void RedrawWin()
+        public void Redraw()
         {
             CursesMethods.redrawwin(this.winptr);
         }
 
-        public void RedrawLn(int beg_line, int num_lines)
+        public void Redraw(int beg_line, int num_lines)
         {
             CursesMethods.wredrawln(this.winptr, beg_line, num_lines);
         }
@@ -550,47 +561,47 @@ namespace CursesSharp
             CursesMethods.wscrl(this.winptr, n);
         }
 
-        public void TouchWin()
+        public void Touch()
         {
             CursesMethods.touchwin(this.winptr);
         }
 
-        public void TouchLine(int start, int count)
+        public void Touch(int start, int count)
         {
             CursesMethods.touchline(this.winptr, start, count);
         }
 
-        public void TouchLine(int y, int n, int changed)
+        public void Touch(int y, int n, int changed)
         {
             CursesMethods.wtouchln(this.winptr, y, n, changed);
         }
 
-        public void UntouchWin()
+        public void Untouch()
         {
             CursesMethods.untouchwin(this.winptr);
         }
 
-        public bool IsLineTouched(int line)
+        public bool IsTouched(int line)
         {
             return CursesMethods.is_linetouched(this.winptr, line);
         }
 
-        public bool IsWinTouched()
+        public bool IsTouched()
         {
             return CursesMethods.is_wintouched(this.winptr);
         }
 
-        public void MvWin(int y, int x)
+        public void MoveWin(int y, int x)
         {
             CursesMethods.mvwin(this.winptr, y, x);
         }
 
-        public void MvDerWin(int pary, int parx)
+        public void MoveDerWin(int pary, int parx)
         {
             CursesMethods.mvderwin(this.winptr, pary, parx);
         }
 
-        public bool SyncOk
+        public bool ImmediateSyncUp
         {
             set
             {

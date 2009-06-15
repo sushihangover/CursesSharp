@@ -35,8 +35,8 @@ namespace FireworkDemo
 
         private static void Main2()
         {
-            Curses.NoDelay = true;
-            Curses.Echo = false;
+            Stdscr.IsBlocking = false;
+            Curses.EnableEcho = false;
 
             if (Curses.HasColors)
             {
@@ -47,7 +47,7 @@ namespace FireworkDemo
 
             rng = new Random();
             int flag = 0;
-            while (Curses.GetCh() == -1)
+            while (Stdscr.GetCh() == -1)
             {
                 int start, end, row, diff, direction;
                 do
@@ -60,14 +60,14 @@ namespace FireworkDemo
                     diff = Math.Abs(start - end);
                 } while (diff < 2 || diff >= Curses.Lines - 2);
 
-                Curses.AttrSet(Attrs.NORMAL);
+                Stdscr.Attr = Attrs.NORMAL;
                 for (row = 1; row < diff; ++row)
                 {
-                    Curses.AddStr(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
+                    Stdscr.AddStr(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
                     if (flag++ > 0)
                     {
                         MyRefresh();
-                        Curses.Erase();
+                        Stdscr.Erase();
                         flag = 0;
                     }
                 }
@@ -79,14 +79,14 @@ namespace FireworkDemo
                 }
 
                 Explode(Curses.Lines - row, diff * direction + start);
-                Curses.Erase();
+                Stdscr.Erase();
                 MyRefresh();
             }
         }
 
         private static void Explode(int row, int col)
         {
-            Curses.Erase();
+            Stdscr.Erase();
             AddStr(row, col, "-");
             MyRefresh();
 
@@ -136,20 +136,20 @@ namespace FireworkDemo
         private static void AddStr(int y, int x, string str)
         {
             if (x >= 0 && x < Curses.Cols && y >= 0 && y < Curses.Lines)
-                Curses.AddStr(y, x, str);
+                Stdscr.AddStr(y, x, str);
         }
 
         private static void MyRefresh()
         {
             Curses.NapMs(DELAYSIZE);
-            Curses.Move(Curses.Lines - 1, Curses.Cols - 1);
-            Curses.Refresh();
+            Stdscr.Move(Curses.Lines - 1, Curses.Cols - 1);
+            Stdscr.Refresh();
         }
 
         private static void GetColor()
         {
-            uint bold = (rng.Next(2) > 0) ? Attrs.BOLD : Attrs.NORMAL;            
-            Curses.AttrSet(Curses.COLOR_PAIR((short)rng.Next(8)) | bold);
+            uint bold = (rng.Next(2) > 0) ? Attrs.BOLD : Attrs.NORMAL;
+            Stdscr.Attr = Curses.COLOR_PAIR((short)rng.Next(8)) | bold;
         }
 
     }

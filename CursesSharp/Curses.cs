@@ -229,12 +229,12 @@ namespace CursesSharp
             CursesMethods.ungetch(ch);
         }
 
-        public static void FlushInp()
+        public static void FlushInput()
         {
             CursesMethods.flushinp();
         }
 
-        public static bool CBreak
+        public static bool CBreakMode
         {
             set
             {
@@ -245,7 +245,23 @@ namespace CursesSharp
             }
         }
 
-        public static bool Echo
+        public static void HalfDelayMode(int tenths)
+        {
+            CursesMethods.halfdelay(tenths);
+        }
+
+        public static bool RawMode
+        {
+            set
+            {
+                if (value)
+                    CursesMethods.raw();
+                else
+                    CursesMethods.noraw();
+            }
+        }
+
+        public static bool EnableEcho
         {
             set
             {
@@ -256,12 +272,7 @@ namespace CursesSharp
             }
         }
 
-        public static void HalfDelay(int tenths)
-        {
-            CursesMethods.halfdelay(tenths);
-        }
-
-        public static bool Nl
+        public static bool EnableNewlines
         {
             set
             {
@@ -269,17 +280,6 @@ namespace CursesSharp
                     CursesMethods.nl();
                 else
                     CursesMethods.nonl();
-            }
-        }
-
-        public static bool Raw
-        {
-            set
-            {
-                if (value)
-                    CursesMethods.raw();
-                else
-                    CursesMethods.noraw();
             }
         }
 
@@ -294,17 +294,17 @@ namespace CursesSharp
             }
         }
 
-        public static void DefProgMode()
+        public static void SaveProgramMode()
         {
             CursesMethods.def_prog_mode();
         }
 
-        public static void DefShellMode()
+        public static void SaveShellMode()
         {
             CursesMethods.def_shell_mode();
         }
 
-        public static void ResetProgMode()
+        public static void ResetProgramMode()
         {
             CursesMethods.reset_prog_mode();
         }
@@ -324,12 +324,12 @@ namespace CursesSharp
             CursesMethods.savetty();
         }
 
-        public static void GetSYX(out int y, out int x)
+        public static void GetCursorYX(out int y, out int x)
         {
             CursesMethods.getsyx(out y, out x);
         }
 
-        public static void SetSYX(int y, int x)
+        public static void SetCursorYX(int y, int x)
         {
             CursesMethods.setsyx(y, x);
         }
@@ -348,9 +348,9 @@ namespace CursesSharp
             CursesMethods.napms(ms);
         }
 
-        public static int CursSet(int visibility)
+        public static int CursorVisibility
         {
-            return CursesMethods.curs_set(visibility);
+            set { CursesMethods.curs_set(value); }
         }
 
         public static string KeyName(int key)
@@ -414,7 +414,7 @@ namespace CursesSharp
             return (MouseState)outMask;
         }
 
-        public static int MouseInterval(int wait)
+        public static int SetMouseInterval(int wait)
         {
             return CursesMethods.mouseinterval(wait);
         }
