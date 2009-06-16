@@ -35,8 +35,8 @@ namespace FireworkDemo
 
         private static void Main2()
         {
-            Stdscr.IsBlocking = false;
-            Curses.EnableEcho = false;
+            Stdscr.Blocking = false;
+            Curses.Echo = false;
 
             if (Curses.HasColors)
             {
@@ -47,7 +47,7 @@ namespace FireworkDemo
 
             rng = new Random();
             int flag = 0;
-            while (Stdscr.GetCh() == -1)
+            while (Stdscr.GetChar() == -1)
             {
                 int start, end, row, diff, direction;
                 do
@@ -63,7 +63,7 @@ namespace FireworkDemo
                 Stdscr.Attr = Attrs.NORMAL;
                 for (row = 1; row < diff; ++row)
                 {
-                    Stdscr.AddStr(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
+                    Stdscr.Add(Curses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
                     if (flag++ > 0)
                     {
                         MyRefresh();
@@ -136,7 +136,7 @@ namespace FireworkDemo
         private static void AddStr(int y, int x, string str)
         {
             if (x >= 0 && x < Curses.Cols && y >= 0 && y < Curses.Lines)
-                Stdscr.AddStr(y, x, str);
+                Stdscr.Add(y, x, str);
         }
 
         private static void MyRefresh()

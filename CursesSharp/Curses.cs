@@ -263,7 +263,7 @@ namespace CursesSharp
             }
         }
 
-        public static bool EnableEcho
+        public static bool Echo
         {
             set
             {
@@ -274,7 +274,7 @@ namespace CursesSharp
             }
         }
 
-        public static bool EnableNewlines
+        public static bool Newlines
         {
             set
             {

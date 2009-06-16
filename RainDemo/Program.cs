@@ -42,11 +42,11 @@ namespace RainDemo
                 Curses.InitPair(1, Colors.BLUE, bg);
                 Curses.InitPair(2, Colors.CYAN, bg);
             }
-            Curses.EnableNewlines = true;
-            Curses.EnableEcho = false;
+            Curses.Newlines = true;
+            Curses.Echo = false;
             Curses.CursorVisibility = 0;
-            Stdscr.BlockTimeout = 0;
-            Stdscr.UseKeypad = true;
+            Stdscr.ReadTimeout = 0;
+            Stdscr.Keypad = true;
 
             int r = Curses.Lines - 4, c = Curses.Cols - 4;
             int[] xpos = new int[5];
@@ -62,46 +62,46 @@ namespace RainDemo
                 int x = rng.Next(c) + 2;
                 int y = rng.Next(r) + 2;
 
-                Stdscr.AddCh(y, x, '.');
+                Stdscr.Add(y, x, '.');
 
-                Stdscr.AddCh(ypos[j], xpos[j], 'o');
-
-                j = NextJ(j);
-                Stdscr.AddCh(ypos[j], xpos[j], 'O');
+                Stdscr.Add(ypos[j], xpos[j], 'o');
 
                 j = NextJ(j);
-                Stdscr.AddCh(ypos[j] - 1, xpos[j], '-');
-                Stdscr.AddStr(ypos[j], xpos[j] - 1, "|.|");
-                Stdscr.AddCh(ypos[j] + 1, xpos[j], '-');
+                Stdscr.Add(ypos[j], xpos[j], 'O');
 
                 j = NextJ(j);
-                Stdscr.AddCh(ypos[j] - 2, xpos[j], '-');
-                Stdscr.AddStr(ypos[j] - 1, xpos[j] - 1, "/ \\");
-                Stdscr.AddStr(ypos[j], xpos[j] - 2, "| O |");
-                Stdscr.AddStr(ypos[j] + 1, xpos[j] - 1, "\\ /");
-                Stdscr.AddCh(ypos[j] + 2, xpos[j], '-');
+                Stdscr.Add(ypos[j] - 1, xpos[j], '-');
+                Stdscr.Add(ypos[j], xpos[j] - 1, "|.|");
+                Stdscr.Add(ypos[j] + 1, xpos[j], '-');
 
                 j = NextJ(j);
-                Stdscr.AddCh(ypos[j] - 2, xpos[j], ' ');
-                Stdscr.AddStr(ypos[j] - 1, xpos[j] - 1, "   ");
-                Stdscr.AddStr(ypos[j], xpos[j] - 2, "     ");
-                Stdscr.AddStr(ypos[j] + 1, xpos[j] - 1, "   ");
-                Stdscr.AddCh(ypos[j] + 2, xpos[j], ' ');
+                Stdscr.Add(ypos[j] - 2, xpos[j], '-');
+                Stdscr.Add(ypos[j] - 1, xpos[j] - 1, "/ \\");
+                Stdscr.Add(ypos[j], xpos[j] - 2, "| O |");
+                Stdscr.Add(ypos[j] + 1, xpos[j] - 1, "\\ /");
+                Stdscr.Add(ypos[j] + 2, xpos[j], '-');
+
+                j = NextJ(j);
+                Stdscr.Add(ypos[j] - 2, xpos[j], ' ');
+                Stdscr.Add(ypos[j] - 1, xpos[j] - 1, "   ");
+                Stdscr.Add(ypos[j], xpos[j] - 2, "     ");
+                Stdscr.Add(ypos[j] + 1, xpos[j] - 1, "   ");
+                Stdscr.Add(ypos[j] + 2, xpos[j], ' ');
 
                 xpos[j] = x;
                 ypos[j] = y;
 
-                switch (Stdscr.GetCh())
+                switch (Stdscr.GetChar())
                 {
                     case 'q':
                     case 'Q':
                         Curses.CursorVisibility = 1;
                         return;
                     case 's':
-                        Stdscr.IsBlocking = true;
+                        Stdscr.Blocking = true;
                         break;
                     case ' ':
-                        Stdscr.IsBlocking = false;
+                        Stdscr.Blocking = false;
                         break;
                     default: break;
                 }

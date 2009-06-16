@@ -28,24 +28,122 @@ namespace CursesSharp
 {
     public class Stdscr
     {
-        public static void AddCh(char ch)
+        public static uint Attr
         {
-            Curses.StdScr.AddCh(ch);
+            get { return Curses.StdScr.Attr; }
+            set { Curses.StdScr.Attr = value; }
         }
 
-        public static void AddCh(uint ch)
+        public static short Color
         {
-            Curses.StdScr.AddCh(ch);
+            get { return Curses.StdScr.Color; }
+            set { Curses.StdScr.Color = value; }
         }
 
-        public static void AddCh(int y, int x, char ch)
+        public static uint Background
         {
-            Curses.StdScr.AddCh(y, x, ch);
+            get { return Curses.StdScr.Background; }
+            set { Curses.StdScr.Background = value; }
         }
 
-        public static void AddCh(int y, int x, uint ch)
+        public static bool FlushOnInterrupt
         {
-            Curses.StdScr.AddCh(y, x, ch);
+            set { Curses.StdScr.FlushOnInterrupt = value; }
+        }
+
+        public static bool Keypad
+        {
+            set { Curses.StdScr.Keypad = value; }
+        }
+
+        public static bool Meta
+        {
+            set { Curses.StdScr.Meta = value; }
+        }
+
+        public static bool Blocking
+        {
+            set { Curses.StdScr.Blocking = value; }
+        }
+
+        public static int ReadTimeout
+        {
+            set { Curses.StdScr.ReadTimeout = value; }
+        }
+
+        public static bool DelayEscape
+        {
+            set { Curses.StdScr.DelayEscape = value; }
+        }
+
+        public static bool ClearOnRefresh
+        {
+            set { Curses.StdScr.ClearOnRefresh = value; }
+        }
+
+        public static bool UseHwInsDelLine
+        {
+            set { Curses.StdScr.UseHwInsDelLine = value; }
+        }
+
+        public static bool UseHwInsDelChar
+        {
+            set { Curses.StdScr.UseHwInsDelChar = value; }
+        }
+
+        public static bool ImmediateRefresh
+        {
+            set { Curses.StdScr.ImmediateRefresh = value; }
+        }
+
+        public static bool CanLeaveCursor
+        {
+            set { Curses.StdScr.CanLeaveCursor = value; }
+        }
+
+        public static bool EnableScroll
+        {
+            set { Curses.StdScr.EnableScroll = value; }
+        }
+
+        public static void Add(char ch)
+        {
+            Curses.StdScr.Add(ch);
+        }
+
+        public static void Add(uint ch)
+        {
+            Curses.StdScr.Add(ch);
+        }
+
+        public static void Add(int y, int x, char ch)
+        {
+            Curses.StdScr.Add(y, x, ch);
+        }
+
+        public static void Add(int y, int x, uint ch)
+        {
+            Curses.StdScr.Add(y, x, ch);
+        }
+
+        public static void Add(uint[] chstr)
+        {
+            Curses.StdScr.Add(chstr);
+        }
+
+        public static void Add(int y, int x, uint[] chstr)
+        {
+            Curses.StdScr.Add(y, x, chstr);
+        }
+
+        public static void Add(string str)
+        {
+            Curses.StdScr.Add(str);
+        }
+
+        public static void Add(int y, int x, string str)
+        {
+            Curses.StdScr.Add(y, x, str);
         }
 
         public static void EchoChar(char ch)
@@ -56,32 +154,6 @@ namespace CursesSharp
         public static void EchoChar(uint ch)
         {
             Curses.StdScr.EchoChar(ch);
-        }
-
-        public static void AddChStr(uint[] chstr)
-        {
-            Curses.StdScr.AddChStr(chstr);
-        }
-
-        public static void AddChStr(int y, int x, uint[] chstr)
-        {
-            Curses.StdScr.AddChStr(y, x, chstr);
-        }
-
-        public static void AddStr(string str)
-        {
-            Curses.StdScr.AddStr(str);
-        }
-
-        public static void AddStr(int y, int x, string str)
-        {
-            Curses.StdScr.AddStr(y, x, str);
-        }
-
-        public static uint Attr
-        {
-            get { return Curses.StdScr.Attr; }
-            set { Curses.StdScr.Attr = value; }
         }
 
         public static void AttrOff(uint attr)
@@ -104,12 +176,6 @@ namespace CursesSharp
             Curses.StdScr.Standout();
         }
 
-        public static short Color
-        {
-            get { return Curses.StdScr.Color; }
-            set { Curses.StdScr.Color = value; }
-        }
-
         public static void ChangeAttr(int n, uint attr, short color)
         {
             Curses.StdScr.ChangeAttr(n, attr, color);
@@ -118,12 +184,6 @@ namespace CursesSharp
         public static void ChangeAttr(int y, int x, int n, uint attr, short color)
         {
             Curses.StdScr.ChangeAttr(y, x, n, attr, color);
-        }
-
-        public static uint Background
-        {
-            get { return Curses.StdScr.Background; }
-            set { Curses.StdScr.Background = value; }
         }
 
         public static void FillBackground(uint ch)
@@ -181,129 +241,99 @@ namespace CursesSharp
             Curses.StdScr.Erase();
         }
 
-        public static void DelCh()
+        public static void Delete()
         {
-            Curses.StdScr.DelCh();
+            Curses.StdScr.Delete();
         }
 
-        public static void DelCh(int y, int x)
+        public static void Delete(int y, int x)
         {
-            Curses.StdScr.DelCh(y, x);
+            Curses.StdScr.Delete(y, x);
         }
 
-        public static void DeleteLn()
+        public static void DeleteLine()
         {
-            Curses.StdScr.DeleteLn();
+            Curses.StdScr.DeleteLine();
         }
 
-        public static void InsDelLn(int n)
+        public static void InsDelLine(int n)
         {
-            Curses.StdScr.InsDelLn(n);
+            Curses.StdScr.InsDelLine(n);
         }
 
-        public static void InsertLn()
+        public static void InsertLine()
         {
-            Curses.StdScr.InsertLn();
+            Curses.StdScr.InsertLine();
         }
 
-        public static int GetCh()
+        public static int GetChar()
         {
-            return Curses.StdScr.GetCh();
+            return Curses.StdScr.GetChar();
         }
 
-        public static int GetCh(int y, int x)
+        public static int GetChar(int y, int x)
         {
-            return Curses.StdScr.GetCh(y, x);
+            return Curses.StdScr.GetChar(y, x);
         }
 
-        public static string GetStr()
+        public static string GetString()
         {
-            return Curses.StdScr.GetStr();
+            return Curses.StdScr.GetString();
         }
 
-        public static string GetStr(int n)
+        public static string GetString(int n)
         {
-            return Curses.StdScr.GetStr(n);
+            return Curses.StdScr.GetString(n);
         }
 
-        public static string GetStr(int y, int x)
+        public static string GetString(int y, int x)
         {
-            return Curses.StdScr.GetStr(y, x);
+            return Curses.StdScr.GetString(y, x);
         }
 
-        public static string GetStr(int y, int x, int n)
+        public static string GetString(int y, int x, int n)
         {
-            return Curses.StdScr.GetStr(y, x, n);
+            return Curses.StdScr.GetString(y, x, n);
         }
 
-        public static void InsCh(char ch)
+        public static void Insert(char ch)
         {
-            Curses.StdScr.InsCh(ch);
+            Curses.StdScr.Insert(ch);
         }
 
-        public static void InsCh(uint ch)
+        public static void Insert(uint ch)
         {
-            Curses.StdScr.InsCh(ch);
+            Curses.StdScr.Insert(ch);
         }
 
-        public static void InsCh(int y, int x, char ch)
+        public static void Insert(int y, int x, char ch)
         {
-            Curses.StdScr.InsCh(y, x, ch);
+            Curses.StdScr.Insert(y, x, ch);
         }
 
-        public static void InsCh(int y, int x, uint ch)
+        public static void Insert(int y, int x, uint ch)
         {
-            Curses.StdScr.InsCh(y, x, ch);
+            Curses.StdScr.Insert(y, x, ch);
         }
 
-        public static void InsStr(string str)
+        public static void Insert(string str)
         {
-            Curses.StdScr.InsStr(str);
+            Curses.StdScr.Insert(str);
         }
 
-        public static void InsStr(string str, int n)
+        public static void Insert(string str, int n)
         {
-            Curses.StdScr.InsStr(str, n);
+            Curses.StdScr.Insert(str, n);
         }
 
-        public static void InsStr(int y, int x, string str)
+        public static void Insert(int y, int x, string str)
         {
-            Curses.StdScr.InsStr(y, x, str);
+            Curses.StdScr.Insert(y, x, str);
         }
 
-        public static void InsStr(int y, int x, string str, int n)
+        public static void Insert(int y, int x, string str, int n)
         {
-            Curses.StdScr.InsStr(y, x, str, n);
-        }
-
-        public static bool FlushOnInterrupt
-        {
-            set { Curses.StdScr.FlushOnInterrupt = value; }
-        }
-
-        public static bool UseKeypad
-        {
-            set { Curses.StdScr.UseKeypad = value; }
-        }
-
-        public static bool UseMeta
-        {
-            set { Curses.StdScr.UseMeta = value; }
-        }
-
-        public static bool IsBlocking
-        {
-            set { Curses.StdScr.IsBlocking = value; }
-        }
-
-        public static int BlockTimeout
-        {
-            set { Curses.StdScr.BlockTimeout = value; }
-        }
-
-        public static bool WaitOnEscape
-        {
-            set { Curses.StdScr.WaitOnEscape = value; }
+            Curses.StdScr.Insert(y, x, str, n);
         }
 
 #if NCURSES_MOUSE_VERSION
@@ -316,36 +346,6 @@ namespace CursesSharp
         public static void Move(int y, int x)
         {
             Curses.StdScr.Move(y, x);
-        }
-
-        public static bool ClearOnRefresh
-        {
-            set { Curses.StdScr.ClearOnRefresh = value; }
-        }
-
-        public static bool UseHwInsDelLine
-        {
-            set { Curses.StdScr.UseHwInsDelLine = value; }
-        }
-
-        public static bool UseHwInsDelChar
-        {
-            set { Curses.StdScr.UseHwInsDelChar = value; }
-        }
-
-        public static bool ImmediateRefresh
-        {
-            set { Curses.StdScr.ImmediateRefresh = value; }
-        }
-
-        public static bool CanLeaveCursor
-        {
-            set { Curses.StdScr.CanLeaveCursor = value; }
-        }
-
-        public static bool EnableScroll
-        {
-            set { Curses.StdScr.EnableScroll = value; }
         }
 
         public static void SetScrollRegion(int top, int bot)

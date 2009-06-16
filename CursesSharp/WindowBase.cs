@@ -86,75 +86,7 @@ namespace CursesSharp
             }
         }
 
-        public void AddCh(char ch)
-        {
-            CursesMethods.waddch(this.winptr, (byte)ch);
-        }
-
-        public void AddCh(uint ch)
-        {
-            CursesMethods.waddch(this.winptr, ch);
-        }
-
-        public void AddCh(int y, int x, char ch)
-        {
-            CursesMethods.mvwaddch(this.winptr, y, x, (byte)ch);
-        }
-
-        public void AddCh(int y, int x, uint ch)
-        {
-            CursesMethods.mvwaddch(this.winptr, y, x, ch);
-        }
-
-        public virtual void EchoChar(char ch)
-        {
-            CursesMethods.wechochar(this.winptr, (byte)ch);
-        }
-
-        public virtual void EchoChar(uint ch)
-        {
-            CursesMethods.wechochar(this.winptr, ch);
-        }
-
-        public void AddChStr(uint[] chstr)
-        {
-            this.AddChStr(chstr, chstr.Length);
-        }
-
-        public void AddChStr(uint[] chstr, int n)
-        {
-            CursesMethods.waddchnstr(this.winptr, chstr, n);
-        }
-
-        public void AddChStr(int y, int x, uint[] chstr)
-        {
-            this.AddChStr(y, x, chstr, chstr.Length);
-        }
-
-        public void AddChStr(int y, int x, uint[] chstr, int n)
-        {
-            CursesMethods.mvwaddchnstr(this.winptr, y, x, chstr, n);
-        }
-
-        public void AddStr(string str)
-        {
-            this.AddStr(str, str.Length);
-        }
-
-        public void AddStr(string str, int n)
-        {
-            CursesMethods.waddnstr(this.winptr, str, n);
-        }
-
-        public void AddStr(int y, int x, string str)
-        {
-            this.AddStr(y, x, str, str.Length);
-        }
-
-        public void AddStr(int y, int x, string str, int n)
-        {
-            CursesMethods.mvwaddnstr(this.winptr, y, x, str, n);
-        }
+        #region Text attributes
 
         public uint Attr
         {
@@ -169,26 +101,6 @@ namespace CursesSharp
             {
                 CursesMethods.wattrset(this.winptr, value);
             }
-        }
-
-        public void AttrOff(uint attr)
-        {
-            CursesMethods.wattroff(this.winptr, attr);
-        }
-
-        public void AttrOn(uint attr)
-        {
-            CursesMethods.wattron(this.winptr, attr);
-        }
-
-        public void Standend()
-        {
-            CursesMethods.wstandend(this.winptr);
-        }
-
-        public void Standout()
-        {
-            CursesMethods.wstandout(this.winptr);
         }
 
         public short Color
@@ -206,237 +118,15 @@ namespace CursesSharp
             }
         }
 
-        public void ChangeAttr(int n, uint attr, short color)
-        {
-            CursesMethods.wchgat(this.winptr, n, attr, color);
-        }
-
-        public void ChangeAttr(int y, int x, int n, uint attr, short color)
-        {
-            CursesMethods.mvwchgat(this.winptr, y, x, n, attr, color);
-        }
-
         public uint Background
         {
             get { return CursesMethods.getbkgd(this.winptr); }
             set { CursesMethods.wbkgd(this.winptr, value); }
         }
 
-        public void FillBackground(uint ch)
-        {
-            CursesMethods.wbkgdset(this.winptr, ch);
-        }
+        #endregion
 
-        public void Border(uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
-        {
-            CursesMethods.wborder(this.winptr, ls, rs, ts, bs, tl, tr, bl, br);
-        }
-
-        public void Box(uint verch, uint horch)
-        {
-            CursesMethods.box(this.winptr, verch, horch);
-        }
-
-        public void HLine(uint ch, int n)
-        {
-            CursesMethods.whline(this.winptr, ch, n);
-        }
-
-        public void VLine(uint ch, int n)
-        {
-            CursesMethods.wvline(this.winptr, ch, n);
-        }
-
-        public void HLine(int y, int x, uint ch, int n)
-        {
-            CursesMethods.mvwhline(this.winptr, y, x, ch, n);
-        }
-
-        public void VLine(int y, int x, uint ch, int n)
-        {
-            CursesMethods.mvwvline(this.winptr, y, x, ch, n);
-        }
-
-        public void Clear()
-        {
-            CursesMethods.wclear(this.winptr);
-        }
-
-        public void Erase()
-        {
-            CursesMethods.werase(this.winptr);
-        }
-
-        public void ClearToBottom()
-        {
-            CursesMethods.wclrtobot(this.winptr);
-        }
-
-        public void ClearToEol()
-        {
-            CursesMethods.wclrtoeol(this.winptr);
-        }
-
-        public void DelCh()
-        {
-            CursesMethods.wdelch(this.winptr);
-        }
-
-        public void DelCh(int y, int x)
-        {
-            CursesMethods.mvwdelch(this.winptr, y, x);
-        }
-
-        public void DeleteLn()
-        {
-            CursesMethods.wdeleteln(this.winptr);
-        }
-
-        public void InsDelLn(int n)
-        {
-            CursesMethods.winsdelln(this.winptr, n);
-        }
-
-        public void InsertLn()
-        {
-            CursesMethods.winsertln(this.winptr);
-        }
-
-        public int GetCh()
-        {
-            return CursesMethods.wgetch(this.winptr);
-        }
-
-        public int GetCh(int y, int x)
-        {
-            return CursesMethods.mvwgetch(this.winptr, y, x);
-        }
-
-        public string GetStr()
-        {
-            return this.GetStr(DEFAULT_BUFSZ);
-        }
-
-        public string GetStr(int n)
-        {
-            StringBuilder sb = new StringBuilder(n + 1);
-            CursesMethods.wgetnstr(this.winptr, sb, n);
-            return sb.ToString();
-        }
-
-        public string GetStr(int y, int x)
-        {
-            return this.GetStr(y, x, DEFAULT_BUFSZ);
-        }
-
-        public string GetStr(int y, int x, int n)
-        {
-            StringBuilder sb = new StringBuilder(n + 1);
-            CursesMethods.mvwgetnstr(this.winptr, y, x, sb, n);
-            return sb.ToString();
-        }
-
-        public void GetYX(out int y, out int x)
-        {
-            CursesMethods.getyx(this.winptr, out y, out x);
-        }
-
-        public void GetParYX(out int y, out int x)
-        {
-            CursesMethods.getparyx(this.winptr, out y, out x);
-        }
-
-        public void GetBegYX(out int y, out int x)
-        {
-            CursesMethods.getbegyx(this.winptr, out y, out x);
-        }
-
-        public void GetMaxYX(out int y, out int x)
-        {
-            CursesMethods.getmaxyx(this.winptr, out y, out x);
-        }
-
-        public uint InCh()
-        {
-            return CursesMethods.winch(this.winptr);
-        }
-
-        public uint InCh(int y, int x)
-        {
-            return CursesMethods.mvwinch(this.winptr, y, x);
-        }
-
-        public uint[] InChStr(int n)
-        {
-            uint[] buf = new uint[n + 1];
-            int nOut = CursesMethods.winchnstr(this.winptr, buf, n);
-            uint[] ret = new uint[nOut];
-            Array.Copy(buf, ret, nOut);
-            return ret;
-        }
-
-        public uint[] InChStr(int y, int x, int n)
-        {
-            uint[] buf = new uint[n + 1];
-            int nOut = CursesMethods.mvwinchnstr(this.winptr, y, x, buf, n);
-            uint[] ret = new uint[nOut];
-            Array.Copy(buf, ret, nOut);
-            return ret;
-        }
-
-        public void InsCh(char ch)
-        {
-            CursesMethods.winsch(this.winptr, (byte)ch);
-        }
-
-        public void InsCh(uint ch)
-        {
-            CursesMethods.winsch(this.winptr, ch);
-        }
-
-        public void InsCh(int y, int x, char ch)
-        {
-            CursesMethods.mvwinsch(this.winptr, y, x, (byte)ch);
-        }
-
-        public void InsCh(int y, int x, uint ch)
-        {
-            CursesMethods.mvwinsch(this.winptr, y, x, ch);
-        }
-
-        public void InsStr(string str)
-        {
-            this.InsStr(str, str.Length);
-        }
-
-        public void InsStr(string str, int n)
-        {
-            CursesMethods.winsnstr(this.winptr, str, n);
-        }
-
-        public void InsStr(int y, int x, string str)
-        {
-            this.InsStr(y, x, str, str.Length);
-        }
-
-        public void InsStr(int y, int x, string str, int n)
-        {
-            CursesMethods.mvwinsnstr(this.winptr, y, x, str, n);
-        }
-
-        public string InStr(int n)
-        {
-            StringBuilder sb = new StringBuilder(n + 1);
-            int nOut = CursesMethods.winnstr(this.winptr, sb, n);
-            return sb.ToString(0, nOut);
-        }
-
-        public string InStr(int y, int x, int n)
-        {
-            StringBuilder sb = new StringBuilder(n + 1);
-            int nOut = CursesMethods.mvwinnstr(this.winptr, y, x, sb, n);
-            return sb.ToString(0, nOut);
-        }
+        #region Input options
 
         public bool FlushOnInterrupt
         {
@@ -446,7 +136,7 @@ namespace CursesSharp
             }
         }
 
-        public bool UseKeypad
+        public bool Keypad
         {
             set
             {
@@ -454,7 +144,7 @@ namespace CursesSharp
             }
         }
 
-        public bool UseMeta
+        public bool Meta
         {
             set
             {
@@ -462,7 +152,7 @@ namespace CursesSharp
             }
         }
 
-        public bool IsBlocking
+        public bool Blocking
         {
             set
             {
@@ -470,7 +160,7 @@ namespace CursesSharp
             }
         }
 
-        public int BlockTimeout
+        public int ReadTimeout
         {
             set
             {
@@ -478,7 +168,7 @@ namespace CursesSharp
             }
         }
 
-        public bool WaitOnEscape
+        public bool DelayEscape
         {
             set
             {
@@ -486,22 +176,9 @@ namespace CursesSharp
             }
         }
 
-#if NCURSES_MOUSE_VERSION
-        public bool Enclose(int y, int x)
-        {
-            return CursesMethods.wenclose(this.winptr, y, x);
-        }
+        #endregion
 
-        public bool MouseTrafo(ref int y, ref int x, bool to_screen)
-        {
-            return CursesMethods.wmouse_trafo(this.winptr, ref y, ref x, to_screen);
-        }
-#endif
-
-        public void Move(int y, int x)
-        {
-            CursesMethods.wmove(this.winptr, y, x);
-        }
+        #region Output options
 
         public bool ClearOnRefresh
         {
@@ -551,10 +228,324 @@ namespace CursesSharp
             }
         }
 
+        public bool ImmediateSyncUp
+        {
+            set
+            {
+                CursesMethods.syncok(this.winptr, value);
+            }
+        }
+
+        #endregion
+
+        public void Add(char ch)
+        {
+            CursesMethods.waddch(this.winptr, (byte)ch);
+        }
+
+        public void Add(uint ch)
+        {
+            CursesMethods.waddch(this.winptr, ch);
+        }
+
+        public void Add(int y, int x, char ch)
+        {
+            CursesMethods.mvwaddch(this.winptr, y, x, (byte)ch);
+        }
+
+        public void Add(int y, int x, uint ch)
+        {
+            CursesMethods.mvwaddch(this.winptr, y, x, ch);
+        }
+
+        public void Add(uint[] chstr)
+        {
+            this.Add(chstr, chstr.Length);
+        }
+
+        public void Add(uint[] chstr, int n)
+        {
+            CursesMethods.waddchnstr(this.winptr, chstr, n);
+        }
+
+        public void Add(int y, int x, uint[] chstr)
+        {
+            this.Add(y, x, chstr, chstr.Length);
+        }
+
+        public void Add(int y, int x, uint[] chstr, int n)
+        {
+            CursesMethods.mvwaddchnstr(this.winptr, y, x, chstr, n);
+        }
+
+        public void Add(string str)
+        {
+            this.Add(str, str.Length);
+        }
+
+        public void Add(string str, int n)
+        {
+            CursesMethods.waddnstr(this.winptr, str, n);
+        }
+
+        public void Add(int y, int x, string str)
+        {
+            this.Add(y, x, str, str.Length);
+        }
+
+        public void Add(int y, int x, string str, int n)
+        {
+            CursesMethods.mvwaddnstr(this.winptr, y, x, str, n);
+        }
+
+        public virtual void EchoChar(char ch)
+        {
+            CursesMethods.wechochar(this.winptr, (byte)ch);
+        }
+
+        public virtual void EchoChar(uint ch)
+        {
+            CursesMethods.wechochar(this.winptr, ch);
+        }
+
+        public void Insert(char ch)
+        {
+            CursesMethods.winsch(this.winptr, (byte)ch);
+        }
+
+        public void Insert(uint ch)
+        {
+            CursesMethods.winsch(this.winptr, ch);
+        }
+
+        public void Insert(int y, int x, char ch)
+        {
+            CursesMethods.mvwinsch(this.winptr, y, x, (byte)ch);
+        }
+
+        public void Insert(int y, int x, uint ch)
+        {
+            CursesMethods.mvwinsch(this.winptr, y, x, ch);
+        }
+
+        public void Insert(string str)
+        {
+            this.Insert(str, str.Length);
+        }
+
+        public void Insert(string str, int n)
+        {
+            CursesMethods.winsnstr(this.winptr, str, n);
+        }
+
+        public void Insert(int y, int x, string str)
+        {
+            this.Insert(y, x, str, str.Length);
+        }
+
+        public void Insert(int y, int x, string str, int n)
+        {
+            CursesMethods.mvwinsnstr(this.winptr, y, x, str, n);
+        }
+
+        public void AttrOff(uint attr)
+        {
+            CursesMethods.wattroff(this.winptr, attr);
+        }
+
+        public void AttrOn(uint attr)
+        {
+            CursesMethods.wattron(this.winptr, attr);
+        }
+
+        public void Standend()
+        {
+            CursesMethods.wstandend(this.winptr);
+        }
+
+        public void Standout()
+        {
+            CursesMethods.wstandout(this.winptr);
+        }
+
+        public void ChangeAttr(int n, uint attr, short color)
+        {
+            CursesMethods.wchgat(this.winptr, n, attr, color);
+        }
+
+        public void ChangeAttr(int y, int x, int n, uint attr, short color)
+        {
+            CursesMethods.mvwchgat(this.winptr, y, x, n, attr, color);
+        }
+
+        public void FillBackground(uint ch)
+        {
+            CursesMethods.wbkgdset(this.winptr, ch);
+        }
+
+        public void Border(uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
+        {
+            CursesMethods.wborder(this.winptr, ls, rs, ts, bs, tl, tr, bl, br);
+        }
+
+        public void Box(uint verch, uint horch)
+        {
+            CursesMethods.box(this.winptr, verch, horch);
+        }
+
+        public void HLine(uint ch, int n)
+        {
+            CursesMethods.whline(this.winptr, ch, n);
+        }
+
+        public void VLine(uint ch, int n)
+        {
+            CursesMethods.wvline(this.winptr, ch, n);
+        }
+
+        public void HLine(int y, int x, uint ch, int n)
+        {
+            CursesMethods.mvwhline(this.winptr, y, x, ch, n);
+        }
+
+        public void VLine(int y, int x, uint ch, int n)
+        {
+            CursesMethods.mvwvline(this.winptr, y, x, ch, n);
+        }
+
+        public uint ReadOutputChar()
+        {
+            return CursesMethods.winch(this.winptr);
+        }
+
+        public uint ReadOutputChar(int y, int x)
+        {
+            return CursesMethods.mvwinch(this.winptr, y, x);
+        }
+
+        public uint[] ReadOutputChars(int n)
+        {
+            uint[] buf = new uint[n + 1];
+            int nOut = CursesMethods.winchnstr(this.winptr, buf, n);
+            uint[] ret = new uint[nOut];
+            Array.Copy(buf, ret, nOut);
+            return ret;
+        }
+
+        public uint[] ReadOutputChars(int y, int x, int n)
+        {
+            uint[] buf = new uint[n + 1];
+            int nOut = CursesMethods.mvwinchnstr(this.winptr, y, x, buf, n);
+            uint[] ret = new uint[nOut];
+            Array.Copy(buf, ret, nOut);
+            return ret;
+        }
+
+        public string ReadOutputString(int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            int nOut = CursesMethods.winnstr(this.winptr, sb, n);
+            return sb.ToString(0, nOut);
+        }
+
+        public string ReadOutputString(int y, int x, int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            int nOut = CursesMethods.mvwinnstr(this.winptr, y, x, sb, n);
+            return sb.ToString(0, nOut);
+        }
+
+        public void Scroll()
+        {
+            CursesMethods.scroll(this.winptr);
+        }
+
+        public void Scroll(int n)
+        {
+            CursesMethods.wscrl(this.winptr, n);
+        }
+
         public void SetScrollRegion(int top, int bot)
         {
             CursesMethods.wsetscrreg(this.winptr, top, bot);
         }
+
+        public void Clear()
+        {
+            CursesMethods.wclear(this.winptr);
+        }
+
+        public int GetChar()
+        {
+            return CursesMethods.wgetch(this.winptr);
+        }
+
+        public int GetChar(int y, int x)
+        {
+            return CursesMethods.mvwgetch(this.winptr, y, x);
+        }
+
+        public string GetString()
+        {
+            return this.GetString(DEFAULT_BUFSZ);
+        }
+
+        public string GetString(int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            CursesMethods.wgetnstr(this.winptr, sb, n);
+            return sb.ToString();
+        }
+
+        public string GetString(int y, int x)
+        {
+            return this.GetString(y, x, DEFAULT_BUFSZ);
+        }
+
+        public string GetString(int y, int x, int n)
+        {
+            StringBuilder sb = new StringBuilder(n + 1);
+            CursesMethods.mvwgetnstr(this.winptr, y, x, sb, n);
+            return sb.ToString();
+        }
+
+        public void Move(int y, int x)
+        {
+            CursesMethods.wmove(this.winptr, y, x);
+        }
+
+        public void GetCursorYX(out int y, out int x)
+        {
+            CursesMethods.getyx(this.winptr, out y, out x);
+        }
+
+        public void GetParYX(out int y, out int x)
+        {
+            CursesMethods.getparyx(this.winptr, out y, out x);
+        }
+
+        public void GetBegYX(out int y, out int x)
+        {
+            CursesMethods.getbegyx(this.winptr, out y, out x);
+        }
+
+        public void GetMaxYX(out int y, out int x)
+        {
+            CursesMethods.getmaxyx(this.winptr, out y, out x);
+        }
+
+
+#if NCURSES_MOUSE_VERSION
+        public bool Enclose(int y, int x)
+        {
+            return CursesMethods.wenclose(this.winptr, y, x);
+        }
+
+        public bool MouseTrafo(ref int y, ref int x, bool to_screen)
+        {
+            return CursesMethods.wmouse_trafo(this.winptr, ref y, ref x, to_screen);
+        }
+#endif
 
         public void Overlay(WindowBase dstWin)
         {
@@ -571,6 +562,46 @@ namespace CursesSharp
             CursesMethods.copywin(this.winptr, dstWin.winptr, src_tr, src_tc, dst_tr, dst_tc, dst_br, dst_bc, overlay);
         }
 
+        public void ClearToBottom()
+        {
+            CursesMethods.wclrtobot(this.winptr);
+        }
+
+        public void ClearToEol()
+        {
+            CursesMethods.wclrtoeol(this.winptr);
+        }
+
+        public void Erase()
+        {
+            CursesMethods.werase(this.winptr);
+        }
+
+        public void Delete()
+        {
+            CursesMethods.wdelch(this.winptr);
+        }
+
+        public void Delete(int y, int x)
+        {
+            CursesMethods.mvwdelch(this.winptr, y, x);
+        }
+
+        public void DeleteLine()
+        {
+            CursesMethods.wdeleteln(this.winptr);
+        }
+
+        public void InsDelLine(int n)
+        {
+            CursesMethods.winsdelln(this.winptr, n);
+        }
+
+        public void InsertLine()
+        {
+            CursesMethods.winsertln(this.winptr);
+        }
+
         public void Redraw()
         {
             CursesMethods.redrawwin(this.winptr);
@@ -579,16 +610,6 @@ namespace CursesSharp
         public void Redraw(int beg_line, int num_lines)
         {
             CursesMethods.wredrawln(this.winptr, beg_line, num_lines);
-        }
-
-        public void Scroll()
-        {
-            CursesMethods.scroll(this.winptr);
-        }
-
-        public void Scroll(int n)
-        {
-            CursesMethods.wscrl(this.winptr, n);
         }
 
         public void Touch()
@@ -629,14 +650,6 @@ namespace CursesSharp
         public void MoveWindowParent(int pary, int parx)
         {
             CursesMethods.mvderwin(this.winptr, pary, parx);
-        }
-
-        public bool ImmediateSyncUp
-        {
-            set
-            {
-                CursesMethods.syncok(this.winptr, value);
-            }
         }
 
         public void SyncUp()
