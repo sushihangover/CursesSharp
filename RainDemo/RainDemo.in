@@ -1,0 +1,8 @@
+#!/bin/sh
+prefix=@prefix@
+exec_prefix=@prefix@
+libdir=@libdir@
+export LD_LIBRARY_PATH=$libdir/@PACKAGE@:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=$libdir/@PACKAGE@:$DYLD_LIBRARY_PATH
+exec @MONO@ $libdir/@PACKAGE@/RainDemo.exe "$@"
+
