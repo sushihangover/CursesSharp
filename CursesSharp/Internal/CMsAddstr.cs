@@ -31,13 +31,13 @@ namespace CursesSharp.Internal
         internal static void waddnstr(IntPtr win, string str, int n)
         {
             int ret = wrap_waddnwstr(win, str, n);
-            CursesException.Verify(ret, "waddnwstr");
+            InternalException.Verify(ret, "waddnwstr");
         }
 
         internal static void mvwaddnstr(IntPtr win, int y, int x, string str, int n)
         {
             int ret = wrap_mvwaddnwstr(win, y, x, str, n);
-            CursesException.Verify(ret, "mvwaddnwstr");
+            InternalException.Verify(ret, "mvwaddnwstr");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
@@ -48,13 +48,13 @@ namespace CursesSharp.Internal
         internal static void waddnstr(IntPtr win, string str, int n)
         {
             int ret = wrap_waddnstr(win, str, n);
-            CursesException.Verify(ret, "waddnstr");
+            InternalException.Verify(ret, "waddnstr");
         }
 
         internal static void mvwaddnstr(IntPtr win, int y, int x, string str, int n)
         {
             int ret = wrap_mvwaddnstr(win, y, x, str, n);
-            CursesException.Verify(ret, "mvwaddnstr");
+            InternalException.Verify(ret, "mvwaddnstr");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]

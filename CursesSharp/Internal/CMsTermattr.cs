@@ -30,7 +30,7 @@ namespace CursesSharp.Internal
         internal static int baudrate()
         {
             int ret = wrap_baudrate();
-            CursesException.Verify(ret, "baudrate");
+            InternalException.Verify(ret, "baudrate");
             return ret;
         }
 
@@ -62,14 +62,14 @@ namespace CursesSharp.Internal
         internal static string termname()
         {
             IntPtr ret = wrap_termname();
-            CursesException.Verify(ret, "termname");
+            InternalException.Verify(ret, "termname");
             return Marshal.PtrToStringAnsi(ret);
         }
 
         internal static string longname()
         {
             IntPtr ret = wrap_longname();
-            CursesException.Verify(ret, "longname");
+            InternalException.Verify(ret, "longname");
             return Marshal.PtrToStringAnsi(ret);
         }
 

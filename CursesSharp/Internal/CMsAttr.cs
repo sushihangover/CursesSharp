@@ -30,55 +30,55 @@ namespace CursesSharp.Internal
         internal static void wattroff(IntPtr win, uint attrs)
         {
             int ret = wrap_wattroff(win, attrs);
-            CursesException.Verify(ret, "wattroff");
+            InternalException.Verify(ret, "wattroff");
         }
 
         internal static void wattron(IntPtr win, uint attrs)
         {
             int ret = wrap_wattron(win, attrs);
-            CursesException.Verify(ret, "wattron");
+            InternalException.Verify(ret, "wattron");
         }
 
         internal static void wattrset(IntPtr win, uint attrs)
         {
             int ret = wrap_wattrset(win, attrs);
-            CursesException.Verify(ret, "wattrset");
+            InternalException.Verify(ret, "wattrset");
         }
 
         internal static void wstandend(IntPtr win)
         {
             int ret = wrap_wstandend(win);
-            CursesException.Verify(ret, "wstandend");
+            InternalException.Verify(ret, "wstandend");
         }
 
         internal static void wstandout(IntPtr win)
         {
             int ret = wrap_wstandout(win);
-            CursesException.Verify(ret, "wstandout");
+            InternalException.Verify(ret, "wstandout");
         }
 
         internal static void wcolor_set(IntPtr win, short color_pair)
         {
             int ret = wrap_wcolor_set(win, color_pair);
-            CursesException.Verify(ret, "wcolor_set");
+            InternalException.Verify(ret, "wcolor_set");
         }
 
         internal static void wattr_get(IntPtr win, out uint attrs, out short color_pair)
         {
             int ret = wrap_wattr_get(win, out attrs, out color_pair);
-            CursesException.Verify(ret, "wattr_get");
+            InternalException.Verify(ret, "wattr_get");
         }
 
         internal static void wchgat(IntPtr win, int n, uint attr, short color)
         {
             int ret = wrap_wchgat(win, n, attr, color);
-            CursesException.Verify(ret, "wchgat");
+            InternalException.Verify(ret, "wchgat");
         }
 
         internal static void mvwchgat(IntPtr win, int y, int x, int n, uint attr, short color)
         {
             int ret = wrap_mvwchgat(win, y, x, n, attr, color);
-            CursesException.Verify(ret, "mvwchgat");
+            InternalException.Verify(ret, "mvwchgat");
         }
 
         [DllImport("CursesWrapper")]

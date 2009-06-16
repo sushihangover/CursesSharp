@@ -30,53 +30,53 @@ namespace CursesSharp.Internal
         internal static IntPtr newwin(int nlines, int ncols, int begy, int begx)
         {
             IntPtr ret = wrap_newwin(nlines, ncols, begy, begx);
-            CursesException.Verify(ret, "newwin");
+            InternalException.Verify(ret, "newwin");
             return ret;
         }
 
         internal static IntPtr derwin(IntPtr orig, int nlines, int ncols, int begy, int begx)
         {
             IntPtr ret = wrap_derwin(orig, nlines, ncols, begy, begx);
-            CursesException.Verify(ret, "derwin");
+            InternalException.Verify(ret, "derwin");
             return ret;
         }
 
         internal static IntPtr subwin(IntPtr orig, int nlines, int ncols, int begy, int begx)
         {
             IntPtr ret = wrap_subwin(orig, nlines, ncols, begy, begx);
-            CursesException.Verify(ret, "subwin");
+            InternalException.Verify(ret, "subwin");
             return ret;
         }
 
         internal static IntPtr dupwin(IntPtr win)
         {
             IntPtr ret = wrap_dupwin(win);
-            CursesException.Verify(ret, "dupwin");
+            InternalException.Verify(ret, "dupwin");
             return ret;
         }
 
         internal static void delwin(IntPtr win)
         {
             int ret = wrap_delwin(win);
-            CursesException.Verify(ret, "delwin");
+            InternalException.Verify(ret, "delwin");
         }
 
         internal static void mvwin(IntPtr win, int y, int x)
         {
             int ret = wrap_mvwin(win, y, x);
-            CursesException.Verify(ret, "mvwin");
+            InternalException.Verify(ret, "mvwin");
         }
 
         internal static void mvderwin(IntPtr win, int pary, int parx)
         {
             int ret = wrap_mvderwin(win, pary, parx);
-            CursesException.Verify(ret, "mvderwin");
+            InternalException.Verify(ret, "mvderwin");
         }
 
         internal static void syncok(IntPtr win, bool bf)
         {
             int ret = wrap_syncok(win, bf);
-            CursesException.Verify(ret, "syncok");
+            InternalException.Verify(ret, "syncok");
         }
 
         internal static void wsyncup(IntPtr win)

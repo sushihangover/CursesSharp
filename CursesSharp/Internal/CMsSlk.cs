@@ -30,75 +30,75 @@ namespace CursesSharp.Internal
         internal static void slk_init(int fmt)
         {
             int ret = wrap_slk_init(fmt);
-            CursesException.Verify(ret, "slk_init");
+            InternalException.Verify(ret, "slk_init");
         }
 
         internal static void slk_refresh()
         {
             int ret = wrap_slk_refresh();
-            CursesException.Verify(ret, "slk_refresh");
+            InternalException.Verify(ret, "slk_refresh");
         }
 
         internal static void slk_noutrefresh()
         {
             int ret = wrap_slk_noutrefresh();
-            CursesException.Verify(ret, "slk_noutrefresh");
+            InternalException.Verify(ret, "slk_noutrefresh");
         }
 
         internal static string slk_label(int labnum)
         {
             IntPtr ret = wrap_slk_label(labnum);
-            CursesException.Verify(ret, "slk_label");
+            InternalException.Verify(ret, "slk_label");
             return Marshal.PtrToStringAnsi(ret);
         }
 
         internal static void slk_clear()
         {
             int ret = wrap_slk_clear();
-            CursesException.Verify(ret, "slk_clear");
+            InternalException.Verify(ret, "slk_clear");
         }
 
         internal static void slk_restore()
         {
             int ret = wrap_slk_restore();
-            CursesException.Verify(ret, "slk_restore");
+            InternalException.Verify(ret, "slk_restore");
         }
 
         internal static void slk_touch()
         {
             int ret = wrap_slk_touch();
-            CursesException.Verify(ret, "slk_touch");
+            InternalException.Verify(ret, "slk_touch");
         }
 
         internal static void slk_attron(uint attrs)
         {
             int ret = wrap_slk_attron(attrs);
-            CursesException.Verify(ret, "slk_attron");
+            InternalException.Verify(ret, "slk_attron");
         }
 
         internal static void slk_attrset(uint attrs)
         {
             int ret = wrap_slk_attrset(attrs);
-            CursesException.Verify(ret, "slk_attrset");
+            InternalException.Verify(ret, "slk_attrset");
         }
 
         internal static void slk_attroff(uint attrs)
         {
             int ret = wrap_slk_attroff(attrs);
-            CursesException.Verify(ret, "slk_attroff");
+            InternalException.Verify(ret, "slk_attroff");
         }
 
         internal static void slk_color(short color_pair)
         {
             int ret = wrap_slk_color(color_pair);
-            CursesException.Verify(ret, "slk_color");
+            InternalException.Verify(ret, "slk_color");
         }
 
 #if HAVE_USE_WIDECHAR
         internal static void slk_set(int labnum, string label, int justify)
         {
             int ret = wrap_slk_wset(labnum, label, justify);
-            CursesException.Verify(ret, "slk_wset");
+            InternalException.Verify(ret, "slk_wset");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
@@ -107,7 +107,7 @@ namespace CursesSharp.Internal
         internal static void slk_set(int labnum, string label, int justify)        
         {
             int ret = wrap_slk_set(labnum, label, justify);
-            CursesException.Verify(ret, "slk_set");
+            InternalException.Verify(ret, "slk_set");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]

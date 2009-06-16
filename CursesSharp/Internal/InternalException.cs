@@ -1,5 +1,4 @@
 #region Copyright 2009 Robert Konklewski
-
 /*
  * CursesSharp
  * 
@@ -19,25 +18,24 @@
  * www.gnu.org/licenses/>.
  * 
  */
-
 #endregion
 
 using System;
 
-namespace CursesSharp
+namespace CursesSharp.Internal
 {
-    public class CursesException : ApplicationException
+    internal class InternalException : CursesException
     {
-        public CursesException()
+        internal InternalException()
         {
         }
 
-        public CursesException(string message)
+        internal InternalException(string message)
             : base(message)
         {
         }
 
-        public CursesException(string message, Exception inner)
+        internal InternalException(string message, Exception inner)
             : base(message, inner)
         {
         }
@@ -45,13 +43,13 @@ namespace CursesSharp
         internal static void Verify(int result, string fname)
         {
             if (result == -1)
-                throw new CursesException(fname + "() returned ERR");
+                throw new InternalException(fname + "() returned ERR");
         }
 
         internal static void Verify(IntPtr result, string fname)
         {
             if (result == IntPtr.Zero)
-                throw new CursesException(fname + "() returned NULL");
+                throw new InternalException(fname + "() returned NULL");
         }
     }
 }

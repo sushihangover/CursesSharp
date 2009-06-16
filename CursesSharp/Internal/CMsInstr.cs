@@ -32,14 +32,14 @@ namespace CursesSharp.Internal
         internal static int winnstr(IntPtr win, StringBuilder str, int n)
         {
             int ret = wrap_winnwstr(win, str, n);
-            CursesException.Verify(ret, "winnwstr");
+            InternalException.Verify(ret, "winnwstr");
             return ret;
         }
 
         internal static int mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n)
         {
             int ret = wrap_mvwinnwstr(win, y, x, str, n);
-            CursesException.Verify(ret, "mvwinnwstr");
+            InternalException.Verify(ret, "mvwinnwstr");
             return ret;
         }
 
@@ -51,14 +51,14 @@ namespace CursesSharp.Internal
         internal static int winnstr(IntPtr win, StringBuilder str, int n)
         {
             int ret = wrap_winnstr(win, str, n);
-            CursesException.Verify(ret, "winnstr");
+            InternalException.Verify(ret, "winnstr");
             return ret;
         }
 
         internal static int mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n)
         {
             int ret = wrap_mvwinnstr(win, y, x, str, n);
-            CursesException.Verify(ret, "mvwinnstr");
+            InternalException.Verify(ret, "mvwinnstr");
             return ret;
         }
 

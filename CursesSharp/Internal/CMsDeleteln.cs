@@ -30,19 +30,19 @@ namespace CursesSharp.Internal
         internal static void wdeleteln(IntPtr win)
         {
             int ret = wrap_wdeleteln(win);
-            CursesException.Verify(ret, "wdeleteln");
+            InternalException.Verify(ret, "wdeleteln");
         }
 
         internal static void winsdelln(IntPtr win, int n)
         {
             int ret = wrap_winsdelln(win, n);
-            CursesException.Verify(ret, "winsdelln");
+            InternalException.Verify(ret, "winsdelln");
         }
 
         internal static void winsertln(IntPtr win)
         {
             int ret = wrap_winsertln(win);
-            CursesException.Verify(ret, "winsertln");
+            InternalException.Verify(ret, "winsertln");
         }
 
         [DllImport("CursesWrapper")]

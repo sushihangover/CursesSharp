@@ -40,31 +40,31 @@ namespace CursesSharp.Internal
         internal static void start_color()
         {
             int ret = wrap_start_color();
-            CursesException.Verify(ret, "start_color");
+            InternalException.Verify(ret, "start_color");
         }
 
         internal static void init_pair(short color, short fg, short bg)
         {
             int ret = wrap_init_pair(color, fg, bg);
-            CursesException.Verify(ret, "init_pair");
+            InternalException.Verify(ret, "init_pair");
         }
 
         internal static void init_color(short color, short red, short green, short blue)
         {
             int ret = wrap_init_color(color, red, green, blue);
-            CursesException.Verify(ret, "init_color");
+            InternalException.Verify(ret, "init_color");
         }
 
         internal static void color_content(short color, out short red, out short green, out short blue)
         {
             int ret = wrap_color_content(color, out red, out green, out blue);
-            CursesException.Verify(ret, "color_content");
+            InternalException.Verify(ret, "color_content");
         }
 
         internal static void pair_content(short pair, out short fg, out short bg)
         {
             int ret = wrap_pair_content(pair, out fg, out bg);
-            CursesException.Verify(ret, "pair_content");
+            InternalException.Verify(ret, "pair_content");
         }
 
         internal static bool has_colors()
@@ -80,13 +80,13 @@ namespace CursesSharp.Internal
         internal static void assume_default_colors(int f, int b)
         {
             int ret = wrap_assume_default_colors(f, b);
-            CursesException.Verify(ret, "assume_default_colors");
+            InternalException.Verify(ret, "assume_default_colors");
         }
 
         internal static void use_default_colors()
         {
             int ret = wrap_use_default_colors();
-            CursesException.Verify(ret, "use_default_colors");
+            InternalException.Verify(ret, "use_default_colors");
         }
 
         [DllImport("CursesWrapper")]

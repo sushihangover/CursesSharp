@@ -30,31 +30,31 @@ namespace CursesSharp.Internal
         internal static void wrefresh(IntPtr win)
         {
             int ret = wrap_wrefresh(win);
-            CursesException.Verify(ret, "wrefresh");
+            InternalException.Verify(ret, "wrefresh");
         }
 
         internal static void wnoutrefresh(IntPtr win)
         {
             int ret = wrap_wnoutrefresh(win);
-            CursesException.Verify(ret, "wnoutrefresh");
+            InternalException.Verify(ret, "wnoutrefresh");
         }
 
         internal static void doupdate()
         {
             int ret = wrap_doupdate();
-            CursesException.Verify(ret, "doupdate");
+            InternalException.Verify(ret, "doupdate");
         }
 
         internal static void redrawwin(IntPtr win)
         {
             int ret = wrap_redrawwin(win);
-            CursesException.Verify(ret, "redrawwin");
+            InternalException.Verify(ret, "redrawwin");
         }
 
         internal static void wredrawln(IntPtr win, int beg_line, int num_lines)
         {
             int ret = wrap_wredrawln(win, beg_line, num_lines);
-            CursesException.Verify(ret, "wredrawln");
+            InternalException.Verify(ret, "wredrawln");
         }
 
         [DllImport("CursesWrapper")]

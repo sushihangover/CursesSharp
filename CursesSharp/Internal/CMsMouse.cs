@@ -46,13 +46,13 @@ namespace CursesSharp.Internal
         internal static void getmouse(out WrapMEvent mevent)
         {
             int ret = wrap_getmouse(out mevent);
-            CursesException.Verify(ret, "getmouse");
+            InternalException.Verify(ret, "getmouse");
         }
 
         internal static void ungetmouse(ref WrapMEvent mevent)
         {
             int ret = wrap_ungetmouse(ref mevent);
-            CursesException.Verify(ret, "ungetmouse");
+            InternalException.Verify(ret, "ungetmouse");
         }
 
         internal static uint mousemask(uint mask, out uint oldmask)

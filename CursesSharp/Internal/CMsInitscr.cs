@@ -30,14 +30,14 @@ namespace CursesSharp.Internal
         internal static IntPtr initscr()
         {
             IntPtr ret = wrap_initscr();
-            CursesException.Verify(ret, "initscr");
+            InternalException.Verify(ret, "initscr");
             return ret;
         }
 
         internal static void endwin()
         {
             int ret = wrap_endwin();
-            CursesException.Verify(ret, "endwin");
+            InternalException.Verify(ret, "endwin");
         }
 
         internal static bool isendwin()
@@ -48,7 +48,7 @@ namespace CursesSharp.Internal
         internal static void resize_term(int nlines, int ncols)
         {
             int ret = wrap_resize_term(nlines, ncols);
-            CursesException.Verify(ret, "resize_term");
+            InternalException.Verify(ret, "resize_term");
         }
 
         [DllImport("CursesWrapper")]

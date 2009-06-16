@@ -1,4 +1,5 @@
 #region Copyright 2009 Robert Konklewski
+
 /*
  * CursesSharp
  * 
@@ -18,30 +19,27 @@
  * www.gnu.org/licenses/>.
  * 
  */
+
 #endregion
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace CursesSharp.Internal
+namespace CursesSharp
 {
-    internal static partial class CursesMethods
+    public class CursesException : Exception
     {
-        internal static void wdelch(IntPtr win)
+        public CursesException()
         {
-            int ret = wrap_wdelch(win);
-            InternalException.Verify(ret, "wdelch");
         }
 
-        internal static void mvwdelch(IntPtr win, int y, int x)
+        public CursesException(string message)
+            : base(message)
         {
-            int ret = wrap_mvwdelch(win, y, x);
-            InternalException.Verify(ret, "mvwdelch");
         }
 
-        [DllImport("CursesWrapper")]
-        private static extern int wrap_wdelch(IntPtr win);
-        [DllImport("CursesWrapper")]
-        private static extern int wrap_mvwdelch(IntPtr win, int y, int x);
+        public CursesException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
     }
 }

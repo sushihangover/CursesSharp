@@ -30,13 +30,13 @@ namespace CursesSharp.Internal
         internal static void scroll(IntPtr win)
         {
             int ret = wrap_scroll(win);
-            CursesException.Verify(ret, "scroll");
+            InternalException.Verify(ret, "scroll");
         }
 
         internal static void wscrl(IntPtr win, int n)
         {
             int ret = wrap_wscrl(win, n);
-            CursesException.Verify(ret, "wscrl");
+            InternalException.Verify(ret, "wscrl");
         }
 
         [DllImport("CursesWrapper")]

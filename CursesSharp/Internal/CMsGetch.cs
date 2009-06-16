@@ -40,13 +40,13 @@ namespace CursesSharp.Internal
         internal static void ungetch(int ch)
         {
             int ret = wrap_ungetch(ch);
-            CursesException.Verify(ret, "ungetch");
+            InternalException.Verify(ret, "ungetch");
         }
 
         internal static void flushinp()
         {
             int ret = wrap_flushinp();
-            CursesException.Verify(ret, "flushinp");
+            InternalException.Verify(ret, "flushinp");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]

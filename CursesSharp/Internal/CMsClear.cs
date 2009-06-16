@@ -30,25 +30,25 @@ namespace CursesSharp.Internal
         internal static void wclear(IntPtr win)
         {
             int ret = wrap_wclear(win);
-            CursesException.Verify(ret, "wclear");
+            InternalException.Verify(ret, "wclear");
         }
 
         internal static void werase(IntPtr win)
         {
             int ret = wrap_werase(win);
-            CursesException.Verify(ret, "werase");
+            InternalException.Verify(ret, "werase");
         }
 
         internal static void wclrtobot(IntPtr win)
         {
             int ret = wrap_wclrtobot(win);
-            CursesException.Verify(ret, "wclrtobot");
+            InternalException.Verify(ret, "wclrtobot");
         }
 
         internal static void wclrtoeol(IntPtr win)
         {
             int ret = wrap_wclrtoeol(win);
-            CursesException.Verify(ret, "wclrtoeol");
+            InternalException.Verify(ret, "wclrtoeol");
         }
 
         [DllImport("CursesWrapper")]

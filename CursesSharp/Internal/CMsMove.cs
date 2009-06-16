@@ -30,7 +30,7 @@ namespace CursesSharp.Internal
         internal static void wmove(IntPtr win, int y, int x)
         {
             int ret = wrap_wmove(win, y, x);
-            CursesException.Verify(ret, "wmove");
+            InternalException.Verify(ret, "wmove");
         }
 
         [DllImport("CursesWrapper")]

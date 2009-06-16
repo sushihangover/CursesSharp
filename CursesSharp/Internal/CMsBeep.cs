@@ -30,13 +30,13 @@ namespace CursesSharp.Internal
         internal static void beep()
         {
             int ret = wrap_beep();
-            CursesException.Verify(ret, "beep");
+            InternalException.Verify(ret, "beep");
         }
 
         internal static void flash()
         {
             int ret = wrap_flash();
-            CursesException.Verify(ret, "flash");
+            InternalException.Verify(ret, "flash");
         }
 
         [DllImport("CursesWrapper")]

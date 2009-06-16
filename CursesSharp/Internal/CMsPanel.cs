@@ -31,26 +31,26 @@ namespace CursesSharp.Internal
         internal static IntPtr new_panel(IntPtr win)
         {
             IntPtr ret = wrap_new_panel(win);
-            CursesException.Verify(ret, "new_panel");
+            InternalException.Verify(ret, "new_panel");
             return ret;
         }
 
         internal static void bottom_panel(IntPtr pan)
         {
             int ret = wrap_bottom_panel(pan);
-            CursesException.Verify(ret, "bottom_panel");
+            InternalException.Verify(ret, "bottom_panel");
         }
 
         internal static void top_panel(IntPtr pan)
         {
             int ret = wrap_top_panel(pan);
-            CursesException.Verify(ret, "top_panel");
+            InternalException.Verify(ret, "top_panel");
         }
 
         internal static void show_panel(IntPtr pan)
         {
             int ret = wrap_show_panel(pan);
-            CursesException.Verify(ret, "show_panel");
+            InternalException.Verify(ret, "show_panel");
         }
 
         internal static void update_panels()
@@ -61,32 +61,32 @@ namespace CursesSharp.Internal
         internal static void hide_panel(IntPtr pan)
         {
             int ret = wrap_hide_panel(pan);
-            CursesException.Verify(ret, "hide_panel");
+            InternalException.Verify(ret, "hide_panel");
         }
 
         internal static IntPtr panel_window(IntPtr pan)
         {
             IntPtr ret = wrap_panel_window(pan);
-            CursesException.Verify(ret, "panel_window");
+            InternalException.Verify(ret, "panel_window");
             return ret;
         }
 
         internal static void replace_panel(IntPtr pan, IntPtr win)
         {
             int ret = wrap_replace_panel(pan, win);
-            CursesException.Verify(ret, "replace_panel");
+            InternalException.Verify(ret, "replace_panel");
         }
 
         internal static void move_panel(IntPtr pan, int starty, int startx)
         {
             int ret = wrap_move_panel(pan, starty, startx);
-            CursesException.Verify(ret, "move_panel");
+            InternalException.Verify(ret, "move_panel");
         }
 
         internal static bool panel_hidden(IntPtr pan)
         {
             int ret = wrap_panel_hidden(pan);
-            CursesException.Verify(ret, "panel_hidden");
+            InternalException.Verify(ret, "panel_hidden");
             return (ret != 0);
         }
 
@@ -103,7 +103,7 @@ namespace CursesSharp.Internal
         internal static void del_panel(IntPtr pan)
         {
             int ret = wrap_del_panel(pan);
-            CursesException.Verify(ret, "del_panel");
+            InternalException.Verify(ret, "del_panel");
         }
 
         [DllImport("CursesWrapper")]

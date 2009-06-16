@@ -30,13 +30,13 @@ namespace CursesSharp.Internal
         internal static void clearok(IntPtr win, bool bf)
         {
             int ret = wrap_clearok(win, bf);
-            CursesException.Verify(ret, "clearok");
+            InternalException.Verify(ret, "clearok");
         }
 
         internal static void idlok(IntPtr win, bool bf)
         {
             int ret = wrap_idlok(win, bf);
-            CursesException.Verify(ret, "idlok");
+            InternalException.Verify(ret, "idlok");
         }
 
         internal static void idcok(IntPtr win, bool bf)
@@ -52,19 +52,19 @@ namespace CursesSharp.Internal
         internal static void leaveok(IntPtr win, bool bf)
         {
             int ret = wrap_leaveok(win, bf);
-            CursesException.Verify(ret, "leaveok");
+            InternalException.Verify(ret, "leaveok");
         }
 
         internal static void wsetscrreg(IntPtr win, int top, int bot)
         {
             int ret = wrap_wsetscrreg(win, top, bot);
-            CursesException.Verify(ret, "wsetscrreg");
+            InternalException.Verify(ret, "wsetscrreg");
         }
 
         internal static void scrollok(IntPtr win, bool bf)
         {
             int ret = wrap_scrollok(win, bf);
-            CursesException.Verify(ret, "scrollok");
+            InternalException.Verify(ret, "scrollok");
         }
 
         [DllImport("CursesWrapper")]

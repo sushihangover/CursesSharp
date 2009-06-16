@@ -30,25 +30,25 @@ namespace CursesSharp.Internal
         internal static void scr_dump(string filename)
         {
             int ret = wrap_scr_dump(filename);
-            CursesException.Verify(ret, "scr_dump");
+            InternalException.Verify(ret, "scr_dump");
         }
 
         internal static void scr_init(string filename)
         {
             int ret = wrap_scr_init(filename);
-            CursesException.Verify(ret, "scr_init");
+            InternalException.Verify(ret, "scr_init");
         }
 
         internal static void scr_restore(string filename)
         {
             int ret = wrap_scr_restore(filename);
-            CursesException.Verify(ret, "scr_restore");
+            InternalException.Verify(ret, "scr_restore");
         }
 
         internal static void scr_set(string filename)
         {
             int ret = wrap_scr_set(filename);
-            CursesException.Verify(ret, "scr_set");
+            InternalException.Verify(ret, "scr_set");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]

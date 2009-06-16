@@ -30,7 +30,7 @@ namespace CursesSharp.Internal
         internal static string keyname(int key)
         {
             IntPtr ret = wrap_keyname(key);
-            CursesException.Verify(ret, "keyname");
+            InternalException.Verify(ret, "keyname");
             return Marshal.PtrToStringAnsi(ret);
         }
 

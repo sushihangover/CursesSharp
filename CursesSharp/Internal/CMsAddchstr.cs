@@ -30,13 +30,13 @@ namespace CursesSharp.Internal
         internal static void waddchnstr(IntPtr win, uint[] chstr, int n)
         {
             int ret = wrap_waddchnstr(win, chstr, n);
-            CursesException.Verify(ret, "waddchnstr");
+            InternalException.Verify(ret, "waddchnstr");
         }
 
         internal static void mvwaddchnstr(IntPtr win, int y, int x, uint[] chstr, int n)
         {
             int ret = wrap_mvwaddchnstr(win, y, x, chstr, n);
-            CursesException.Verify(ret, "mvwaddchnstr");
+            InternalException.Verify(ret, "mvwaddchnstr");
         }
 
         [DllImport("CursesWrapper")]

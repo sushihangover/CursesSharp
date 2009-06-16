@@ -30,25 +30,25 @@ namespace CursesSharp.Internal
         internal static void touchwin(IntPtr win)
         {
             int ret = wrap_touchwin(win);
-            CursesException.Verify(ret, "touchwin");
+            InternalException.Verify(ret, "touchwin");
         }
 
         internal static void touchline(IntPtr win, int start, int count)
         {
             int ret = wrap_touchline(win, start, count);
-            CursesException.Verify(ret, "touchline");
+            InternalException.Verify(ret, "touchline");
         }
 
         internal static void untouchwin(IntPtr win)
         {
             int ret = wrap_untouchwin(win);
-            CursesException.Verify(ret, "untouchwin");
+            InternalException.Verify(ret, "untouchwin");
         }
 
         internal static void wtouchln(IntPtr win, int y, int n, int changed)
         {
             int ret = wrap_wtouchln(win, y, n, changed);
-            CursesException.Verify(ret, "wtouchln");
+            InternalException.Verify(ret, "wtouchln");
         }
 
         internal static bool is_linetouched(IntPtr win, int line)

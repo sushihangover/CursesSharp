@@ -32,37 +32,37 @@ namespace CursesSharp.Internal
         internal static void def_prog_mode()
         {
             int ret = wrap_def_prog_mode();
-            CursesException.Verify(ret, "def_prog_mode");
+            InternalException.Verify(ret, "def_prog_mode");
         }
 
         internal static void def_shell_mode()
         {
             int ret = wrap_def_shell_mode();
-            CursesException.Verify(ret, "def_shell_mode");
+            InternalException.Verify(ret, "def_shell_mode");
         }
 
         internal static void reset_prog_mode()
         {
             int ret = wrap_reset_prog_mode();
-            CursesException.Verify(ret, "reset_prog_mode");
+            InternalException.Verify(ret, "reset_prog_mode");
         }
 
         internal static void reset_shell_mode()
         {
             int ret = wrap_reset_shell_mode();
-            CursesException.Verify(ret, "reset_shell_mode");
+            InternalException.Verify(ret, "reset_shell_mode");
         }
 
         internal static void resetty()
         {
             int ret = wrap_resetty();
-            CursesException.Verify(ret, "resetty");
+            InternalException.Verify(ret, "resetty");
         }
 
         internal static void savetty()
         {
             int ret = wrap_savetty();
-            CursesException.Verify(ret, "savetty");
+            InternalException.Verify(ret, "savetty");
         }
 
         internal static void getsyx(out int y, out int x)
@@ -78,13 +78,13 @@ namespace CursesSharp.Internal
         internal static void ripoffline(int line, RipOffLineFunInt init)
         {
             int ret = wrap_ripoffline(line, init);
-            CursesException.Verify(ret, "ripoffline");
+            InternalException.Verify(ret, "ripoffline");
         }
 
         internal static void napms(int ms)
         {
             int ret = wrap_napms(ms);
-            CursesException.Verify(ret, "napms");
+            InternalException.Verify(ret, "napms");
         }
 
         internal static int curs_set(int visibility)

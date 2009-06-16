@@ -32,13 +32,13 @@ namespace CursesSharp.Internal
         internal static void wgetnstr(IntPtr win, StringBuilder wstr, int n)
         {
             int ret = wrap_wgetn_wstr(win, wstr, n);
-            CursesException.Verify(ret, "wgetn_wstr");
+            InternalException.Verify(ret, "wgetn_wstr");
         }
 
         internal static void mvwgetnstr(IntPtr win, int y, int x, StringBuilder wstr, int n)
         {
             int ret = wrap_mvwgetn_wstr(win, y, x, wstr, n);
-            CursesException.Verify(ret, "mvwgetn_wstr");
+            InternalException.Verify(ret, "mvwgetn_wstr");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
@@ -49,13 +49,13 @@ namespace CursesSharp.Internal
         internal static void wgetnstr(IntPtr win, StringBuilder str, int n)
         {
             int ret = wrap_wgetnstr(win, str, n);
-            CursesException.Verify(ret, "wgetnstr");
+            InternalException.Verify(ret, "wgetnstr");
         }
 
         internal static void mvwgetnstr(IntPtr win, int y, int x, StringBuilder str, int n)
         {
             int ret = wrap_mvwgetnstr(win, y, x, str, n);
-            CursesException.Verify(ret, "mvwgetnstr");
+            InternalException.Verify(ret, "mvwgetnstr");
         }
 
         [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]

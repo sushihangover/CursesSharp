@@ -30,19 +30,19 @@ namespace CursesSharp.Internal
         internal static void waddch(IntPtr win, uint ch)
         {
             int ret = wrap_waddch(win, ch);
-            CursesException.Verify(ret, "waddch");
+            InternalException.Verify(ret, "waddch");
         }
 
         internal static void mvwaddch(IntPtr win, int y, int x, uint ch)
         {
             int ret = wrap_mvwaddch(win, y, x, ch);
-            CursesException.Verify(ret, "mvwaddch");
+            InternalException.Verify(ret, "mvwaddch");
         }
 
         internal static void wechochar(IntPtr win, uint ch)
         {
             int ret = wrap_wechochar(win, ch);
-            CursesException.Verify(ret, "wechochar");
+            InternalException.Verify(ret, "wechochar");
         }
 
         [DllImport("CursesWrapper")]

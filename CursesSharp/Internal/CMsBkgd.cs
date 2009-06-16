@@ -35,7 +35,7 @@ namespace CursesSharp.Internal
         internal static void wbkgd(IntPtr win, uint ch)
         {
             int ret = wrap_wbkgd(win, ch);
-            CursesException.Verify(ret, "wbkgd");
+            InternalException.Verify(ret, "wbkgd");
         }
 
         internal static void wbkgdset(IntPtr win, uint ch)

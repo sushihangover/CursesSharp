@@ -30,14 +30,14 @@ namespace CursesSharp.Internal
         internal static uint winch(IntPtr win)
         {
             uint ret = wrap_winch(win);
-            CursesException.Verify((int)ret, "winch");
+            InternalException.Verify((int)ret, "winch");
             return ret;
         }
 
         internal static uint mvwinch(IntPtr win, int y, int x)
         {
             uint ret = wrap_mvwinch(win, y, x);
-            CursesException.Verify((int)ret, "mvwinch");
+            InternalException.Verify((int)ret, "mvwinch");
             return ret;
         }
 

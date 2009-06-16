@@ -30,37 +30,37 @@ namespace CursesSharp.Internal
         internal static void wborder(IntPtr win, uint ls, uint rs, uint ts, uint bs, uint tl, uint tr, uint bl, uint br)
         {
             int ret = wrap_wborder(win, ls, rs, ts, bs, tl, tr, bl, br);
-            CursesException.Verify(ret, "wborder");
+            InternalException.Verify(ret, "wborder");
         }
 
         internal static void box(IntPtr win, uint verch, uint horch)
         {
             int ret = wrap_box(win, verch, horch);
-            CursesException.Verify(ret, "box");
+            InternalException.Verify(ret, "box");
         }
 
         internal static void whline(IntPtr win, uint ch, int n)
         {
             int ret = wrap_whline(win, ch, n);
-            CursesException.Verify(ret, "whline");
+            InternalException.Verify(ret, "whline");
         }
 
         internal static void wvline(IntPtr win, uint ch, int n)
         {
             int ret = wrap_wvline(win, ch, n);
-            CursesException.Verify(ret, "wvline");
+            InternalException.Verify(ret, "wvline");
         }
 
         internal static void mvwhline(IntPtr win, int y, int x, uint ch, int n)
         {
             int ret = wrap_mvwhline(win, y, x, ch, n);
-            CursesException.Verify(ret, "mvwhline");
+            InternalException.Verify(ret, "mvwhline");
         }
 
         internal static void mvwvline(IntPtr win, int y, int x, uint ch, int n)
         {
             int ret = wrap_mvwvline(win, y, x, ch, n);
-            CursesException.Verify(ret, "mvwvline");
+            InternalException.Verify(ret, "mvwvline");
         }
 
         [DllImport("CursesWrapper")]

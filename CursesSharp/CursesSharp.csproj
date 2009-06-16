@@ -74,9 +74,10 @@
     <Compile Include="Internal\CursesMethods.cs" />
     <Compile Include="DefsGen.cs" />
     <Compile Include="Curses.cs" />
-    <Compile Include="Errors.cs" />
+    <Compile Include="CursesException.cs" />
     <Compile Include="Internal\CMsAddch.cs" />
     <Compile Include="Internal\CMsAddchstr.cs" />
+    <Compile Include="Internal\InternalException.cs" />
     <Compile Include="Pad.cs" />
     <Compile Include="Panel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

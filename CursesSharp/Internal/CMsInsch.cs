@@ -30,13 +30,13 @@ namespace CursesSharp.Internal
         internal static void winsch(IntPtr win, uint ch)
         {
             int ret = wrap_winsch(win, ch);
-            CursesException.Verify(ret, "winsch");
+            InternalException.Verify(ret, "winsch");
         }
 
         internal static void mvwinsch(IntPtr win, int y, int x, uint ch)
         {
             int ret = wrap_mvwinsch(win, y, x, ch);
-            CursesException.Verify(ret, "mvwinsch");
+            InternalException.Verify(ret, "mvwinsch");
         }
 
         [DllImport("CursesWrapper")]

@@ -30,79 +30,79 @@ namespace CursesSharp.Internal
         internal static void cbreak()
         {
             int ret = wrap_cbreak();
-            CursesException.Verify(ret, "cbreak");
+            InternalException.Verify(ret, "cbreak");
         }
 
         internal static void nocbreak()
         {
             int ret = wrap_nocbreak();
-            CursesException.Verify(ret, "nocbreak");
+            InternalException.Verify(ret, "nocbreak");
         }
 
         internal static void echo()
         {
             int ret = wrap_echo();
-            CursesException.Verify(ret, "echo");
+            InternalException.Verify(ret, "echo");
         }
 
         internal static void noecho()
         {
             int ret = wrap_noecho();
-            CursesException.Verify(ret, "noecho");
+            InternalException.Verify(ret, "noecho");
         }
 
         internal static void halfdelay(int tenths)
         {
             int ret = wrap_halfdelay(tenths);
-            CursesException.Verify(ret, "halfdelay");
+            InternalException.Verify(ret, "halfdelay");
         }
 
         internal static void intrflush(IntPtr win, bool bf)
         {
             int ret = wrap_intrflush(win, bf);
-            CursesException.Verify(ret, "intrflush");
+            InternalException.Verify(ret, "intrflush");
         }
 
         internal static void keypad(IntPtr win, bool bf)
         {
             int ret = wrap_keypad(win, bf);
-            CursesException.Verify(ret, "keypad");
+            InternalException.Verify(ret, "keypad");
         }
 
         internal static void meta(IntPtr win, bool bf)
         {
             int ret = wrap_meta(win, bf);
-            CursesException.Verify(ret, "meta");
+            InternalException.Verify(ret, "meta");
         }
 
         internal static void nl()
         {
             int ret = wrap_nl();
-            CursesException.Verify(ret, "nl");
+            InternalException.Verify(ret, "nl");
         }
 
         internal static void nonl()
         {
             int ret = wrap_nonl();
-            CursesException.Verify(ret, "nonl");
+            InternalException.Verify(ret, "nonl");
         }
 
         internal static void nodelay(IntPtr win, bool bf)
         {
             int ret = wrap_nodelay(win, bf);
-            CursesException.Verify(ret, "nodelay");
+            InternalException.Verify(ret, "nodelay");
         }
 
         internal static void raw()
         {
             int ret = wrap_raw();
-            CursesException.Verify(ret, "raw");
+            InternalException.Verify(ret, "raw");
         }
 
         internal static void noraw()
         {
             int ret = wrap_noraw();
-            CursesException.Verify(ret, "noraw");
+            InternalException.Verify(ret, "noraw");
         }
 
         internal static void qiflush()
@@ -118,7 +118,7 @@ namespace CursesSharp.Internal
         internal static void notimeout(IntPtr win, bool bf)
         {
             int ret = wrap_notimeout(win, bf);
-            CursesException.Verify(ret, "notimeout");
+            InternalException.Verify(ret, "notimeout");
         }
 
         internal static void wtimeout(IntPtr win, int delay)

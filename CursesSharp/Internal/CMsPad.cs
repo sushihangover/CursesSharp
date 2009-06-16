@@ -30,33 +30,33 @@ namespace CursesSharp.Internal
         internal static IntPtr newpad(int nlines, int ncols)
         {
             IntPtr ret = wrap_newpad(nlines, ncols);
-            CursesException.Verify(ret, "newpad");
+            InternalException.Verify(ret, "newpad");
             return ret;
         }
 
         internal static IntPtr subpad(IntPtr orig, int nlines, int ncols, int begy, int begx)
         {
             IntPtr ret = wrap_subpad(orig, nlines, ncols, begy, begx);
-            CursesException.Verify(ret, "subpad");
+            InternalException.Verify(ret, "subpad");
             return ret;
         }
 
         internal static void prefresh(IntPtr win, int py, int px, int sy1, int sx1, int sy2, int sx2)
         {
             int ret = wrap_prefresh(win, py, px, sy1, sx1, sy2, sx2);
-            CursesException.Verify(ret, "prefresh");
+            InternalException.Verify(ret, "prefresh");
         }
 
         internal static void pnoutrefresh(IntPtr win, int py, int px, int sy1, int sx1, int sy2, int sx2)
         {
             int ret = wrap_pnoutrefresh(win, py, px, sy1, sx1, sy2, sx2);
-            CursesException.Verify(ret, "pnoutrefresh");
+            InternalException.Verify(ret, "pnoutrefresh");
         }
 
         internal static void pechochar(IntPtr pad, uint ch)
         {
             int ret = wrap_pechochar(pad, ch);
-            CursesException.Verify(ret, "pechochar");
+            InternalException.Verify(ret, "pechochar");
         }
 
         [DllImport("CursesWrapper")]

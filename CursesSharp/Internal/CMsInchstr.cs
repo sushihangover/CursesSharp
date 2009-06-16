@@ -30,14 +30,14 @@ namespace CursesSharp.Internal
         internal static int winchnstr(IntPtr win, uint[] ch, int n)
         {
             int ret = wrap_winchnstr(win, ch, n);
-            CursesException.Verify(ret, "winchnstr");
+            InternalException.Verify(ret, "winchnstr");
             return ret;
         }
 
         internal static int mvwinchnstr(IntPtr win, int y, int x, uint[] ch, int n)
         {
             int ret = wrap_mvwinchnstr(win, y, x, ch, n);
-            CursesException.Verify(ret, "mvwinchnstr");
+            InternalException.Verify(ret, "mvwinchnstr");
             return ret;
         }
 

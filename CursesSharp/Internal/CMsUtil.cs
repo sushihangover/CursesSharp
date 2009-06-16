@@ -30,7 +30,7 @@ namespace CursesSharp.Internal
         internal static string unctrl(uint c)
         {
             IntPtr ret = wrap_unctrl(c);
-            CursesException.Verify(ret, "unctrl");
+            InternalException.Verify(ret, "unctrl");
             return Marshal.PtrToStringAnsi(ret);
         }
 
@@ -47,7 +47,7 @@ namespace CursesSharp.Internal
         internal static void delay_output(int ms)
         {
             int ret = wrap_delay_output(ms);
-            CursesException.Verify(ret, "delay_output");
+            InternalException.Verify(ret, "delay_output");
         }
 
         [DllImport("CursesWrapper")]
