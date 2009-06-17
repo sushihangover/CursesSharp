@@ -1,15 +1,11 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.63])
+AC_PREREQ([2.62])
 AC_INIT([Curses Sharp], [0.8], [curses-sharp-bugs@lists.sourceforge.net])
+AC_CONFIG_SRCDIR([CursesWrapper/wrapper.c])
 
 AM_INIT_AUTOMAKE([foreign])
-
-LT_PREREQ([2.2])
-LT_INIT
-
-AC_CONFIG_SRCDIR([CursesWrapper/wrapper.c])
 
 # Checks for programs.
 AC_PROG_CC
