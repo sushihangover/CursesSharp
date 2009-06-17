@@ -41,5 +41,7 @@ libCursesWrapper_la_SOURCES = \
 	window.c \
 	wrapper.c \
 	wrapper.h
+libCursesWrapper_la_LDFLAGS = -module -no-undefined -version $(CURSESWRAPPER_VERSION)
+
 
 

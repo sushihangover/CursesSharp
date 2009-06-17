@@ -5,7 +5,7 @@ assemblies_dir=${libdir}/@PACKAGE@
 Libraries=${assemblies_dir}/CursesSharp.dll ${assemblies_dir}/CursesWrapper.dll
 
 Name: CursesSharp
-Description: CursesSharp - C# bindings for curses terminal control library
+Description: C-Sharp bindings for curses terminal control library
 Version: @VERSION@
 Libs: -r:CursesSharp.dll
 

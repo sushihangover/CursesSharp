@@ -3,6 +3,7 @@
 
 AC_PREREQ([2.63])
 AC_INIT([Curses Sharp], [0.8], [curses-sharp-bugs@lists.sourceforge.net])
+AC_SUBST([CURSESWRAPPER_VERSION], [0:0:0])
 
 AM_INIT_AUTOMAKE([foreign])
 
