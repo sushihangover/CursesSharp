@@ -1,8 +1,7 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
-assemblies_dir=${libdir}/@PACKAGE@
-Libraries=${assemblies_dir}/CursesSharp.dll ${assemblies_dir}/CursesWrapper.dll
+Libraries=${libdir}/@PACKAGE@/CursesSharp.dll
 
 Name: CursesSharp
 Description: C-Sharp bindings for curses terminal control library

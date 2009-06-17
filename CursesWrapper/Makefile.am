@@ -1,4 +1,4 @@
-pkglib_LTLIBRARIES = libCursesWrapper.la
+lib_LTLIBRARIES = libCursesWrapper.la
 
 libCursesWrapper_la_SOURCES = \
 	addch.c \
@@ -41,7 +41,6 @@ libCursesWrapper_la_SOURCES = \
 	window.c \
 	wrapper.c \
 	wrapper.h
-libCursesWrapper_la_LDFLAGS = -module -no-undefined -version $(CURSESWRAPPER_VERSION)
-
+libCursesWrapper_la_LDFLAGS = -module -no-undefined -avoid-version
 
 
