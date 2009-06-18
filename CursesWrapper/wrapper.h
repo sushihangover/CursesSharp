@@ -2,12 +2,16 @@
 #include <config.h>
 #endif
 
-#if defined(HAVE_NCURSESW_NCURSES_H)
-#include <ncursesw/ncurses.h>
-#elif defined(HAVE_NCURSES_H)
-#include <ncurses.h>
-#else
-#include <curses.h>
+#if defined(HAVE_USE_WIDECHAR)
+# if defined(HAVE_NCURSESW_NCURSES_H)
+#  include <ncursesw/ncurses.h>
+# endif
+#endif
+#if defined(HAVE_NCURSES_H)
+# include <ncurses.h>
+#endif
+#if defined(HAVE_CURSES_H)
+# include <curses.h>
 #endif
 
 #if defined(WIN32)

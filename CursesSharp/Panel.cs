@@ -29,7 +29,7 @@ using CursesSharp.Internal;
 
 namespace CursesSharp
 {
-#if HAVE_PANEL_H
+#if HAVE_CURSES_PANEL
     public class Panel : IDisposable
     {
         private static IDictionary<IntPtr, Panel> allPanels = new Dictionary<IntPtr, Panel>();

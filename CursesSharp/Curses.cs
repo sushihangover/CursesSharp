@@ -35,7 +35,7 @@ namespace CursesSharp
     /// <returns></returns>
     public delegate int RipOffLineFun(Window win, int ncols);
 
-#if NCURSES_MOUSE_VERSION
+#if HAVE_CURSES_MOUSE
     public class MouseEvent
     {
         private int id;
@@ -365,7 +365,7 @@ namespace CursesSharp
             return CursesMethods.has_key(key);
         }
 
-#if NCURSES_MOUSE_VERSION
+#if HAVE_CURSES_MOUSE
         public static bool HasMouse
         {
             get

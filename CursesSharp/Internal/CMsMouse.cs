@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 namespace CursesSharp.Internal
 {
-#if NCURSES_MOUSE_VERSION
+#if HAVE_CURSES_MOUSE
     [StructLayout(LayoutKind.Sequential)]
     internal struct WrapMEvent
     {

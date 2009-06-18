@@ -21,7 +21,7 @@
 #include "wrapper.h"
 
 
-#ifdef NCURSES_MOUSE_VERSION
+#ifdef HAVE_CURSES_MOUSE
 
 struct WrapMEvent 
 {

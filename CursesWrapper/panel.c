@@ -20,8 +20,11 @@
 
 #include "wrapper.h"
 
+#ifdef HAVE_CURSES_PANEL
+
 #ifdef HAVE_PANEL_H
 #include <panel.h>
+#endif
 
 
 WRAP_API PANEL *

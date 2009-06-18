@@ -63,5 +63,6 @@ DefsGen.cs: ../AttributeGen/AttributeGen
 	../AttributeGen/AttributeGen $@
 
 CursesSharp.dll: $(CursesSharp_build_sources)
-	$(CSC) -target:library -out:$@ $(CursesSharp_build_sources)
+	$(CSC) -target:library -out:$@ $(CSCFLAGS) $(CursesSharp_CSCFLAGS) \
+		$(CursesSharp_build_sources)
 

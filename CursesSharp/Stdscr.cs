@@ -336,7 +336,7 @@ namespace CursesSharp
             Curses.StdScr.Insert(y, x, str, n);
         }
 
-#if NCURSES_MOUSE_VERSION
+#if HAVE_CURSES_MOUSE
         public static bool MouseTrafo(ref int y, ref int x, bool to_screen)
         {
             return Curses.StdScr.MouseTrafo(ref y, ref x, to_screen);

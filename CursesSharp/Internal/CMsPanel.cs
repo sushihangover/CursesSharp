@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 namespace CursesSharp.Internal
 {
-#if HAVE_PANEL_H
+#if HAVE_CURSES_PANEL
     internal static partial class CursesMethods
     {
         internal static IntPtr new_panel(IntPtr win)

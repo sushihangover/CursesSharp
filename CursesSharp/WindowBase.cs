@@ -535,7 +535,7 @@ namespace CursesSharp
         }
 
 
-#if NCURSES_MOUSE_VERSION
+#if HAVE_CURSES_MOUSE
         public bool Enclose(int y, int x)
         {
             return CursesMethods.wenclose(this.winptr, y, x);
