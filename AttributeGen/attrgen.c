@@ -37,10 +37,10 @@
 #include <stdio.h>
 
 
-#define GEN_ATTR(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (A_ ## x))
-#define GEN_ACS(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (ACS_ ## x))
-#define GEN_COLOR(x) fprintf(OUT, "\t\tpublic const short " #x " = 0x%x;\n", (COLOR_ ## x))
-#define GEN_KEY(x) fprintf(OUT, "\t\tpublic const int " #x " = 0x%.3x;\n", (KEY_ ## x))
+#define GEN_ATTR(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (unsigned int)(A_ ## x))
+#define GEN_ACS(x) fprintf(OUT, "\t\tpublic const uint " #x " = 0x%.8lxU;\n", (unsigned int)(ACS_ ## x))
+#define GEN_COLOR(x) fprintf(OUT, "\t\tpublic const short " #x " = 0x%x;\n", (short)(COLOR_ ## x))
+#define GEN_KEY(x) fprintf(OUT, "\t\tpublic const int " #x " = 0x%.3x;\n", (unsigned int)(KEY_ ## x))
 #define GEN_MMASK(x) fprintf(OUT, "\t\t" #x " = 0x%.8lxU", (x))
 
 int main(int argc, char **argv)
