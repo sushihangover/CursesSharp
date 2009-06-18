@@ -1,7 +1,7 @@
 pkglib_SCRIPTS = FireworkDemo.exe
 bin_SCRIPTS = FireworkDemo
 
-EXTRA_DIST = $(FireworkDemo_sources) FireworkDemo.in
+EXTRA_DIST = $(FireworkDemo_sources) FireworkDemo.in FireworkDemo.csproj
 CLEANFILES = FireworkDemo.exe
 DISTCLEANFILES = FireworkDemo
 

@@ -1,5 +1,7 @@
 lib_LTLIBRARIES = libCursesWrapper.la
 
+EXTRA_DIST = CursesWrapper.vcproj
+
 libCursesWrapper_la_SOURCES = \
 	addch.c \
 	addchstr.c \

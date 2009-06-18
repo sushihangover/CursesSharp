@@ -1,6 +1,6 @@
 pkglib_SCRIPTS = CursesSharp.dll
 
-EXTRA_DIST = $(CursesSharp_sources)
+EXTRA_DIST = $(CursesSharp_sources) CursesSharp.csproj
 CLEANFILES = CursesSharp.dll
 DISTCLEANFILES = DefsGen.cs
 

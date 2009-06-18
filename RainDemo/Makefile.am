@@ -1,7 +1,7 @@
 pkglib_SCRIPTS = RainDemo.exe
 bin_SCRIPTS = RainDemo
 
-EXTRA_DIST = $(RainDemo_sources) RainDemo.in
+EXTRA_DIST = $(RainDemo_sources) RainDemo.in RainDemo.csproj
 CLEANFILES = RainDemo.exe
 DISTCLEANFILES = RainDemo
 
