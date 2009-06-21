@@ -61,6 +61,10 @@ namespace CursesSharp
 
         #region IDisposable Members
 
+        /// <summary>
+        /// Destroys the window and releases resources used by the
+        /// <see cref="WindowBase"/> object.
+        /// </summary>
         public void Dispose()
         {
             this.DisposeImpl();

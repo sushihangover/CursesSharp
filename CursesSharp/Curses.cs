@@ -392,16 +392,47 @@ namespace CursesSharp
             CursesMethods.use_default_colors();
         }
 
+        /// <summary>
+        /// Places a character back into the input queue to be returned
+        /// by the next call to <see cref="GetCh"/>.
+        /// </summary>
+        /// <remarks>
+        /// There is just one input queue for all windows.
+        /// </remarks>
+        /// <param name="ch">Character to be placed into the input queue.</param>
         public static void UngetCh(int ch)
         {
             CursesMethods.ungetch(ch);
         }
 
+        /// <summary>
+        /// Throws away any typeahead that has been typed by the user and 
+        /// has not yet been read by the program.
+        /// </summary>
         public static void FlushInput()
         {
             CursesMethods.flushinp();
         }
 
+        /// <summary>
+        /// Represents the state of cbreak mode, i.e. the state of line 
+        /// buffering and erase/kill character processing. 
+        /// <para>
+        /// If the value is set to true, then line buffering and erase/kill 
+        /// character processing is disabled, making characters typed by 
+        /// the user immediately available to the program. If the value
+        /// is set to false, then the terminal is put into normal (cooked)
+        /// mode.
+        /// </para>
+        /// <para>
+        /// Initially the terminal may or may not be in cbreak mode; therefore, 
+        /// a program should enable or disable this mode explicitly.
+        /// </para>
+        /// </summary>
+        /// <remarks>
+        /// Equivalent to curses cbreak/nocbreak functions.
+        /// </remarks>
+        /// <value>Places the terminal into or out of cbreak mode.</value>
         public static bool CBreakMode
         {
             set
@@ -413,11 +444,34 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// Sets half-delay mode. This mode is similar to cbreak mode in that
+        /// characters typed by the user are immediately available to the
+        /// program. However, after blocking for <paramref name="tenths"/>
+        /// tenths of seconds, -1 is returned if nothing has been typed.
+        /// <para>
+        /// The value of <paramref name="tenths"/> must be between
+        /// 1 and 255.
+        /// </para>
+        /// <para>
+        /// The terminal is placed out of half-delay mode by entering normal 
+        /// (cooked) mode, i.e. setting <see cref="CBreakMode"/> to false.
+        /// </para>
+        /// </summary>
+        /// <param name="tenths"></param>
         public static void HalfDelayMode(int tenths)
         {
             CursesMethods.halfdelay(tenths);
         }
 
+        /// <summary>
+        /// Represents the state of raw mode. Raw mode is similar to cbreak 
+        /// mode, in that characters typed are immediately available to the
+        /// program. The differences are that in raw mode, the interrupt,
+        /// quit, suspend, and flow characters are all passed through
+        /// uninterpreted, instead of generating a signal.
+        /// </summary>
+        /// <value>Places the terminal into or out of raw mode.</value>
         public static bool RawMode
         {
             set
@@ -429,6 +483,19 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// Represents the state of echoing characters typed by the user
+        /// by <see cref="GetCh"/>. 
+        /// <para>
+        /// If set to true, characters are echoed as they are typed. If
+        /// set to false, characters typed are not echoed.
+        /// </para>
+        /// <para>
+        /// Initially Curses Sharp is in echo mode, so characters typed
+        /// are echoed.
+        /// </para>
+        /// </summary>
+        /// <value>Enables or disables echoing of characters typed.</value>
         public static bool Echo
         {
             set
@@ -440,6 +507,20 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// Represents the status of newline character processing by the terminal,
+        /// i.e. whether the underlying display device translates the return key
+        /// into newline on input, and whether it translates newline into return
+        /// and line-feed on output. In either case, the call Add('\n') does the
+        /// equivalent of return and line-feed on the virtual screen.
+        /// <para>
+        /// Initially these translations do occur. If they are disabled, curses
+        /// will be able to make better use of the line-feed capability, resulting
+        /// in faster cursor motion. Also, curses will be able then to detect
+        /// the return key.
+        /// </para>
+        /// </summary>
+        /// <value>Enables or disables processing of newline characters.</value>
         public static bool Newlines
         {
             set
@@ -462,34 +543,65 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// Saves the current terminal modes as the "program" (in curses) state
+        /// for use by the <see cref="ResetProgramMode"/> method.
+        /// </summary>
+        /// <remarks>
+        /// This is done automatically by <see cref="InitScr"/>.
+        /// </remarks>
         public static void SaveProgramMode()
         {
             CursesMethods.def_prog_mode();
         }
 
+        /// <summary>
+        /// Saves the current terminal modes as the "shell" (out of curses) state
+        /// for use by the <see cref="ResetShellMode"/> method.
+        /// </summary>
+        /// <remarks>
+        /// This is done automatically by <see cref="InitScr"/>.
+        /// </remarks>
         public static void SaveShellMode()
         {
             CursesMethods.def_shell_mode();
         }
 
+        /// <summary>
+        /// Restores the terminal to "program" (in curses) state.
+        /// </summary>
         public static void ResetProgramMode()
         {
             CursesMethods.reset_prog_mode();
         }
 
+        /// <summary>
+        /// Restores the terminal to "shell" (out of curses) state.
+        /// </summary>
+        /// <remarks>
+        /// This is done automatically by <see cref="EndWin"/>.
+        /// </remarks>
         public static void ResetShellMode()
         {
             CursesMethods.reset_shell_mode();
         }
 
-        public static void ResetTty()
-        {
-            CursesMethods.resetty();
-        }
-
+        /// <summary>
+        /// Saves the current state of the terminal modes. It can be
+        /// restored later by <see cref="ResetTty"/>.
+        /// </summary>
         public static void SaveTty()
         {
             CursesMethods.savetty();
+        }
+
+        /// <summary>
+        /// Restores the state of the termial modes to what it was at the last
+        /// call to <see cref="SaveTty"/>.
+        /// </summary>
+        public static void ResetTty()
+        {
+            CursesMethods.resetty();
         }
 
         public static void GetCursorYX(out int y, out int x)
@@ -511,21 +623,97 @@ namespace CursesSharp
             CursesMethods.ripoffline(line, initInt);
         }
 
+        /// <summary>
+        /// Used to sleep for <paramref name="ms"/> milliseconds.
+        /// </summary>
+        /// <param name="ms">Number of milliseconds to sleep.</param>
         public static void NapMs(int ms)
         {
             CursesMethods.napms(ms);
         }
 
+        /// <summary>
+        /// Represents the appearance of the cursor.
+        /// <para>
+        /// <list type="table">
+        ///     <listheader>
+        ///         <term>Value</term>
+        ///         <description>Cursor appearance</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>0</term>
+        ///         <description>Invisible</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>1</term>
+        ///         <description>Normal</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>2</term>
+        ///         <description>Very visible</description>
+        ///     </item>
+        /// </list>
+        /// </para>
+        /// </summary>
+        /// <value>Sets the appearance of the cursor.</value>
         public static int CursorVisibility
         {
             set { CursesMethods.curs_set(value); }
         }
 
+        /// <summary>
+        /// Returns a string corresponding to the key <paramref name="key"/>:
+        /// <list type="bullet">
+        ///     <item>
+        ///         <description>
+        ///         Printable characters are displayed as themselves, e.g. 
+        ///         a one-character string containing the key.
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///         Control characters are displayed in the ^X notation.
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///         DEL (character 127) is displayed as ^?.
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///         Values above 128 are either meta characters (if the screen
+        ///         has not been initialized, or if <see cref="WindowBase.Meta"/>
+        ///         has been set to true), shown in the M-X notation, or are
+        ///         displayed as themselves, in which case the values may
+        ///         not be printable.
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///         Values above 256 may be the names of function keys.
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///         Otherwise (if there is no corresponding name), an exception 
+        ///         is thrown.
+        ///         </description>
+        ///     </item>
+        /// </list>
+        /// </summary>
+        /// <param name="key">Code of the key to find.</param>
+        /// <returns>String corresponding to the specified key.</returns>
         public static string KeyName(int key)
         {
             return CursesMethods.keyname(key);
         }
 
+        /// <summary>
+        /// Checks if the terminal recognizes a key.
+        /// </summary>
+        /// <param name="key">Value of the key to check.</param>
+        /// <returns>true if the key is recognized; false, otherwise.</returns>
         public static bool HasKey(int key)
         {
             return CursesMethods.has_key(key);
