@@ -18,8 +18,7 @@
     <DefineConstants>TRACE;DEBUG;HAVE_USE_WIDECHAR;HAVE_CURSES_PANEL;HAVE_CURSES_MOUSE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>..\Debug\CursesSharp.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +27,7 @@
     <DefineConstants>TRACE;HAVE_USE_WIDECHAR;HAVE_CURSES_PANEL;HAVE_CURSES_MOUSE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Release\CursesSharp.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
