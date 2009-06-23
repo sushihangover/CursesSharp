@@ -10,24 +10,31 @@
     <RootNamespace>CursesSharp</RootNamespace>
     <AssemblyName>CursesSharp</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;HAVE_USE_WIDECHAR;HAVE_CURSES_PANEL;HAVE_CURSES_MOUSE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\Debug\CursesSharp.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleAssemblies>C:\Program Files\Microsoft Visual Studio 8\Team Tools\Static Analysis Tools\FxCop\\rules</CodeAnalysisRuleAssemblies>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>..\Release\</OutputPath>
     <DefineConstants>TRACE;HAVE_USE_WIDECHAR;HAVE_CURSES_PANEL;HAVE_CURSES_MOUSE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\Release\CursesSharp.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleAssemblies>C:\Program Files\Microsoft Visual Studio 8\Team Tools\Static Analysis Tools\FxCop\\rules</CodeAnalysisRuleAssemblies>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -85,8 +92,75 @@
     <Compile Include="Stdscr.cs" />
     <Compile Include="Window.cs" />
     <Compile Include="WindowBase.cs" />
+    <LinkResource Include="..\$(Configuration)\CursesWrapper.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target
+      Name="CoreCompile"
+      Inputs="$(MSBuildAllProjects);
+              @(Compile);
+              @(ManifestResourceWithNoCulture);
+              $(ApplicationIcon);
+              $(AssemblyOriginatorKeyFile);
+              @(ManifestNonResxWithNoCultureOnDisk);
+              @(ReferencePath);
+              @(CompiledLicenseFile);
+              @(EmbeddedDocumentation);                
+              @(CustomAdditionalCompileInputs);
+              @(LinkResource)"
+      Outputs="@(DocFileItem);
+               @(IntermediateAssembly);
+               $(NonExistentFile);
+               @(CustomAdditionalCompileOutputs)"
+      DependsOnTargets="$(CoreCompileDependsOn)"
+  >
+       
+      <Csc
+            AdditionalLibPaths="$(AdditionalLibPaths)"
+            AddModules="@(AddModules)"
+            AllowUnsafeBlocks="$(AllowUnsafeBlocks)"
+            BaseAddress="$(BaseAddress)"
+            CheckForOverflowUnderflow="$(CheckForOverflowUnderflow)"
+            CodePage="$(CodePage)"
+            DebugType="$(DebugType)"
+            DefineConstants="$(DefineConstants)"
+            DelaySign="$(DelaySign)"
+            DisabledWarnings="$(_DisabledWarnings)"
+            DocumentationFile="@(DocFileItem)"
+            EmitDebugInformation="$(DebugSymbols)"
+            ErrorReport="$(ErrorReport)"
+            FileAlignment="$(FileAlignment)"
+            GenerateFullPaths="$(GenerateFullPaths)"
+            KeyContainer="$(KeyContainerName)"
+            KeyFile="$(KeyOriginatorFile)"
+            LangVersion="$(LangVersion)"
+            LinkResources="@(LinkResource)"
+            MainEntryPoint="$(StartupObject)"
+            ModuleAssemblyName="$(ModuleAssemblyName)"
+            NoConfig="true"
+            NoLogo="$(NoLogo)"
+            NoStandardLib="$(NoStdLib)"
+            Optimize="$(Optimize)"
+            OutputAssembly="@(IntermediateAssembly)"
+            PdbFile="$(PdbFile)" 
+            Platform="$(PlatformTarget)"
+            References="@(ReferencePath)"
+            Resources="@(ManifestResourceWithNoCulture);@(ManifestNonResxWithNoCultureOnDisk);@(CompiledLicenseFile)"
+            ResponseFiles="$(CompilerResponseFile)"
+            Sources="@(Compile)"
+            TargetType="$(OutputType)"
+            ToolPath="$(CscToolPath)"
+            TreatWarningsAsErrors="$(TreatWarningsAsErrors)"
+            UseHostCompilerIfAvailable="$(UseHostCompilerIfAvailable)"
+            Utf8Output="$(Utf8Output)"
+            WarningLevel="$(WarningLevel)"
+            WarningsAsErrors="$(WarningsAsErrors)"
+            WarningsNotAsErrors="$(WarningsNotAsErrors)"
+            Win32Icon="$(ApplicationIcon)"
+            Win32Resource="$(Win32Resource)"
+            />
+
+        </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
