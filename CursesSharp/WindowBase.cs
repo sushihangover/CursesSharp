@@ -29,6 +29,9 @@ using CursesSharp.Internal;
 
 namespace CursesSharp
 {
+    /// <summary>
+    /// Represents the greatest common factor between windows and pads.
+    /// </summary>
     public abstract class WindowBase: IDisposable
     {
         internal const int DEFAULT_BUFSZ = 1023;
@@ -73,6 +76,16 @@ namespace CursesSharp
 
         #endregion
 
+        /// <summary>
+        /// Disposes the window during finalization, if it hasn't been 
+        /// disposed earlier.
+        /// </summary>
+        /// <remarks>
+        /// A correct program should dispose all resources
+        /// before they are garbage collected, so this method being executed
+        /// is considered a bug. For this reason the destructor causes
+        /// an assertion failure in debug mode.
+        /// </remarks>
         ~WindowBase()
         {
 #if DEBUG
@@ -140,6 +153,29 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// Represents the state of user's terminal keypad. 
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// If enabled (set to true), the user can press a function key
+        /// (such as an arrow key) and <see cref="GetChar()"/> returns a single 
+        /// value representing the function key, as in <see cref="Keys.LEFT"/>. 
+        /// </para>
+        /// <para>
+        /// If disabled (set to false), curses does not treat function keys
+        /// specially and the program has to interpret escape sequences
+        /// itself.
+        /// </para>
+        /// <para>
+        /// If the keypad in the terminal can be turned on (made do transmit)
+        /// and off (made to work locally), turning on this option causes
+        /// keypad to be turned on when <see cref="GetChar()"/> in called.
+        /// </para>
+        /// <para>
+        /// The default value for this option is false.
+        /// </para>
+        /// </remarks>
         public bool Keypad
         {
             set
@@ -148,6 +184,28 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// Represents the status of returning extended key information
+        /// by the terminal input.
+        /// </summary>
+        /// <remarks>
+        /// Initially, whether the terminal returns 7 or 8 significant
+        /// bits on input depends on the control mode of the tty driver.
+        /// <para>
+        /// To force 8 bits to be returned, set this property to true; this is
+        /// equivalent, under POSIX, to setting the CS8 flag on the terminal.
+        /// </para>
+        /// <para>
+        /// To force 7 bits to be returned, set this property to false; this is
+        /// equivalent, under POSIX, to setting the CS7 flag on the terminal.
+        /// </para>
+        /// <para>
+        /// If the terminfo capabilities smm (meta_on) and rmm (meta_off)
+        /// are defined for the terminal, smm is sent to the terminal when
+        /// this property is set to true and rmm is sent when this property
+        /// is set to false.
+        /// </para>
+        /// </remarks>
         public bool Meta
         {
             set
@@ -156,6 +214,19 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// Represents the status of blocking program execution by the method
+        /// <see cref="GetChar()"/>.
+        /// </summary>
+        /// <remarks>
+        /// Setting this property to true causes <see cref="GetChar()"/> to be
+        /// a non-blocking call. If no input is ready, <see cref="GetChar()"/>
+        /// returns -1.
+        /// <para>
+        /// If this property is set to false, <see cref="GetChar()"/> waits
+        /// until a key is pressed.
+        /// </para>
+        /// </remarks>
         public bool Blocking
         {
             set
@@ -164,6 +235,9 @@ namespace CursesSharp
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int ReadTimeout
         {
             set

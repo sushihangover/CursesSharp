@@ -167,14 +167,15 @@ namespace CursesSharp
 
         /// <summary>
         /// Initializes Curses Sharp and the underlying curses implementation.
-        /// It should be the first function called as most other functions
-        /// require the library be initialized.
         /// </summary>
         /// 
         /// <remarks>
+        /// It should be the first function called as most other functions
+        /// require the library be initialized.
+        /// <para>
         /// The Window object returned can be later retrieved using 
         /// <see cref="StdScr"/> property.
-        /// 
+        /// </para>
         /// </remarks>
         /// <returns>The default Window object</returns>
         public static Window InitScr()
@@ -223,25 +224,34 @@ namespace CursesSharp
         }
 
         /// <summary>
+        /// Sounds an audible alarm.
+        /// </summary>
+        /// <remarks>
         /// Sounds an audible alarm on the terminal, if possible; otherwise 
         /// it flashes the screen (visible bell).
-        /// If neither alter is possible, nothing happens.
-        /// </summary>
+        /// If neither alter is possible, nothing happens.        
+        /// </remarks>
         public static void Beep()
         {
             CursesMethods.beep();
         }
 
         /// <summary>
+        /// Flashes the screen.
+        /// </summary>
+        /// <remarks>
         /// Flashes the screen, and if that is not possible, sounds the alert.
         /// If neither alter is possible, nothing happens.
-        /// </summary>
+        /// </remarks>
         public static void Flash()
         {
             CursesMethods.flash();
         }
 
         /// <summary>
+        /// Initializes the basic colors.
+        /// </summary>
+        /// <remarks>
         /// Initializes eight basic colors (black, red, green, yellow, blue,
         /// magenta, cyan, and white), and two global properties, <see cref="Colors"/>
         /// and <see cref="ColorPairs"/>. It also restores the colors on the
@@ -252,22 +262,25 @@ namespace CursesSharp
         /// and before any other color manipulation method is called. It is 
         /// good practice to call this method right after <see cref="InitScr"/>.
         /// </para>
-        /// </summary>
+        /// </remarks>
         public static void StartColor()
         {
             CursesMethods.start_color();
         }
 
         /// <summary>
-        /// Changes the definition of a color-pair. If the color-pair was 
-        /// previously initialized, the screen is refreshed and all occurences
-        /// of that color-pair are changed to the new definition.
+        /// Changes the definition of a color-pair.
         /// </summary>
         /// <remarks>
+        /// If the color-pair was previously initialized, the screen is 
+        /// refreshed and all occurences of that color-pair are changed 
+        /// to the new definition.
+        /// <para>
         /// For portable applications the value of <paramref name="color"/> 
         /// must be between 1 and <see cref="ColorPairs"/> - 1, and the value 
         /// of <paramref name="fg"/> and <paramref name="bg"/> must be
         /// between 0 and <see cref="Colors"/>.
+        /// </para>
         /// </remarks>
         /// <param name="color">Number of the color-pair to be changed.</param>
         /// <param name="fg">Foreground color number.</param>
@@ -278,14 +291,17 @@ namespace CursesSharp
         }
 
         /// <summary>
-        /// Changes the definition of a color. When it is used, all occurences
-        /// of that color on the screen immediately change to the new definition.
+        /// Changes the definition of a color.
         /// </summary>
         /// <remarks>
+        /// When it is used, all occurences of that color on the screen 
+        /// immediately change to the new definition.
+        /// <para>
         /// The value of <paramref name="color"/> must be between 0 and 
         /// <see cref="Colors"/>, and the value of <paramref name="red"/>,
         /// <paramref name="green"/> and <paramref name="blue"/> must be
         /// between 0 and 1000.
+        /// </para>
         /// </remarks>
         /// <param name="color">Number of the color to be changed.</param>
         /// <param name="red">Amount of the red color component.</param>
@@ -298,15 +314,18 @@ namespace CursesSharp
 
         /// <summary>
         /// Retrieves the intensity of the red, green and blue (RGB) components
-        /// in a color. Requires three references of variables for storing the
-        /// information about amounts of the components in that color.
-        /// the components.
+        /// in a color.
         /// </summary>
         /// <remarks>
+        /// Requires three references of variables for storing the
+        /// information about amounts of the components in that color.
+        /// the components.
+        /// <para>
         /// The value of <paramref name="color"/> must be between 0 and 
         /// <see cref="Colors"/>. The values that are stored in 
         /// <paramref name="red"/>, <paramref name="green"/> and 
         /// <paramref name="blue"/> are between 0 and 1000.
+        /// </para>
         /// </remarks>
         /// <param name="color">Color number</param>
         /// <param name="red">Reference to a variable in which the amount of 
@@ -322,14 +341,16 @@ namespace CursesSharp
 
         /// <summary>
         /// Retrieves the color numbers that a specified color-pair consists of.
-        /// Requires two references of variables for storing the foreground
-        /// and the background color numbers.
         /// </summary>
         /// <remarks>
+        /// Requires two references of variables for storing the foreground
+        /// and the background color numbers.
+        /// <para>
         /// The value of <paramref name="color"/> must be between 1 and 
         /// <see cref="ColorPairs"/> - 1. The values that are stored in 
         /// <paramref name="fg"/> and <paramref name="bg"/> are between
         /// 0 and <see cref="Colors"/>.
+        /// </para>
         /// </remarks>
         /// <param name="color">Color-pair number</param>
         /// <param name="fg">Reference to a variable in which the foreground
@@ -367,12 +388,12 @@ namespace CursesSharp
         }
 
         /// <summary>
-        /// Changes the definition of a color-pair number 0. The screen is 
-        /// refreshed and all occurences of color-pair number 0 are changed 
-        /// to the new definition.
+        /// Changes the definition of a color-pair number 0.
         /// </summary>
         /// <remarks>
-        /// The value of <paramref name="fg"/> and <paramref name="bg"/> must 
+        /// The screen is refreshed and all occurences of color-pair 
+        /// number 0 are changed to the new definition. The value of 
+        /// <paramref name="fg"/> and <paramref name="bg"/> must 
         /// be between 0 and <see cref="Colors"/>.
         /// </remarks>
         /// <param name="fg">Foreground color number.</param>
@@ -383,10 +404,12 @@ namespace CursesSharp
         }
 
         /// <summary>
-        /// Enables the use of default colors. If this method is first called,
-        /// the color number -1 can also be used in methods that require color
-        /// numbers as arguments.
+        /// Enables the use of default (-1) colors.
         /// </summary>
+        /// <remarks>
+        /// If this method is first called, the color number -1 can also be 
+        /// used in methods that require color numbers as arguments.
+        /// </remarks>
         public static void UseDefaultColors()
         {
             CursesMethods.use_default_colors();
@@ -394,7 +417,7 @@ namespace CursesSharp
 
         /// <summary>
         /// Places a character back into the input queue to be returned
-        /// by the next call to <see cref="GetCh"/>.
+        /// by the next call to <see cref="WindowBase.GetChar()"/>.
         /// </summary>
         /// <remarks>
         /// There is just one input queue for all windows.
@@ -417,20 +440,20 @@ namespace CursesSharp
         /// <summary>
         /// Represents the state of cbreak mode, i.e. the state of line 
         /// buffering and erase/kill character processing. 
-        /// <para>
+        /// </summary>
+        /// <remarks>
         /// If the value is set to true, then line buffering and erase/kill 
         /// character processing is disabled, making characters typed by 
         /// the user immediately available to the program. If the value
         /// is set to false, then the terminal is put into normal (cooked)
         /// mode.
-        /// </para>
         /// <para>
         /// Initially the terminal may or may not be in cbreak mode; therefore, 
         /// a program should enable or disable this mode explicitly.
         /// </para>
-        /// </summary>
-        /// <remarks>
+        /// <para>
         /// Equivalent to curses cbreak/nocbreak functions.
+        /// </para>
         /// </remarks>
         /// <value>Places the terminal into or out of cbreak mode.</value>
         public static bool CBreakMode
@@ -445,9 +468,12 @@ namespace CursesSharp
         }
 
         /// <summary>
-        /// Sets half-delay mode. This mode is similar to cbreak mode in that
-        /// characters typed by the user are immediately available to the
-        /// program. However, after blocking for <paramref name="tenths"/>
+        /// Sets half-delay mode. 
+        /// </summary>
+        /// <remarks>
+        /// This mode is similar to cbreak mode in that characters typed 
+        /// by the user are immediately available to the program. 
+        /// However, after blocking for <paramref name="tenths"/>
         /// tenths of seconds, -1 is returned if nothing has been typed.
         /// <para>
         /// The value of <paramref name="tenths"/> must be between
@@ -456,8 +482,8 @@ namespace CursesSharp
         /// <para>
         /// The terminal is placed out of half-delay mode by entering normal 
         /// (cooked) mode, i.e. setting <see cref="CBreakMode"/> to false.
-        /// </para>
-        /// </summary>
+        /// </para>        
+        /// </remarks>
         /// <param name="tenths"></param>
         public static void HalfDelayMode(int tenths)
         {
@@ -465,12 +491,15 @@ namespace CursesSharp
         }
 
         /// <summary>
-        /// Represents the state of raw mode. Raw mode is similar to cbreak 
+        /// Represents the state of raw mode. 
+        /// </summary>
+        /// <remarks>
+        /// Raw mode is similar to cbreak 
         /// mode, in that characters typed are immediately available to the
         /// program. The differences are that in raw mode, the interrupt,
         /// quit, suspend, and flow characters are all passed through
         /// uninterpreted, instead of generating a signal.
-        /// </summary>
+        /// </remarks>
         /// <value>Places the terminal into or out of raw mode.</value>
         public static bool RawMode
         {
@@ -485,16 +514,16 @@ namespace CursesSharp
 
         /// <summary>
         /// Represents the state of echoing characters typed by the user
-        /// by <see cref="GetCh"/>. 
-        /// <para>
+        /// by <see cref="WindowBase.GetChar()"/>. 
+        /// </summary>
+        /// <remarks>
         /// If set to true, characters are echoed as they are typed. If
         /// set to false, characters typed are not echoed.
-        /// </para>
         /// <para>
         /// Initially Curses Sharp is in echo mode, so characters typed
         /// are echoed.
         /// </para>
-        /// </summary>
+        /// </remarks>
         /// <value>Enables or disables echoing of characters typed.</value>
         public static bool Echo
         {
@@ -508,6 +537,9 @@ namespace CursesSharp
         }
 
         /// <summary>
+        /// Represents the status of newline character processing by the terminal.
+        /// </summary>
+        /// <remarks>
         /// Represents the status of newline character processing by the terminal,
         /// i.e. whether the underlying display device translates the return key
         /// into newline on input, and whether it translates newline into return
@@ -519,7 +551,7 @@ namespace CursesSharp
         /// in faster cursor motion. Also, curses will be able then to detect
         /// the return key.
         /// </para>
-        /// </summary>
+        /// </remarks>
         /// <value>Enables or disables processing of newline characters.</value>
         public static bool Newlines
         {
@@ -634,6 +666,8 @@ namespace CursesSharp
 
         /// <summary>
         /// Represents the appearance of the cursor.
+        /// </summary>
+        /// <remarks>
         /// <para>
         /// <list type="table">
         ///     <listheader>
@@ -654,7 +688,7 @@ namespace CursesSharp
         ///     </item>
         /// </list>
         /// </para>
-        /// </summary>
+        /// </remarks>
         /// <value>Sets the appearance of the cursor.</value>
         public static int CursorVisibility
         {
@@ -662,7 +696,11 @@ namespace CursesSharp
         }
 
         /// <summary>
-        /// Returns a string corresponding to the key <paramref name="key"/>:
+        /// Returns a string corresponding to the key <paramref name="key"/>.
+        /// </summary>
+        /// <remarks>
+        /// Returns a string corresponding to the key <paramref name="key"/>
+        /// according to the following rules:
         /// <list type="bullet">
         ///     <item>
         ///         <description>
@@ -701,7 +739,7 @@ namespace CursesSharp
         ///         </description>
         ///     </item>
         /// </list>
-        /// </summary>
+        /// </remarks>
         /// <param name="key">Code of the key to find.</param>
         /// <returns>String corresponding to the specified key.</returns>
         public static string KeyName(int key)
