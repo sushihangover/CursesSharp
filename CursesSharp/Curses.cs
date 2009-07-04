@@ -33,16 +33,34 @@ namespace CursesSharp
     public delegate int RipOffLineFun(Window win, int ncols);
 
 #if HAVE_CURSES_MOUSE
+    /// <summary>
+    /// Represents an event reported by a mouse.
+    /// </summary>
     public class MouseEvent
     {
         private int id;
         private int x, y, z;
         private MouseState bstate;
 
+        /// <summary>
+        /// Creates an empty mouse event.
+        /// </summary>
+        /// <remarks>
+        /// To be used for creating an object that is passed to 
+        /// <see cref="Curses.GetMouse(MouseEvent)"/> method.
+        /// </remarks>
         public MouseEvent()
         {
         }
 
+        /// <summary>
+        /// Creates a mouse event with specified values.
+        /// </summary>
+        /// <param name="id">ID of the mouse that reported the event.</param>
+        /// <param name="x">X coordinate of mouse cursor at the time of the event.</param>
+        /// <param name="y">Y coordinate of mouse cursor at the time of the event.</param>
+        /// <param name="z">Z coordinate of mouse cursor at the time of the event.</param>
+        /// <param name="bstate">State of mouse buttons at the time of the event.</param>
         public MouseEvent(int id, int x, int y, int z, MouseState bstate)
         {
             this.id = id;
@@ -52,30 +70,54 @@ namespace CursesSharp
             this.bstate = bstate;
         }
 
+        /// <summary>
+        /// Represents the ID of the mouse that reported the event.
+        /// </summary>
+        /// <value>Gets the ID of the mouse the reported the event.</value>
         public int Id
         {
             get { return this.id; }
             internal set { this.id = value; }
         }
 
+        /// <summary>
+        /// Represents the X coordinate of mouse cursor position at the
+        /// time the event was reported.
+        /// </summary>
+        /// <value>Gets the X coordinate of mouse cursor position.</value>
         public int X
         {
             get { return this.x; }
             internal set { this.x = value; }
         }
 
+        /// <summary>
+        /// Represents the Y coordinate of mouse cursor position at the
+        /// time the event was reported.
+        /// </summary>
+        /// <value>Gets the Y coordinate of mouse cursor position.</value>
         public int Y
         {
             get { return this.y; }
             internal set { this.y = value; }
         }
 
+        /// <summary>
+        /// Represents the Z coordinate of mouse cursor position at the
+        /// time the event was reported.
+        /// </summary>
+        /// <value>Gets the Z coordinate of mouse cursor position.</value>
         public int Z
         {
             get { return this.z; }
             internal set { this.z = value; }
         }
 
+        /// <summary>
+        /// Represents the state of mouse buttons at the time the event
+        /// was reported.
+        /// </summary>
+        /// <value>Gets the state of mouse buttons.</value>
         public MouseState State
         {
             get { return this.bstate; }
