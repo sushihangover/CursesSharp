@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CursesWrapper", "CursesWrapper\CursesWrapper.vcproj", "{39B214C9-725A-401D-8988-0B2FFB208E4B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AttributeGen", "AttributeGen\AttributeGen.vcproj", "{BFA9844F-618D-4707-B1F4-A1F3538FF9BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39B214C9-725A-401D-8988-0B2FFB208E4B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{39B214C9-725A-401D-8988-0B2FFB208E4B}.Debug|Win32.Build.0 = Debug|Win32
+		{39B214C9-725A-401D-8988-0B2FFB208E4B}.Release|Win32.ActiveCfg = Release|Win32
+		{39B214C9-725A-401D-8988-0B2FFB208E4B}.Release|Win32.Build.0 = Release|Win32
+		{BFA9844F-618D-4707-B1F4-A1F3538FF9BE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BFA9844F-618D-4707-B1F4-A1F3538FF9BE}.Debug|Win32.Build.0 = Debug|Win32
+		{BFA9844F-618D-4707-B1F4-A1F3538FF9BE}.Release|Win32.ActiveCfg = Release|Win32
+		{BFA9844F-618D-4707-B1F4-A1F3538FF9BE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

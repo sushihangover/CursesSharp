@@ -1,57 +1,30 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CursesWrapper", "CursesWrapper\CursesWrapper.vcproj", "{269C7200-2B63-4B96-AF20-44C8DC07A815}"
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C# Express 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursesSharp", "CursesSharp\CursesSharp.csproj", "{2FEF4990-95CB-42DF-984C-EFBA070652BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursesSharp", "CursesSharp\CursesSharp.csproj", "{9130123E-DF5F-42BA-9B4F-1F76CD57591B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{269C7200-2B63-4B96-AF20-44C8DC07A815} = {269C7200-2B63-4B96-AF20-44C8DC07A815}
-		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609} = {0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireworkDemo", "FireworkDemo\FireworkDemo.csproj", "{31EDB3C5-A819-4F8F-9316-0EBC1184418B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireworkDemo", "FireworkDemo\FireworkDemo.csproj", "{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AttributeGen", "AttributeGen\AttributeGen.vcproj", "{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainDemo", "RainDemo\RainDemo.csproj", "{9E5BB6C8-CD68-41A5-9889-BD76BA9CC8C5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59EAE8FA-32EE-4D3D-88D8-4397CD17600E}"
-	ProjectSection(SolutionItems) = preProject
-		COPYING.LESSER.txt = COPYING.LESSER.txt
-		COPYING.txt = COPYING.txt
-		ReadMe.txt = ReadMe.txt
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainDemo", "RainDemo\RainDemo.csproj", "{40A9C7A5-DB28-49DB-927B-19F96EABE237}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|Mixed Platforms = Release|Mixed Platforms
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{269C7200-2B63-4B96-AF20-44C8DC07A815}.Debug|x86.ActiveCfg = Debug|Win32
-		{269C7200-2B63-4B96-AF20-44C8DC07A815}.Debug|x86.Build.0 = Debug|Win32
-		{269C7200-2B63-4B96-AF20-44C8DC07A815}.Release|x86.ActiveCfg = Release|Win32
-		{269C7200-2B63-4B96-AF20-44C8DC07A815}.Release|x86.Build.0 = Release|Win32
-		{9130123E-DF5F-42BA-9B4F-1F76CD57591B}.Debug|x86.ActiveCfg = Debug|x86
-		{9130123E-DF5F-42BA-9B4F-1F76CD57591B}.Debug|x86.Build.0 = Debug|x86
-		{9130123E-DF5F-42BA-9B4F-1F76CD57591B}.Release|x86.ActiveCfg = Release|x86
-		{9130123E-DF5F-42BA-9B4F-1F76CD57591B}.Release|x86.Build.0 = Release|x86
-		{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}.Debug|x86.ActiveCfg = Debug|x86
-		{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}.Debug|x86.Build.0 = Debug|x86
-		{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}.Release|x86.ActiveCfg = Release|x86
-		{DD7D4BF7-3738-4D5D-BEE7-C8FA9E05FB77}.Release|x86.Build.0 = Release|x86
-		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Debug|x86.ActiveCfg = Debug|Win32
-		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Debug|x86.Build.0 = Debug|Win32
-		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Release|x86.ActiveCfg = Release|Win32
-		{0D7D0BDD-A840-42AB-ABB5-ED1BC4F76609}.Release|x86.Build.0 = Release|Win32
-		{9E5BB6C8-CD68-41A5-9889-BD76BA9CC8C5}.Debug|x86.ActiveCfg = Debug|x86
-		{9E5BB6C8-CD68-41A5-9889-BD76BA9CC8C5}.Debug|x86.Build.0 = Debug|x86
-		{9E5BB6C8-CD68-41A5-9889-BD76BA9CC8C5}.Release|x86.ActiveCfg = Release|x86
-		{9E5BB6C8-CD68-41A5-9889-BD76BA9CC8C5}.Release|x86.Build.0 = Release|x86
+		{2FEF4990-95CB-42DF-984C-EFBA070652BF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2FEF4990-95CB-42DF-984C-EFBA070652BF}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2FEF4990-95CB-42DF-984C-EFBA070652BF}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2FEF4990-95CB-42DF-984C-EFBA070652BF}.Release|Mixed Platforms.Build.0 = Release|x86
+		{31EDB3C5-A819-4F8F-9316-0EBC1184418B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{31EDB3C5-A819-4F8F-9316-0EBC1184418B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{31EDB3C5-A819-4F8F-9316-0EBC1184418B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{31EDB3C5-A819-4F8F-9316-0EBC1184418B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{40A9C7A5-DB28-49DB-927B-19F96EABE237}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{40A9C7A5-DB28-49DB-927B-19F96EABE237}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{40A9C7A5-DB28-49DB-927B-19F96EABE237}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{40A9C7A5-DB28-49DB-927B-19F96EABE237}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
