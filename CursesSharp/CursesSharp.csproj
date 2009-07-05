@@ -1,45 +1,47 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9130123E-DF5F-42BA-9B4F-1F76CD57591B}</ProjectGuid>
+    <ProjectGuid>{2FEF4990-95CB-42DF-984C-EFBA070652BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CursesSharp</RootNamespace>
     <AssemblyName>CursesSharp</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;HAVE_USE_WIDECHAR;HAVE_CURSES_PANEL;HAVE_CURSES_MOUSE</DefineConstants>
-    <DocumentationFile>..\Debug\CursesSharp.XML</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRuleAssemblies>C:\Program Files\Microsoft Visual Studio 8\Team Tools\Static Analysis Tools\FxCop\\rules</CodeAnalysisRuleAssemblies>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
-    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+    <DocumentationFile>..\Debug\CursesSharp.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>..\Release\</OutputPath>
     <DefineConstants>TRACE;HAVE_USE_WIDECHAR;HAVE_CURSES_PANEL;HAVE_CURSES_MOUSE</DefineConstants>
-    <DocumentationFile>..\Release\CursesSharp.XML</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <CodeAnalysisRuleAssemblies>C:\Program Files\Microsoft Visual Studio 8\Team Tools\Static Analysis Tools\FxCop\\rules</CodeAnalysisRuleAssemblies>
-    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
-    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
-    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+    <DocumentationFile>..\Release\CursesSharp.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Curses.cs" />
+    <Compile Include="CursesException.cs" />
+    <Compile Include="DefsGen.cs" />
+    <Compile Include="Internal\CMsAddch.cs" />
+    <Compile Include="Internal\CMsAddchstr.cs" />
     <Compile Include="Internal\CMsAddstr.cs" />
     <Compile Include="Internal\CMsAttr.cs" />
     <Compile Include="Internal\CMsBeep.cs" />
@@ -77,11 +79,6 @@
     <Compile Include="Internal\CMsUtil.cs" />
     <Compile Include="Internal\CMsWindow.cs" />
     <Compile Include="Internal\CursesMethods.cs" />
-    <Compile Include="DefsGen.cs" />
-    <Compile Include="Curses.cs" />
-    <Compile Include="CursesException.cs" />
-    <Compile Include="Internal\CMsAddch.cs" />
-    <Compile Include="Internal\CMsAddchstr.cs" />
     <Compile Include="Internal\InternalException.cs" />
     <Compile Include="Pad.cs" />
     <Compile Include="Panel.cs" />
@@ -90,12 +87,9 @@
     <Compile Include="Stdscr.cs" />
     <Compile Include="Window.cs" />
     <Compile Include="WindowBase.cs" />
-    <LinkResource Include="..\$(Configuration)\CursesWrapper.dll" />
+    <LinkResource Include="$(SolutionDir)\$(Configuration)\CursesWrapper.dll" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Target Name="CoreCompile" Inputs="$(MSBuildAllProjects);&#xD;&#xA;              @(Compile);&#xD;&#xA;              @(ManifestResourceWithNoCulture);&#xD;&#xA;              $(ApplicationIcon);&#xD;&#xA;              $(AssemblyOriginatorKeyFile);&#xD;&#xA;              @(ManifestNonResxWithNoCultureOnDisk);&#xD;&#xA;              @(ReferencePath);&#xD;&#xA;              @(CompiledLicenseFile);&#xD;&#xA;              @(EmbeddedDocumentation);                &#xD;&#xA;              @(CustomAdditionalCompileInputs);&#xD;&#xA;              @(LinkResource)" Outputs="@(DocFileItem);&#xD;&#xA;               @(IntermediateAssembly);&#xD;&#xA;               $(NonExistentFile);&#xD;&#xA;               @(CustomAdditionalCompileOutputs)" DependsOnTargets="$(CoreCompileDependsOn)">
-    <Csc AdditionalLibPaths="$(AdditionalLibPaths)" AddModules="@(AddModules)" AllowUnsafeBlocks="$(AllowUnsafeBlocks)" BaseAddress="$(BaseAddress)" CheckForOverflowUnderflow="$(CheckForOverflowUnderflow)" CodePage="$(CodePage)" DebugType="$(DebugType)" DefineConstants="$(DefineConstants)" DelaySign="$(DelaySign)" DisabledWarnings="$(_DisabledWarnings)" DocumentationFile="@(DocFileItem)" EmitDebugInformation="$(DebugSymbols)" ErrorReport="$(ErrorReport)" FileAlignment="$(FileAlignment)" GenerateFullPaths="$(GenerateFullPaths)" KeyContainer="$(KeyContainerName)" KeyFile="$(KeyOriginatorFile)" LangVersion="$(LangVersion)" LinkResources="@(LinkResource)" MainEntryPoint="$(StartupObject)" ModuleAssemblyName="$(ModuleAssemblyName)" NoConfig="true" NoLogo="$(NoLogo)" NoStandardLib="$(NoStdLib)" Optimize="$(Optimize)" OutputAssembly="@(IntermediateAssembly)" PdbFile="$(PdbFile)" Platform="$(PlatformTarget)" References="@(ReferencePath)" Resources="@(ManifestResourceWithNoCulture);@(ManifestNonResxWithNoCultureOnDisk);@(CompiledLicenseFile)" ResponseFiles="$(CompilerResponseFile)" Sources="@(Compile)" TargetType="$(OutputType)" ToolPath="$(CscToolPath)" TreatWarningsAsErrors="$(TreatWarningsAsErrors)" UseHostCompilerIfAvailable="$(UseHostCompilerIfAvailable)" Utf8Output="$(Utf8Output)" WarningLevel="$(WarningLevel)" WarningsAsErrors="$(WarningsAsErrors)" WarningsNotAsErrors="$(WarningsNotAsErrors)" Win32Icon="$(ApplicationIcon)" Win32Resource="$(Win32Resource)" />
-  </Target>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -103,8 +97,17 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
+  <Target Name="CoreCompile" Inputs="$(MSBuildAllProjects);&#xD;&#xA;                @(Compile);                               &#xD;&#xA;                @(_CoreCompileResourceInputs);&#xD;&#xA;                $(ApplicationIcon);&#xD;&#xA;                $(AssemblyOriginatorKeyFile);&#xD;&#xA;                @(ReferencePath);&#xD;&#xA;                @(CompiledLicenseFile);&#xD;&#xA;                @(EmbeddedDocumentation); &#xD;&#xA;                $(Win32Resource);&#xD;&#xA;                $(Win32Manifest);&#xD;&#xA;		@(CustomAdditionalCompileInputs);&#xD;&#xA;		@(LinkResource)" Outputs="@(DocFileItem);&#xD;&#xA;                 @(IntermediateAssembly);&#xD;&#xA;                 @(_DebugSymbolsIntermediatePath);                 &#xD;&#xA;                 $(NonExistentFile);&#xD;&#xA;                 @(CustomAdditionalCompileOutputs)" DependsOnTargets="$(CoreCompileDependsOn)">
+    <!-- These two compiler warnings are raised when a reference is bound to a different version
+             than specified in the assembly reference version number.  MSBuild raises the same warning in this case,
+             so the compiler warning would be redundant. -->
+    <PropertyGroup Condition="('$(TargetFrameworkVersion)' != 'v1.0') and ('$(TargetFrameworkVersion)' != 'v1.1')">
+      <NoWarn>$(NoWarn);1701;1702</NoWarn>
+    </PropertyGroup>
+    <!-- Condition is to filter out the _CoreCompileResourceInputs so that it doesn't pass in culture resources to the compiler -->
+    <Csc Condition=" '%(_CoreCompileResourceInputs.WithCulture)' != 'true' " AdditionalLibPaths="$(AdditionalLibPaths)" AddModules="@(AddModules)" AllowUnsafeBlocks="$(AllowUnsafeBlocks)" BaseAddress="$(BaseAddress)" CheckForOverflowUnderflow="$(CheckForOverflowUnderflow)" CodePage="$(CodePage)" DebugType="$(DebugType)" DefineConstants="$(DefineConstants)" DelaySign="$(DelaySign)" DisabledWarnings="$(NoWarn)" DocumentationFile="@(DocFileItem)" EmitDebugInformation="$(DebugSymbols)" ErrorReport="$(ErrorReport)" FileAlignment="$(FileAlignment)" GenerateFullPaths="$(GenerateFullPaths)" KeyContainer="$(KeyContainerName)" KeyFile="$(KeyOriginatorFile)" LangVersion="$(LangVersion)" LinkResources="@(LinkResource)" MainEntryPoint="$(StartupObject)" ModuleAssemblyName="$(ModuleAssemblyName)" NoConfig="true" NoLogo="$(NoLogo)" NoStandardLib="$(NoStdLib)" NoWin32Manifest="$(NoWin32Manifest)" Optimize="$(Optimize)" OutputAssembly="@(IntermediateAssembly)" PdbFile="$(PdbFile)" Platform="$(PlatformTarget)" References="@(ReferencePath)" Resources="@(_CoreCompileResourceInputs);@(CompiledLicenseFile)" ResponseFiles="$(CompilerResponseFile)" Sources="@(Compile)" TargetType="$(OutputType)" ToolExe="$(CscToolExe)" ToolPath="$(CscToolPath)" TreatWarningsAsErrors="$(TreatWarningsAsErrors)" UseHostCompilerIfAvailable="$(UseHostCompilerIfAvailable)" Utf8Output="$(Utf8Output)" WarningLevel="$(WarningLevel)" WarningsAsErrors="$(WarningsAsErrors)" WarningsNotAsErrors="$(WarningsNotAsErrors)" Win32Icon="$(ApplicationIcon)" Win32Manifest="$(Win32Manifest)" Win32Resource="$(Win32Resource)" />
+    <ItemGroup>
+      <_CoreCompileResourceInputs Remove="@(_CoreCompileResourceInputs)" />
+    </ItemGroup>
+  </Target>
 </Project>
