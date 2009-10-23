@@ -19,6 +19,7 @@
  */
 
 #include "wrapper.h"
+#include "unicode.h"
 
 
 WRAP_API int 
@@ -28,9 +29,31 @@ wrap_slk_init(int fmt)
 }
 
 WRAP_API int 
-wrap_slk_set(int labnum, char *label, int justify)
+wrap_slk_set(int labnum, uchar2 *label, int labellen, int justify)
 {
-	return slk_set(labnum, label, justify);
+#if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
+	return slk_wset(labnum, label, justify);
+#elif defined(CURSES_WIDE)
+	int buflen = labellen + 1;
+	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
+	if (buf == 0)
+		return -1;
+	buflen = unicode_to_wchar(label, labellen, buf, buflen);
+	if (buflen < 0)
+		return -1;
+	buf[buflen] = 0;
+	return slk_wset(labnum, buf, justify);
+#else
+	int buflen = labellen + 1;
+	char *buf = myAlloc(sizeof(char), buflen);
+	if (buf == 0)
+		return -1;
+	buflen = unicode_to_char(label, labellen, buf, buflen);
+	if (buflen < 0)
+		return -1;
+	buf[buflen] = 0;
+	return slk_set(labnum, buf, justify);
+#endif
 }
 
 WRAP_API int 
@@ -93,12 +116,3 @@ wrap_slk_color(short color_pair)
 	return slk_color(color_pair);
 }
 
-#ifdef HAVE_USE_WIDECHAR
-
-WRAP_API int 
-wrap_slk_wset(int labnum, wchar_t *label, int justify)
-{
-	return slk_wset(labnum, label, justify);
-}
-
-#endif

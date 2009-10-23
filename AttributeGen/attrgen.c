@@ -22,7 +22,7 @@
 #include <config.h>
 #endif
 
-#if defined(HAVE_USE_WIDECHAR)
+#if defined(CURSES_WIDE)
 # if defined(HAVE_NCURSESW_NCURSES_H)
 #  include <ncursesw/ncurses.h>
 # endif

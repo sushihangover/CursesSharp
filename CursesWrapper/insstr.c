@@ -19,32 +19,58 @@
  */
 
 #include "wrapper.h"
+#include "unicode.h"
 
 
 WRAP_API int
-wrap_winsnstr(WINDOW *win, char *str, int n)
+wrap_winsnstr(WINDOW *win, uchar2 *str, int n)
 {
-	return winsnstr(win, str, n);
-}
-
-WRAP_API int
-wrap_mvwinsnstr(WINDOW *win, int y, int x, char *str, int n)
-{
-	return mvwinsnstr(win, y, x, str, n);
-}
-
-#ifdef HAVE_USE_WIDECHAR
-
-WRAP_API int
-wrap_wins_nwstr(WINDOW *win, wchar_t *wstr, int n)
-{
-	return wins_nwstr(win, wstr, n);
-}
-
-WRAP_API int
-wrap_mvwins_nwstr(WINDOW *win, int y, int x, wchar_t *wstr, int n)
-{
-	return mvwins_nwstr(win, y, x, wstr, n);
-}
-
+#if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
+	return wins_nwstr(win, str, n);
+#elif defined(CURSES_WIDE)
+	int buflen = n;
+	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
+	if (buf == 0)
+		return -1;
+	buflen = unicode_to_wchar(str, n, buf, buflen);
+	if (buflen < 0)
+		return -1;
+	return wins_nwstr(win, buf, buflen);
+#else
+	int buflen = n;
+	char *buf = myAlloc(sizeof(char), buflen);
+	if (buf == 0)
+		return -1;
+	buflen = unicode_to_char(str, n, buf, buflen);
+	if (buflen < 0)
+		return -1;
+	return winsnstr(win, buf, buflen);
 #endif
+}
+
+WRAP_API int
+wrap_mvwinsnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
+{
+#if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
+	return mvwins_nwstr(win, y, x, str, n);
+#elif defined(CURSES_WIDE)
+	int buflen = n;
+	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
+	if (buf == 0)
+		return -1;
+	buflen = unicode_to_wchar(str, n, buf, buflen);
+	if (buflen < 0)
+		return -1;
+	return mvwins_nwstr(win, y, x, buf, buflen);
+#else
+	int buflen = n;
+	char *buf = myAlloc(sizeof(char), buflen);
+	if (buf == 0)
+		return -1;
+	buflen = unicode_to_char(str, n, buf, buflen);
+	if (buflen < 0)
+		return -1;
+	return mvwinsnstr(win, y, x, buf, buflen);
+#endif
+}
+

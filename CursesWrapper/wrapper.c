@@ -20,10 +20,6 @@
 
 #include "wrapper.h"
 
-#ifdef HAVE_USE_WIDECHAR
-STATIC_ASSERT(sizeof(wchar_t) == 2);
-#endif
-
 
 WRAP_API int
 wrap_LINES(void)

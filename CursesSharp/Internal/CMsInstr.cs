@@ -28,26 +28,6 @@ namespace CursesSharp.Internal
 {
     internal static partial class CursesMethods
     {
-#if HAVE_USE_WIDECHAR
-        internal static int winnstr(IntPtr win, StringBuilder str, int n)
-        {
-            int ret = wrap_winnwstr(win, str, n);
-            InternalException.Verify(ret, "winnwstr");
-            return ret;
-        }
-
-        internal static int mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n)
-        {
-            int ret = wrap_mvwinnwstr(win, y, x, str, n);
-            InternalException.Verify(ret, "mvwinnwstr");
-            return ret;
-        }
-
-        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
-        private static extern int wrap_winnwstr(IntPtr win, StringBuilder wstr, int n);
-        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
-        private static extern int wrap_mvwinnwstr(IntPtr win, int y, int x, StringBuilder wstr, int n);
-#else
         internal static int winnstr(IntPtr win, StringBuilder str, int n)
         {
             int ret = wrap_winnstr(win, str, n);
@@ -62,10 +42,9 @@ namespace CursesSharp.Internal
             return ret;
         }
 
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         private static extern int wrap_winnstr(IntPtr win, StringBuilder str, int n);
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
         private static extern int wrap_mvwinnstr(IntPtr win, int y, int x, StringBuilder str, int n);
-#endif
     }
 }

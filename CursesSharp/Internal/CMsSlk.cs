@@ -94,25 +94,12 @@ namespace CursesSharp.Internal
             InternalException.Verify(ret, "slk_color");
         }
 
-#if HAVE_USE_WIDECHAR
-        internal static void slk_set(int labnum, string label, int justify)
-        {
-            int ret = wrap_slk_wset(labnum, label, justify);
-            InternalException.Verify(ret, "slk_wset");
-        }
-
-        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
-        private static extern int wrap_slk_wset(int labnum, String label, int justify);
-#else
         internal static void slk_set(int labnum, string label, int justify)        
         {
-            int ret = wrap_slk_set(labnum, label, justify);
+            int ret = wrap_slk_set(labnum, label, label.Length, justify);
             InternalException.Verify(ret, "slk_set");
         }
 
-        [DllImport("CursesWrapper", CharSet = CharSet.Ansi)]
-        private static extern int wrap_slk_set(int labnum, String label, int justify);
-#endif
         [DllImport("CursesWrapper")]
         private static extern int wrap_slk_init(int fmt);
         [DllImport("CursesWrapper")]
@@ -135,5 +122,7 @@ namespace CursesSharp.Internal
         private static extern int wrap_slk_attroff(uint attrs);
         [DllImport("CursesWrapper")]
         private static extern int wrap_slk_color(short color_pair);
+        [DllImport("CursesWrapper", CharSet = CharSet.Unicode)]
+        private static extern int wrap_slk_set(int labnum, String label, int labellen, int justify);
     }
 }

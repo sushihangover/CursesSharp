@@ -1,8 +1,11 @@
+#ifndef CURSES_SHARP_WRAPPER_H
+#define CURSES_SHARP_WRAPPER_H
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
-#if defined(HAVE_USE_WIDECHAR)
+#if defined(CURSES_WIDE)
 # if defined(HAVE_NCURSESW_NCURSES_H)
 #  include <ncursesw/ncurses.h>
 # endif
@@ -24,3 +27,6 @@
 #define _JOIN_(x, y)		_JOIN_AGAIN_(x, y)
 
 #define STATIC_ASSERT(e)	typedef char _JOIN_(assertion_failed_at_line_, __LINE__) [(e) ? 1 : -1]
+
+#endif /* CURSES_SHARP_WRAPPER_H */
+

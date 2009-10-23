@@ -41,8 +41,11 @@ libCursesWrapper_la_SOURCES = \
 	touch.c \
 	util.c \
 	window.c \
+	unicode.h \
+	unicode.c \
 	wrapper.c \
 	wrapper.h
+libCursesWrapper_la_CFLAGS = $(CURSES_CFLAGS)
 libCursesWrapper_la_LDFLAGS = -module -no-undefined -avoid-version
 libCursesWrapper_la_LDFLAGS += $(CURSES_LDFLAGS)
 

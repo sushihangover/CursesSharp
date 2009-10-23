@@ -3,10 +3,10 @@
 
 AC_PREREQ([2.62])
 AC_INIT([Curses Sharp], [0.8], [curses-sharp-bugs@lists.sourceforge.net])
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([CursesWrapper/wrapper.c])
 
 AM_INIT_AUTOMAKE([foreign])
-
 AC_PROG_CC
 AC_PROG_CC_C_O
 AC_PROG_LIBTOOL
@@ -26,16 +26,18 @@ fi
 dnl C# compiler
 AC_PATH_PROG([CSC], [gmcs], [no])
 if test "x$CSC" = "xno"; then
-	AC_MSG_ERROR([Can't find "gmcs" in your path])
+	AC_MSG_ERROR([Cannot find "gmcs" in your path])
 fi
 
 AC_DEFINE([_XOPEN_SOURCE], [1], [X/Open conformance])
 AC_DEFINE([_XOPEN_SOURCE_EXTENDED], [1], [X/Open Extended conformance])
 
-AC_ARG_ENABLE(widechar, 
-	AS_HELP_STRING([--disable-widechar], [do not use wchar_t]),
-	[have_widechar=no],
-	[have_widechar=yes]
+AC_ARG_ENABLE(wide, 
+	AS_HELP_STRING([--disable-wide], 
+		[do not use wide character curses functions]
+	),
+	[curses_wide=no],
+	[curses_wide=yes]
 )
 
 wchar_includes="\
@@ -43,28 +45,18 @@ wchar_includes="\
 #include <wchar.h>
 #endif"
 
-if test "x$have_widechar" != "xno"; then
-	AC_C_BIGENDIAN([have_widechar=no])
-fi
-if test "x$have_widechar" != "xno"; then
-	AC_CHECK_HEADERS([wchar.h], [], [have_widechar=no])
-fi
-if test "x$have_widechar" != "xno"; then
-	AC_CHECK_TYPES([wchar_t, wint_t], 
-		[], 
-		[have_widechar=no], 
-		[$wchar_includes]
-	)
-fi
-if test "x$have_widechar" != "xno"; then
-	AC_CHECK_SIZEOF([wchar_t], [], [$wchar_includes])
-	if test "x$ac_cv_sizeof_wchar_t" != "x2"; then
-		have_widechar=no
-	fi
+dnl check for basic wide character types
+AC_CHECK_HEADERS([wchar.h], [], [])
+AC_CHECK_TYPES([wchar_t, wint_t], [], [], [$wchar_includes])
+AC_CHECK_SIZEOF([wchar_t], [], [$wchar_includes])
+
+if test "x$ac_cv_type_wchar_t" != "xyes"; then
+	curses_wide=no
+	AC_MSG_NOTICE([Disabling wide character support])
 fi
 
 curses_includes="\
-#if defined(HAVE_USE_WIDECHAR)
+#if defined(CURSES_WIDE)
 # if defined(HAVE_NCURSESW_NCURSES_H)
 #  include <ncursesw/ncurses.h>
 # endif
@@ -76,46 +68,79 @@ curses_includes="\
 # include <curses.h>
 #endif"
 
-if test "x$have_widechar" != "xno"; then
-	AC_CHECK_HEADERS([ncursesw/ncurses.h])
-fi
-AC_CHECK_HEADERS([ncurses.h curses.h])
+AC_CHECK_HEADERS([ncursesw/ncurses.h ncurses.h curses.h])
 
-if test "x$have_widechar" != "xno"; then
-	AC_CHECK_DECL([addwstr], [], [have_widechar=no], [
-		#define HAVE_USE_WIDECHAR 1
-		$curses_includes
-	])
+dnl check curses headers for declarations of wide character functions
+if test "x$curses_wide" != "xno"; then
+	AC_CHECK_DECL([addwstr], [], [
+			curses_wide=no
+			AC_MSG_NOTICE([Disabling wide character support])
+		], [
+			#define CURSES_WIDE 1
+			$curses_includes
+		]
+	)
 fi
 
 save_LIBS="$LIBS"
+CURSES_CFLAGS="-Werror"
 CURSES_LDFLAGS=
-if test "x$have_widechar" != "xno"; then
+
+dnl check for a curses library with wide character functions
+dnl disable wide character support if not found
+if test "x$curses_wide" != "xno"; then
 	AC_SEARCH_LIBS([addwstr], [ncursesw ncurses curses],
-		[CURSES_LDFLAGS="$ac_cv_search_initscr"],
-		[have_widechar=no]
+		[CURSES_LDFLAGS="$ac_cv_search_addwstr"], [
+			curses_wide=no
+			AC_MSG_NOTICE([Disabling wide character support])
+		]
 	)
 fi
 
-if test "x$have_widechar" = "xno"; then
+dnl if a wide character curses library was not found in previous step
+dnl then check for an 8-bit character one
+if test "x$curses_wide" = "xno"; then
 	AC_SEARCH_LIBS([initscr], [ncurses curses],
 		[CURSES_LDFLAGS="$ac_cv_search_initscr"],
-		[AC_MSG_ERROR([Can't find curses implementation])]
+		[AC_MSG_ERROR([Cannot find curses implementation])]
 	)
 fi
+
 LIBS="$save_LIBS"
 
+iconv_includes="\
+#ifdef HAVE_ICONV_H
+#include <iconv.h>
+#endif"
+
+if test "x$curses_wide" = "xno" -o "x$ac_cv_sizeof_wchar_t" != "x2"; then
+	AC_FUNC_ALLOCA
+	if test "x$ac_cv_func_alloca_works" != "xyes"; then
+		AC_MSG_ERROR([Function alloca() is missing or not working!])
+	fi
+
+	AC_CHECK_HEADERS([iconv.h], [], [])
+	AC_CHECK_DECLS([iconv_open, iconv_close, iconv],
+		[working_iconv=yes], [working_iconv=no], [$iconv_includes]
+	)
+	if test "x$working_iconv" != "xyes"; then
+		AC_MSG_ERROR([Function iconv() is missing or not working!])
+	fi
+	AC_DEFINE([USING_ICONV], [1],
+		  [Define if iconv() function is used]
+	)
+fi
+
+AC_SUBST([CURSES_CFLAGS])
 AC_SUBST([CURSES_LDFLAGS])
 
-CursesSharp_CSCFLAGS=""
-
-AM_CONDITIONAL([HAVE_USE_WIDECHAR], [test "x$have_widechar" != "xno"])
-if test "x$have_widechar" != "xno"; then
-	AC_DEFINE([HAVE_USE_WIDECHAR], [1],
-		  [Define if wchar_t is compatible with .NET char]
+if test "x$curses_wide" != "xno"; then
+	AC_DEFINE([CURSES_WIDE], [1],
+		  [Define if using wide character curses functions]
 	)
-	CursesSharp_CSCFLAGS="-define:HAVE_USE_WIDECHAR $CursesSharp_CSCFLAGS"
 fi
+
+CursesSharp_CSCFLAGS=""
 
 AC_ARG_ENABLE(panel, 
 	AS_HELP_STRING([--disable-panel],
