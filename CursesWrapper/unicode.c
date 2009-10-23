@@ -38,7 +38,7 @@ static iconv_t
 get_unicode_iconv_wchar(void)
 {
 	if (cd_unicode_iconv_wchar == 0)
-		cd_unicode_iconv_wchar = iconv_open("WCHAR_T", "UCS-2"); 
+		cd_unicode_iconv_wchar = iconv_open("WCHAR_T", "UCS-2LE"); 
 	return cd_unicode_iconv_wchar;
 }
 
@@ -46,7 +46,7 @@ static iconv_t
 get_wchar_iconv_unicode(void)
 {
 	if (cd_wchar_iconv_unicode == 0)
-		cd_wchar_iconv_unicode = iconv_open("UCS-2//TRANSLIT", "WCHAR_T"); 
+		cd_wchar_iconv_unicode = iconv_open("UCS-2LE//TRANSLIT", "WCHAR_T"); 
 	return cd_wchar_iconv_unicode;
 }
 #endif
@@ -55,7 +55,7 @@ static iconv_t
 get_unicode_iconv_char(void)
 {
 	if (cd_unicode_iconv_char == 0)
-		cd_unicode_iconv_char = iconv_open("ASCII//TRANSLIT", "UCS-2"); 
+		cd_unicode_iconv_char = iconv_open("ASCII//TRANSLIT", "UCS-2LE"); 
 	return cd_unicode_iconv_char;
 }
 
@@ -63,7 +63,7 @@ static iconv_t
 get_char_iconv_unicode(void)
 {
 	if (cd_char_iconv_unicode == 0)
-		cd_char_iconv_unicode = iconv_open("UCS-2", "ASCII"); 
+		cd_char_iconv_unicode = iconv_open("UCS-2LE", "ASCII"); 
 	return cd_char_iconv_unicode;
 }
 
@@ -71,7 +71,7 @@ get_char_iconv_unicode(void)
 int 
 unicode_to_wchar(const uchar2 *instr, int inlen, wchar_t *outstr, int outlen)
 {
-	char *inptr = (char *)instr;
+	const char *inptr = (const char *)instr;
 	size_t inleft = inlen * sizeof(uchar2);
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen * sizeof(wchar_t);
@@ -90,7 +90,7 @@ unicode_to_wchar(const uchar2 *instr, int inlen, wchar_t *outstr, int outlen)
 int
 wchar_to_unicode(const wchar_t *instr, int inlen, uchar2 *outstr, int outlen)
 {
-	char *inptr = (char *)instr;
+	const char *inptr = (const char *)instr;
 	size_t inleft = inlen * sizeof(wchar_t);
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen * sizeof(uchar2);
@@ -110,7 +110,7 @@ wchar_to_unicode(const wchar_t *instr, int inlen, uchar2 *outstr, int outlen)
 int 
 unicode_to_char(const uchar2 *instr, int inlen, char *outstr, int outlen)
 {
-	char *inptr = (char *)instr;
+	const char *inptr = (const char *)instr;
 	size_t inleft = inlen * sizeof(uchar2);
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen;
@@ -126,7 +126,7 @@ unicode_to_char(const uchar2 *instr, int inlen, char *outstr, int outlen)
 int
 char_to_unicode(const char *instr, int inlen, uchar2 *outstr, int outlen)
 {
-	char *inptr = (char *)instr;
+	const char *inptr = (const char *)instr;
 	size_t inleft = inlen;
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen * sizeof(uchar2);

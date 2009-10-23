@@ -6,10 +6,22 @@ AC_INIT([Curses Sharp], [0.8], [curses-sharp-bugs@lists.sourceforge.net])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([CursesWrapper/wrapper.c])
 
+CPPFLAGS="${CPPFLAGS}"
+CFLAGS="${CFLAGS}"
+
+AC_CANONICAL_SYSTEM
+case "$target_os" in
+	freebsd*)
+		CPPFLAGS="${CPPFLAGS} -I/usr/local/include"
+	;;
+esac
+
 AM_INIT_AUTOMAKE([foreign])
-AC_PROG_CC
+
+AC_PROG_CC		
 AC_PROG_CC_C_O
 AC_PROG_LIBTOOL
+AC_HEADER_STDC
 
 dnl pkg-config
 PKG_PROG_PKG_CONFIG
@@ -179,6 +191,7 @@ if test "x$curses_mouse" != "xno"; then
 fi
 
 AC_SUBST([CursesSharp_CSCFLAGS])
+AC_SUBST([CFLAGS])
 
 
 AC_CONFIG_HEADERS([config.h])
