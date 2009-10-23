@@ -121,6 +121,9 @@ fi
 LIBS="$save_LIBS"
 
 iconv_includes="\
+#ifdef HAVE_WCHAR_H
+#include <wchar.h>
+#endif
 #ifdef HAVE_ICONV_H
 #include <iconv.h>
 #endif"
@@ -140,6 +143,14 @@ if test "x$curses_wide" = "xno" -o "x$ac_cv_sizeof_wchar_t" != "x2"; then
 	fi
 	AC_DEFINE([USING_ICONV], [1],
 		  [Define if iconv() function is used]
+	)
+	AC_COMPILE_IFELSE(AC_LANG_PROGRAM([$iconv_includes], [
+		extern size_t iconv(iconv_t, char **, size_t *, char **, size_t *);
+		]),
+		[],
+		[AC_DEFINE([ICONV_CONST], [1],
+			[Define if 2nd parameter of iconv() needs to be const]
+		)]
 	)
 fi
 

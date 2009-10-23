@@ -71,7 +71,11 @@ get_char_iconv_unicode(void)
 int 
 unicode_to_wchar(const uchar2 *instr, int inlen, wchar_t *outstr, int outlen)
 {
+#ifdef ICONV_CONST
 	const char *inptr = (const char *)instr;
+#else
+	char *inptr = (char *)instr;
+#endif
 	size_t inleft = inlen * sizeof(uchar2);
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen * sizeof(wchar_t);
@@ -90,7 +94,11 @@ unicode_to_wchar(const uchar2 *instr, int inlen, wchar_t *outstr, int outlen)
 int
 wchar_to_unicode(const wchar_t *instr, int inlen, uchar2 *outstr, int outlen)
 {
+#ifdef ICONV_CONST
 	const char *inptr = (const char *)instr;
+#else
+	char *inptr = (char *)instr;
+#endif
 	size_t inleft = inlen * sizeof(wchar_t);
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen * sizeof(uchar2);
@@ -110,7 +118,11 @@ wchar_to_unicode(const wchar_t *instr, int inlen, uchar2 *outstr, int outlen)
 int 
 unicode_to_char(const uchar2 *instr, int inlen, char *outstr, int outlen)
 {
+#ifdef ICONV_CONST
 	const char *inptr = (const char *)instr;
+#else
+	char *inptr = (char *)instr;
+#endif
 	size_t inleft = inlen * sizeof(uchar2);
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen;
@@ -126,7 +138,11 @@ unicode_to_char(const uchar2 *instr, int inlen, char *outstr, int outlen)
 int
 char_to_unicode(const char *instr, int inlen, uchar2 *outstr, int outlen)
 {
+#ifdef ICONV_CONST
 	const char *inptr = (const char *)instr;
+#else
+	char *inptr = (char *)instr;
+#endif
 	size_t inleft = inlen;
 	char *outptr = (char *)outstr;
 	size_t outleft = outlen * sizeof(uchar2);
