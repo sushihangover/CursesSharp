@@ -86,6 +86,17 @@ unicode_to_wchar(const uchar2 *instr, int inlen, wchar_t *outstr, int outlen)
 		return -1;
 
 	iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	while (inleft >= sizeof(uchar2) && outleft >= sizeof(wchar_t)) {
+		if (*(const uchar2 *)inptr == 0)
+			break;
+		inptr += sizeof(uchar2);
+		inleft -= sizeof(uchar2);
+		*(wchar_t *)outptr = '?';
+		outptr += sizeof(wchar_t);
+		outleft -= sizeof(wchar_t);
+
+		iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	}
 
 	outleftlen = outleft / sizeof(wchar_t);
 	return (int)(outlen - outleftlen);
@@ -109,6 +120,17 @@ wchar_to_unicode(const wchar_t *instr, int inlen, uchar2 *outstr, int outlen)
 		return -1;
 
 	iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	while (inleft >= sizeof(wchar_t) && outleft >= sizeof(uchar2)) {
+		if (*(const wchar_t *)inptr == 0)
+			break;
+		inptr += sizeof(wchar_t);
+		inleft -= sizeof(wchar_t);
+		*(uchar2 *)outptr = '?';
+		outptr += sizeof(uchar2);
+		outleft -= sizeof(uchar2);
+
+		iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	}
 
 	outleftlen = outleft / sizeof(uchar2);
 	return (int)(outlen - outleftlen);
@@ -132,6 +154,17 @@ unicode_to_char(const uchar2 *instr, int inlen, char *outstr, int outlen)
 		return -1;
 
 	iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	while (inleft >= sizeof(uchar2) && outleft >= sizeof(char)) {
+		if (*(const uchar2 *)inptr == 0)
+			break;
+		inptr += sizeof(uchar2);
+		inleft -= sizeof(uchar2);
+		*(char *)outptr = '?';
+		outptr += sizeof(char);
+		outleft -= sizeof(char);
+
+		iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	}
 	return (int)(outlen - outleft);
 }
 
@@ -152,7 +185,17 @@ char_to_unicode(const char *instr, int inlen, uchar2 *outstr, int outlen)
 		return -1;
 
 	iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	while (inleft >= sizeof(char) && outleft >= sizeof(uchar2)) {
+		if (*(const char *)inptr == 0)
+			break;
+		inptr += sizeof(char);
+		inleft -= sizeof(char);
+		*(uchar2 *)outptr = '?';
+		outptr += sizeof(uchar2);
+		outleft -= sizeof(uchar2);
 
+		iconv(cd, &inptr, &inleft, &outptr, &outleft);
+	}
 	return (int)(outlen - outleft);
 }
 
