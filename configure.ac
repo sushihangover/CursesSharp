@@ -218,6 +218,8 @@ AC_CONFIG_FILES([
 	FireworkDemo/FireworkDemo
 	RainDemo/Makefile
 	RainDemo/RainDemo
+	UnicodeDemo/Makefile
+	UnicodeDemo/UnicodeDemo
 ])
 
 AC_OUTPUT
