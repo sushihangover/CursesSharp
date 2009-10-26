@@ -28,23 +28,49 @@ wrap_wgetnstr(WINDOW *win, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return wgetn_wstr(win, (wint_t*)str, n);
 #elif defined(CURSES_WIDE)
-	int buflen = n;
-	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = wgetn_wstr(win, (wint_t*)buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return wchar_to_unicode(buf, buflen, str, n);
+	int ret, buflen = BUFFER_SIZE;
+	wchar_t stackbuf[BUFFER_SIZE];
+	wchar_t *buf = stackbuf;
+	if (buflen < n) {
+		buf = malloc(n * sizeof(wchar_t));
+		if (!buf)
+			return -1;
+	}
+	ret = wgetn_wstr(win, (wint_t*)buf, n);
+	if (ret < 0) {
+		if (buf != stackbuf)
+			free(buf);
+		return ret;
+	}
+	buflen = ret;
+	ret = wchar_to_unicode(buf, buflen, str, &n);
+	if (buf != stackbuf)
+		free(buf);
+	if (ret < 0)
+		return ret;
+	return n;
 #else
-	int buflen = n;
-	char *buf = myAlloc(sizeof(char), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = wgetnstr(win, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return char_to_unicode(buf, buflen, str, n);
+	int ret, buflen = BUFFER_SIZE;
+	char stackbuf[BUFFER_SIZE];
+	char *buf = stackbuf;
+	if (buflen < n) {
+		buf = malloc(n * sizeof(char));
+		if (!buf)
+			return -1;
+	}
+	ret = wgetnstr(win, buf, n);
+	if (ret < 0) {
+		if (buf != stackbuf)
+			free(buf);
+		return ret;
+	}
+	buflen = ret;
+	ret = char_to_unicode(buf, buflen, str, &n);
+	if (buf != stackbuf)
+		free(buf);
+	if (ret < 0)
+		return ret;
+	return n;
 #endif
 }
 
@@ -54,23 +80,49 @@ wrap_mvwgetnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return mvwgetn_wstr(win, y, x, (wint_t*)str, n);
 #elif defined(CURSES_WIDE)
-	int buflen = n;
-	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = mvwgetn_wstr(win, y, x, (wint_t*)buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return wchar_to_unicode(buf, buflen, str, n);
+	int ret, buflen = BUFFER_SIZE;
+	wchar_t stackbuf[BUFFER_SIZE];
+	wchar_t *buf = stackbuf;
+	if (buflen < n) {
+		buf = malloc(n * sizeof(wchar_t));
+		if (!buf)
+			return -1;
+	}
+	ret = mvwgetn_wstr(win, y, x, (wint_t*)buf, n);
+	if (ret < 0) {
+		if (buf != stackbuf)
+			free(buf);
+		return ret;
+	}
+	buflen = ret;
+	ret = wchar_to_unicode(buf, buflen, str, &n);
+	if (buf != stackbuf)
+		free(buf);
+	if (ret < 0)
+		return ret;
+	return n;
 #else
-	int buflen = n;
-	char *buf = myAlloc(sizeof(char), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = mvwgetnstr(win, y, x, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return char_to_unicode(buf, buflen, str, n);
+	int ret, buflen = BUFFER_SIZE;
+	char stackbuf[BUFFER_SIZE];
+	char *buf = stackbuf;
+	if (buflen < n) {
+		buf = malloc(n * sizeof(char));
+		if (!buf)
+			return -1;
+	}
+	ret = mvwgetnstr(win, y, x, buf, n);
+	if (ret < 0) {
+		if (buf != stackbuf)
+			free(buf);
+		return ret;
+	}
+	buflen = ret;
+	ret = char_to_unicode(buf, buflen, str, &n);
+	if (buf != stackbuf)
+		free(buf);
+	if (ret < 0)
+		return ret;
+	return n;
 #endif
 }
 

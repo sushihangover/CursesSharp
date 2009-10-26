@@ -20,6 +20,7 @@
 
 #include "wrapper.h"
 #include "unicode.h"
+#include <errno.h>
 
 
 WRAP_API int 
@@ -34,25 +35,33 @@ wrap_slk_set(int labnum, uchar2 *label, int labellen, int justify)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return slk_wset(labnum, label, justify);
 #elif defined(CURSES_WIDE)
-	int buflen = labellen + 1;
-	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
-	if (buf == 0)
+	int buflen = BUFFER_SIZE;
+	wchar_t stackbuf[BUFFER_SIZE];
+	wchar_t *buf = stackbuf;
+	int ret = unicode_to_wchar(label, labellen, buf, &buflen);
+	if (ret < 0 && errno == E2BIG)
+		ret = unicode_to_wchar_alloc(label, labellen, &buf, &buflen);
+	if (ret < 0)
 		return -1;
-	buflen = unicode_to_wchar(label, labellen, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	buf[buflen] = 0;
-	return slk_wset(labnum, buf, justify);
+	ret = slk_wset(labnum, buf, justify);
+	if (buf != stackbuf) {
+		free(buf);
+	}
+	return ret;
 #else
-	int buflen = labellen + 1;
-	char *buf = myAlloc(sizeof(char), buflen);
-	if (buf == 0)
+	int buflen = BUFFER_SIZE;
+	char stackbuf[BUFFER_SIZE];
+	char *buf = stackbuf;
+	int ret = unicode_to_char(label, labellen, buf, &buflen);
+	if (ret < 0 && errno == E2BIG)
+		ret = unicode_to_char_alloc(label, labellen, &buf, &buflen);
+	if (ret < 0)
 		return -1;
-	buflen = unicode_to_char(label, labellen, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	buf[buflen] = 0;
-	return slk_set(labnum, buf, justify);
+	ret = slk_set(labnum, buf, justify);
+	if (buf != stackbuf) {
+		free(buf);
+	}
+	return ret;
 #endif
 }
 

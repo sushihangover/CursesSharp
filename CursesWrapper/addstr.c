@@ -20,6 +20,8 @@
 
 #include "wrapper.h"
 #include "unicode.h"
+#include <errno.h>
+
 
 WRAP_API int
 wrap_waddnstr(WINDOW *win, uchar2 *str, int n)
@@ -27,23 +29,21 @@ wrap_waddnstr(WINDOW *win, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return waddnwstr(win, str, n);
 #elif defined(CURSES_WIDE)
-	int buflen = n;
-	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = unicode_to_wchar(str, n, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return waddnwstr(win, buf, buflen);
+	int buflen = BUFFER_SIZE;
+	wchar_t stackbuf[BUFFER_SIZE];
+	wchar_t *buf = stackbuf;
+	int ret = unicode_to_wchar(str, n, buf, &buflen);
+	if (ret < 0 && errno == E2BIG)
+		ret = unicode_to_wchar_alloc(str, n, &buf, &buflen);
+	if (ret < 0)
+		return ret;
+	ret = waddnwstr(win, buf, buflen);
+	if (buf != stackbuf) {
+		free(buf);
+	}
+	return ret;
 #else
-	int buflen = n;
-	char *buf = myAlloc(sizeof(char), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = unicode_to_char(str, n, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return waddnstr(win, buf, buflen);
+#error Not implemented
 #endif
 }
 
@@ -53,23 +53,21 @@ wrap_mvwaddnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return mvwaddnwstr(win, y, x, str, n);
 #elif defined(CURSES_WIDE)
-	int buflen = n;
-	wchar_t *buf = myAlloc(sizeof(wchar_t), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = unicode_to_wchar(str, n, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return mvwaddnwstr(win, y, x, buf, buflen);
+	int buflen = BUFFER_SIZE;
+	wchar_t stackbuf[BUFFER_SIZE];
+	wchar_t *buf = stackbuf;
+	int ret = unicode_to_wchar(str, n, buf, &buflen);
+	if (ret < 0 && errno == E2BIG)
+		ret = unicode_to_wchar_alloc(str, n, &buf, &buflen);
+	if (ret < 0)
+		return ret;
+	ret = mvwaddnwstr(win, y, x, buf, buflen);
+	if (buf != stackbuf) {
+		free(buf);
+	}
+	return ret;
 #else
-	int buflen = n;
-	char *buf = myAlloc(sizeof(char), buflen);
-	if (buf == 0)
-		return -1;
-	buflen = unicode_to_char(str, n, buf, buflen);
-	if (buflen < 0)
-		return -1;
-	return mvwaddnstr(win, y, x, buf, buflen);
+#error Not implemented
 #endif
 }
 
