@@ -37,10 +37,10 @@ STATIC_ASSERT(sizeof(struct WrapMEvent) == 20);
 WRAP_API int
 wrap_has_mouse(void)
 {
-#ifdef WIN32
+#if defined(HAVE_HAS_MOUSE)
+	return (int)has_mouse();
+#else
 	return 1;
-#elif defined(NCURSES_VERSION)
-	return (bool)has_mouse();
 #endif
 }
 

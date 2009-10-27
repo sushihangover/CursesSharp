@@ -153,6 +153,7 @@ AC_CHECK_FUNCS(
 	[],
 	[have_wide_funcs=no]
 )
+AC_CHECK_FUNCS([has_mouse])
 
 if test "x$curses_wide" != "xno" -a "x$have_wide_funcs" != "xyes"; then
 	AC_MSG_NOTICE([Disabling wide character support])
