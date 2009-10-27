@@ -34,6 +34,8 @@ dnl checks for programs
 
 AC_PROG_CC		
 AC_PROG_CC_C_O
+AC_PROG_CC_C89
+AC_PROG_CPP_WERROR
 AC_PROG_LIBTOOL
 
 dnl pkg-config
@@ -54,12 +56,11 @@ if test "x$CSC" = "xno"; then
 	AC_MSG_ERROR([Cannot find "gmcs" in your path])
 fi
 
-CURSES_CFLAGS=
-CURSES_LDFLAGS=
-CursesSharp_CSCFLAGS=
+CURSES_CFLAGS="${CURSES_CFLAGS}"
+CURSES_LDFLAGS="${CURSES_LDFLAGS}"
+CursesSharp_CSCFLAGS="${CursesSharp_CSCFLAGS}"
 
 CPPFLAGS="${CPPFLAGS}"
-CFLAGS="-Wall -Werror ${CFLAGS}"
 LDFLAGS="${LDFLAGS}"
 
 case "$target_os" in
@@ -74,6 +75,7 @@ dnl checks for libraries
 dnl check for a curses library, preferably with wide character functions
 AC_SEARCH_LIBS([initscr], [ncursesw ncurses curses])
 CURSES_LDFLAGS="$ac_cv_search_initscr $CURSES_LDFLAGS"
+AC_SUBST([CURSES_LDFLAGS])
 
 dnl checks for header files
 
@@ -82,6 +84,7 @@ AC_DEFINE([_XOPEN_SOURCE], [1], [X/Open conformance])
 AC_DEFINE([_XOPEN_SOURCE_EXTENDED], [1], [X/Open Extended conformance])
 
 dnl standard headers
+AC_HEADER_ASSERT
 AC_HEADER_STDC
 
 dnl check for basic wide character types
@@ -101,6 +104,7 @@ if test "x$curses_panel" != "xno" -a "x$ac_cv_header_panel_h" != "xyes"; then
 fi
 
 dnl checks for types
+AC_TYPE_SIZE_T
 
 wchar_includes="\
 #ifdef HAVE_WCHAR_H
@@ -141,6 +145,10 @@ if test "x$curses_mouse" != "xno" -a "x$have_curses_mouse" != "xyes"; then
 	AC_MSG_NOTICE([Disabling curses mouse support])
 	curses_mouse=no
 fi
+
+dnl check for compiler characteristics
+AC_C_INLINE
+AC_LANG_WERROR
 
 dnl checks for library functions
 
@@ -184,11 +192,13 @@ if test "x$curses_mouse" != "xno"; then
 	CursesSharp_CSCFLAGS="-define:HAVE_CURSES_MOUSE $CursesSharp_CSCFLAGS"
 fi
 
+AC_SUBST([CursesSharp_CSCFLAGS])
+
+dnlCFLAGS="-Wall -Werror ${CFLAGS}"
+
 AC_SUBST([CPPFLAGS])
 AC_SUBST([CFLAGS])
 AC_SUBST([LDFLAGS])
-AC_SUBST([CURSES_LDFLAGS])
-AC_SUBST([CursesSharp_CSCFLAGS])
 
 
 AC_CONFIG_HEADERS([config.h])

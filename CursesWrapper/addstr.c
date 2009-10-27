@@ -29,18 +29,23 @@ wrap_waddnstr(WINDOW *win, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return waddnwstr(win, str, n);
 #elif defined(CURSES_WIDE)
-	int buflen = BUFFER_SIZE;
 	wchar_t stackbuf[BUFFER_SIZE];
-	wchar_t *buf = stackbuf;
-	int ret = unicode_to_wchar(str, n, buf, &buflen);
-	if (ret < 0 && errno == E2BIG)
-		ret = unicode_to_wchar_alloc(str, n, &buf, &buflen);
-	if (ret < 0)
-		return ret;
-	ret = waddnwstr(win, buf, buflen);
-	if (buf != stackbuf) {
-		free(buf);
+	xbuffer xinput, xoutput;
+	xreader reader;
+	xwriter writer;
+	int ret;
+
+	xbuf_init_uc(&xinput, str, n, XBUF_FILL);
+	xbuf_init_wc(&xoutput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
+
+	xrdr_init(&reader, &xinput);
+	xwrtr_init(&writer, &xoutput);
+	if (unicode_to_wchar(&reader, &writer) < 0) {
+		xbuf_free(&xoutput);
+		return -1;
 	}
+	ret = waddnwstr(win, xbuf_data_wc(&xoutput), xbuf_len_wc(&xoutput));
+	xbuf_free(&xoutput);
 	return ret;
 #else
 #error Not implemented
@@ -53,18 +58,23 @@ wrap_mvwaddnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return mvwaddnwstr(win, y, x, str, n);
 #elif defined(CURSES_WIDE)
-	int buflen = BUFFER_SIZE;
 	wchar_t stackbuf[BUFFER_SIZE];
-	wchar_t *buf = stackbuf;
-	int ret = unicode_to_wchar(str, n, buf, &buflen);
-	if (ret < 0 && errno == E2BIG)
-		ret = unicode_to_wchar_alloc(str, n, &buf, &buflen);
-	if (ret < 0)
-		return ret;
-	ret = mvwaddnwstr(win, y, x, buf, buflen);
-	if (buf != stackbuf) {
-		free(buf);
+	xbuffer xinput, xoutput;
+	xreader reader;
+	xwriter writer;
+	int ret;
+
+	xbuf_init_uc(&xinput, str, n, XBUF_FILL);
+	xbuf_init_wc(&xoutput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
+
+	xrdr_init(&reader, &xinput);
+	xwrtr_init(&writer, &xoutput);
+	if (unicode_to_wchar(&reader, &writer) < 0) {
+		xbuf_free(&xoutput);
+		return -1;
 	}
+	ret = mvwaddnwstr(win, y, x, xbuf_data_wc(&xoutput), xbuf_len_wc(&xoutput));
+	xbuf_free(&xoutput);
 	return ret;
 #else
 #error Not implemented

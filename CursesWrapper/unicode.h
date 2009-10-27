@@ -13,18 +13,17 @@
 #include <wchar.h>
 #endif
 
+#include "xbuffer.h"
+
 #define BUFFER_SIZE 128
 
 
-typedef unsigned short uchar2;
-
 #ifdef HAVE_WCHAR_T
-int unicode_to_wchar(const uchar2 *instr, int inlen, wchar_t *outstr, int *outlen);
-int unicode_to_wchar_alloc(const uchar2 *instr, int inlen, wchar_t **outstr, int *outlen);
-int wchar_to_unicode(const wchar_t *instr, int inlen, uchar2 *outstr, int *outlen);
+int unicode_to_wchar(xreader* input, xwriter* output);
+int wchar_to_unicode(xreader* input, xwriter* output);
 #endif
-int unicode_to_char(const uchar2 *instr, int inlen, char *outstr, int *outlen);
-int char_to_unicode(const char *instr, int inlen, uchar2 *outstr, int *outlen);
+int unicode_to_char(xreader* input, xwriter* output);
+int char_to_unicode(xreader* input, xwriter* output);
 
 #endif /* CURSES_SHARP_UNICODE_H */
 

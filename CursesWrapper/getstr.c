@@ -28,49 +28,37 @@ wrap_wgetnstr(WINDOW *win, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return wgetn_wstr(win, (wint_t*)str, n);
 #elif defined(CURSES_WIDE)
-	int ret, buflen = BUFFER_SIZE;
 	wchar_t stackbuf[BUFFER_SIZE];
-	wchar_t *buf = stackbuf;
-	if (buflen < n) {
-		buf = malloc(n * sizeof(wchar_t));
-		if (!buf)
-			return -1;
+	xbuffer xinput, xoutput;
+	xreader reader;
+	xwriter writer;
+	int ret;
+
+	xbuf_init_wc(&xinput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
+	xbuf_init_uc(&xoutput, str, n, 0);
+
+	if (xbuf_reserve_wc(&xinput, n) < 0) {
+		xbuf_free(&xinput);
+		return -1;
 	}
-	ret = wgetn_wstr(win, (wint_t*)buf, n);
+	ret = wgetn_wstr(win, (wint_t*)xbuf_data_wc(&xinput), n);
 	if (ret < 0) {
-		if (buf != stackbuf)
-			free(buf);
-		return ret;
+		xbuf_free(&xinput);
+		return -1;
 	}
-	buflen = ret;
-	ret = wchar_to_unicode(buf, buflen, str, &n);
-	if (buf != stackbuf)
-		free(buf);
-	if (ret < 0)
-		return ret;
-	return n;
+	xbuf_resize_wc(&xinput, ret);
+
+	xreader_init(&reader, &xinput);
+	xwriter_init(&writer, &xoutput);
+	if (wchar_to_unicode(&reader, &writer) < 0) {
+		xbuf_free(&xinput);
+		return -1;
+	}
+	ret = xbuf_len_wc(&xoutput);
+	xbuf_free(&xinput);
+	return ret;
 #else
-	int ret, buflen = BUFFER_SIZE;
-	char stackbuf[BUFFER_SIZE];
-	char *buf = stackbuf;
-	if (buflen < n) {
-		buf = malloc(n * sizeof(char));
-		if (!buf)
-			return -1;
-	}
-	ret = wgetnstr(win, buf, n);
-	if (ret < 0) {
-		if (buf != stackbuf)
-			free(buf);
-		return ret;
-	}
-	buflen = ret;
-	ret = char_to_unicode(buf, buflen, str, &n);
-	if (buf != stackbuf)
-		free(buf);
-	if (ret < 0)
-		return ret;
-	return n;
+#error Not implemented
 #endif
 }
 
@@ -80,49 +68,37 @@ wrap_mvwgetnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return mvwgetn_wstr(win, y, x, (wint_t*)str, n);
 #elif defined(CURSES_WIDE)
-	int ret, buflen = BUFFER_SIZE;
 	wchar_t stackbuf[BUFFER_SIZE];
-	wchar_t *buf = stackbuf;
-	if (buflen < n) {
-		buf = malloc(n * sizeof(wchar_t));
-		if (!buf)
-			return -1;
+	xbuffer xinput, xoutput;
+	xreader reader;
+	xwriter writer;
+	int ret;
+
+	xbuf_init_wc(&xinput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
+	xbuf_init_uc(&xoutput, str, n, 0);
+
+	if (xbuf_reserve_wc(&xinput, n) < 0) {
+		xbuf_free(&xinput);
+		return -1;
 	}
-	ret = mvwgetn_wstr(win, y, x, (wint_t*)buf, n);
+	ret = mvwgetn_wstr(win, y, x, (wint_t*)xbuf_data_wc(&xinput), n);
 	if (ret < 0) {
-		if (buf != stackbuf)
-			free(buf);
-		return ret;
+		xbuf_free(&xinput);
+		return -1;
 	}
-	buflen = ret;
-	ret = wchar_to_unicode(buf, buflen, str, &n);
-	if (buf != stackbuf)
-		free(buf);
-	if (ret < 0)
-		return ret;
-	return n;
+	xbuf_resize_wc(&xinput, ret);
+
+	xreader_init(&reader, &xinput);
+	xwriter_init(&writer, &xoutput);
+	if (wchar_to_unicode(&reader, &writer) < 0) {
+		xbuf_free(&xinput);
+		return -1;
+	}
+	ret = xbuf_len_wc(&xoutput);
+	xbuf_free(&xinput);
+	return ret;
 #else
-	int ret, buflen = BUFFER_SIZE;
-	char stackbuf[BUFFER_SIZE];
-	char *buf = stackbuf;
-	if (buflen < n) {
-		buf = malloc(n * sizeof(char));
-		if (!buf)
-			return -1;
-	}
-	ret = mvwgetnstr(win, y, x, buf, n);
-	if (ret < 0) {
-		if (buf != stackbuf)
-			free(buf);
-		return ret;
-	}
-	buflen = ret;
-	ret = char_to_unicode(buf, buflen, str, &n);
-	if (buf != stackbuf)
-		free(buf);
-	if (ret < 0)
-		return ret;
-	return n;
+#error Not implemented
 #endif
 }
 

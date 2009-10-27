@@ -35,33 +35,31 @@ wrap_slk_set(int labnum, uchar2 *label, int labellen, int justify)
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
 	return slk_wset(labnum, label, justify);
 #elif defined(CURSES_WIDE)
-	int buflen = BUFFER_SIZE;
 	wchar_t stackbuf[BUFFER_SIZE];
-	wchar_t *buf = stackbuf;
-	int ret = unicode_to_wchar(label, labellen, buf, &buflen);
-	if (ret < 0 && errno == E2BIG)
-		ret = unicode_to_wchar_alloc(label, labellen, &buf, &buflen);
-	if (ret < 0)
+	xbuffer xinput, xoutput;
+	xreader reader;
+	xwriter writer;
+	int ret;
+
+	xbuf_init_uc(&xinput, label, labellen, XBUF_FILL);
+	xbuf_init_wc(&xoutput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
+
+	xrdr_init(&reader, &xinput);
+	xwrtr_init(&writer, &xoutput);
+	if (unicode_to_wchar(&reader, &writer) < 0) {
+		xbuf_free(&xoutput);
 		return -1;
-	ret = slk_wset(labnum, buf, justify);
-	if (buf != stackbuf) {
-		free(buf);
 	}
+	if (xwrtr_append_wc(&writer, 1) < 0) {
+		xbuf_free(&xoutput);
+		return -1;
+	}
+	xwrtr_put_wc(&writer, 0);
+	ret = slk_wset(labnum, xbuf_data_wc(&xoutput), justify);
+	xbuf_free(&xoutput);
 	return ret;
 #else
-	int buflen = BUFFER_SIZE;
-	char stackbuf[BUFFER_SIZE];
-	char *buf = stackbuf;
-	int ret = unicode_to_char(label, labellen, buf, &buflen);
-	if (ret < 0 && errno == E2BIG)
-		ret = unicode_to_char_alloc(label, labellen, &buf, &buflen);
-	if (ret < 0)
-		return -1;
-	ret = slk_set(labnum, buf, justify);
-	if (buf != stackbuf) {
-		free(buf);
-	}
-	return ret;
+#error Not implemented
 #endif
 }
 

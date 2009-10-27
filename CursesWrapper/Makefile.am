@@ -41,6 +41,8 @@ libCursesWrapper_la_SOURCES = \
 	touch.c \
 	util.c \
 	window.c \
+	xbuffer.h \
+	xbuffer.c \
 	unicode.h \
 	unicode.c \
 	wrapper.c \
