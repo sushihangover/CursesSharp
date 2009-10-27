@@ -94,8 +94,11 @@ xbuf_reserve(xbuffer* xb, size_t maxlen)
 	newcapacity = capacity + fast_sqrt(capacity) + 1;
 	if (newcapacity < maxlen)
 		newcapacity = maxlen;
+	assert(newcapacity > capacity);
+	assert(newcapacity >= maxlen);
 
 	length = xbuf_len(xb);
+	assert(length <= newcapacity);
 
 	newbuf = xbuf_isoptset(xb, XBUF_OWN) ? xb->buf : 0;
 	newbuf = realloc(newbuf, newcapacity);

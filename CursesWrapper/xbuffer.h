@@ -163,6 +163,7 @@ char xrdr_get(xreader* xr)
 {
 	char r;
 	assert(xr != NULL && xr->xbuf != NULL && xr->ptr != NULL);
+	assert(xrdr_left(xr) > 0);
 	r = *(xr->ptr);
 	xr->ptr++;
 	return r;
@@ -180,6 +181,7 @@ uchar2 xrdr_get_uc(xreader* xr)
 {
 	uchar2 r;
 	assert(xr != NULL && xr->xbuf != NULL && xr->ptr != NULL);
+	assert(xrdr_left_uc(xr) > 0);
 	r = *(const uchar2*)(xr->ptr);
 	xr->ptr += sizeof(uchar2);
 	return r;
@@ -198,6 +200,7 @@ wchar_t xrdr_get_wc(xreader* xr)
 {
 	wchar_t r;
 	assert(xr != NULL && xr->xbuf != NULL && xr->ptr != NULL);
+	assert(xrdr_left_wc(xr) > 0);
 	r = *(const wchar_t*)(xr->ptr);
 	xr->ptr += sizeof(wchar_t);
 	return r;
@@ -215,24 +218,27 @@ int xwrtr_init(xwriter* xr, xbuffer* xb);
 
 
 static inline
-int xwrtr_append(xwriter* xw, size_t len)
-{
-	assert(xw != NULL && xw->xbuf != NULL);
-	return xbuf_append(xw->xbuf, len);
-}
-
-static inline
-int xwrtr_len(xwriter* xw)
+size_t xwrtr_len(xwriter* xw)
 {
 	assert(xw != NULL && xw->xbuf != NULL);
 	return (size_t)(xw->ptr - xw->xbuf->buf);
 }
 
+static inline
+int xwrtr_append(xwriter* xw, size_t len)
+{
+	size_t of = xwrtr_len(xw);
+	if (xbuf_append(xw->xbuf, len) < 0)
+		return -1;
+	xw->ptr = xw->xbuf->buf + of;
+	return 0;
+}
 
 static inline
 void xwrtr_put(xwriter* xw, char c)
 {
 	assert(xw != NULL && xw->xbuf != NULL && xw->ptr != NULL);
+	assert(xbuf_maxlen(xw->xbuf) - xbuf_len(xw->xbuf) > 0);
 	*(xw->ptr) = c;
 	xw->ptr++;
 }
@@ -240,12 +246,11 @@ void xwrtr_put(xwriter* xw, char c)
 static inline
 int xwrtr_append_uc(xwriter* xw, size_t len)
 {
-	assert(xw != NULL && xw->xbuf != NULL);
-	return xbuf_append(xw->xbuf, len * sizeof(uchar2));
+	return xwrtr_append(xw, len * sizeof(uchar2));
 }
 
 static inline
-int xwrtr_len_uc(xwriter* xw)
+size_t xwrtr_len_uc(xwriter* xw)
 {
 	assert(xw != NULL && xw->xbuf != NULL);
 	return xwrtr_len(xw) / sizeof(uchar2);
@@ -256,6 +261,7 @@ static inline
 void xwrtr_put_uc(xwriter* xw, uchar2 c)
 {
 	assert(xw != NULL && xw->xbuf != NULL && xw->ptr != NULL);
+	assert(xbuf_maxlen_uc(xw->xbuf) - xbuf_len_uc(xw->xbuf) > 0);
 	*(uchar2*)(xw->ptr) = c;
 	xw->ptr += sizeof(uchar2);
 }
@@ -264,12 +270,11 @@ void xwrtr_put_uc(xwriter* xw, uchar2 c)
 static inline
 int xwrtr_append_wc(xwriter* xw, size_t len)
 {
-	assert(xw != NULL && xw->xbuf != NULL);
-	return xbuf_append(xw->xbuf, len * sizeof(wchar_t));
+	return xwrtr_append(xw, len * sizeof(wchar_t));
 }
 
 static inline
-int xwrtr_len_wc(xwriter* xw)
+size_t xwrtr_len_wc(xwriter* xw)
 {
 	assert(xw != NULL && xw->xbuf != NULL);
 	return xwrtr_len(xw) / sizeof(wchar_t);
@@ -280,6 +285,7 @@ static inline
 void xwrtr_put_wc(xwriter* xw, wchar_t c)
 {
 	assert(xw != NULL && xw->xbuf != NULL && xw->ptr != NULL);
+	assert(xbuf_maxlen_wc(xw->xbuf) - xbuf_len_wc(xw->xbuf) > 0);
 	*(wchar_t*)(xw->ptr) = c;
 	xw->ptr += sizeof(wchar_t);
 }

@@ -39,14 +39,16 @@ unicode_to_wchar(xreader* input, xwriter* output)
 			assert(0xD800 <= ch && ch <= 0xDBFF);
 			assert(0xDC00 <= ch2 && ch2 <= 0xDFFF);
 			outch = (ch << 10) + ch2 + SURROGATE_OFFSET;
-		} else if (ch == 0) {
-			return 0;
 		}
 		assert(outch < 0xD800 || outch > 0xDFFF);
 		assert(outch <= 0x10FFFF);
 		if (xwrtr_append_wc(output, 1) < 0)
 			return -1;
 		xwrtr_put_wc(output, outch);
+		if (ch == 0) {
+			assert(0);
+			return 0;
+		}
 	}
 
 	return 0;
@@ -72,6 +74,8 @@ wchar_to_unicode(xreader* input, xwriter* output)
 			xwrtr_put_uc(output, outch1);
 			xwrtr_put_uc(output, outch2);
 		}
+		if (ch == 0)
+			return 0;
 	}
 
 	return 0;
