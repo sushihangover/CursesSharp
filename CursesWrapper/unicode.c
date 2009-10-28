@@ -26,29 +26,44 @@ const wchar_t LEAD_OFFSET = 0xD800 - (0x10000 >> 10);
 const wchar_t SURROGATE_OFFSET = 0x10000 - (0xD800 << 10) - 0xDC00;
 
 int 
+wchar_validate(wchar_t wc)
+{
+#if SIZEOF_WCHAR_T == 4
+	if (wc > 0x10FFFF)
+		return 0;
+	if (wc >= 0xD800 && wc <= 0xDFFF)
+		return 0;
+#endif
+	return 1;
+}
+
+int 
 unicode_to_wchar(xreader* input, xwriter* output)
 {
-	while (xrdr_left_uc(input) > 0) {
+	size_t inleft = xrdr_left_uc(input);
+	while (inleft > 0) {
 		uchar2 ch = xrdr_get_uc(input);
 		wchar_t outch = ch;
+
 		if (ch >= 0xD800 && ch <= 0xDFFF) {
 			uchar2 ch2;
-			if (xrdr_left_uc(input) < 1)
+			if (inleft < 2)
 				return -1;
 			ch2 = xrdr_get_uc(input);
 			assert(0xD800 <= ch && ch <= 0xDBFF);
 			assert(0xDC00 <= ch2 && ch2 <= 0xDFFF);
-			outch = (ch << 10) + ch2 + SURROGATE_OFFSET;
+			outch = 0x10000 + ((ch - 0xD800) << 10) + (ch2 - 0xDC00);
+		} else if (ch == 0) {
+			assert(inleft > 1);
+			return -1;
 		}
-		assert(outch < 0xD800 || outch > 0xDFFF);
-		assert(outch <= 0x10FFFF);
+		assert(xrdr_left_uc(input) < inleft);
+		inleft = xrdr_left_uc(input);
+
+		assert(wchar_validate(outch));
 		if (xwrtr_append_wc(output, 1) < 0)
 			return -1;
 		xwrtr_put_wc(output, outch);
-		if (ch == 0) {
-			assert(0);
-			return 0;
-		}
 	}
 
 	return 0;

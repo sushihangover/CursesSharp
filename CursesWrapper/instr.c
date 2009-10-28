@@ -29,6 +29,7 @@ wrap_winnstr(WINDOW *win, uchar2 *str, int n)
 	return winnwstr(win, str, n);
 #elif defined(CURSES_WIDE)
 	wchar_t stackbuf[BUFFER_SIZE];
+	wchar_t* buf;
 	xbuffer xinput, xoutput;
 	xreader reader;
 	xwriter writer;
@@ -37,11 +38,12 @@ wrap_winnstr(WINDOW *win, uchar2 *str, int n)
 	xbuf_init_wc(&xinput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
 	xbuf_init_uc(&xoutput, str, n, 0);
 
-	if (xbuf_reserve_wc(&xinput, n) < 0) {
+	buf = xbuf_buf_wc(&xinput, n);
+	if (!buf) {
 		xbuf_free(&xinput);
 		return -1;
 	}
-	ret = winnwstr(win, xbuf_data_wc(&xinput), n);
+	ret = winnwstr(win, buf, n);
 	if (ret < 0) {
 		xbuf_free(&xinput);
 		return -1;
@@ -69,6 +71,7 @@ wrap_mvwinnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 	return mvwinnwstr(win, y, x, str, n);
 #elif defined(CURSES_WIDE)
 	wchar_t stackbuf[BUFFER_SIZE];
+	wchar_t* buf;
 	xbuffer xinput, xoutput;
 	xreader reader;
 	xwriter writer;
@@ -77,11 +80,12 @@ wrap_mvwinnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 	xbuf_init_wc(&xinput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
 	xbuf_init_uc(&xoutput, str, n, 0);
 
-	if (xbuf_reserve_wc(&xinput, n) < 0) {
+	buf = xbuf_buf_wc(&xinput, n);
+	if (!buf) {
 		xbuf_free(&xinput);
 		return -1;
 	}
-	ret = mvwinnwstr(win, y, x, xbuf_data_wc(&xinput), n);
+	ret = mvwinnwstr(win, y, x, buf, n);
 	if (ret < 0) {
 		xbuf_free(&xinput);
 		return -1;

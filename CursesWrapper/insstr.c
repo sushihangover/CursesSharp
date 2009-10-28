@@ -51,8 +51,6 @@ wrap_winsnstr(WINDOW *win, uchar2 *str, int n)
 #endif
 }
 
-#include <syslog.h>
-#include <errno.h>
 WRAP_API int
 wrap_mvwinsnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 {
@@ -71,19 +69,14 @@ wrap_mvwinsnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 	xrdr_init(&reader, &xinput);
 	xwrtr_init(&writer, &xoutput);
 	if (unicode_to_wchar(&reader, &writer) < 0) {
-		openlog("curseswrapper", LOG_NDELAY|LOG_PERROR, LOG_USER);
-		syslog(LOG_ERR, "unicode_to_wchar");
-		closelog();
+		xbuf_free(&xoutput);
+		return -1;
+	}
+	if (xbuf_tzero_wc(&xoutput) < 0) {
 		xbuf_free(&xoutput);
 		return -1;
 	}
 	ret = mvwins_nwstr(win, y, x, xbuf_data_wc(&xoutput), xbuf_len_wc(&xoutput));
-	if (ret < 0) {
-		int eno = errno;
-		openlog("curseswrapper", LOG_NDELAY|LOG_PERROR, LOG_USER);
-		syslog(LOG_ERR, "mvwins_nwstr: %d", eno);
-		closelog();
-	}
 	xbuf_free(&xoutput);
 	return ret;
 #else

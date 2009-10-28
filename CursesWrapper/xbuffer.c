@@ -19,6 +19,7 @@
  */
 
 #include "xbuffer.h"
+#include <string.h>
 #include <errno.h>
 
 
@@ -104,6 +105,8 @@ xbuf_reserve(xbuffer* xb, size_t maxlen)
 	newbuf = realloc(newbuf, newcapacity);
 	if (!newbuf)
 		return -1;
+	if (!xbuf_isoptset(xb, XBUF_OWN))
+		memcpy(newbuf, xb->buf, length);
 
 	xb->buf = newbuf;
 	xb->bufend = newbuf + length;
@@ -161,6 +164,7 @@ xbuf_setopt(xbuffer* xb, unsigned opt)
 		return -1;
 	}
 	xb->opts |= opt & 0xFF;
+	assert(xbuf_isoptset(xb, opt));
 	return (int)(xb->opts);
 }
 
@@ -172,11 +176,12 @@ xbuf_resetopt(xbuffer* xb, unsigned opt)
 		return -1;
 	}
 	xb->opts &= ~opt & 0xFF;
+	assert(!xbuf_isoptset(xb, opt));
 	return (int)(xb->opts);
 }
 
 int 
-xbuf_isoptset(xbuffer* xb, unsigned opt)
+xbuf_isoptset(const xbuffer* xb, unsigned opt)
 {
 	if (!xb) {
 		errno = EINVAL;

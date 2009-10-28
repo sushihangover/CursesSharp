@@ -24,6 +24,12 @@ AC_ARG_ENABLE(mouse,
 	[curses_mouse=no],
 	[curses_mouse=yes]
 )
+AC_ARG_ENABLE(debug, 
+	AS_HELP_STRING([--enable-debug],
+		[link to libraries with debugging symbols]),
+	[wrapper_debug=yes],
+	[wrapper_debug=no]
+)
 
 
 AC_CANONICAL_SYSTEM
@@ -61,7 +67,10 @@ CURSES_LDFLAGS="${CURSES_LDFLAGS}"
 CursesSharp_CSCFLAGS="${CursesSharp_CSCFLAGS}"
 
 CPPFLAGS="${CPPFLAGS}"
+CFLAGS="${CFLAGS}"
 LDFLAGS="${LDFLAGS}"
+
+CFLAGS="-Werror $CFLAGS"
 
 case "$target_os" in
 	freebsd*)
@@ -73,7 +82,17 @@ esac
 dnl checks for libraries
 
 dnl check for a curses library, preferably with wide character functions
-AC_SEARCH_LIBS([initscr], [ncursesw ncurses curses])
+curses_search_libs=""
+if test "x$wrapper_debug" != "xno"; then
+	curses_search_libs="$curses_search_libs ncursesw_g ncurses_g curses_g"
+	dnl fix for ncurses debugging libs
+	AC_SEARCH_LIBS([dlsym], [dl])
+	if test "x$ac_cv_search_dlsym" != "xno"; then
+		CURSES_LDFLAGS="$ac_cv_search_dlsym $CURSES_LDFLAGS"
+	fi
+fi
+curses_search_libs="$curses_search_libs ncursesw ncurses curses"
+AC_SEARCH_LIBS([initscr], [$curses_search_libs])
 CURSES_LDFLAGS="$ac_cv_search_initscr $CURSES_LDFLAGS"
 AC_SUBST([CURSES_LDFLAGS])
 
@@ -148,7 +167,6 @@ fi
 
 dnl check for compiler characteristics
 AC_C_INLINE
-AC_LANG_WERROR
 
 dnl checks for library functions
 
