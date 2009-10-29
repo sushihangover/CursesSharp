@@ -228,31 +228,3 @@ xbuf_resize_wc(xbuffer* xb, size_t len)
 }
 #endif
 
-int
-xrdr_init(xreader* xr, const xbuffer* xb)
-{
-	if (!xr || !xb) {
-		errno = EINVAL;
-		return -1;
-	}
-
-	xr->xbuf = xb;
-	xr->ptr = xb->buf;
-
-	return 0;
-}
-
-int
-xwrtr_init(xwriter* xp, xbuffer* xb)
-{
-	if (!xp || !xb) {
-		errno = EINVAL;
-		return -1;
-	}
-
-	xp->xbuf = xb;
-	xp->ptr = xb->buf;
-
-	return 0;
-}
-

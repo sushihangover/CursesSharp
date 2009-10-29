@@ -31,20 +31,19 @@ wrap_waddnstr(WINDOW *win, uchar2 *str, int n)
 #elif defined(CURSES_WIDE)
 	wchar_t stackbuf[BUFFER_SIZE];
 	xbuffer xinput, xoutput;
-	xreader reader;
-	xwriter writer;
 	int ret;
 
 	xbuf_init_uc(&xinput, str, n, XBUF_FILL);
 	xbuf_init_wc(&xoutput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
 
-	xrdr_init(&reader, &xinput);
-	xwrtr_init(&writer, &xoutput);
-	if (unicode_to_wchar(&reader, &writer) < 0) {
-		xbuf_free(&xoutput);
-		return -1;
-	}
+	ret = unicode_to_wchar(&xinput, &xoutput);
+	if (ret < 0)
+		goto do_exit;
+	ret = xbuf_tzero_wc(&xoutput);
+	if (ret < 0)
+		goto do_exit;
 	ret = waddnwstr(win, xbuf_data_wc(&xoutput), xbuf_len_wc(&xoutput));
+do_exit:
 	xbuf_free(&xoutput);
 	return ret;
 #else
@@ -60,20 +59,19 @@ wrap_mvwaddnstr(WINDOW *win, int y, int x, uchar2 *str, int n)
 #elif defined(CURSES_WIDE)
 	wchar_t stackbuf[BUFFER_SIZE];
 	xbuffer xinput, xoutput;
-	xreader reader;
-	xwriter writer;
 	int ret;
 
 	xbuf_init_uc(&xinput, str, n, XBUF_FILL);
 	xbuf_init_wc(&xoutput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
 
-	xrdr_init(&reader, &xinput);
-	xwrtr_init(&writer, &xoutput);
-	if (unicode_to_wchar(&reader, &writer) < 0) {
-		xbuf_free(&xoutput);
-		return -1;
-	}
+	ret = unicode_to_wchar(&xinput, &xoutput);
+	if (ret < 0)
+		goto do_exit;
+	ret = xbuf_tzero_wc(&xoutput);
+	if (ret < 0)
+		goto do_exit;
 	ret = mvwaddnwstr(win, y, x, xbuf_data_wc(&xoutput), xbuf_len_wc(&xoutput));
+do_exit:
 	xbuf_free(&xoutput);
 	return ret;
 #else
