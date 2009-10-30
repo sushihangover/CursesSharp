@@ -11,5 +11,6 @@ RainDemo_libs = -r:../CursesSharp/CursesSharp.dll
 RainDemo_build_sources = $(addprefix $(srcdir)/, $(RainDemo_sources))
 
 RainDemo.exe: $(RainDemo_build_sources)
-	$(CSC) $(RainDemo_libs) -out:$@ $(RainDemo_build_sources)
+	$(CSC) -out:$@ $(CSCFLAGS) $(RainDemo_libs)	\
+	    $(RainDemo_build_sources)
 

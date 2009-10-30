@@ -121,18 +121,18 @@ namespace UnicodeDemo
                     string str = lines[i];
                     if (of < 0)
                     {
-                        str = str.Substring(-of, str.Length + of);
+                        int ln = Math.Min(str.Length + of, colcount);
+                        str = str.Substring(-of, ln);
                         of = 0;
                     }
                     else
                     {
-                        int ln = Math.Min(offsets[i], str.Length);
+                        int ln = Math.Min(Math.Min(offsets[i], str.Length), colcount);
                         str = str.Substring(0, ln);
                     }
                     Stdscr.Add(i, of, str);
                     offsets[i]--;
                 }
-
                 Stdscr.Refresh();
 
                 switch (Stdscr.GetChar())

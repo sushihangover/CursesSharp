@@ -11,5 +11,6 @@ UnicodeDemo_libs = -r:../CursesSharp/CursesSharp.dll
 UnicodeDemo_build_sources = $(addprefix $(srcdir)/, $(UnicodeDemo_sources))
 
 UnicodeDemo.exe: $(UnicodeDemo_build_sources)
-	$(CSC) $(UnicodeDemo_libs) -out:$@ $(UnicodeDemo_build_sources)
+	$(CSC) -out:$@ $(CSCFLAGS) $(UnicodeDemo_libs)	\
+	    $(UnicodeDemo_build_sources)
 

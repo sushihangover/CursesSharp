@@ -55,6 +55,9 @@ AC_PATH_PROG([MONO], [mono], [no])
 if test "x$MONO" = "xno"; then
 	AC_MSG_ERROR([Mono runtime not found])
 fi
+if test "x$wrapper_debug" != "xno"; then
+    MONO="$MONO --debug"
+fi
 
 dnl C# compiler
 AC_PATH_PROG([CSC], [gmcs], [no])
@@ -69,15 +72,20 @@ CursesSharp_CSCFLAGS="${CursesSharp_CSCFLAGS}"
 CPPFLAGS="${CPPFLAGS}"
 CFLAGS="${CFLAGS}"
 LDFLAGS="${LDFLAGS}"
+CSCFLAGS="${CSCFLAGS}"
 
 CFLAGS="-Werror $CFLAGS"
 
 case "$target_os" in
 	freebsd*)
-		CPPFLAGS="${CPPFLAGS} -I/usr/local/include"
-		LDFLAGS="${LDFLAGS} -L/usr/local/lib"
+		CPPFLAGS="$CPPFLAGS -I/usr/local/include"
+		LDFLAGS="$LDFLAGS -L/usr/local/lib"
 	;;
 esac
+
+if test "x$wrapper_debug" != "xno"; then
+    CSCFLAGS="-debug -define:DEBUG -define:TRACE $CSCFLAGS"
+fi
 
 dnl checks for libraries
 
@@ -219,6 +227,7 @@ dnlCFLAGS="-Wall -Werror ${CFLAGS}"
 AC_SUBST([CPPFLAGS])
 AC_SUBST([CFLAGS])
 AC_SUBST([LDFLAGS])
+AC_SUBST([CSCFLAGS])
 
 
 AC_CONFIG_HEADERS([config.h])
