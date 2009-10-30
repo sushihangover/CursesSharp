@@ -186,12 +186,14 @@ if test "x$curses_wide" != "xno" -a "x$have_wide_funcs" != "xyes"; then
 	curses_wide=no
 fi
 
-if test "x$curses_wide" != "xyes"; then
-	AC_MSG_ERROR([Required wide character curses implementation not found])
+dnl if test "x$curses_wide" != "xyes"; then
+dnl	AC_MSG_ERROR([Required wide character curses implementation not found])
+dnl fi
+if test "x$curses_wide" != "xno"; then
+	AC_DEFINE([CURSES_WIDE], [1],
+		[Define if using curses wide character functions]
+	)
 fi
-AC_DEFINE([CURSES_WIDE], [1],
-	[Define if using curses wide character functions]
-)
 
 
 AM_CONDITIONAL([HAVE_CURSES_PANEL], [test "x$curses_panel" != "xno"])

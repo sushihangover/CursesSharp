@@ -20,93 +20,133 @@
 
 #include "unicode.h"
 #include <assert.h>
+#include <errno.h>
+#include <iconv.h>
+
+static int
+iconv_buf(iconv_t cd, const xbuffer* input, xbuffer* output)
+{
+	char* inptr = (char*)xbuf_data(input);
+	size_t inleft = xbuf_len(input);
+	char* outptr = NULL;
+	size_t maxlen = 0, outlen = 0, outleft = 0;
+	int ret = 0;
+
+	/* reset iconv */
+	iconv(cd, NULL, NULL, NULL, NULL);
+	/* perform conversion */
+	while (inleft > 0) {
+		maxlen = xbuf_maxlen(output);
+		outptr = xbuf_buf(output, maxlen) + outlen;
+		outleft = maxlen - outlen;
+		ret = iconv(cd, &inptr, &inleft, &outptr, &outleft);
+		outlen = maxlen - outleft;
+		if (ret < 0 && errno == E2BIG) {
+			size_t newlen = maxlen + BUFFER_SIZE + 1;
+			if (newlen < inleft)
+				newlen = inleft;
+			ret = xbuf_reserve(output, newlen);
+		}
+		if (ret < 0)
+			break;
+	}
+	/* append reset sequence */
+	for (;;) {
+		int ret2;
+		maxlen = xbuf_maxlen(output);
+		outptr = xbuf_buf(output, maxlen) + outlen;
+		outleft = maxlen - outlen;
+		ret2 = iconv(cd, NULL, NULL, &outptr, &outleft);
+		if (ret2 >= 0) {
+			assert(maxlen == outlen + outleft);
+			outlen = maxlen - outleft;
+			break;
+		} else if (errno == E2BIG) {
+			size_t newlen = maxlen + BUFFER_SIZE + 1;
+			ret2 = xbuf_reserve(output, newlen);
+		}
+		if (ret2 < 0) {
+			ret = ret2;
+			break;
+		}
+	}
+	xbuf_resize(output, outlen);
+
+	return ret;
+}
 
 #ifdef HAVE_WCHAR_T
-const wchar_t LEAD_OFFSET = 0xD800 - (0x10000 >> 10);
-const wchar_t SURROGATE_OFFSET = 0x10000 - (0xD800 << 10) - 0xDC00;
-
-int 
-wchar_validate(wchar_t wc)
+static iconv_t
+get_unicode_to_wchar(void)
 {
-#if SIZEOF_WCHAR_T == 4
-	if (wc > 0x10FFFF)
-		return 0;
-	if (wc >= 0xD800 && wc <= 0xDFFF)
-		return 0;
-#endif
-	return 1;
+	static iconv_t cd = (iconv_t)-1;
+	if (cd == (iconv_t)-1)
+		cd = iconv_open("WCHAR_T//TRANSLIT//IGNORE", "UTF-16LE");
+	return cd;
+}
+
+static iconv_t
+get_wchar_to_unicode(void)
+{
+	static iconv_t cd = (iconv_t)-1;
+	if (cd == (iconv_t)-1)
+		cd = iconv_open("UTF-16LE//TRANSLIT//IGNORE", "WCHAR_T");
+	return cd;
 }
 
 int 
 unicode_to_wchar(const xbuffer* input, xbuffer* output)
 {
-	size_t inlen = xbuf_len_uc(input);
-	const uchar2* ptr = xbuf_data_uc(input);
-	const uchar2* bufend = ptr + inlen;
-
-	while (ptr < bufend && *ptr) {
-		uchar2 ch = *ptr++;
-		wchar_t outch = ch;
-
-		if (ch >= 0xD800 && ch <= 0xDBFF) {
-			uchar2 ch2;
-			if (ptr >= bufend)
-				return -1;
-			ch2 = *ptr++;
-			assert(0xDC00 <= ch2 && ch2 <= 0xDFFF);
-			outch = 0x10000 + ((ch - 0xD800) << 10) + (ch2 - 0xDC00);
-		}
-		assert(ch < 0xDC00 || ch > 0xDFFF);
-
-		assert(wchar_validate(outch));
-		if (xbuf_ensure_wc(output, 1) < 0)
-			return -1;
-		xbuf_put_wc(output, outch);
-	}
-
-	return 0;
+	iconv_t cd = get_unicode_to_wchar();
+	if (cd == (iconv_t)-1)
+		return -1;
+	return iconv_buf(cd, input, output);
 }
 
 int
 wchar_to_unicode(const xbuffer* input, xbuffer* output)
 {
-	size_t inlen = xbuf_len_wc(input);
-	const wchar_t* ptr = xbuf_data_wc(input);
-	const wchar_t* bufend = ptr + inlen;
-
-	while (ptr < bufend && *ptr) {
-		wchar_t ch = *ptr++;
-		assert(ch <= 0x10FFFF);
-		if (ch <= 0xFFFF) {
-			if (xbuf_ensure_uc(output, 1) < 0)
-				return -1;
-			xbuf_put_uc(output, (uchar2)ch);
-		} else {
-			uchar2 outch1 = LEAD_OFFSET + (ch >> 10);
-			uchar2 outch2 = 0xDC00 + (ch & 0x3FF);
-			assert(0xD800 <= outch1 && outch1 <= 0xDBFF);
-			assert(0xDC00 <= outch2 && outch2 <= 0xDFFF);
-			if (xbuf_ensure_uc(output, 2) < 0)
-				return -1;
-			xbuf_put_uc(output, outch1);
-			xbuf_put_uc(output, outch2);
-		}
-	}
-
-	return 0;
+	iconv_t cd = get_wchar_to_unicode();
+	if (cd == (iconv_t)-1)
+		return -1;
+	return iconv_buf(cd, input, output);
 }
 #endif
+
+static iconv_t
+get_unicode_to_char(void)
+{
+	static iconv_t cd = (iconv_t)-1;
+	if (cd == (iconv_t)-1)
+		cd = iconv_open("ASCII//TRANSLIT//IGNORE", "UTF-16LE");
+	return cd;
+}
+
+static iconv_t
+get_char_to_unicode(void)
+{
+	static iconv_t cd = (iconv_t)-1;
+	if (cd == (iconv_t)-1)
+		cd = iconv_open("UTF-16LE//TRANSLIT//IGNORE", "ASCII");
+	return cd;
+}
 
 int 
 unicode_to_char(const xbuffer* input, xbuffer* output)
 {
-	return -1;
+	iconv_t cd = get_unicode_to_char();
+	if (cd == (iconv_t)-1)
+		return -1;
+	return iconv_buf(cd, input, output);
 }
 
 int
 char_to_unicode(const xbuffer* input, xbuffer* output)
 {
-	return -1;
+	iconv_t cd = get_char_to_unicode();
+	if (cd == (iconv_t)-1)
+		return -1;
+	return iconv_buf(cd, input, output);
 }
 
 

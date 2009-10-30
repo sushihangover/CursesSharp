@@ -47,7 +47,23 @@ do_exit:
 	xbuf_free(&xoutput);
 	return ret;
 #else
-#error Not implemented
+	char stackbuf[BUFFER_SIZE];
+	xbuffer xinput, xoutput;
+	int ret;
+
+	xbuf_init_uc(&xinput, str, n, XBUF_FILL);
+	xbuf_init(&xoutput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
+
+	ret = unicode_to_char(&xinput, &xoutput);
+	if (ret < 0)
+		goto do_exit;
+	ret = xbuf_tzero(&xoutput);
+	if (ret < 0)
+		goto do_exit;
+	ret = waddnstr(win, xbuf_data(&xoutput), xbuf_len(&xoutput));
+do_exit:
+	xbuf_free(&xoutput);
+	return ret;
 #endif
 }
 
@@ -75,7 +91,23 @@ do_exit:
 	xbuf_free(&xoutput);
 	return ret;
 #else
-#error Not implemented
+	char stackbuf[BUFFER_SIZE];
+	xbuffer xinput, xoutput;
+	int ret;
+
+	xbuf_init_uc(&xinput, str, n, XBUF_FILL);
+	xbuf_init(&xoutput, stackbuf, BUFFER_SIZE, XBUF_EXPANDABLE);
+
+	ret = unicode_to_char(&xinput, &xoutput);
+	if (ret < 0)
+		goto do_exit;
+	ret = xbuf_tzero(&xoutput);
+	if (ret < 0)
+		goto do_exit;
+	ret = mvwaddnstr(win, y, x, xbuf_data(&xoutput), xbuf_len(&xoutput));
+do_exit:
+	xbuf_free(&xoutput);
+	return ret;
 #endif
 }
 

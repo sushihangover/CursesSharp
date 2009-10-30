@@ -106,7 +106,7 @@ xbuf_reserve(xbuffer* xb, size_t maxlen)
 	if (!newbuf)
 		return -1;
 	if (!xbuf_isoptset(xb, XBUF_OWN))
-		memcpy(newbuf, xb->buf, length);
+		memcpy(newbuf, xb->buf, capacity);
 
 	xb->buf = newbuf;
 	xb->bufend = newbuf + length;
@@ -124,7 +124,7 @@ xbuf_reserve_ext(xbuffer* xb, size_t len)
 		return -1;
 	}
 
-	return xbuf_reserve(xb, xbuf_maxlen(xb) + len);
+	return xbuf_reserve(xb, xbuf_len(xb) + len);
 }
 
 int

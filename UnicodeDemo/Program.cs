@@ -44,7 +44,6 @@ namespace UnicodeDemo
         {
             "Под южно дърво, цъфтящо в синьо, бягаше малко пухкаво зайче.",
             "Příliš žluťoučký kůň úpěl ďábelské ódy.",
-            "視野無限廣，窗外有藍天 ",
             "Quizdeltagerne spiste jordbær med fløde, mens cirkusklovnen Walther spillede på xylofon.",
             "Pa's wijze lynx bezag vroom het fikse aquaduct.",
             "Eĥoŝanĝo ĉiuĵaŭde.",
@@ -57,8 +56,6 @@ namespace UnicodeDemo
             "דג סקרן שט לו בים זך אך לפתע פגש חבורה נחמדה שצצה כך",
             "Egy hűtlen vejét fülöncsípő, dühös mexikói úr Wesselényinél mázol Quitóban.",
             "Ma la volpe, col suo balzo, ha raggiunto il quieto Fido.",
-            "いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせす",
-            "다람쥐 헌 쳇바퀴에 타고파",
             "Sarkanās jūrascūciņas peld pa jūru.",
             "En god stil må først og fremst være klar. Den må være passende. Aristoteles.",
             "A rápida raposa castanha salta por cima do cão lento.",
@@ -73,7 +70,6 @@ namespace UnicodeDemo
             "V kožuščku hudobnega fanta stopiclja mizar in kliče 0619872345.",
             "El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja.",
             "Flygande bäckasiner söka strax hwila på mjuka tuvor",
-            "เป็นมนุษย์สุดประเสริฐเลิศคุณค่า กว่าบรรดาฝูงสัตว์เดรัจฉาน จงฝ่าฟันพัฒนาวิชาการ อย่าล้างผลาญฤๅเข่นฆ่าบีฑาใคร ไม่ถือโทษโกรธแช่งซัดฮึดฮัดด่า หัดอภัยเหมือนกีฬาอัชฌาสัย ปฏิบัติประพฤติกฎกำหนดใจ พูดจาให้จ๊ะ ๆ จ๋า ๆ น่าฟังเอยฯ",
             "Pijamalı hasta, yağız şoföre çabucak güvendi"
         };
 
@@ -88,7 +84,7 @@ namespace UnicodeDemo
         {
             this.rng = new Random();
             Curses.InitScr();
-            this.linecount = Curses.Lines;
+            this.linecount = Curses.Lines - 1;
             this.colcount = Curses.Cols;
             this.lines = new string[linecount];
             this.offsets = new int[linecount];
@@ -108,6 +104,7 @@ namespace UnicodeDemo
             Initialize();
             while (true)
             {
+                Stdscr.Erase();
                 for (int i = 0; i < lines.Length; ++i)
                 {
                     if (offsets[i] <= 0)
@@ -120,8 +117,6 @@ namespace UnicodeDemo
                         lines[i] = TEXT_LINES[rng.Next(TEXT_LINES.Length)];
                         offsets[i] = colcount + lines[i].Length;
                     }
-                    Stdscr.Move(i, 0);
-                    Stdscr.ClearToEol();
                     int of = colcount - offsets[i];
                     string str = lines[i];
                     if (of < 0)
@@ -134,9 +129,11 @@ namespace UnicodeDemo
                         int ln = Math.Min(offsets[i], str.Length);
                         str = str.Substring(0, ln);
                     }
-                    Stdscr.Insert(i, of, str);
+                    Stdscr.Add(i, of, str);
                     offsets[i]--;
                 }
+
+                Stdscr.Refresh();
 
                 switch (Stdscr.GetChar())
                 {
