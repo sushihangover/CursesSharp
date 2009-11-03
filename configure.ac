@@ -93,7 +93,7 @@ if test "x$wrapper_debug" != "xno"; then
 	curses_search_libs="$curses_search_libs ncursesw_g ncurses_g curses_g"
 fi
 curses_search_libs="$curses_search_libs ncursesw ncurses curses"
-CS_SEARCH_LIBS([initscr], [$curses_search_libs], [], [], [dl])
+CS_SEARCH_LIBS([initscr move], [$curses_search_libs], [], [], [dl])
 
 dnl checks for header files
 
@@ -213,8 +213,6 @@ if test "x$curses_mouse" != "xno"; then
 fi
 
 AC_SUBST([CursesSharp_CSCFLAGS])
-
-dnlCFLAGS="-Wall -Werror ${CFLAGS}"
 
 AC_SUBST([CPPFLAGS])
 AC_SUBST([CFLAGS])
