@@ -65,8 +65,6 @@ if test "x$CSC" = "xno"; then
 	AC_MSG_ERROR([Cannot find "gmcs" in your path])
 fi
 
-CURSES_CFLAGS="${CURSES_CFLAGS}"
-CURSES_LDFLAGS="${CURSES_LDFLAGS}"
 CursesSharp_CSCFLAGS="${CursesSharp_CSCFLAGS}"
 
 CPPFLAGS="${CPPFLAGS}"
@@ -93,16 +91,9 @@ dnl check for a curses library, preferably with wide character functions
 curses_search_libs=""
 if test "x$wrapper_debug" != "xno"; then
 	curses_search_libs="$curses_search_libs ncursesw_g ncurses_g curses_g"
-	dnl fix for ncurses debugging libs
-	AC_SEARCH_LIBS([dlsym], [dl])
-	if test "x$ac_cv_search_dlsym" != "xno"; then
-		CURSES_LDFLAGS="$ac_cv_search_dlsym $CURSES_LDFLAGS"
-	fi
 fi
 curses_search_libs="$curses_search_libs ncursesw ncurses curses"
-AC_SEARCH_LIBS([initscr], [$curses_search_libs])
-CURSES_LDFLAGS="$ac_cv_search_initscr $CURSES_LDFLAGS"
-AC_SUBST([CURSES_LDFLAGS])
+CS_SEARCH_LIBS([initscr], [$curses_search_libs], [], [], [dl])
 
 dnl checks for header files
 
@@ -177,6 +168,7 @@ dnl check for compiler characteristics
 AC_C_INLINE
 
 dnl checks for library functions
+AM_ICONV
 
 dnl check curses headers for declarations of wide character functions
 have_wide_funcs=yes

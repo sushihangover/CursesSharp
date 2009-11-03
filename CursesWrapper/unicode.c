@@ -26,7 +26,7 @@
 static int
 iconv_buf(iconv_t cd, const xbuffer* input, xbuffer* output)
 {
-	char* inptr = (char*)xbuf_data(input);
+	ICONV_CONST char* inptr = (ICONV_CONST char*)xbuf_data(input);
 	size_t inleft = xbuf_len(input);
 	char* outptr = NULL;
 	size_t maxlen = 0, outlen = 0, outleft = 0;
