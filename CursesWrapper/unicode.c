@@ -19,6 +19,8 @@
  */
 
 #include "unicode.h"
+
+#ifdef HAVE_ICONV
 #include <assert.h>
 #include <errno.h>
 #include <iconv.h>
@@ -149,4 +151,4 @@ char_to_unicode(const xbuffer* input, xbuffer* output)
 	return iconv_buf(cd, input, output);
 }
 
-
+#endif
