@@ -1,4 +1,4 @@
-# NTRODUCTION
+# INTRODUCTION
 
 CursesSharp is a C# wrapper for curses library. 
 The latest version of this 'fork'' can be found at [Github](https://github.com/sushihangover/CursesSharp).
