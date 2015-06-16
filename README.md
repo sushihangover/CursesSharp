@@ -177,7 +177,6 @@ In order to proceed with the build, you will have to create the configure script
 
 brew link gettext --force    
 autoreconf -if
-brew unlink gettext
 
 ### 4. Configure
 
@@ -201,6 +200,9 @@ After you executed configure, run (in the same directory):
     #I am using a locally built/installed 64-bit version of mono, so I add it to the path
     export PATH=/Users/administrator/mono/mono-llvm-64/bin:$PATH
     make
+    # remove brew's version of gettext 
+    brew unlink gettext
+
 
 To compile the source code.
 
