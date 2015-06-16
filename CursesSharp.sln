@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainDemo", "RainDemo\RainDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnicodeDemo", "UnicodeDemo\UnicodeDemo.csproj", "{DF0FF602-9AEB-45C0-BCB4-E188560F7361}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorldDemo", "HelloWorldDemo\HelloWorldDemo.csproj", "{41EBEEA0-E056-4540-99DF-2F7882D8152D}"
+EndProject
+Project("{2857B73E-F847-4B02-9238-064979017E93}") = "CursesWrapper", "CursesWrapper\CursesWrapper.cproj", "{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +31,14 @@ Global
 		{40A9C7A5-DB28-49DB-927B-19F96EABE237}.Debug|x64.Build.0 = Debug|x64
 		{40A9C7A5-DB28-49DB-927B-19F96EABE237}.Release|x64.ActiveCfg = Release|x64
 		{40A9C7A5-DB28-49DB-927B-19F96EABE237}.Release|x64.Build.0 = Release|x64
+		{41EBEEA0-E056-4540-99DF-2F7882D8152D}.Debug|x64.ActiveCfg = Debug|x64
+		{41EBEEA0-E056-4540-99DF-2F7882D8152D}.Debug|x64.Build.0 = Debug|x64
+		{41EBEEA0-E056-4540-99DF-2F7882D8152D}.Release|x64.ActiveCfg = Release|x64
+		{41EBEEA0-E056-4540-99DF-2F7882D8152D}.Release|x64.Build.0 = Release|x64
+		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Debug|x64.Build.0 = Debug|Any CPU
+		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Release|x64.ActiveCfg = Release|Any CPU
+		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Release|x64.Build.0 = Release|Any CPU
 		{DF0FF602-9AEB-45C0-BCB4-E188560F7361}.Debug|x64.ActiveCfg = Debug|x64
 		{DF0FF602-9AEB-45C0-BCB4-E188560F7361}.Debug|x64.Build.0 = Debug|x64
 		{DF0FF602-9AEB-45C0-BCB4-E188560F7361}.Release|x64.ActiveCfg = Release|x64

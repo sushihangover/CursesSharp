@@ -27,7 +27,6 @@
         <Variable name="DYLD_FALLBACK_LIBRARY_PATH" value="$HOME/mono/mono-llvm-64/lib" />
       </EnvironmentVariables>
     </EnvironmentVariables>
-    <ConsolePause>false</ConsolePause>
     <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">

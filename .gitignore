@@ -46,4 +46,5 @@ depcomp
 install-sh
 ltmain.sh
 missing
-
+HelloWorldDemo/HelloWorldDemo
+CursesWrapper/CursesWrapper.md.pc

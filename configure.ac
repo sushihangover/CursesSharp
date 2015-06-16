@@ -235,6 +235,8 @@ AC_CONFIG_FILES([
 	RainDemo/RainDemo
 	UnicodeDemo/Makefile
 	UnicodeDemo/UnicodeDemo
+	HelloWorldDemo/Makefile
+	HelloWorldDemo/HelloWorldDemo
 ])
 
 AC_OUTPUT

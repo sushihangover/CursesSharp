@@ -12,8 +12,6 @@
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ReleaseVersion>1.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
@@ -84,7 +82,12 @@
     <Compile Include="Stdscr.cs" />
     <Compile Include="Window.cs" />
     <Compile Include="WindowBase.cs" />
-    <LinkResource Include="%24%28SolutionDir%29\%24%28Configuration%29\CursesWrapper.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\CursesWrapper\CursesWrapper.cproj">
+      <Project>{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}</Project>
+      <Name>CursesWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
