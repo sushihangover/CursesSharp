@@ -1,4 +1,5 @@
-pkglib_SCRIPTS = RainDemo.exe
+pkgdata_SCRIPTS = RainDemo.exe
+#scriptsdir=${pkgdatadir}/scripts
 bin_SCRIPTS = RainDemo
 
 EXTRA_DIST = $(RainDemo_sources) RainDemo.in RainDemo.csproj

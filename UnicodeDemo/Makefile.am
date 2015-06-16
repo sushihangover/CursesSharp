@@ -1,4 +1,5 @@
-pkglib_SCRIPTS = UnicodeDemo.exe
+pkgdata_SCRIPTS = UnicodeDemo.exe
+scriptsdir=${pkgdatadir}/scripts
 bin_SCRIPTS = UnicodeDemo
 
 EXTRA_DIST = $(UnicodeDemo_sources) UnicodeDemo.in UnicodeDemo.csproj

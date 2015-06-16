@@ -1,8 +1,8 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.62])
-AC_INIT([Curses Sharp], [0.8], [curses-sharp-bugs@lists.sourceforge.net])
+AC_PREREQ([2.69])
+AC_INIT([Curses Sharp],[0.8],[curses-sharp-bugs@lists.sourceforge.net])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([CursesWrapper/wrapper.c])
 
@@ -32,7 +32,7 @@ AC_ARG_ENABLE(debug,
 )
 
 
-AC_CANONICAL_SYSTEM
+AC_CANONICAL_TARGET
 
 AM_INIT_AUTOMAKE([foreign])
 
@@ -42,7 +42,7 @@ AC_PROG_CC
 AC_PROG_CC_C_O
 AC_PROG_CC_C89
 AC_PROG_CPP_WERROR
-AC_PROG_LIBTOOL
+LT_INIT
 
 dnl pkg-config
 PKG_PROG_PKG_CONFIG
@@ -60,9 +60,9 @@ if test "x$wrapper_debug" != "xno"; then
 fi
 
 dnl C# compiler
-AC_PATH_PROG([CSC], [gmcs], [no])
+AC_PATH_PROG([CSC], [mcs], [no])
 if test "x$CSC" = "xno"; then
-	AC_MSG_ERROR([Cannot find "gmcs" in your path])
+	AC_MSG_ERROR([Cannot find "mcs" in your path])
 fi
 
 CursesSharp_CSCFLAGS="${CursesSharp_CSCFLAGS}"

@@ -2,7 +2,8 @@
 prefix=@prefix@
 exec_prefix=@prefix@
 libdir=@libdir@
+datarootdir=@datarootdir@
 export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
 export DYLD_LIBRARY_PATH=$libdir:$DYLD_LIBRARY_PATH
-exec @MONO@ $libdir/@PACKAGE@/FireworkDemo.exe "$@"
+exec @MONO@ $datarootdir/@PACKAGE@/FireworkDemo.exe "$@"
 

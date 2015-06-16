@@ -1,4 +1,5 @@
-pkglib_SCRIPTS = CursesSharp.dll
+pkgdata_SCRIPTS = CursesSharp.dll
+scriptsdir=${pkgdatadir}/scripts
 
 EXTRA_DIST = $(CursesSharp_sources) CursesSharp.csproj
 CLEANFILES = CursesSharp.dll

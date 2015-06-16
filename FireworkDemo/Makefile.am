@@ -1,4 +1,5 @@
-pkglib_SCRIPTS = FireworkDemo.exe
+pkgdata_SCRIPTS = FireworkDemo.exe
+scriptsdir = $(bindir)
 bin_SCRIPTS = FireworkDemo
 
 EXTRA_DIST = $(FireworkDemo_sources) FireworkDemo.in FireworkDemo.csproj
