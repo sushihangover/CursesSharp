@@ -8,6 +8,7 @@
     <RootNamespace>Demo.Gui.MidnightCommander</RootNamespace>
     <AssemblyName>Demo.Gui.MidnightCommander</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>1.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,4 +38,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\CursesSharp\CursesSharp.csproj">
+      <Project>{2FEF4990-95CB-42DF-984C-EFBA070652BF}</Project>
+      <Name>CursesSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CursesSharp.Gui\CursesSharp.Gui.csproj">
+      <Project>{E3AF7818-CA6E-4833-B807-3077251D2DCD}</Project>
+      <Name>CursesSharp.Gui</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
