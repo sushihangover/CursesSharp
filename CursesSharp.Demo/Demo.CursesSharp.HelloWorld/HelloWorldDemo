@@ -1,0 +1,9 @@
+#!/bin/sh
+prefix=/Users/administrator/cursessharp
+exec_prefix=/Users/administrator/cursessharp
+libdir=${exec_prefix}/lib
+datarootdir=${prefix}/share
+export LD_LIBRARY_PATH=$libdir:$LD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=$libdir:$DYLD_LIBRARY_PATH
+exec mono $datarootdir/curses-sharp/HelloWorldDemo.exe "$@"
+

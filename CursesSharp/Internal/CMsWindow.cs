@@ -25,8 +25,29 @@ using System.Runtime.InteropServices;
 
 namespace CursesSharp.Internal
 {
-    internal static partial class CursesMethods
+    static partial class CursesMethods
     {
+		internal static IntPtr stdscr()
+		{
+			IntPtr ret = wrap_stdscr();
+			InternalException.Verify(ret, "stdscr");
+			return ret;
+		}
+
+		internal static IntPtr curscr()
+		{
+			IntPtr ret = wrap_curscr();
+			InternalException.Verify(ret, "curscr");
+			return ret;
+		}
+
+		internal static IntPtr newscr()
+		{
+			IntPtr ret = wrap_newscr();
+			InternalException.Verify(ret, "newscr");
+			return ret;
+		}
+
         internal static IntPtr newwin(int nlines, int ncols, int begy, int begx)
         {
             IntPtr ret = wrap_newwin(nlines, ncols, begy, begx);
@@ -94,6 +115,12 @@ namespace CursesSharp.Internal
             wrap_wsyncdown(win);
         }
 
+		[DllImport("CursesWrapper")]
+		private static extern IntPtr wrap_stdscr();
+		[DllImport("CursesWrapper")]
+		private static extern IntPtr wrap_curscr();
+		[DllImport("CursesWrapper")]
+		private static extern IntPtr wrap_newscr();
         [DllImport("CursesWrapper")]
         private static extern IntPtr wrap_newwin(int nlines, int ncols, int begy, int begx);
         [DllImport("CursesWrapper")]

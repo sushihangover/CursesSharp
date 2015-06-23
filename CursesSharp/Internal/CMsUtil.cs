@@ -50,7 +50,14 @@ namespace CursesSharp.Internal
             InternalException.Verify(ret, "delay_output");
         }
 
-        [DllImport("CursesWrapper")]
+		internal static void sendsigtstp()
+		{
+			wrap_sendsigtstp ();
+		}
+
+		[DllImport("CursesWrapper")]
+		private static extern void wrap_sendsigtstp ();
+		[DllImport("CursesWrapper")]
         private static extern IntPtr wrap_unctrl(uint c);
         [DllImport("CursesWrapper")]
         private static extern void wrap_filter();
