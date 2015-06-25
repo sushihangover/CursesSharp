@@ -48,7 +48,7 @@ wrap_delay_output(int ms)
 }
 
 WRAP_API void 
-wrap_endsigtstp ()
+wrap_sendsigtstp ()
 {
     killpg (0, SIGTSTP);
 }

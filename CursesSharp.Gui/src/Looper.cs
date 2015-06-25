@@ -29,18 +29,21 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Mono.Unix.Native;
 
-namespace CursesSharp.Gui {
+namespace CursesSharp.Gui
+{
 
 	/// <summary>
 	///   Simple main loop implementation that can be used to monitor
 	///   file descriptor, run timers and idle handlers.
 	/// </summary>
-	public class Looper {
+	public class Looper
+	{
 		/// <summary>
 		///   Condition on which to wake up from file descriptor activity
 		/// </summary>
 		[Flags]
-		public enum Condition {
+		public enum Condition
+		{
 			/// <summary>
 			/// There is data to read
 			/// </summary>
@@ -67,26 +70,28 @@ namespace CursesSharp.Gui {
 			PollNval = 32
 		}
 
-		class Watch {
+		class Watch
+		{
 			public int File;
 			public Condition Condition;
 			public Func<Looper,bool> Callback;
 		}
 
-		class Timeout {
+		class Timeout
+		{
 			public TimeSpan Span;
 			public Func<Looper,bool> Callback;
 		}
 
-		Dictionary <int, Watch> descriptorWatchers = new Dictionary<int,Watch>();
+		Dictionary <int, Watch> descriptorWatchers = new Dictionary<int,Watch> ();
 		SortedList <double, Timeout> timeouts = new SortedList<double,Timeout> ();
 		List<Func<bool>> idleHandlers = new List<Func<bool>> ();
 		
-		Pollfd [] pollmap;
+		Pollfd[] pollmap;
 		bool poll_dirty = true;
-		int [] wakeupPipes = new int [2];
+		int[] wakeupPipes = new int [2];
 		static IntPtr ignore = Marshal.AllocHGlobal (1);
-		
+
 		/// <summary>
 		///  Default constructor
 		/// </summary>
@@ -103,13 +108,13 @@ namespace CursesSharp.Gui {
 		{
 			Syscall.write (wakeupPipes [1], ignore, 1);
 		}
-		
+
 		/// <summary>
 		///   Runs @action on the thread that is processing events
 		/// </summary>
 		public void Invoke (Action action)
 		{
-			AddIdle (()=> {
+			AddIdle (() => {
 				action ();
 				return false;
 			});
@@ -134,7 +139,7 @@ namespace CursesSharp.Gui {
 			lock (idleHandler)
 				idleHandlers.Remove (idleHandler);
 		}
-		
+
 		/// <summary>
 		///  Watches a file descriptor for activity.
 		/// </summary>
@@ -170,12 +175,12 @@ namespace CursesSharp.Gui {
 				return;
 			descriptorWatchers.Remove (watch.File);
 		}
-		
+
 		void AddTimeout (TimeSpan time, Timeout timeout)
 		{
 			timeouts.Add ((DateTime.UtcNow + time).Ticks, timeout);
 		}
-		
+
 		/// <summary>
 		///   Adds a timeout to the mainloop.
 		/// </summary>
@@ -230,7 +235,7 @@ namespace CursesSharp.Gui {
 				ret |= PollEvents.POLLNVAL;
 			return ret;
 		}
-		
+
 		void UpdatePollMap ()
 		{
 			if (!poll_dirty)
@@ -239,7 +244,7 @@ namespace CursesSharp.Gui {
 
 			pollmap = new Pollfd [descriptorWatchers.Count];
 			int i = 0;
-			foreach (var fd in descriptorWatchers.Keys){
+			foreach (var fd in descriptorWatchers.Keys) {
 				pollmap [i].fd = fd;
 				pollmap [i].events = MapCondition (descriptorWatchers [fd].Condition);
 				Widget.Log ("Got {0} from {1}", pollmap [i].events, descriptorWatchers [fd].Condition);
@@ -251,7 +256,7 @@ namespace CursesSharp.Gui {
 			long now = DateTime.UtcNow.Ticks;
 			var copy = timeouts;
 			timeouts = new SortedList<double,Timeout> ();
-			foreach (var k in copy.Keys){
+			foreach (var k in copy.Keys) {
 				if (k >= now)
 					break;
 				var timeout = copy [k];
@@ -263,20 +268,20 @@ namespace CursesSharp.Gui {
 		void RunIdle ()
 		{
 			List<Func<bool>> iterate;
-			lock (idleHandlers){
+			lock (idleHandlers) {
 				iterate = idleHandlers;
 				idleHandlers = new List<Func<bool>> ();
 			}
 
-			foreach (var idle in iterate){
+			foreach (var idle in iterate) {
 				if (idle ())
 					lock (idleHandlers)
 						idleHandlers.Add (idle);
 			}
 		}
-		
+
 		bool running;
-		
+
 		/// <summary>
 		///   Stops the mainloop.
 		/// </summary>
@@ -299,7 +304,7 @@ namespace CursesSharp.Gui {
 			long now = DateTime.UtcNow.Ticks;
 			int pollTimeout, n;
 			if (timeouts.Count > 0)
-				pollTimeout = (int) ((timeouts.Keys [0] - now) / TimeSpan.TicksPerMillisecond);
+				pollTimeout = (int)((timeouts.Keys [0] - now) / TimeSpan.TicksPerMillisecond);
 			else
 				pollTimeout = -1;
 			
@@ -308,7 +313,7 @@ namespace CursesSharp.Gui {
 			
 			UpdatePollMap ();
 
-			n = Syscall.poll (pollmap, (uint) pollmap.Length, pollTimeout);
+			n = Syscall.poll (pollmap, (uint)pollmap.Length, pollTimeout);
 			int ic;
 			lock (idleHandlers)
 				ic = idleHandlers.Count;
@@ -329,7 +334,7 @@ namespace CursesSharp.Gui {
 			if (timeouts.Count > 0)
 				RunTimers ();
 			
-			foreach (var p in pollmap){
+			foreach (var p in pollmap) {
 				Watch watch;
 
 				if (p.revents == 0)
@@ -343,7 +348,7 @@ namespace CursesSharp.Gui {
 			if (idleHandlers.Count > 0)
 				RunIdle ();
 		}
-		
+
 		/// <summary>
 		///   Runs the mainloop.
 		/// </summary>
@@ -351,7 +356,7 @@ namespace CursesSharp.Gui {
 		{
 			bool prev = running;
 			running = true;
-			while (running){
+			while (running) {
 				EventsPending (true);
 				MainIteration ();
 			}

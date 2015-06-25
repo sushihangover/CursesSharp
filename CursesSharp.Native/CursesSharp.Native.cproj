@@ -16,7 +16,7 @@
     <OutputPath>bin\Debug</OutputPath>
     <OutputName>libCursesWrapper</OutputName>
     <CompileTarget>SharedLibrary</CompileTarget>
-    <DefineSymbols>DEBUG MONODEVELOP</DefineSymbols>
+    <DefineSymbols>DEBUG MONODEVELOP SIZEOF_WCHAR_T CURSES_WIDE</DefineSymbols>
     <SourceDirectory>.</SourceDirectory>
     <ExtraCompilerArguments>-DHAVE_CONFIG_H</ExtraCompilerArguments>
     <Includes>

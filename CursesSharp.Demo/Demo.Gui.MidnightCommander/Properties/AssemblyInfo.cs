@@ -9,8 +9,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("http://sushihangover.github.io")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("SushiHangover/RobertN")]
-[assembly: AssemblyTrademark ("All rights reserved : SushiHangover/RobertN")]
+[assembly: AssemblyCopyright ("")]
+[assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

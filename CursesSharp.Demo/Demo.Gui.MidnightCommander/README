@@ -1,0 +1,91 @@
+This project originally came from: 
+  https://github.com/migueldeicaza/mc
+And was copied here as a demo sub-project of CursesSharp and 
+modified to use the CursesSharp ncurses native bindings
+
+Original README:
+
+This is a C# version of the Midnight Commander that I am using as a
+testbed for Mono-Curses. - Miguel de Icaza
+
+This new version is called "Mouseless Commander[1]", to bring back the
+original name.
+
+[1] With mouse support.
+
+History
+=======
+
+This is a C# reimplementation of the Midnight Commander (originally,
+the MouseLess Commander, later the MouseLess Commander With Mouse
+Support) in C#.
+
+Unix Evolves
+------------
+
+The C version of the Midnight Commander was started some time in 1991
+or 1992 and many of the features in the code base had to deal with
+Unix as it used to be back then.  Since then, Unix has changed
+extensively and this rewrite takes advantage of how Unix evolved since
+then.
+
+Plenty of older Unix systems that MC supported no longer exist, so
+none of the supporting code for those systems is replicated here.
+
+Curses Evolves
+--------------
+Back then, curses was mostly broken so the code supported three
+backends: curses, slang and a built-in version of slang.  Over time,
+ncurses became a standard and addressed the bugs and limitations that
+existed back then.   These days ncurses has mouse support built right
+into the API, so many of the hacks that used to exist in MC are no
+longer necessary.  
+
+When MC was originally developed, not only curses was broken, but
+terminal settings could be wrong, terminfo and termcap databases were
+often wrong and in general things were consistely broken.   The old
+midnight commander had its own Learn-the-keys system, and its own
+system for mapping escape sequences to function keys.   None of this
+is necessary anymore
+
+ncurses support Unicode output, so this codebase takes advantage of
+this and the built-in viewer uses the .NET powered Encoding class to
+render files, allowing not only various common formats to be viewed,
+but will easily allow various fringe character set encodings to be
+supported with little effort.
+
+Virtual File Systems
+--------------------
+
+The original Midnight Commander was the first Unix file manager that
+had a virtual file system (VFS) interface.  This virtual file system
+was later adopted by KDE and Gnome.  But application-specific virtual
+file systems are no longer necessary as both Linux and MacOS now
+support FUSE as a kernel-supported user-pluggable file system
+interface.
+
+The Mouseless Commander no longer ships its own VFS, and instead will
+integrate with the operating system FUSE functionality to provide
+access to archives and remote storage facilities. 
+
+Features and Usability
+----------------------
+
+Many features that were added to Midnight Commander over the years in
+retrospect were not very good ideas.   SOme of the dialog boxes grew
+to become too complicated, and not only was it hard to explain to
+users what they did, I could not even remember how to use some of the
+most advanced features like pattern renaming (common in DOS).
+
+Many of the file copying options were advanced features that I never
+changed or switched in the past 18 years.   At the time, it probably
+made sense that we might have wanted to control with precision how
+files were copied, or moved, but the solution we came up with was
+poorly designed.
+
+The dialog boxes became cluttered, and the tab-order was downright
+odd due to all of those features.   So none of that complexity is
+available here. 
+
+Although MC had an hex editor, very few people knew how to activate it
+(Open viewer, activate hex mode, hit Edit).   

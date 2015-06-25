@@ -28,9 +28,11 @@
 using System;
 using CursesSharp;
 
-namespace CursesSharp.Gui {
+namespace CursesSharp.Gui
+{
 
-	public class MainScreen {
+	public class MainScreen
+	{
 		public readonly IntPtr Handle;
 		readonly static Window mainScreen;
 		public readonly static Window curscr;
@@ -42,24 +44,24 @@ namespace CursesSharp.Gui {
 //			curscr = Window.CurrentScreen ();
 //			stdscr = Window.StandardScreen ();
 		}
-		
-		internal MainScreen (IntPtr handle) 
+
+		internal MainScreen (IntPtr handle)
 		{
 			Handle = handle;
 		}
 				
-//		static public MainScreen Standard {
-//			get {
-//				return stdscr;
-//			}
-//		}
-//
-//		static public MainScreen Current {
-//			get {
-//				return curscr;
-//			}
-//		}
-//
+		//		static public MainScreen Standard {
+		//			get {
+		//				return stdscr;
+		//			}
+		//		}
+		//
+		//		static public MainScreen Current {
+		//			get {
+		//				return curscr;
+		//			}
+		//		}
+		//
 
 		public void wtimeout (int delay)
 		{
@@ -73,7 +75,7 @@ namespace CursesSharp.Gui {
 
 		public void keypad (bool bf)
 		{
-			mainScreen.Keypad =  bf;
+			mainScreen.Keypad = bf;
 		}
 
 		public void meta (bool bf)
@@ -90,47 +92,47 @@ namespace CursesSharp.Gui {
 		{
 			mainScreen.ClearOnRefresh = bf;
 		}
-		
+
 		public void idlok (bool bf)
 		{
 			mainScreen.UseHwInsDelLine = bf;
 		}
-		
+
 		public void idcok (bool bf)
 		{
 			mainScreen.UseHwInsDelChar = bf;
 		}
-		
+
 		public void immedok (bool bf)
 		{
 			mainScreen.ImmediateRefresh = bf;
 		}
-		
+
 		public void leaveok (bool bf)
 		{
 			mainScreen.CanLeaveCursor = bf;
 		}
-		
+
 		public void setscrreg (int top, int bot)
 		{
 			mainScreen.SetScrollRegion (top, bot);
 		}
-		
+
 		public void scrollok (bool bf)
 		{
 			mainScreen.EnableScroll = bf;
 		}
-		
+
 		public void wrefresh ()
 		{
-			mainScreen.Refresh();
+			mainScreen.Refresh ();
 		}
 
 		public void redrawwin ()
 		{
-			mainScreen.Redraw(); 
+			mainScreen.Redraw (); 
 		}
-		
+
 		public void wredrawwin (int beg_line, int num_lines)
 		{
 			mainScreen.Redraw (beg_line, num_lines);
@@ -138,7 +140,7 @@ namespace CursesSharp.Gui {
 
 		public void wnoutrefresh ()
 		{
-			mainScreen.NoOutRefresh();
+			mainScreen.NoOutRefresh ();
 		}
 
 		public void move (int line, int col)
@@ -153,14 +155,15 @@ namespace CursesSharp.Gui {
 
 		public void refresh ()
 		{
-			mainScreen.Refresh();
+			mainScreen.Refresh ();
 		}
 	}
 
 	// Currently unused, to do later
-	public class Screen {
+	public class Screen
+	{
 		public readonly IntPtr Handle;
-		
+
 		internal Screen (IntPtr handle)
 		{
 			Handle = handle;

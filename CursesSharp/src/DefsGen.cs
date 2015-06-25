@@ -76,6 +76,9 @@ namespace CursesSharp
 	// Keys
 	public static class Keys
 	{
+		public const int ESC = 0x01B;
+		public const int CTRLC = 0x003;
+		public const int CTRLZ = 0x01A;
 		public const int BREAK = 0x101;
 		public const int DOWN = 0x102;
 		public const int UP = 0x103;
@@ -87,7 +90,9 @@ namespace CursesSharp
 		public const int DL = 0x148;
 		public const int IL = 0x149;
 		public const int DC = 0x14a;
+		public const int DELETEKEY = 0x14a;
 		public const int IC = 0x14b;
+		public const int INSERTKEY = 0x14b;
 		public const int EIC = 0x14c;
 		public const int CLEAR = 0x14d;
 		public const int EOS = 0x14e;

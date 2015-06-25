@@ -368,7 +368,8 @@ namespace CursesSharp
 
         public void Add(string str, int n)
         {
-            CursesMethods.waddnstr(this.winptr, str, n);
+
+			CursesMethods.waddnstr(this.winptr, str, n);
         }
 
         public void Add(int y, int x, string str)

@@ -43,7 +43,8 @@ namespace CursesSharp.Internal
         internal static void Verify(int result, string fname)
         {
             if (result == -1)
-                throw new InternalException(fname + "() returned ERR");
+
+				throw new InternalException(fname + "() returned ERR");
         }
 
         internal static void Verify(IntPtr result, string fname)

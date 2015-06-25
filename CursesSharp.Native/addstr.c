@@ -27,7 +27,7 @@ WRAP_API int
 wrap_waddnstr(WINDOW *win, uchar2 *str, int n)
 {
 #if defined(CURSES_WIDE) && SIZEOF_WCHAR_T == 2
-	return waddnwstr(win, str, n);
+	return xxx waddnwstr(win, str, n);
 #elif defined(CURSES_WIDE)
 	wchar_t stackbuf[BUFFER_SIZE];
 	xbuffer xinput, xoutput;

@@ -1,0 +1,63 @@
+Bugs:
+	Handle symlinks in copy
+		(A broken symlink breaks, we need to copy them, regardless of the targt)
+	Error dialog box for broken symlinks show cancel button at the top
+	Error dialog box for files is too short (5 chars)
+	First char in the caption for an error is not inverted? [ Error ] (the first space is not the right color)
+
+Features Missing:
+	FUSE binding (instead of VFS)
+	Subshell support
+   
+Panel:
+	Display configurations (long, short, attributes)
+	File coloring
+	File kind marker
+	Mini-status per file
+	incremental-search
+	Various commands
+	Refresh
+
+File Management:
+   Show progress
+   Compute ETA
+   Copy:
+       Copy special device files (pipes, sockets, devices)
+       Support Overwrite yes/no/append;   For all targets: all/update/none/if size changes
+   Rename, Move, Delete.
+   Background operations       
+
+Copy:
+	Disable copying ..
+
+Panel:
+	Do not render .. on nested views
+
+Viewer:
+	Hex mode
+	Formated mode (nroff pages, html pages)
+	^H support for nroff pages
+	Search
+	Regex search
+	Status bar
+
+View:
+	Bind this to F2?
+
+	Offer options for files, for example foo.html:
+	      [Raw]
+	      [HTML rendered]
+	      [DOM Rendered]
+
+	For example, foo.exe:
+	      [Raw]
+	      [Hex]
+	      [EXE/ECMA file rendering]
+	      
+Info Panel:
+	Support per-file information browsers
+		PE files: display PE headers
+		NET files: display .NET dump, disassembly
+
+	Since we are .NET program, we might as well add an assembly browser ;-)
+

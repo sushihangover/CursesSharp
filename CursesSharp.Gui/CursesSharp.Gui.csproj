@@ -35,7 +35,10 @@
     <Compile Include="src\Looper.cs" />
     <Compile Include="src\ErrorDialog.cs" />
     <Compile Include="src\FileViewWidget.cs" />
-    <Compile Include="src\ButtonBarWidget.cs" />
+    <Compile Include="src\MessageBox.cs" />
+    <Compile Include="src\Terminal.cs" />
+    <Compile Include="src\Debug.cs" />
+    <Compile Include="src\ButtonBar.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

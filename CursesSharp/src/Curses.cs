@@ -132,7 +132,6 @@ namespace CursesSharp
     public static partial class Curses
     {
 		// We encode ESC + char (what Alt-char generates) as 0x2000 + char
-		public const int ESC = 0x1B ;
 		public const int KeyAlt = 0x2000;
 		public const int ERR = int.MaxValue;
 
@@ -168,6 +167,11 @@ namespace CursesSharp
         {
             get { return stdscr; }
         }
+
+		public static Window CurScr
+		{
+			get { return curscr; }
+		}
 
         /// <summary>
         /// Represents the number of lines on the screen.
@@ -266,7 +270,7 @@ namespace CursesSharp
                 throw new InvalidOperationException("Curses is not initialized.");
             stdscr.Dispose();
             CursesMethods.endwin();
-            stdscr = null;
+            //stdscr = null;
         }
 
         /// <summary>
