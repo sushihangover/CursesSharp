@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Gui.Timeout", "CursesS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Gui.MessageBox", "CursesSharp.Demo\Demo.Gui.MessageBox\Demo.Gui.MessageBox.csproj", "{22D44F5D-7E35-4B38-846A-D6FCE39FBE35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Gui.MidnightCommander", "CursesSharp.Demo\Demo.Gui.MidnightCommander\Demo.Gui.MidnightCommander.csproj", "{9AFC8902-0180-4BBC-87BD-850CB665EA08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Gui.MouselessCommander", "CursesSharp.Demo\Demo.Gui.MidnightCommander\Demo.Gui.MouselessCommander.csproj", "{9AFC8902-0180-4BBC-87BD-850CB665EA08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

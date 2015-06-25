@@ -12,7 +12,7 @@ namespace Demo.Gui.MessageBox
 			var demoGUI = new Container (0, 0, Terminal.Cols, Terminal.Lines);
 			demoGUI.Add (new Label ( (Terminal.Cols / 2) - 6, (Terminal.Lines / 2) - 1, "Hello World"));
 			Terminal.Run(demoGUI);
-			ErrorBox.Error ("Bye World From SushiHangover");
+			ErrorDialog.Error ("Bye World From SushiHangover");
 		}
 	}
 }
