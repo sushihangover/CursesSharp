@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Gui.MessageBox", "Curs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Gui.MouselessCommander", "CursesSharp.Demo\Demo.Gui.MidnightCommander\Demo.Gui.MouselessCommander.csproj", "{9AFC8902-0180-4BBC-87BD-850CB665EA08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Native.ResizeTerm", "CursesSharp.Demo\Demo.Native.ResizeTerm\Demo.Native.ResizeTerm.csproj", "{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -63,6 +65,10 @@ Global
 		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Debug|x64.Build.0 = Debug|x64
 		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Release|x64.ActiveCfg = Release|Any CPU
 		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Release|x64.Build.0 = Release|Any CPU
+		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}.Debug|x64.ActiveCfg = Debug|x64
+		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}.Debug|x64.Build.0 = Debug|x64
+		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}.Release|x64.ActiveCfg = Release|x64
+		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}.Release|x64.Build.0 = Release|x64
 		{DF0FF602-9AEB-45C0-BCB4-E188560F7361}.Debug|x64.ActiveCfg = Debug|x64
 		{DF0FF602-9AEB-45C0-BCB4-E188560F7361}.Debug|x64.Build.0 = Debug|x64
 		{DF0FF602-9AEB-45C0-BCB4-E188560F7361}.Release|x64.ActiveCfg = Release|x64
@@ -85,6 +91,7 @@ Global
 		{EFABBCC3-6499-4377-8481-6D3B133257DB} = {CA9C7AF4-A358-4D5E-85C9-E8DC00F7BE91}
 		{22D44F5D-7E35-4B38-846A-D6FCE39FBE35} = {CA9C7AF4-A358-4D5E-85C9-E8DC00F7BE91}
 		{9AFC8902-0180-4BBC-87BD-850CB665EA08} = {CA9C7AF4-A358-4D5E-85C9-E8DC00F7BE91}
+		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7} = {CA9C7AF4-A358-4D5E-85C9-E8DC00F7BE91}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 1.1
