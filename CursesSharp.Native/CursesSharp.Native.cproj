@@ -35,6 +35,8 @@
         <Lib>iconv</Lib>
       </Libs>
     </Libs>
+    <ExtraLinkerArguments>-arch i386 
+-arch x86_64</ExtraLinkerArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>bin\Release</OutputPath>
@@ -58,8 +60,9 @@
     </Libs>
     <ExtraCompilerArguments>-DHAVE_CONFIG_H
 -arch i386 
--arch x86_64
-</ExtraCompilerArguments>
+-arch x86_64</ExtraCompilerArguments>
+    <ExtraLinkerArguments>-arch i386 
+-arch x86_64</ExtraLinkerArguments>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.tasks" />
@@ -88,4 +91,52 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <Compile Include="addch.c" />
+    <Compile Include="addchstr.c" />
+    <Compile Include="addstr.c" />
+    <Compile Include="attr.c" />
+    <Compile Include="beep.c" />
+    <Compile Include="bkgd.c" />
+    <Compile Include="border.c" />
+    <Compile Include="clear.c" />
+    <Compile Include="color.c" />
+    <Compile Include="debug.c" />
+    <Compile Include="delch.c" />
+    <Compile Include="deleteln.c" />
+    <Compile Include="getch.c" />
+    <Compile Include="getstr.c" />
+    <Compile Include="getyx.c" />
+    <Compile Include="inch.c" />
+    <Compile Include="inchstr.c" />
+    <Compile Include="initscr.c" />
+    <Compile Include="inopts.c" />
+    <Compile Include="insch.c" />
+    <Compile Include="insstr.c" />
+    <Compile Include="instr.c" />
+    <Compile Include="kernel.c" />
+    <Compile Include="keyname.c" />
+    <Compile Include="mouse.c" />
+    <Compile Include="move.c" />
+    <Compile Include="outopts.c" />
+    <Compile Include="overlay.c" />
+    <Compile Include="pad.c" />
+    <Compile Include="panel.c" />
+    <Compile Include="refresh.c" />
+    <Compile Include="scr_dump.c" />
+    <Compile Include="scroll.c" />
+    <Compile Include="slk.c" />
+    <Compile Include="termattr.c" />
+    <Compile Include="touch.c" />
+    <Compile Include="unicode.c" />
+    <Compile Include="util.c" />
+    <Compile Include="window.c" />
+    <Compile Include="wrapper.c" />
+    <Compile Include="xbuffer.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="unicode.h" />
+    <None Include="wrapper.h" />
+    <None Include="xbuffer.h" />
+  </ItemGroup>
 </Project>

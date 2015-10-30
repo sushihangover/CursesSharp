@@ -1,0 +1,151 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define if using curses wide character functions */
+#undef CURSES_WIDE
+
+/* Define to 1 if you have the <curses.h> header file. */
+#undef HAVE_CURSES_H
+
+/* Define if using curses mouse API */
+#undef HAVE_CURSES_MOUSE
+
+/* Define if using curses panel module */
+#undef HAVE_CURSES_PANEL
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if you have the `has_mouse' function. */
+#undef HAVE_HAS_MOUSE
+
+/* Define if you have the iconv() function and it works. */
+#undef HAVE_ICONV
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `mvwaddnwstr' function. */
+#undef HAVE_MVWADDNWSTR
+
+/* Define to 1 if you have the `mvwgetn_wstr' function. */
+#undef HAVE_MVWGETN_WSTR
+
+/* Define to 1 if you have the `mvwinnstr' function. */
+#undef HAVE_MVWINNSTR
+
+/* Define to 1 if you have the `mvwins_nwstr' function. */
+#undef HAVE_MVWINS_NWSTR
+
+/* Define to 1 if you have the <ncursesw/ncurses.h> header file. */
+#undef HAVE_NCURSESW_NCURSES_H
+
+/* Define to 1 if you have the <ncurses.h> header file. */
+#undef HAVE_NCURSES_H
+
+/* Define to 1 if you have the <panel.h> header file. */
+#undef HAVE_PANEL_H
+
+/* Define to 1 if you have the `slk_wset' function. */
+#undef HAVE_SLK_WSET
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the `waddnwstr' function. */
+#undef HAVE_WADDNWSTR
+
+/* Define to 1 if you have the <wchar.h> header file. */
+#undef HAVE_WCHAR_H
+
+/* Define to 1 if the system has the type `wchar_t'. */
+#undef HAVE_WCHAR_T
+
+/* Define to 1 if you have the `wgetn_wstr' function. */
+#undef HAVE_WGETN_WSTR
+
+/* Define to 1 if you have the `winnwstr' function. */
+#undef HAVE_WINNWSTR
+
+/* Define to 1 if you have the `wins_nwstr' function. */
+#undef HAVE_WINS_NWSTR
+
+/* Define to 1 if the system has the type `wint_t'. */
+#undef HAVE_WINT_T
+
+/* Define as const if the declaration of iconv() needs const. */
+#undef ICONV_CONST
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Define to 1 if assertions should be disabled. */
+#undef NDEBUG
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* The size of `wchar_t', as computed by sizeof. */
+#undef SIZEOF_WCHAR_T
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Version number of package */
+#undef VERSION
+
+/* X/Open conformance */
+#undef _XOPEN_SOURCE
+
+/* X/Open Extended conformance */
+#undef _XOPEN_SOURCE_EXTENDED
+
+/* Define to `__inline__' or `__inline' if that's what the C compiler
+   calls it, or to nothing if 'inline' is not supported under any name.  */
+#ifndef __cplusplus
+#undef inline
+#endif
+
+/* Define to `unsigned int' if <sys/types.h> does not define. */
+#undef size_t
