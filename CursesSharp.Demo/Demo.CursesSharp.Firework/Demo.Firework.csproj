@@ -25,6 +25,7 @@
     <EnvironmentVariables>
       <EnvironmentVariables>
         <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Debug" />
+        <Variable name="DYLD_FALLBACK_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Debug" />
       </EnvironmentVariables>
     </EnvironmentVariables>
     <Externalconsole>true</Externalconsole>
@@ -38,7 +39,8 @@
     <Externalconsole>true</Externalconsole>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="DYLD_FALLBACK_LIBRARY_PATH" value="$HOME/mono/mono-llvm-64/lib" />
+        <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Release" />
+        <Variable name="DYLD_FALLBACK_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Release" />
       </EnvironmentVariables>
     </EnvironmentVariables>
   </PropertyGroup>

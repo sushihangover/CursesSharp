@@ -1,5 +1,0 @@
-Name: CursesSharp.Native
-Description: 
-Version: 1.1
-Libs: -L"/Users/administrator/Documents/Code/github/cursessharp/CursesSharp.Native/bin/Debug" -lCursesWrapper
-Cflags: -I"/Users/administrator/Documents/Code/github/cursessharp/CursesSharp.Native"

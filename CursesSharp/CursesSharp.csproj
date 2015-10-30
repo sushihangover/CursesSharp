@@ -88,10 +88,4 @@
   <ItemGroup>
     <Folder Include="src\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CursesSharp.Native\CursesSharp.Native.cproj">
-      <Project>{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}</Project>
-      <Name>CursesSharp.Native</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

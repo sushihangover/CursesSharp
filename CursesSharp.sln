@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{2857B73E-F847-4B02-9238-064979017E93}") = "CursesSharp.Native", "CursesSharp.Native\CursesSharp.Native.cproj", "{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursesSharp", "CursesSharp\CursesSharp.csproj", "{2FEF4990-95CB-42DF-984C-EFBA070652BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursesSharp.Gui", "CursesSharp.Gui\CursesSharp.Gui.csproj", "{E3AF7818-CA6E-4833-B807-3077251D2DCD}"
@@ -61,10 +59,6 @@ Global
 		{9AFC8902-0180-4BBC-87BD-850CB665EA08}.Debug|x64.Build.0 = Debug|x64
 		{9AFC8902-0180-4BBC-87BD-850CB665EA08}.Release|x64.ActiveCfg = Release|x64
 		{9AFC8902-0180-4BBC-87BD-850CB665EA08}.Release|x64.Build.0 = Release|x64
-		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Debug|x64.ActiveCfg = Debug|x64
-		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Debug|x64.Build.0 = Debug|x64
-		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Release|x64.ActiveCfg = Release|Any CPU
-		{9F2F32B1-3DC7-4230-A9CD-4AB82026D20D}.Release|x64.Build.0 = Release|Any CPU
 		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}.Debug|x64.ActiveCfg = Debug|x64
 		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}.Debug|x64.Build.0 = Debug|x64
 		{A823DA5C-C8B0-4F50-8BD4-BF9EECB0E1F7}.Release|x64.ActiveCfg = Release|x64
@@ -75,8 +69,8 @@ Global
 		{DF0FF602-9AEB-45C0-BCB4-E188560F7361}.Release|x64.Build.0 = Release|x64
 		{E3AF7818-CA6E-4833-B807-3077251D2DCD}.Debug|x64.ActiveCfg = Debug|x64
 		{E3AF7818-CA6E-4833-B807-3077251D2DCD}.Debug|x64.Build.0 = Debug|x64
-		{E3AF7818-CA6E-4833-B807-3077251D2DCD}.Release|x64.ActiveCfg = Release|Any CPU
-		{E3AF7818-CA6E-4833-B807-3077251D2DCD}.Release|x64.Build.0 = Release|Any CPU
+		{E3AF7818-CA6E-4833-B807-3077251D2DCD}.Release|x64.ActiveCfg = Release|x64
+		{E3AF7818-CA6E-4833-B807-3077251D2DCD}.Release|x64.Build.0 = Release|x64
 		{EFABBCC3-6499-4377-8481-6D3B133257DB}.Debug|x64.ActiveCfg = Debug|x64
 		{EFABBCC3-6499-4377-8481-6D3B133257DB}.Debug|x64.Build.0 = Debug|x64
 		{EFABBCC3-6499-4377-8481-6D3B133257DB}.Release|x64.ActiveCfg = Release|x64
