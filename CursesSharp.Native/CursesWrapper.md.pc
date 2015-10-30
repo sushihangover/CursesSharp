@@ -1,5 +1,0 @@
-Name: CursesWrapper
-Description: 
-Version: 1.1
-Libs: -L"/Users/administrator/Documents/Code/github/cursessharp/CursesWrapper/bin/Debug" -lCursesWrapper
-Cflags: -I"/Users/administrator/Documents/Code/github/cursessharp/CursesWrapper"
