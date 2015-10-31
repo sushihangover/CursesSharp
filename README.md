@@ -63,7 +63,6 @@ You will have to obtain CursesSharp sources. You clone it from the following rep
 
     https://github.com/sushihangover/CursesSharp.git
 
-
 #### 2. Make the Native Library
 
 	mdtool build CursesSharp.Native.sln --target:Build --configuration:Release
@@ -76,9 +75,30 @@ You will have to obtain CursesSharp sources. You clone it from the following rep
 
 ## Installing CursesSharp on Linux
 
-### This section needs verifcation and updating
+### 0. Prerequisites
 
-Original Linux instructions are [here](http://curses-sharp.sourceforge.net/index.php?page=linux)
+Note: It is assumed you are running 64-bit Linux (ARCH x86_64)
+
+Install some dependencies:
+
+	sudo apt-get install libncurses5-dev 
+	sudo apt-get install ncurses-doc
+
+### 1. Getting CursesSharp
+
+You will have to obtain CursesSharp sources. You clone it from the following repository:
+
+    https://github.com/sushihangover/CursesSharp.git
+
+#### 2. Make the Native Library
+
+	mdtool build CursesSharp.Native.Linux.sln --target:Build --configuration:Release
+	mdtool build CursesSharp.Native.Linux.sln --target:Build --configuration:Debug
+
+#### 3. Make the C# Libraries and Demos
+
+	xbuild CursesSharp.sln /target:Clean
+	xbuild CursesSharp.sln /target:Build
 
 ## Installing CursesSharp on Windows
 
