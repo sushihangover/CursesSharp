@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{9F2F32B1-3DC7-4230-A9CD-4AB82026D20F}</ProjectGuid>
+    <Compiler>
+      <Compiler ctype="GccCompiler" />
+    </Compiler>
+    <Language>C</Language>
+    <Target>Bin</Target>
+    <ReleaseVersion>1.1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug</OutputPath>
+    <OutputName>libCursesWrapper</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <DefineSymbols>DEBUG  SIZEOF_WCHAR_T CURSES_WIDE</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+    <ExtraCompilerArguments>-DHAVE_CONFIG_H
+</ExtraCompilerArguments>
+    <Includes>
+      <Includes>
+        <Include>${ProjectDir}</Include>
+        <Include>${ProjectDir}/..</Include>
+      </Includes>
+    </Includes>
+    <Libs>
+      <Libs>
+        <Lib>ncurses</Lib>
+        <Lib>panel</Lib>
+      </Libs>
+    </Libs>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\Release</OutputPath>
+    <OutputName>CursesWrapper</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <OptimizationLevel>3</OptimizationLevel>
+    <DefineSymbols>SIZEOF_WCHAR_T CURSES_WIDE</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+    <Includes>
+      <Includes>
+        <Include>${ProjectDir}</Include>
+        <Include>${ProjectDir}/..</Include>
+      </Includes>
+    </Includes>
+    <Libs>
+      <Libs>
+        <Lib>ncurses</Lib>
+        <Lib>panel</Lib>
+        <Lib>iconv</Lib>
+      </Libs>
+    </Libs>
+    <ExtraCompilerArguments>-DHAVE_CONFIG_H
+-arch i386 
+-arch x86_64</ExtraCompilerArguments>
+    <ExtraLinkerArguments>-arch i386 
+-arch x86_64</ExtraLinkerArguments>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.tasks" />
+  <Target Name="GetCopyToOutputDirectoryItems--xxxx">
+    <Message Text="XBUILD really does not understand cprojs" />
+  </Target>
+  <Target Name="GetCopyToOutputDirectoryItems.zz">
+    <Message Text="Testing XBUILD!" />
+  </Target>
+  <Target Name="Buildxx">
+    <Message Text="Testing Target XBUILD!" />
+  </Target>
+  <ItemGroup>
+    <Compile Include="addch.c" />
+    <Compile Include="addchstr.c" />
+    <Compile Include="addstr.c" />
+    <Compile Include="attr.c" />
+    <Compile Include="beep.c" />
+    <Compile Include="bkgd.c" />
+    <Compile Include="border.c" />
+    <Compile Include="clear.c" />
+    <Compile Include="color.c" />
+    <Compile Include="debug.c" />
+    <Compile Include="delch.c" />
+    <Compile Include="deleteln.c" />
+    <Compile Include="getch.c" />
+    <Compile Include="getstr.c" />
+    <Compile Include="getyx.c" />
+    <Compile Include="inch.c" />
+    <Compile Include="inchstr.c" />
+    <Compile Include="initscr.c" />
+    <Compile Include="inopts.c" />
+    <Compile Include="insch.c" />
+    <Compile Include="insstr.c" />
+    <Compile Include="instr.c" />
+    <Compile Include="kernel.c" />
+    <Compile Include="keyname.c" />
+    <Compile Include="mouse.c" />
+    <Compile Include="move.c" />
+    <Compile Include="outopts.c" />
+    <Compile Include="overlay.c" />
+    <Compile Include="pad.c" />
+    <Compile Include="panel.c" />
+    <Compile Include="refresh.c" />
+    <Compile Include="scr_dump.c" />
+    <Compile Include="scroll.c" />
+    <Compile Include="slk.c" />
+    <Compile Include="termattr.c" />
+    <Compile Include="touch.c" />
+    <Compile Include="unicode.c" />
+    <Compile Include="util.c" />
+    <Compile Include="window.c" />
+    <Compile Include="wrapper.c" />
+    <Compile Include="xbuffer.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="unicode.h" />
+    <None Include="wrapper.h" />
+    <None Include="xbuffer.h" />
+  </ItemGroup>
+</Project>
