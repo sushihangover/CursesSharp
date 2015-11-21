@@ -34,6 +34,7 @@
         <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Release:$LD_LIBRARY_PATH" />
       </EnvironmentVariables>
     </EnvironmentVariables>
+    <ConsolePause>true</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <Optimize>true</Optimize>
@@ -45,6 +46,7 @@
         <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Release:$LD_LIBRARY_PATH" />
       </EnvironmentVariables>
     </EnvironmentVariables>
+    <ConsolePause>true</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

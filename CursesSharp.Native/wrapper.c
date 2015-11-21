@@ -20,7 +20,6 @@
 
 #include "wrapper.h"
 
-
 WRAP_API int
 wrap_LINES(void)
 {
