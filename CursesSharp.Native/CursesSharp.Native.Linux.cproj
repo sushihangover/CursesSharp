@@ -16,7 +16,6 @@
     <OutputPath>bin\Debug</OutputPath>
     <OutputName>libCursesWrapper</OutputName>
     <CompileTarget>SharedLibrary</CompileTarget>
-    <DefineSymbols>DEBUG  SIZEOF_WCHAR_T CURSES_WIDE</DefineSymbols>
     <SourceDirectory>.</SourceDirectory>
     <ExtraCompilerArguments>-DHAVE_CONFIG_H
 </ExtraCompilerArguments>
@@ -28,10 +27,11 @@
     </Includes>
     <Libs>
       <Libs>
-        <Lib>ncurses</Lib>
         <Lib>panel</Lib>
+        <Lib>ncursesw</Lib>
       </Libs>
     </Libs>
+    <DefineSymbols>CURSES_WIDE</DefineSymbols>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>bin\Release</OutputPath>
@@ -117,5 +117,6 @@
     <None Include="unicode.h" />
     <None Include="wrapper.h" />
     <None Include="xbuffer.h" />
+    <None Include="config.h" />
   </ItemGroup>
 </Project>

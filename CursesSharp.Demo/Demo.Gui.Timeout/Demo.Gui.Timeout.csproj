@@ -22,7 +22,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Release:$LD_LIBRARY_PATH" />
+        <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Debug:$LD_LIBRARY_PATH" />
       </EnvironmentVariables>
     </EnvironmentVariables>
   </PropertyGroup>
@@ -36,7 +36,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Release:$LD_LIBRARY_PATH" />
+        <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Debug:$LD_LIBRARY_PATH" />
       </EnvironmentVariables>
     </EnvironmentVariables>
   </PropertyGroup>
@@ -52,6 +52,10 @@
     <ProjectReference Include="..\..\CursesSharp.Gui\CursesSharp.Gui.csproj">
       <Project>{E3AF7818-CA6E-4833-B807-3077251D2DCD}</Project>
       <Name>CursesSharp.Gui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CursesSharp\CursesSharp.csproj">
+      <Project>{2FEF4990-95CB-42DF-984C-EFBA070652BF}</Project>
+      <Name>CursesSharp</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -17,11 +17,16 @@
  * www.gnu.org/licenses/>.
  * 
  */
-
 #include <sys/types.h>
 #include <signal.h>
 #include <stdint.h>
 #include "wrapper.h"
+
+WRAP_API void 
+wrap_sendsigtstp ()
+{
+    killpg (0, SIGTSTP);
+}
 
 WRAP_API const char *
 wrap_unctrl(unsigned int c)
@@ -45,10 +50,4 @@ WRAP_API int
 wrap_delay_output(int ms)
 {
 	return delay_output(ms);
-}
-
-WRAP_API void 
-wrap_sendsigtstp ()
-{
-    killpg (0, SIGTSTP);
 }
