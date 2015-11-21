@@ -16,7 +16,7 @@
     <OutputPath>bin\Debug</OutputPath>
     <OutputName>libCursesWrapper</OutputName>
     <CompileTarget>SharedLibrary</CompileTarget>
-    <DefineSymbols>DEBUG  SIZEOF_WCHAR_T CURSES_WIDE</DefineSymbols>
+    <DefineSymbols>DEBUG CURSES_WIDE</DefineSymbols>
     <SourceDirectory>.</SourceDirectory>
     <ExtraCompilerArguments>-DHAVE_CONFIG_H
 -arch i386 
@@ -40,10 +40,10 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>bin\Release</OutputPath>
-    <OutputName>CursesWrapper</OutputName>
+    <OutputName>libCursesWrapper</OutputName>
     <CompileTarget>SharedLibrary</CompileTarget>
     <OptimizationLevel>3</OptimizationLevel>
-    <DefineSymbols>SIZEOF_WCHAR_T CURSES_WIDE</DefineSymbols>
+    <DefineSymbols>CURSES_WIDE</DefineSymbols>
     <SourceDirectory>.</SourceDirectory>
     <Includes>
       <Includes>
@@ -75,22 +75,6 @@
   <Target Name="Buildxx">
     <Message Text="Testing Target XBUILD!" />
   </Target>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile">
-          <BuildFilesVar Sync="True" Name="CONFIG_MAKE" />
-          <DeployFilesVar Name="CONFIG_MAKE" />
-          <ResourcesVar Name="CONFIG_MAKE" />
-          <OthersVar Name="CONFIG_MAKE" />
-          <GacRefVar />
-          <AsmRefVar />
-          <ProjectRefVar />
-          <MessageRegex Name="gcc" />
-        </MonoDevelop.Autotools.MakefileInfo>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
   <ItemGroup>
     <Compile Include="addch.c" />
     <Compile Include="addchstr.c" />
@@ -138,5 +122,6 @@
     <None Include="unicode.h" />
     <None Include="wrapper.h" />
     <None Include="xbuffer.h" />
+    <None Include="config.h" />
   </ItemGroup>
 </Project>
