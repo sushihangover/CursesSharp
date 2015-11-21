@@ -129,7 +129,8 @@ Note: It is assumed you are running 64-bit Linux (ARCH x86_64)
 
 Install some dependencies:
 
-	sudo apt-get install libncurses5-dev 
+	sudo apt-get install lib32ncursesw5-dev
+	sudo apt-get install lib32ncurses5-dev
 	sudo apt-get install ncurses-doc
 
 ##1. Getting CursesSharp
