@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CursesSharp;
 using CursesSharp.Gui;
 using Mono.Unix;

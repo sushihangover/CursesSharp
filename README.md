@@ -78,6 +78,10 @@ Note: To run the demos from the CLI, make sure that set the [`DYLD_FALLBACK_LIBR
 
 	export DYLD_FALLBACK_LIBRARY_PATH=$(PWD)/CursesSharp.Native/bin/Debug:/usr/lib:$DYLD_FALLBACK_LIBRARY_PATH
 	
+There is also a CI script that can be called via `source` to setup `DYLD_FALLBACK_LIBRARY_PATH` and `LD_LIBRARY_PATH`
+
+	source CI/libpath-source-me.sh
+	
 To learn more about `dyld` check out the `man` page:
 
 	man dyld
@@ -146,12 +150,55 @@ You will have to obtain CursesSharp sources. You clone it from the following rep
 
 ###3. Make the C# Libraries and Demos
 
-	xbuild CursesSharp.sln /target:Clean
-	xbuild CursesSharp.sln /target:Build
+	xbuild CursesSharp.sln /target:Clean /property:configuration=Debug
+	xbuild CursesSharp.sln /target:Build /property:configuration=Debug
+
+#Demos:
+
+Note: To run the demos from the CLI, make sure that set the [`LD_LIBRARY_PATH`](http://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html). While still in the repo's root directory:
+
+	export LD_LIBRARY_PATH=$(PWD)/CursesSharp.Native/bin/Debug:/usr/lib:$LD_LIBRARY_PATH
+	
+There is also a CI script that can be called via `source` to setup `DYLD_FALLBACK_LIBRARY_PATH` and `LD_LIBRARY_PATH`
+
+	source CI/libpath-source-me.sh
+	
+To learn more about `ld` check out the `man` page:
+
+	man ld
+
+##MessageBox Demo:
+
+	cd CursesSharp.Demo/Demo.Gui.MidnightCommander/bin/x64/Debug/
+	mono Demo.Gui.Messagebox.exe
+	cd -
+
+#####(Ubuntu / Konsole)
+![](http://sushihangover.github.io/images/CursesSharp-MsgBox-Konsole.png)
+
+##MidnightCommander Demo:
+
+	cd CursesSharp.Demo/Demo.Gui.MidnightCommander/bin/x64/Debug/
+	mono Demo.Gui.MidnightCommander.exe
+	cd -
+
+####(Ubuntu / Konsole)
+![](http://sushihangover.github.io/images/CursesSharp-Midnight-Konsole.png)
 
 ##Installing CursesSharp on Windows
 
 Refer the original Windows project, source code and instructions are [here](http://curses-sharp.sourceforge.net/index.php?page=windows)
+
+## CI
+
+OS-X:
+
+	source CI/libpath-source-me.sh
+	CI/build.osx.sh
+
+Linux:
+
+	{TODO}
 
 ##TODO & Contributors:
 
