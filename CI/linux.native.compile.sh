@@ -1,3 +1,4 @@
+#!/bin/bash
 
 mkdir --parents ./CursesSharp.Native/obj/x64/Debug/prec/Debug
 mkdir --parents ./CursesSharp.Native/bin/Debug
