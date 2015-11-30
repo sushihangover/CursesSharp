@@ -1,5 +1,5 @@
 
-mkdir --parents ./CursesSharp.Native/obj/x64/Debug/Debug
+mkdir --parents ./CursesSharp.Native/obj/x64/Debug/prec/Debug
 mkdir --parents ./CursesSharp.Native/bin/Debug
 
 gcc  -MMD "./CursesSharp.Native/addch.c" -g -fPIC -O0 -DHAVE_CONFIG_H -DCURSES_WIDE -I"./CursesSharp.Native" -I"./CursesSharp.Native/.." -I"./CursesSharp.Native/obj/x64/Debug/prec/Debug|x64"  -c -o "./CursesSharp.Native/bin/Debug/addch.o"
@@ -46,4 +46,5 @@ gcc  -MMD "./CursesSharp.Native/xbuffer.c" -g -fPIC -O0 -DHAVE_CONFIG_H -DCURSES
 gcc -shared -o "./CursesSharp.Native/bin/Debug/libCursesWrapper.so" "./CursesSharp.Native/bin/Debug/addch.o" "./CursesSharp.Native/bin/Debug/addchstr.o" "./CursesSharp.Native/bin/Debug/addstr.o" "./CursesSharp.Native/bin/Debug/attr.o" "./CursesSharp.Native/bin/Debug/beep.o" "./CursesSharp.Native/bin/Debug/bkgd.o" "./CursesSharp.Native/bin/Debug/border.o" "./CursesSharp.Native/bin/Debug/clear.o" "./CursesSharp.Native/bin/Debug/color.o" "./CursesSharp.Native/bin/Debug/debug.o" "./CursesSharp.Native/bin/Debug/delch.o" "./CursesSharp.Native/bin/Debug/deleteln.o" "./CursesSharp.Native/bin/Debug/getch.o" "./CursesSharp.Native/bin/Debug/getstr.o" "./CursesSharp.Native/bin/Debug/getyx.o" "./CursesSharp.Native/bin/Debug/inch.o" "./CursesSharp.Native/bin/Debug/inchstr.o" "./CursesSharp.Native/bin/Debug/initscr.o" "./CursesSharp.Native/bin/Debug/inopts.o" "./CursesSharp.Native/bin/Debug/insch.o" "./CursesSharp.Native/bin/Debug/insstr.o" "./CursesSharp.Native/bin/Debug/instr.o" "./CursesSharp.Native/bin/Debug/kernel.o" "./CursesSharp.Native/bin/Debug/keyname.o" "./CursesSharp.Native/bin/Debug/mouse.o" "./CursesSharp.Native/bin/Debug/move.o" "./CursesSharp.Native/bin/Debug/outopts.o" "./CursesSharp.Native/bin/Debug/overlay.o" "./CursesSharp.Native/bin/Debug/pad.o" "./CursesSharp.Native/bin/Debug/panel.o" "./CursesSharp.Native/bin/Debug/refresh.o" "./CursesSharp.Native/bin/Debug/scr_dump.o" "./CursesSharp.Native/bin/Debug/scroll.o" "./CursesSharp.Native/bin/Debug/slk.o" "./CursesSharp.Native/bin/Debug/termattr.o" "./CursesSharp.Native/bin/Debug/touch.o" "./CursesSharp.Native/bin/Debug/unicode.o" "./CursesSharp.Native/bin/Debug/util.o" "./CursesSharp.Native/bin/Debug/window.o" "./CursesSharp.Native/bin/Debug/wrapper.o" "./CursesSharp.Native/bin/Debug/xbuffer.o"  -l"panel" -l"ncursesw" 
 
 ls -l CursesSharp.Native/bin/Debug/libCursesWrapper.so 
+file CursesSharp.Native/bin/Debug/libCursesWrapper.so 
 
