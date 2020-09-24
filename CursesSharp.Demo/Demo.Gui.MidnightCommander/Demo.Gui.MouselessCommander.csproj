@@ -28,13 +28,13 @@
     </EnvironmentVariables>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Posix" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\CursesSharp.Gui\CursesSharp.Gui.csproj" />
     <ProjectReference Include="..\..\CursesSharp\CursesSharp.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
   </ItemGroup>
 </Project>
