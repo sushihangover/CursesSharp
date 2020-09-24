@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <OutputType>Library</OutputType>
     <ReleaseVersion>1.1</ReleaseVersion>
@@ -14,10 +14,10 @@
     <OutputPath>bin\x64\Release</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Posix" />
+    <Folder Include="src\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\" />
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CursesSharp\CursesSharp.csproj" />
