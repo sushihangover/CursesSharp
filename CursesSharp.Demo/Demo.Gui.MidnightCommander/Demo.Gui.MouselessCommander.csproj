@@ -1,25 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>net471</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-    <ProjectGuid>{9AFC8902-0180-4BBC-87BD-850CB665EA08}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Demo.Gui.MidnightCommander</RootNamespace>
     <AssemblyName>Demo.Gui.MidnightCommander</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ReleaseVersion>1.1</ReleaseVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>bin\x64\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
-    <PlatformTarget>x64</PlatformTarget>
     <EnvironmentVariables>
       <EnvironmentVariables>
         <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Debug:$LD_LIBRARY_PATH" />
@@ -27,13 +19,8 @@
     </EnvironmentVariables>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>bin\x64\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <Externalconsole>true</Externalconsole>
-    <PlatformTarget>x64</PlatformTarget>
     <EnvironmentVariables>
       <EnvironmentVariables>
         <Variable name="LD_LIBRARY_PATH" value="$(PWD)/../../../../../CursesSharp.Native/bin/Debug:$LD_LIBRARY_PATH" />
@@ -41,29 +28,13 @@
     </EnvironmentVariables>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Mono.Posix" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\fileops.cs" />
-    <Compile Include="src\mc.cs" />
-    <Compile Include="src\util.cs" />
-    <Compile Include="src\viewfile.cs" />
-    <Compile Include="src\panel.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\..\CursesSharp.Gui\CursesSharp.Gui.csproj">
-      <Project>{E3AF7818-CA6E-4833-B807-3077251D2DCD}</Project>
-      <Name>CursesSharp.Gui</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CursesSharp\CursesSharp.csproj">
-      <Project>{2FEF4990-95CB-42DF-984C-EFBA070652BF}</Project>
-      <Name>CursesSharp</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\CursesSharp.Gui\CursesSharp.Gui.csproj" />
+    <ProjectReference Include="..\..\CursesSharp\CursesSharp.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
   </ItemGroup>
 </Project>
